@@ -19,6 +19,8 @@ cd ..
 rm -rf _site/*
 jekyll build
 
+git pull
+
 git add .
 git status
 git commit -m  ”$msg“
