@@ -5,7 +5,7 @@
       {% include header.html %}
 
     <!-- Begin page content -->
-    <div class="container">
+    <div id="body-container" class="container">
       {{ content}}
     </div>
 
@@ -27,8 +27,7 @@
      <script type="text/javascript" src="https://cdn.staticfile.org/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
       <script type="text/javascript" src="{{ ASSET_PATH }}/assets/js/showup/showup.min.js"></script>
-      <script type="text/javascript" src="{{ ASSET_PATH }}/assets/js/core.min.js"></script>
-       <script type="text/javascript">
+      <script type="text/javascript">
       $('#qr').qrcode({
           width: 128,
           height: 128,
