@@ -24,14 +24,14 @@ git status
 git commit -m  ”$msg“
 git push origin master
 
-echo "post sitemap.txt to baidu"
-curl -H 'Content-Type:text/plain' --data-binary @_site/sitemap.txt "http://data.zz.baidu.com/update?site=blog.javachen.com&token=2CeQfTIrbOgmAqpv"
-
 cd ../javachen.github.io
 git pull
 rm -rf  page* 20* assets
 cp -r ../javachen-blog-theme/_site/* .
 rm -rf  deploy.sh qiniu-images.json
+
+# echo "post sitemap.xml to baidu"
+# curl -H 'Content-Type:text/xml' --data-binary @sitemap.xml "http://data.zz.baidu.com/update?site=blog.javachen.com&token=2CeQfTIrbOgmAqpv"
 
 git add .
 git commit -m "$msg"
