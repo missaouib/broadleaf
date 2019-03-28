@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    {% include head.html %}
+    <body>
+      {% include header.html %}
+
+    <!-- Begin page content -->
+    <div class="container">
+      {{ content}}
+    </div>
+
+    <div class="clearfix"></div>
+
+  <!-- Begin footer content -->
+  <footer class="footer">
+      <div class="container">
+      {% if site.footer.b2t %}
+        {% include b2t.html %}
+      {% endif %}
+
+        {% include footer.html %}
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+     <script type="text/javascript" src="https://cdn.staticfile.org/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+      <script type="text/javascript" src="{{ ASSET_PATH }}/assets/js/showup/showup.min.js"></script>
+      <script type="text/javascript" src="{{ ASSET_PATH }}/assets/js/core.min.js"></script>
+       <script type="text/javascript">
+      $('#qr').qrcode({
+          width: 128,
+          height: 128,
+          text: '{{ site.url }}{{page.url}}'
+      });
+      </script>
+  </body>
+</html>

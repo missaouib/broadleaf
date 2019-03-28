@@ -1,0 +1,105 @@
+# Site settings
+title : JavaChen Blog
+tagline: Ramblings of a coder
+keywords: java,spring,spring mvc,spring boot,mybatis,hibernate,jdbc,hadoop,hive,mapreduce,hbase,hdfs,spark,yarn,impala,presto,impala,sentry,zookeeper,pentaho,kettle,solr,scala,python,javascript,angular,jquery,postgresql
+description: Rumblings by a coder on Java、Web、BigData、BI、Python and so on
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://blog.javachen.com"
+author:
+    name: JavaChen
+    github: javachen
+    email: junezchen@gmail.com
+    twitter:
+    facebook:
+    weibo: chenzhijun
+
+# Handling Reading
+safe:         false
+include:      []
+exclude:      [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+keep_files:   []
+encoding:     "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+textile_ext:  "textile"
+
+# Filtering Content
+show_drafts: null
+limit_posts: 0
+future:      false
+unpublished: false
+
+# Plugins
+gems: [jekyll-paginate]
+
+# Conversion
+markdown:    kramdown
+highlighter: rouge
+lsi:         false
+excerpt_separator: <!--more-->
+incremental: false
+
+# Markdown Processors
+rdiscount:
+  extensions: []
+
+redcarpet:
+  extensions: []
+
+kramdown:
+  input: GFM
+  auto_ids:       true
+  footnote_nr:    1
+  entity_output:  as_char
+  toc_levels:     1..6
+  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+  extensions:
+    - autolink
+    - footnotes
+    - smart
+    - table
+
+# Outputting
+permalink: /:year/:month/:day/:title.html
+paginate_path: /page:num
+paginate: 15
+timezone: Asia/Shanghai
+
+reward:
+  enable: true
+  comment: '真诚赞赏 手有余香'
+  alipay: '/assets/img/alipay.jpg'
+  wxpay: '/assets/img/wxpay.jpg'
+
+footer:
+  since: 2013
+  b2t: true
+
+# comment
+comments:
+  duoshuo:
+    name: #javachen
+    rcomments:
+        num: 8
+        avatar: 0
+        time: 0
+        title: 0
+        admin: 0
+        length: 12
+  gitalk:
+    enable: true
+    owner:  javachen
+    repo: javachen.github.io
+    clientID: 89e66276f674f3a390ea
+    clientSecret: fc8645dd1e4ce11d673e134fe22e68571d1835e4
+    admin: javachen
+
+# 网站统计
+analytics:
+    tencent:
+        uid: #52032901
+    baidu:
+        uid: 50bc6f5d9b045b5895ff44f8bbdbc611

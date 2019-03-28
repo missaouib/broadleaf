@@ -1,0 +1,15 @@
+            {% if site.analytics.tencent.uid %}
+                    <script type="text/javascript" src="http://tajs.qq.com/stats?sId={{ site.analytics.tencent.uid }}" charset="UTF-8"></script>
+            {% endif %}
+
+            {% if site.analytics.baidu.uid %}
+            <script>
+              var _hmt = _hmt || [];
+              (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?{{ site.analytics.baidu.uid }}";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+              })();
+            </script>
+            {% endif %}

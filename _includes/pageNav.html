@@ -1,0 +1,12 @@
+    <ul class="pager hidden-print">
+             {% if page.previous %}
+              <li class="previous"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}"><i class="fa fa-angle-double-left"></i>&nbsp;{{ page.previous.title }}</a></li>
+              {% else %}
+              <li class="previous disabled"><a href="#"><i class="fa fa-angle-double-left"></i>Prev</a></li>
+              {% endif %}
+              {% if page.next %}
+              <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{ page.next.title }}&nbsp;<i class="fa fa-angle-double-right"></i></a></li>
+              {% else %}
+              <li class="next disabled"><a href="#">Next <i class="fa fa-angle-double-right"></i></a></li>
+              {% endif %}
+        </ul>
