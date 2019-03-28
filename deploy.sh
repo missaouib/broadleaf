@@ -21,7 +21,7 @@ jekyll build
 
 git add .
 git status
-git commit -m  $msg
+git commit -m  ”$msg“
 git push origin master
 
 echo "post sitemap.txt to baidu"
