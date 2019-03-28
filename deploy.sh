@@ -2,7 +2,7 @@
 
 echo `date`
 
-msg="update:$*"
+msg="$*"
 
 
 rm -rf .jekyll-metadata
@@ -21,7 +21,7 @@ jekyll build
 
 git add .
 git status
-git commit -m "update at `date` $msg"
+git commit -m  $msg
 git push origin master
 
 echo "post sitemap.txt to baidu"
