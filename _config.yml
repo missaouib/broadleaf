@@ -1,8 +1,8 @@
 # Site settings
 title : JavaChen Blog
 tagline: Ramblings of a coder
-keywords: java,spring,spring mvc,spring boot,mybatis,hibernate,jdbc,hadoop,hive,mapreduce,hbase,hdfs,spark,yarn,impala,presto,impala,sentry,zookeeper,pentaho,kettle,solr,scala,python,javascript,angular,jquery,postgresql
-description: Rumblings by a coder on Java、Web、BigData、BI、Python and so on
+keywords: java,spring,mybatis,hadoop,hive,hbase
+description: Rumblings by a coder on Java、Hadoop and so on
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://blog.javachen.com"
 author:
