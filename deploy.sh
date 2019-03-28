@@ -30,7 +30,7 @@ curl -H 'Content-Type:text/plain' --data-binary @_site/sitemap.txt "http://data.
 cd ../javachen.github.io
 git pull
 rm -rf  ./*
-cp -r ../javachen-blog/_site/* .
+cp -r ../javachen-blog-theme/_site/* .
 rm -rf  deploy.sh qiniu-images.json
 
 git add .
