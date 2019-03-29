@@ -27,8 +27,7 @@ comment: true
 - 2019-03-22: 去掉评论系统。
 - 2016-02-22: 升级到Jekyll3版本。
 - 2015-06-15: 参考[Yeolar](http://www.yeolar.com)修改博客主题为现在这个样式，主要改变有：增加自适应布局、文章添加二维码、文章版权说明。
-- 2015-03-03: 博客源代码托管在[
-- ](https://github.com/javachen/javachen-blog-theme)，生成的静态页面托管在[Github](https://github.com/javachen/javachen.github.io)。
+- 2015-03-03: 博客源代码托管在[Github](https://github.com/javachen/javachen-blog-theme)，生成的静态页面托管在[Github](https://github.com/javachen/javachen.github.io)。
 - 2014-10-31: 使用cnzz统计代码。
 - 2012-06-28: 使用51la统计代码。
 - 2009-05-12: 基于asp建立博客。
