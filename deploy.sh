@@ -23,7 +23,7 @@ git pull
 
 git add .
 git status
-git commit -m  ”$msg“
+git commit -m  "new post $msg"
 git push origin master
 
 cd ../javachen.github.io
@@ -36,7 +36,7 @@ rm -rf  deploy.sh qiniu-images.json
 # curl -H 'Content-Type:text/xml' --data-binary @sitemap.xml "http://data.zz.baidu.com/update?site=blog.javachen.com&token=2CeQfTIrbOgmAqpv"
 
 git add .
-git commit -m "$msg"
+git commit -m "new post $msg"
 git push origin master
 
 echo `date`

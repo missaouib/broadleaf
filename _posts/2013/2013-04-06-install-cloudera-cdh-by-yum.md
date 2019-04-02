@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  使用yum源安装CDH Hadoop集群
+title:  使用yum源安装CDH5集群
 description: 本文主要是记录使用yum源安装CDH Hadoop集群的过程，包括HDFS、Yarn、Hive和HBase。本文针对的集群版本为CDH5.4。
 category: hadoop
 tags: [hadoop, hdfs, yarn, hive ,hbase]
@@ -20,27 +20,29 @@ tags: [hadoop, hdfs, yarn, hive ,hbase]
 集群各节点角色规划为：
 
 ~~~
-192.168.56.121        cdh1     NameNode、ResourceManager、HBase、Hive metastore、Impala Catalog、Impala statestore、Sentry 
-192.168.56.122        cdh2     DataNode、SecondaryNameNode、NodeManager、HBase、Hive Server2、Impala Server
-192.168.56.123        cdh3     DataNode、HBase、NodeManager、Hive Server2、Impala Server
+192.168.56.121  cdh1   NameNode、ResourceManager、HBase、Hive metastore、Impala Catalog、Impala statestore、Sentry 
+192.168.56.122  cdh2   DataNode、SecondaryNameNode、NodeManager、HBase、Hive Server2、Impala Server
+192.168.56.123  cdh3   DataNode、HBase、NodeManager、Hive Server2、Impala Server
 ~~~
 
 cdh1作为master节点，其他节点作为slave节点。
 
 # 1. 准备工作
 
-安装 Hadoop 集群前先做好下面的准备工作，在修改配置文件的时候，建议在一个节点上修改，然后同步到其他节点，例如：对于 hdfs 和 yarn ，在 NameNode 节点上修改然后再同步，对于 HBase，选择一个节点再同步。因为要同步配置文件和在多个节点启动服务，建议配置 ssh 无密码登陆。
+## 1.1 准备虚拟机
 
-## 1.1 配置hosts
+参考[使用Vagrant创建虚拟机安装Hadoop](http://blog.javachen.com/2014/02/23/create-virtualbox-by-vagrant.html)创建三台虚拟机。
 
-CDH 要求使用 IPv4，IPv6 不支持，**禁用IPv6方法：**
+##  1.2 禁用IPv6方法
+
+CDH 要求使用 IPv4，IPv6 不支持，禁用IPv6方法：
 
 ~~~bash
-$ vim /etc/sysctl.conf
-#disable ipv6
+$ cat > /etc/sysctl.conf <<EOF
 net.ipv6.conf.all.disable_ipv6=1
 net.ipv6.conf.default.disable_ipv6=1
 net.ipv6.conf.lo.disable_ipv6=1
+EOF
 ~~~
 
 使其生效：
@@ -56,26 +58,41 @@ $ cat /proc/sys/net/ipv6/conf/all/disable_ipv6
 1
 ~~~
 
-1、设置hostname，以cdh1为例：
+## 1.3 配置hosts
 
-~~~bash
-$ hostname cdh1
+修改每个节点/etc/hosts文：
+
+~~~
+# cat > /etc/hosts <<EOF
+127.0.0.1       localhost
+192.168.56.121 cdh1.javachen.com cdh1
+192.168.56.122 cdh2.javachen.com cdh2
+192.168.56.123 cdh3.javachen.com cdh3
+EOF
 ~~~
 
-2、确保`/etc/hosts`中包含ip和FQDN，如果你在使用DNS，保存这些信息到`/etc/hosts`不是必要的，却是最佳实践。
+在每个节点分别配置网络名称，例如在cdh1机器上：
 
-3、确保`/etc/sysconfig/network`中包含`hostname=cdh1`
+    #  hostnamectl set-hostname cdh1.javachen.com
 
-4、检查网络，运行下面命令检查是否配置了hostname以及其对应的ip是否正确。
+设置/etc/sysconfig/network：
 
-运行`uname -a`查看hostname是否匹配`hostname`命令运行的结果：
+    #  cat > /etc/sysconfig/network<<EOF
+    HOSTNAME=cdh1.javachen.com
+    EOF
 
-~~~bash
-$ uname -a
-Linux cdh1 2.6.32-358.23.2.el6.x86_64 #1 SMP Wed Oct 16 18:37:12 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
-$ hostname
-cdh1
-~~~
+验证一下是否修改过来了：
+
+    #  uname -a
+    Linux cdh1.example.com 3.10.0-327.4.5.el7.x86_64 #1 SMP Mon Jan 25 22:07:14 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+
+    #  hostname
+    cdh1.example.com
+
+安装net-tools使用ifconfig命令验证IP是否正确：
+
+    #  yum install net-tools -y
+    #  ifconfig
 
 运行`/sbin/ifconfig`查看ip:
 
@@ -102,9 +119,7 @@ Trying "cdh1"
 cdh1. 60 IN	A	192.168.56.121
 ~~~
 
-5、hadoop的所有配置文件中配置节点名称时，请使用hostname和不是ip
-
-## 1.2 关闭防火墙
+## 1.4 关闭防火墙
 
 ~~~bash
 $ setenforce 0
@@ -114,14 +129,14 @@ $ vim /etc/sysconfig/selinux #修改SELINUX=disabled
 $ iptables -F
 ~~~
 
-## 1.3 时钟同步
+## 1.5 时钟同步
 
-## 搭建时钟同步服务器
+### 搭建时钟同步服务器
 
 这里选择 cdh1 节点为时钟同步服务器，其他节点为客户端同步时间到该节点。安装ntp:
 
 ~~~bash
-$ yum install ntp
+$ yum install ntp -y
 ~~~
 
 修改 cdh1 上的配置文件 `/etc/ntp.conf` :
@@ -140,9 +155,12 @@ fudge   127.127.1.0 stratum 10
 ~~~bash
 #设置开机启动
 $ chkconfig ntpd on
-
-$ service ntpd start
+$ service ntpd restart
 ~~~
+
+设置系统时钟：
+
+    hwclock --systohc
 
 ntpq用来监视ntpd操作，使用标准的NTP模式6控制消息模式，并与NTP服务器通信。
 
@@ -165,11 +183,15 @@ $ ntpq -p
 - "poll"：当前的请求的时钟间隔的秒数。
 - "offset"：主机通过NTP时钟同步与所同步时间源的时间偏移量，单位为毫秒（ms）。
 
-## 客户端的配置
+### 客户端的配置
 
-在cdh2和cdh3节点上执行下面操作：
+在cdh2和cdh3节点上安装ntp服务并执行下面操作：
 
 ~~~bash
+$ yum install ntp -y
+#设置开机启动
+$ chkconfig ntpd on
+$ service ntpd restart
 $ ntpdate cdh1
 ~~~
 
@@ -182,36 +204,68 @@ Ntpd启动的时候通常需要一段时间大概5分钟进行时间同步，所
 00 1 * * * root /usr/sbin/ntpdate 192.168.56.121 >> /root/ntpdate.log 2>&1
 ~~~
 
-## 1.4 安装jdk
+##  1.6 虚拟内存设置
 
-CDH5.4要求使用JDK1.7，JDK的安装过程请参考网上文章。
+Cloudera 建议将`/proc/sys/vm/swappiness`设置为 0，当前设置为 60。
 
-## 1.5 设置本地yum源
+临时解决，通过`echo 0 > /proc/sys/vm/swappiness`即可解决。
+
+永久解决：
+
+    #  sysctl -w vm.swappiness=0
+    #   echo vm.swappiness = 0 >> /etc/sysctl.conf
+
+## 1.7 安装jdk
+
+jdk版本看cdh版本而定，我这里是jdk1.7。每个节点安装jdk：
+
+    sudo yum install java-1.7.0-openjdk  java-1.7.0-openjdk-devel -y
+
+## 1.8 配置SSH无密码登陆
+
+每个节点先生成ssh公钥：
+
+    #  [ ! -d /root/.ssh ] && ( mkdir /root/.ssh ) && ( chmod 600 /root/.ssh  ) && yes|ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ""
+
+在cdh1上配置无密码登陆其他节点：
+
+    # ssh-copy-id -i /root/.ssh/id_rsa.pub root@cdh2
+    # ssh-copy-id -i /root/.ssh/id_rsa.pub root@cdh3
+
+## 1.9 设置本地yum源
 
 CDH官方的yum源地址在 http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/cloudera-cdh4.repo 或 http://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo ，请根据你安装的cdh版本修改该文件中baseurl的路径。
 
 你可以从[这里](http://archive.cloudera.com/cdh4/repo-as-tarball/)下载 cdh4 的仓库压缩包，或者从[这里](http://archive.cloudera.com/cdh5/repo-as-tarball/) 下载 cdh5 的仓库压缩包。
 
-因为我是使用的centos操作系统，故我这里下载的是cdh5的centos6压缩包，将其下载之后解压到ftp服务的路径下，然后配置cdh的本地yum源：
+因为我是使用的centos操作系统，创建/etc/yum.repos.d/cloudera-cdh.repo文件如下：
 
 ~~~
-[hadoop]
-name=hadoop
-baseurl=ftp://cdh1/cdh/5/
-enabled=1
-gpgcheck=0
+$ vim /etc/yum.repos.d/cloudera-cdh.repo  
+[cloudera-cdh]  
+# Packages for Cloudera's Distribution for Hadoop, Version 5, on RedHat or CentOS 6 x86_64  
+name=Cloudera's Distribution for Hadoop, Version 5  
+baseurl=http://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/5/  
+gpgkey = http://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/RPM-GPG-KEY-cloudera  
+enabled=1      
+gpgcheck = 1 
 ~~~
 
-操作系统的yum源，建议你通过下载 centos 的 dvd 然后配置一个本地的 yum 源。
+将 /etc/yum.repos.d/cloudera-cdh.repo文件同步到其他节点。
 
-# 2. 安装和配置HDFS
+    scp -rp /etc/yum.repos.d/cloudera-cdh.repo root@cdh2:/etc/yum.repos.d/
+    scp -rp /etc/yum.repos.d/cloudera-cdh.repo root@cdh3:/etc/yum.repos.d/
+
+如果你用的是cdh6的yum，请修改上面的链接，当然你可以同步到本地创建ftp或者http的yum源。
+
+# 2. 安装HDFS
 
 根据文章开头的节点规划，cdh1 为NameNode节点，cdh2为SecondaryNameNode节点，cdh2 和 cdh3 为DataNode节点
 
 在 cdh1 节点安装 hadoop-hdfs-namenode：
 
 ~~~bash
-$ yum install hadoop hadoop-hdfs hadoop-client hadoop-doc hadoop-debuginfo hadoop-hdfs-namenode
+$ yum install hadoop-hdfs-namenode
 ~~~
 
 在 cdh2 节点安装 hadoop-hdfs-secondarynamenode
@@ -220,87 +274,71 @@ $ yum install hadoop hadoop-hdfs hadoop-client hadoop-doc hadoop-debuginfo hadoo
 $ yum install hadoop-hdfs-secondarynamenode -y
 ~~~
 
-在 cdh2、cdh3节点安装 hadoop-hdfs-datanode
+在cdh1、cdh2、cdh3节点安装 hadoop-hdfs-datanode
 
 ~~~bash
-$ yum install hadoop hadoop-hdfs hadoop-client hadoop-doc hadoop-debuginfo hadoop-hdfs-datanode -y
+$ yum install hadoop hadoop-hdfs-datanode -y
 ~~~
 
 NameNode HA 的配置过程请参考[CDH中配置HDFS HA](/2014/07/18/install-hdfs-ha-in-cdh.html)，建议暂时不用配置。
 
 ## 2.1 修改hadoop配置文件
 
-在`/etc/hadoop/conf/core-site.xml`中设置`fs.defaultFS`属性值，该属性指定NameNode是哪一个节点以及使用的文件系统是file还是hdfs，格式：`hdfs://<namenode host>:<namenode port>/`，默认的文件系统是`file:///`：
+修改`/etc/hadoop/conf/core-site.xml`：
 
 ~~~xml
-<property>
- <name>fs.defaultFS</name>
- <value>hdfs://cdh1:8020</value>
-</property>
-~~~
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://cdh1:8020</value>
+    </property>
 
-在`/etc/hadoop/conf/hdfs-site.xml`中设置`dfs.permissions.superusergroup`属性，该属性指定hdfs的超级用户，默认为hdfs，你可以修改为hadoop：
-
-~~~xml
-<property>
- <name>dfs.permissions.superusergroup</name>
- <value>hadoop</value>
-</property>
+     <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/var/hadoop</value>
+    </property>
 ~~~
 
 > 更多的配置信息说明，请参考 [Apache Cluster Setup](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)
+
+修改`/etc/hadoop/conf/hdfs-site.xml`，访问web页面50070端口（默认为`0.0.0.0`IP，其他机器识别不了）：
+
+~~~
+<property>
+  <name>dfs.http.address</name>
+  <value>cdh1:50070</value>
+</property>
+~~~
 
 ## 2.2 指定本地文件目录
 
 在hadoop中默认的文件路径以及权限要求如下：
 
 ~~~
-目录									所有者		权限		默认路径
-hadoop.tmp.dir						hdfs:hdfs	drwx------	/var/hadoop
-dfs.namenode.name.dir				hdfs:hdfs	drwx------	file://${hadoop.tmp.dir}/dfs/name
+目录						所有者		权限		默认路径
+hadoop.tmp.dir				hdfs:hdfs	drwx------	/tmp/hadoop-${user}
+dfs.namenode.name.dir			hdfs:hdfs	drwx------	file://${hadoop.tmp.dir}/dfs/name
 dfs.datanode.data.dir				hdfs:hdfs	drwx------	file://${hadoop.tmp.dir}/dfs/data
 dfs.namenode.checkpoint.dir			hdfs:hdfs	drwx------	file://${hadoop.tmp.dir}/dfs/namesecondary
 ~~~
 
-说明你可以在 hdfs-site.xm l中只配置`hadoop.tmp.dir`，也可以分别配置上面的路径。这里使用分别配置的方式，hdfs-site.xml中配置如下：
+说明你可以在 hdfs-site.xm l中只配置`hadoop.tmp.dir`，也可以分别配置上面的路径。
 
-~~~xml
-<property>
- <name>dfs.namenode.name.dir</name>
- <value>file:///data/dfs/nn</value>
-</property>
+在NameNode上手动创建 dfs.name.dir 或 dfs.namenode.name.dir 的本地目录：
 
-<property>
- <name>dfs.datanode.data.dir</name>
-<value>file:///data/dfs/dn</value>
-</property>
-~~~
+    $ mkdir -p /var/hadoop/dfs/name
+    $ chown -R hdfs:hdfs /var/hadoop/dfs/name 
 
-在**NameNode**上手动创建 `dfs.name.dir` 或 `dfs.namenode.name.dir` 的本地目录：
+在DataNode上手动创建 dfs.data.dir目录：
 
-~~~bash
-$ mkdir -p /data/dfs/nn
-~~~
-
-在**DataNode**上手动创建 `dfs.data.dir` 或 `dfs.datanode.data.dir` 的本地目录：
-
-~~~bash
-$ mkdir -p /data/dfs/dn
-~~~
-
-修改上面目录所有者：
-
-~~~
-$ chown -R hdfs:hdfs /data/dfs/nn /data/dfs/dn
-~~~
+    $ mkdir -p /var/hadoop/dfs/data
+    $ chown -R hdfs:hdfs /var/hadoop/dfs/data
 
 hadoop的进程会自动设置 `dfs.data.dir` 或 `dfs.datanode.data.dir`，但是 `dfs.name.dir` 或 `dfs.namenode.name.dir` 的权限默认为755，需要手动设置为700：
 
 ~~~bash
-$ chmod 700 /data/dfs/nn
-
+$ chmod 700 /var/hadoop/dfs/name
 # 或者
-$ chmod go-rx /data/dfs/nn
+$ chmod go-rx /var/hadoop/dfs/name
 ~~~
 
 注意：DataNode的本地目录可以设置多个，你可以设置 `dfs.datanode.failed.volumes.tolerated` 参数的值，表示能够容忍不超过该个数的目录失败。
@@ -324,6 +362,13 @@ dfs.namenode.num.checkpoints.retained
   <name>dfs.secondary.http.address</name>
   <value>cdh2:50090</value>
 </property>
+~~~
+
+在SecondaryNameNode中默认的文件路径以及权限要求如下：
+
+~~~
+目录                      所有者     权限      默认路径
+dfs.namenode.checkpoint.dir          hdfs:hdfs   drwx------  file://${hadoop.tmp.dir}/dfs/namesecondary
 ~~~
 
 设置多个secondarynamenode，请参考[multi-host-secondarynamenode-configuration](http://blog.cloudera.com/blog/2009/02/multi-host-secondarynamenode-configuration/).
@@ -356,14 +401,15 @@ $ yum install hadoop-httpfs -y
 然后修改 /etc/hadoop/conf/core-site.xml配置代理用户：
 
 ~~~xml
-<property>  
-<name>hadoop.proxyuser.httpfs.hosts</name>  
-<value>*</value>  
-</property>  
-<property>  
-<name>hadoop.proxyuser.httpfs.groups</name>  
-<value>*</value>  
-</property>
+    <property>  
+        <name>hadoop.proxyuser.httpfs.hosts</name>  
+        <value>*</value>  
+    </property>  
+
+    <property>  
+        <name>hadoop.proxyuser.httpfs.groups</name>  
+        <value>*</value>  
+    </property>
 ~~~
 
 ## 2.7 配置LZO
@@ -451,8 +497,8 @@ $ service hadoop-httpfs start
 通过 <http://cdh1:50070/> 可以访问 NameNode 页面。使用 curl 运行下面命令，可以测试 webhdfs 并查看执行结果：
 
 ~~~bash
-$ curl "http://localhost:14000/webhdfs/v1?op=gethomedirectory&user.name=hdfs"
-{"Path":"\/user\/hdfs"}
+$ curl "http://cdh1:14000/webhdfs/v1?op=gethomedirectory&user.name=hdfs"
+{"Path":"\/var\/lib\/hadoop-httpfs"}
 ~~~
 
 更多的 API，请参考 [WebHDFS REST API](http://archive.cloudera.com/cdh5/cdh/5/hadoop/hadoop-project-dist/hadoop-hdfs/WebHDFS.html)

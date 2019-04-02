@@ -103,7 +103,7 @@ $ sh /opt/cmd.sh 'yum install hadoop hadoop-hdfs yarn hadoop-mapreduce hive hbas
 
 然后，按照你的集群规划，在每个节点上仅仅安装其需要的服务，例如在 cdh1上安装 NameNode，而在其他节点上安装 DataNode。
 
-接下来在管理节点上修改配置文件（可以参考 <https://github.com/javachen/hadoop-install/tree/master/shell/edh/template/hadoop>），然后做同步：
+接下来在管理节点上修改配置文件（可以参考 <https://github.com/javachen/snippets/tree/master/hadoop-install/template/hadoop>），然后做同步：
 
 ~~~bash
 $ sh /opt/syn.sh /etc/hadoop/conf  /etc/hadoop/

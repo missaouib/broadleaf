@@ -43,7 +43,7 @@ $ sh /opt/cmd.sh ' for x in `ls /etc/init.d/|grep hbase` ; do service $x stop ; 
 $ sh /opt/cmd.sh ' for x in `ls /etc/init.d/|grep hadoop` ; do service $x stop ; done'
 ~~~
 
-cmd.sh代码内容见[Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop.html)一文中的/opt/shell/cmd.sh。
+cmd.sh代码内容见[Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop.html)一文中的`/opt/shell/cmd.sh`。
 
 ### 停止客户端程序
 
@@ -55,6 +55,7 @@ a，查找本地配置的文件目录（属性名为 dfs.name.dir 或者 dfs.nam
 
 ~~~bash
 grep -C1 hadoop.tmp.dir /etc/hadoop/conf/hdfs-site.xml
+grep -C1 hadoop.tmp.dir /etc/hadoop/conf/core-site.xml
 
 #或者
 grep -C1 dfs.namenode.name.dir /etc/hadoop/conf/hdfs-site.xml
@@ -65,15 +66,15 @@ grep -C1 dfs.namenode.name.dir /etc/hadoop/conf/hdfs-site.xml
 ~~~xml
 <property>
 <name>hadoop.tmp.dir</name>
-<value>/data/dfs/nn</value>
+<value>/var/hadoop</value>
 </property>
 ~~~
 
 b，对hdfs数据进行备份
 
 ~~~bash
-cd /data/dfs/nn
-tar -cvf /root/nn_backup_data.tar .
+cd /var/hadoop/dfs/name
+tar -cvf /root/name_backup_data.tar .
 ~~~
 
 ### 安装服务
@@ -95,7 +96,7 @@ ssh cdh2 "yum install hadoop-hdfs-zkfc -y "
 
 ### 修改配置文件
 
-修改/etc/hadoop/conf/core-site.xml，做如下修改：
+修改`/etc/hadoop/conf/core-site.xml`，做如下修改：
 
 ~~~xml
 <property>
@@ -108,7 +109,7 @@ ssh cdh2 "yum install hadoop-hdfs-zkfc -y "
 </property>
 ~~~
 
-修改/etc/hadoop/conf/hdfs-site.xml，删掉一些原来的 namenode 配置，增加如下：
+修改`/etc/hadoop/conf/hdfs-site.xml`，删掉一些原来的 namenode 配置，增加如下：
 
 ~~~xml
 <!--  hadoop  HA -->
@@ -142,7 +143,7 @@ ssh cdh2 "yum install hadoop-hdfs-zkfc -y "
 </property>
 <property>
 	<name>dfs.journalnode.edits.dir</name>
-	<value>/data/dfs/jn</value>
+	<value>/var/hadoop/dfs/jn</value>
 </property>
 <property>
 	<name>dfs.client.failover.proxy.provider.mycluster</name>
@@ -173,9 +174,9 @@ $ sh /opt/syn.sh /etc/hadoop/conf /etc/hadoop/
 在journalnode的三个节点上创建目录：
 
 ~~~bash
-$ ssh cdh1 'mkdir -p /data/dfs/jn ; chown -R hdfs:hdfs /data/dfs/jn'
-$ ssh cdh2 'mkdir -p /data/dfs/jn ; chown -R hdfs:hdfs /data/dfs/jn'
-$ ssh cdh3 'mkdir -p /data/dfs/jn ; chown -R hdfs:hdfs /data/dfs/jn'
+$ ssh cdh1 'mkdir -p /var/hadoop/dfs/jn ; chown -R hdfs:hdfs /var/hadoop/dfs/jn'
+$ ssh cdh2 'mkdir -p /var/hadoop/dfs/jn ; chown -R hdfs:hdfs /var/hadoop/dfs/jn'
+$ ssh cdh3 'mkdir -p /var/hadoop/dfs/jn ; chown -R hdfs:hdfs /var/hadoop/dfs/jn'
 ~~~
 
 ### 配置无密码登陆
@@ -346,12 +347,59 @@ hdfs://mycluster:8020/user/hive/warehouse
 
 ## 配置 YARN
 
-暂时未使用，详细说明请参考 [MapReduce (MRv1) and YARN (MRv2) High Availability](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cdh_hag_mrv1_ha_config.html)。
+修改yarn-site.xml：
+
+~~~xml
+<property>
+  <name>yarn.resourcemanager.ha.enabled</name>
+  <value>true</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.cluster-id</name>
+  <value>cluster1</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.ha.rm-ids</name>
+  <value>rm1,rm2</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.hostname.rm1</name>
+  <value>cdh1</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.hostname.rm2</name>
+  <value>cdh2</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.webapp.address.rm1</name>
+  <value>cdh1:8088</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.webapp.address.rm2</name>
+  <value>cdh2:8088</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.zk-address</name>
+  <value>cdh1:2181,cdh2:2181,cdh3:2181</value>
+</property>
+~~~
+
+详细说明请参考 [ResourceManager High Availability](http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/ResourceManagerHA.html)。
+
+重启yarn，然后查看状态：
+
+```
+$ yarn rmadmin -getServiceState cdh1
+active
+
+$ yarn rmadmin -getServiceState cdh2
+standby
+```
 
 ## 配置 Hue
 
-暂时未使用，详细说明请参考 [Hue High Availability](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cdh_hag_hue_ha.html) 。
+暂时未使用
 
 ## 配置  Llama
 
-暂时未使用，详细说明请参考 [Llama High Availability](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cdh_hag_llama_ha.html) 。
+暂时未使用
