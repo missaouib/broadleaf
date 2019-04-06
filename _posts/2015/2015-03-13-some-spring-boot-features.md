@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: Spring Boot特性
+title: Spring Boot之二：特性
 
 category: spring
 
@@ -32,7 +32,7 @@ public static void main(String[] args) {
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::   v1.2.2.RELEASE
+ :: Spring Boot ::   v1.5.20.RELEASE
 ~~~
 
 ## 1.1 自定义Banner

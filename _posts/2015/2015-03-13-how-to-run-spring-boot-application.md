@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: 如何运行Spring Boot应用
+title: Spring Boot之一：如何运行项目
 
 category: spring
 
@@ -59,7 +59,7 @@ $ brew install maven
 使用maven创建一个工程：
 
 ~~~bash
-$ mvn archetype:generate -DgroupId=com.javachen.example -DartifactId=spring-boot-example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveModel=false
+$ mvn archetype:generate -DgroupId=com.javachen -DartifactId=spring-boot-hello -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveModel=false
 ~~~
 
 删除掉创建的App类和单元测试。
@@ -72,15 +72,15 @@ $ mvn archetype:generate -DgroupId=com.javachen.example -DartifactId=spring-boot
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.javachen.example</groupId>
-    <artifactId>spring-boot-example</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.javachen</groupId>
+    <artifactId>spring-boot-hello</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <!-- Inherit defaults from Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.3.2.RELEASE</version>
+        <version>1.5.20.RELEASE</version>
     </parent>
 
     <!-- Add typical dependencies for a web application -->
@@ -88,11 +88,6 @@ $ mvn archetype:generate -DgroupId=com.javachen.example -DartifactId=spring-boot
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
     </dependencies>
 
@@ -105,30 +100,6 @@ $ mvn archetype:generate -DgroupId=com.javachen.example -DartifactId=spring-boot
             </plugin>
         </plugins>
     </build>
-
-    <!-- (you don't need this if you are using a .RELEASE version) -->
-    <repositories>
-        <repository>
-            <id>spring-snapshots</id>
-            <url>http://repo.spring.io/snapshot</url>
-            <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <url>http://repo.spring.io/milestone</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <url>http://repo.spring.io/snapshot</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <url>http://repo.spring.io/milestone</url>
-        </pluginRepository>
-    </pluginRepositories>
-
 </project>
 ~~~
 
@@ -141,7 +112,7 @@ $ mvn archetype:generate -DgroupId=com.javachen.example -DartifactId=spring-boot
             <!-- Import dependency management from Spring Boot -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-dependencies</artifactId>
-            <version>1.3.2.RELEASE</version>
+            <version>1.5.20.RELEASE</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -153,7 +124,7 @@ $ mvn archetype:generate -DgroupId=com.javachen.example -DartifactId=spring-boot
 
 ~~~xml
 <properties>
-    <java.version>1.8</java.version>
+    <java.version>1.7</java.version>
 </properties>
 ~~~
 
@@ -218,7 +189,7 @@ $ gradle build
 ~~~bash
 $ gvm install springboot
 $ spring --version
-Spring Boot v1.3.2.RELEASE
+Spring Boot v1.5.20.RELEASE
 ~~~
 
 如果你使用 Mac，则可以通过 [Homebrew](http://brew.sh/) 或者 [MacPorts](http://www.macports.org/) 安装：
@@ -295,37 +266,49 @@ $ spring run hello.groovy
 $ mvn dependency:tree
 ~~~
 
-在src/main/java/com/javachen/example下面添加Example类：
+在src/main/java/com/javachen/下面添加HelloWorld的Controller：
 
 ~~~java
-package com.javachen.example;
+package com.javachen.controller;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
-@EnableAutoConfiguration
-public class Application {
+import java.util.HashMap;
+import java.util.Map;
 
-  @RequestMapping("/")
-  String home() {
-    return "Hello World!";
-  }
+@Controller
+public class HelloController {
 
-  public static void main(String[] args) throws Exception {
-    SpringApplication.run(Application.class, args);
-  }
-
+    @ResponseBody
+    @RequestMapping("/hello")
+    public Map<String, Object> showHelloWork() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("msg", "Hello World ！");
+        return map;
+    }
 }
 ~~~
 
-说明：
+在src/main/java/com/javachen下面添加启动类：
 
-- @RestController和@RequestMapping注解是Spring MVC注解（它们不是Spring Boot的特定部分）。具体查看Spring参考文档的[MVC章节](http://docs.spring.io/spring/docs/4.1.5.RELEASE/spring-framework-reference/htmlsingle#mvc)。
-- @EnableAutoConfiguration。这个注解告诉Spring Boot根据添加的jar依赖猜测你想如何配置Spring。由于spring-boot-starter-web添加了Tomcat和Spring MVC，所以auto-configuration将假定你正在开发一个web应用并相应地对Spring进行设置。
-- main方法通过调用run，将业务委托给了Spring Boot的SpringApplication类。SpringApplication将引导我们的应用，启动Spring，相应地启动被自动配置的Tomcat web服务器。
+~~~java
+package com.javachen;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * spring boot启动类
+ */
+@SpringBootApplication
+public class App {
+    public static void main( String[] args ) {
+        SpringApplication.run(App.class, args);
+    }
+}
+~~~
 
 如果你的 pom.xml 使用了 spring-boot-starter-parent，则我们可以运行 `mvn spring-boot:run` 命令启动应用：
 
@@ -336,7 +319,7 @@ $ mvn spring-boot:run
 然后，使用浏览器打开 http://localhost:8080/ 你会看到下面的输出：
 
 ~~~bash
-Hello World!
+{"msg":"Hello World ！"}
 ~~~
 
 点击ctrl-c，可以关闭应用程序。
@@ -380,66 +363,54 @@ Positive matches:
         WebMvcAutoConfiguration.class,
         WebSocketAutoConfiguration.class,
 })
-public class SampleWebUiApplication {
+public class App {
+}
 ~~~
 
 如果你的 pom.xml 中添加了 `spring-boot-maven-plugin` 插件，你可以运行 `mvn package` 命令在 target 目录生成一个可执行的 jar 文件：
 
 ~~~bash
-➜  spring-boot-example  mvn package
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+➜  mvn package
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
-[INFO] Building spring-boot-example 0.0.1-SNAPSHOT
+[INFO] Building spring-boot-hello 1.0-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ spring-boot-example ---
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ spring-boot-hello ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /Users/yuke/workspace/idea/spring-boot-example/src/main/resources
-[INFO] skip non existing resourceDirectory /Users/yuke/workspace/idea/spring-boot-example/src/main/resources
+[INFO] skip non existing resourceDirectory /Users/june/workspace/project/spring-boot-hello/src/main/resources
+[INFO] skip non existing resourceDirectory /Users/june/workspace/project/spring-boot-hello/src/main/resources
 [INFO]
-[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ spring-boot-example ---
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ spring-boot-hello ---
 [INFO] Nothing to compile - all classes are up to date
 [INFO]
-[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ spring-boot-example ---
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ spring-boot-hello ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /Users/yuke/workspace/idea/spring-boot-example/src/test/resources
+[INFO] skip non existing resourceDirectory /Users/june/workspace/project/spring-boot-hello/src/test/resources
 [INFO]
-[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ spring-boot-example ---
-[INFO] Nothing to compile - all classes are up to date
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ spring-boot-hello ---
+[INFO] No sources to compile
 [INFO]
-[INFO] --- maven-surefire-plugin:2.18.1:test (default-test) @ spring-boot-example ---
+[INFO] --- maven-surefire-plugin:2.18.1:test (default-test) @ spring-boot-hello ---
 [INFO]
-[INFO] --- maven-jar-plugin:2.5:jar (default-jar) @ spring-boot-example ---
-[INFO] Building jar: /Users/yuke/workspace/idea/spring-boot-example/target/spring-boot-example-0.0.1-SNAPSHOT.jar
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ spring-boot-hello ---
+[INFO] Building jar: /Users/june/workspace/project/spring-boot-hello/target/spring-boot-hello-1.0-SNAPSHOT.jar
 [INFO]
-[INFO] --- spring-boot-maven-plugin:1.3.2.RELEASE:repackage (default) @ spring-boot-example ---
+[INFO] --- spring-boot-maven-plugin:1.5.20.RELEASE:repackage (default) @ spring-boot-hello ---
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 4.379s
-[INFO] Finished at: Fri Feb 19 11:35:04 CST 2016
-[INFO] Final Memory: 15M/226M
+[INFO] Total time: 3.396s
+[INFO] Finished at: Sat Apr 06 23:45:53 CST 2019
+[INFO] Final Memory: 16M/226M
 [INFO] ------------------------------------------------------------------------
 ~~~
 
 然后，你可以运行项目命令执行生成的 jar 文件：
 
 ~~~bash
-$ java -jar target/spring-boot-example-0.0.1-SNAPSHOT.jar
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _ | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::  (v1.3.2.RELEASE)
-....... . . .
-....... . . . (log output here)
-....... . . .
-........ Started Example in 2.536 seconds (JVM running for 2.864)
+$ java -jar target/spring-boot-hello-1.0-SNAPSHOT.jar
 ~~~
 
 如果 Maven 运行过程出现内存溢出，则可以添加下面参数：
@@ -463,7 +434,7 @@ $ gradle bootRun
 也可以先 build 生成一个 jar 文件，然后执行该 jar 文件：
 
 ~~~bash
-$ gradle build && java -jar build/libs/spring-boot-example-0.0.1-SNAPSHOT.jar
+$ gradle build && java -jar build/libs/spring-boot-hello-1.0-SNAPSHOT.jar
 ~~~
 
 你也可以启动远程调试：
@@ -472,9 +443,9 @@ $ gradle build && java -jar build/libs/spring-boot-example-0.0.1-SNAPSHOT.jar
 $ gradle build 
 
 $ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \
-       -jar build/libs/spring-boot-example-0.0.1-SNAPSHOT.jar
+       -jar build/libs/spring-boot-hello-1.0-SNAPSHOT.jar
 ~~~
 
 # 参考文章
 
-- [Spring Boot Reference Guide](http://docs.spring.io/spring-boot/docs/1.3.2.RELEASE/reference/htmlsingle)
+- [Spring Boot Reference Guide](http://docs.spring.io/spring-boot/docs/1.5.20.RELEASE/reference/htmlsingle)
