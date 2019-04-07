@@ -310,6 +310,10 @@ public class App {
 }
 ~~~
 
+注意：
+
+    启动器可以和controller位于同一个包下，或者位于controller的上一级包中，但是不能放到controller的平级以及子包下。
+
 如果你的 pom.xml 使用了 spring-boot-starter-parent，则我们可以运行 `mvn spring-boot:run` 命令启动应用：
 
 ~~~bash
