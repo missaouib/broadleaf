@@ -15,10 +15,10 @@ published: true
 
 本文主要收集一些 Maven 的使用技巧，包括 Maven 常见命令、创建多模块项目、上传本地 jar 到插件以及常用的插件等等，本篇文章会保持不停的更新。
 
-命令行创建 maven 项目：
+# 创建 maven 项目
 
 ~~~bash
-$ mvn archetype:generate -DgroupId=com.javachen.spark -DartifactId=spark-examples -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+$ mvn archetype:generate -DgroupId=com.javachen -DartifactId=spark-examples -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ~~~
 
 Maven安装本地jar到本地仓库，举例：
@@ -27,7 +27,7 @@ Maven安装本地jar到本地仓库，举例：
 $ mvn install:install-file -DgroupId=com.gemstone.gemfire -DartifactId=gfsh -Dversion=6.6 -Dpackaging=jar -Dfile=/backup/gfsh-6.6.jar
 ~~~
 
-解决m2e插件maven-dependency-plugin问题：
+# 解决m2e插件maven-dependency-plugin问题：
 
 ~~~xml
 <build>
@@ -81,4 +81,13 @@ $ mvn install:install-file -DgroupId=com.gemstone.gemfire -DartifactId=gfsh -Dve
         </plugin>
     </plugins>
 </build>
-~~~ 
+~~~
+
+# 使用Maven构建多模块项目
+
+创建system-parent目录，然后在该目录下执行：
+
+    mvn archetype:generate -DgroupId=com.javachen -DartifactId=system-parent -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+将src文件夹删除，然后修改pom.xml文件，将`<packaging>jar</packaging>`修改为`<packaging>pom</packaging>`，pom表示它是一个被继承的模块，修改后的内容如下：
+
