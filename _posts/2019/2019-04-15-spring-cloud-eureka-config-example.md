@@ -200,7 +200,7 @@ public class EurekaClientApplication {
 
 注意：
 
-    早期的版本（Dalston及更早版本）还需在启动类上添加注解`@EnableDiscoveryClient `或`@EnableEurekaClient`，从Edgware开始，该注解可省略。
+早期的版本（Dalston及更早版本）还需在启动类上添加注解`@EnableDiscoveryClient `或`@EnableEurekaClient`，从Edgware开始，该注解可省略。
 
 3、在resources目录下创建application.yml配置文件如下：
 
@@ -230,7 +230,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
   instance:
-    instance-id: eureka-client-8701 #自定义服务名称信息
+    instance-id: eureka-client #自定义服务名称信息
 ```
 
 这时候点击`172.20.10.2:eureka-client:8701`链接，会访问 http://172.20.10.2:8701/actuator/info 地址，并报错：
@@ -296,7 +296,11 @@ info:
 
 # 配置注册中心高可用
 
-以spring-cloud-eureka-server为模板在创建多个子工程，我这里创建两个，分别命名为spring-cloud-eureka-server-8762和spring-cloud-eureka-server-8763。
+1、配置两个server互相注册
+
+以spring-cloud-eureka-server为模板在创建两个工程，分别命名为spring-cloud-eureka-server-8762和spring-cloud-eureka-server-8763，然后配置两个工程互为客户端注册到对方上去：
+
+spring-cloud-eureka-server-8762配置：
 
 ```yml
 server:
@@ -306,16 +310,38 @@ eureka:
   instance:
     hostname: eureka-8762.com
   client:
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: false
     serviceUrl:
       #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-      defaultZone: http://eureka-8762.com:8762/eureka/,http://eureka-8763.com:8763/eureka/
+      defaultZone: http://eureka-8763.com:8763/eureka/
 
 spring:
   application:
-    name: eureka-server-8762
+    name: eureka-server
 ```
+
+spring-cloud-eureka-server-8763配置：
+
+```yml
+server:
+  port: 8763
+
+eureka:
+  instance:
+    hostname: eureka-8763.com
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://eureka-8762.com:8762/eureka/
+
+spring:
+  application:
+    name: eureka-server
+```
+
 
 主要做了以下几件事：
 
@@ -324,3 +350,15 @@ spring:
 - 3、修改defaultZone
 
 然后再访问 http://eureka-8762.com:8762/eureka/  或者 http://eureka-8763.com:8763/eureka/ 。
+
+2、配置多个server实例，不注册自己
+
+创建三个server实例，然后修改配置文件：
+
+```yml
+defaultZone: http://eureka-8762.com:8762/eureka/,http://eureka-8763.com:8763/eureka/,http://eureka-8764.com:8764/eureka/
+```
+
+# 源代码
+
+源代码在：<https://github.com/javachen/spring-cloud-examples>，包括 spring-cloud-eureka-server 和spring-cloud-eureka-client代码。
