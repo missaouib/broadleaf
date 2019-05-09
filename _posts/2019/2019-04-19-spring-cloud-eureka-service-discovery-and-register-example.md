@@ -248,7 +248,7 @@ Hello aaa!
 
 # 使用Feign调用生产者接口
 
-创建 -consumer-feign 子模块，编辑pom文件：
+创建 consumer-feign 子模块，编辑pom文件：
 
 ```xml
 <dependencies>

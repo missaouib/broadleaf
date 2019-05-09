@@ -18,7 +18,7 @@ Eureka是Netflix开源的服务发现组件，本身是一个基于REST的服务
 - Spring Cloud：Greenwich.RELEASE
 - Spring Boot：2.1.3.RELEASE
 
-# 创建服务注册中心
+# 1、创建服务注册中心
 
 ### 创建 spring-cloud-eureka-server 模块，并添加依赖
 
@@ -86,7 +86,7 @@ eureka:
 
 http://eureka-8761.com:8761/
 
-### # 配置权限认证
+### 配置权限认证
 
 修改配置文件
 
@@ -117,9 +117,9 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 ~~~
 
-# 配置客户端代码
+# 2、配置客户端代码
 
-## 创建 spring-cloud-eureka-client 子模块，并添加依赖
+### 创建 spring-cloud-eureka-client 子模块，并添加依赖
 
 ~~~xml
     <dependencies>
@@ -135,7 +135,7 @@ eureka:
     </dependencies>
 ~~~
 
-## 启用EurekaClient
+### 启用EurekaClient
 
 ~~~java
 @SpringBootApplication
@@ -171,9 +171,9 @@ eureka:
 
 ### 访问页面
 
-http://localhost:8701/greeting
+<http://localhost:8701/greeting>
 
-# 配置集群高可用
+# 3、配置集群高可用
 
 ### 修改配置文件application.yml
 
@@ -265,11 +265,12 @@ eureka:
 ### 根据不同profile启动应用
 
 添加参数 `--spring.profiles.active=eureka-server1` 启动实例1。
+
 添加参数 `--spring.profiles.active=eureka-server2` 启动实例2。
+
 添加参数 `--spring.profiles.active=eureka-server3` 启动实例3。
 
 
-
-# 源代码
+# 4、源代码
 
 源代码在：<https://github.com/javachen/java-tutorials/tree/master/spring-cloud/spring-cloud-eureka>。
