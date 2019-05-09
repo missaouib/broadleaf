@@ -20,7 +20,8 @@ published: true
 # 1. 开发环境
 
 - 操作系统: mac
-- JDK：1.7.0_60
+- JDK：1.8
+- Spring Boot：2.1.3.RELEASE
 - Gradle：2.2.1
 - IDE：Idea
 
@@ -57,7 +58,7 @@ ng-spring-boot 目录结构如下：
 ~~~groovy
 buildscript {
     ext {
-        springBootVersion = '1.2.2.RELEASE'
+        springBootVersion = '2.1.3.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -74,10 +75,10 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'ng-spring-boot'
-    version = '0.0.1-SNAPSHOT'
+    version = '1.0.0-SNAPSHOT'
 }
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -352,7 +353,7 @@ $ ./gradlew bootRun
 也可以先 build 生成一个 jar 文件，然后执行该 jar 文件：
 
 ~~~bash
-$ ./gradlew build && java -jar build/libs/ng-spring-boot-0.0.1-SNAPSHOT.jar
+$ ./gradlew build && java -jar build/libs/ng-spring-boot-1.0.0-SNAPSHOT.jar
 ~~~
 
 启动过程中你会看到如下内容，这部分内容是在 Application 类中打印出来的：
@@ -401,7 +402,7 @@ viewControllerHandlerMapping
 $ ./gradlew build 
 
 $ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \
-       -jar build/libs/spring-boot-examples-0.0.1-SNAPSHOT.jar
+       -jar build/libs/spring-boot-examples-1.0.0-SNAPSHOT.jar
 ~~~
 
 接下来，打开浏览器访问 <http://localhost:8080/items>，你会看到页面输出一个空的数组。然后，你可以使用浏览器的 Restfull 插件来添加、删除、修改数据。
@@ -678,7 +679,7 @@ public class SimpleCORSFilter implements Filter {
 
 本文主要是记录快速使用 Spring Boot 和 Gradle 创建 AngularJS 项目的过程，并介绍了如何将前后端进行分离和解决跨域访问的问题，希望能对你有所帮助。
 
-文中相关的源码在 [ng-spring-boot](https://github.com/javachen/spring-examples/tree/master/spring-boot/ng-spring-boot)，你可以下载该项目，然后编译、运行代码。
+文中相关的源码在 [ng-spring-boot](https://github.com/javachen/spring-boot-examples/tree/master/ng-spring-boot)，你可以下载该项目，然后编译、运行代码。
 
 # 13. 参考文章
 

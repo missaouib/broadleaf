@@ -13,141 +13,35 @@ description: Spring Cloud之Eureka服务发现和注册示例代码，集成Feig
 
 # 创建生产者项目
 
-在 <https://github.com/javachen/spring-cloud-examples> 工程中创建 spring-cloud-provider 子模块。首先编辑pom文件：
+在 <https://github.com/javachen/java-tutorials/tree/master/spring-cloud/spring-cloud-examples> 工程中创建 provider 子模块。首先编辑pom文件：
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>spring-cloud-provider</artifactId>
-    <packaging>jar</packaging>
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
-    <parent>
-        <artifactId>spring-cloud-examples</artifactId>
-        <groupId>com.javachen.springcloud</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
-    </dependencies>
-</project>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+</dependencies>
 ```
 
 编写一个controller如下：
 
 ```java
-@RequestMapping("/users")
 @RestController
-public class UserController {
-    @Autowired
-    private UserRepository userRepository;
-
-    @GetMapping("/{id}")
-    public Optional<User> findById(@PathVariable Long id) {
-        return this.userRepository.findById(id);
-    }
-}
-```
-
-这里使用了JPA，所有需要引入相应的依赖，并设置数据库，这里使用的是h2内存数据库。默认不需要配置。
-
-创建 UserRepository：
-
-```java
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-}
-```
-
-创建User实体类：
-
-```java
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column
-    private String username;
-    @Column
-    private String name;
-    @Column
-    private Integer age;
-    @Column
-    private BigDecimal balance;
-}
-```
-
-当然，这里使用了 lombok 简化代码编写。
-
-编写启动类，并初始化h2数据：
-
-```java
-@SpringBootApplication
-public class ProviderApplication {
-    public static void main(String[] args) {
-        SpringApplication.run( ProviderApplication.class, args );
-    }
-
-    /**
-     * 初始化用户信息
-     * 注：Spring Boot2不能像1.x一样，用spring.datasource.schema/data指定初始化SQL脚本，否则与actuator不能共存
-     * 原因详见：
-     * https://github.com/spring-projects/spring-boot/issues/13042
-     * https://github.com/spring-projects/spring-boot/issues/13539
-     *
-     * @param repository repo
-     * @return runner
-     */
-    @Bean
-    ApplicationRunner init(UserRepository repository) {
-        return args -> {
-            User user1 = new User(1L, "account1", "张三", 20, new BigDecimal(100.00));
-            User user2 = new User(2L, "account2", "李四", 28, new BigDecimal(180.00));
-            User user3 = new User(3L, "account3", "王五", 32, new BigDecimal(280.00));
-            Stream.of(user1, user2, user3)
-                    .forEach(repository::save);
-        };
+public class GreetingController {
+    @RequestMapping("/greeting/{username}")
+    public String greeting(@PathVariable("username") String username) {
+        return String.format("Hello %s!\n", username);
     }
 }
 ```
@@ -155,97 +49,69 @@ public class ProviderApplication {
 修改application.yml配置文件：
 
 ```yml
-server:
-  port: 8080
-
 spring:
   application:
     name: provider
-  jpa:
-    show-sql: true
 
-management:
-  endpoints:
-    web:
-      exposure:
-        # 开放所有监控端点
-        include: '*'
-  endpoint:
-    health:
-      # 是否展示健康检查详情
-      show-details: always
+server:
+  port: 8081
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-8761.com:8761/eureka/
   instance:
-    instance-id: provider-8080  #自定义服务名称信息
-    # 是否注册IP到eureka server，如不指定或设为false，那就会注册主机名到eureka server
-    prefer-ip-address: true
-
-info:
-  app.name: spring-cloud-provider
-  company.name: www.javachen.com
-  build.artifactId: $project.artifactId$
-  build.version: $project.version$
+    preferIpAddress: true
 ```
 
 这里把生产者作为客户端注册到eureka了，可以打开eureka的主界面查看注册的服务信息。
 
-启动应用，然后访问 <http://localhost:8080/users/1>，可以看到返回的结果：
+启动应用，然后访问 <http://localhost:8081//greeting/aaa>，可以看到返回的结果：
 
-```json
-{"id":1,"username":"account1","name":"张三","age":20,"balance":100.00}
+```
+Hello aaa!
 ```
 
 # 创建消费者项目
 
-创建spring-cloud-consumer子模块，编辑pom：
+创建consumer子模块，编辑pom：
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>spring-cloud-examples</artifactId>
-        <groupId>com.javachen.springcloud</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>spring-cloud-consumer</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-    </dependencies>
-</project>
+ <dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+</dependencies>
 ```
 
 编写一个控制类访问生产者接口：
 
 ```java
 @RestController
-public class UserController {
-    private String REST_URL_PREFIX="http://localhost:8080";
+public class GreetingController {
+    @Autowired
+    private GreetingService greetingService;
+
+    @RequestMapping("/greeting/{username}")
+    public String greeting(@PathVariable("username") String username) {
+        return greetingService.greeting(username);
+    }
+}
+```
+
+创建Service类：
+
+```java
+@Service
+public class GreetingService {
+    private String REST_URL_PREFIX = "http://localhost:8081";
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @GetMapping("/users/{id}")
-    public User findById(@PathVariable Long id) {
-        User user = this.restTemplate.getForObject(REST_URL_PREFIX+"/users/{id}", User.class, id);
-        return user;
+    public String greeting(String username) {
+        return restTemplate.getForObject(REST_URL_PREFIX + "/greeting/{username}", String.class, username);
     }
 }
 ```
@@ -266,7 +132,11 @@ public class ConfigBean {
 
 ```yml
 server:
-  port: 8090
+  port: 9091
+
+spring:
+  application:
+    name: consumer
 ```
 
 最后创建启动类：
@@ -275,181 +145,158 @@ server:
 @SpringBootApplication
 public class ConsumerApplication {
     public static void main(String[] args) {
-        SpringApplication.run( ConsumerApplication.class, args );
+        SpringApplication.run(ConsumerEurekaApplication.class, args);
     }
 }
 ```
 
-启动应用，然后访问 <http://localhost:8090/users/1>，可以看到返回的结果：
+启动应用，然后访问 <http://localhost:9091//greeting/aaa>，可以看到返回的结果：
 
-```json
-{"id":1,"username":"account1","name":"张三","age":20,"balance":100.00}
+```
+Hello aaa!
 ```
 
-# 通过注册中心访问服务
+# 集成Eureka访问服务
 
 上面的消费者代码是通过rest的http接口访问生产者的接口，这里修改为通过eureka的注册中心去访问服务。
 
-创建spring-cloud-consumer-eureka 子模块，编辑pom：
+创建consumer-eureka 子模块，编辑pom：
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>spring-cloud-examples</artifactId>
-        <groupId>com.javachen.springcloud</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
-    <artifactId>spring-cloud-consumer-eureka</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-    </dependencies>
-</project>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+</dependencies>
 ```
 
 修改application.yml配置文件，注册到eureka：
 
 ```yml
 server:
-  port: 8091
+  port: 9092
 
 spring:
   application:
-    name: consumer
+    name: consumer-eureka
+
 
 eureka:
   client:
-    registerWithEureka: false
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-
+      defaultZone: http://eureka-8761.com:8761/eureka/
+  instance:
+    preferIpAddress: true
 ```
 
-修改UserController类通过服务名称PROVIDER调用接口：
+创建controller类：
 
 ```
 @RestController
-public class UserController {
-    private String REST_URL_PREFIX="http://PROVIDER";
+public class GreetingController {
+    @Autowired
+    private GreetingService greetingService;
+
+    @RequestMapping("/greeting/{username}")
+    public String greeting(@PathVariable("username") String username) {
+        return greetingService.greeting(username);
+    }
+}
+```
+
+修改service类：
+
+```java
+@Service
+public class GreetingService {
+    private String REST_URL_PREFIX = "PROVIDER";
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @GetMapping("/users/{id}")
-    public User findById(@PathVariable Long id) {
-        User user = this.restTemplate.getForObject(REST_URL_PREFIX+"/users/{id}", User.class, id);
-        return user;
+    public String greeting(String username) {
+        return restTemplate.getForObject("http://" + REST_URL_PREFIX + "/greeting/{username}", String.class, username);
     }
 }
 ```
 
-启动类不用做修改：
+启动类：
 
 ```java
 @SpringBootApplication
-public class ConsumerApplication {
+@EnableDiscoveryClient
+public class ConsumerEurekaApplication {
     public static void main(String[] args) {
-        SpringApplication.run( ConsumerApplication.class, args );
+        SpringApplication.run(ConsumerEurekaApplication.class, args);
     }
 }
 ```
 
-启动应用，然后访问 <http://localhost:8091/users/1>，可以看到返回的结果：
+启动应用，然后访问 <http://localhost:9092//greeting/aaa>，可以看到返回的结果：
 
-```json
-{"id":1,"username":"account1","name":"张三","age":20,"balance":100.00}
+```
+Hello aaa!
 ```
 
 # 使用Feign调用生产者接口
 
-创建spring-cloud-consumer-feign 子模块，编辑pom文件：
+创建 -consumer-feign 子模块，编辑pom文件：
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>spring-cloud-examples</artifactId>
-        <groupId>com.javachen.springcloud</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
 
-    <artifactId>spring-cloud-consumer-feign</artifactId>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-    </dependencies>
-</project>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+</dependencies>
 ```
 
-修改UserController类，使用feign调用接口：
+controller类：
 
 ```java
 @RestController
-public class UserController {
+public class GreetingController {
     @Autowired
-    private UserFeignService userFeignService;
+    private GreetingService greetingService;
 
-    @GetMapping("/users/{id}")
-    public User findById(@PathVariable Long id) {
-        User user = this.userFeignService.findById(id);
-        return user;
+    @RequestMapping("/greeting/{username}")
+    public String getGreeting(@PathVariable("username") String username) {
+        return greetingService.greeting(username);
     }
 }
+
 ```
 
-需要创建UserFeignService接口：
+修改GreetingService接口：
 
 ```java
 @FeignClient(name = "provider")
-public interface UserFeignService {
-    @GetMapping("/users/{id}")
-    User findById(@PathVariable("id") Long id);
+public interface GreetingService {
+    @GetMapping("/greeting/{username}")
+    public String greeting(@PathVariable("username") String username);
 }
 ```
 
@@ -457,38 +304,41 @@ public interface UserFeignService {
 
 ```java
 @SpringBootApplication
-@EnableEurekaClient
 @EnableFeignClients
-public class ConsumerApplication {
+public class ConsumerFeignApplication {
     public static void main(String[] args) {
-        SpringApplication.run( ConsumerApplication.class, args );
+        SpringApplication.run(ConsumerFeignApplication.class, args);
     }
 }
+
 ```
 
 application.yml配置文件:
 
 ```
 server:
-  port: 8092
+  port: 9093
 
 spring:
   application:
-    name: consumer
+    name: consumer-feign
 
 eureka:
   client:
-    registerWithEureka: false
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-8761.com:8761/eureka/
+  instance:
+    preferIpAddress: true
 ```
 
-启动应用，然后访问 <http://localhost:8092/users/1>，可以看到返回的结果：
+启动应用，然后访问 <http://localhost:9093//greeting/aaa>，可以看到返回的结果：
 
-```json
-{"id":1,"username":"account1","name":"张三","age":20,"balance":100.00}
+```
+Hello aaa!
 ```
 
 # 源代码
 
-源代码在：<https://github.com/javachen/spring-cloud-examples>，包括 spring-cloud-eureka-server 和spring-cloud-eureka-client代码。
+源代码在：<https://github.com/javachen/java-tutorials/tree/master/spring-cloud/spring-cloud-examples>。
