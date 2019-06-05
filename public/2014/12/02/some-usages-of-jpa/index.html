@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,jpa,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="本文主要对 JPA 做一个简要的介绍并记录如何使用 JPA，希望通过这篇文章能够对 JPA 有一个全面的认识。因为限于篇幅，有些地方不会做详细说明。">
+<meta name="keywords" content="java,jpa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JPA的使用">
+<meta property="og:url" content="http://blog.javachen.com/2014/12/02/some-usages-of-jpa/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="本文主要对 JPA 做一个简要的介绍并记录如何使用 JPA，希望通过这篇文章能够对 JPA 有一个全面的认识。因为限于篇幅，有些地方不会做详细说明。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/jpa/JPA-01.png">
+<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/jpa/JPA-02.png">
+<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JPA的使用">
+<meta name="twitter:description" content="本文主要对 JPA 做一个简要的介绍并记录如何使用 JPA，希望通过这篇文章能够对 JPA 有一个全面的认识。因为限于篇幅，有些地方不会做详细说明。">
+<meta name="twitter:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/jpa/JPA-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.javachen.com/2014/12/02/some-usages-of-jpa/">
+
+
+
+
+
+  <title>JPA的使用 | JavaChen Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?50bc6f5d9b045b5895ff44f8bbdbc611";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JavaChen Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2014/12/02/some-usages-of-jpa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JPA的使用</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-02T00:00:00+08:00">
+                2014-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+              <div class="post-description">
+                  本文主要对 JPA 做一个简要的介绍并记录如何使用 JPA，希望通过这篇文章能够对 JPA 有一个全面的认识。因为限于篇幅，有些地方不会做详细说明。
+              </div>
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JPA，Java 持久化规范，是从EJB2.x以前的实体 Bean 分离出来的，EJB3 以后不再有实体 bean，而是将实体 bean 放到 JPA 中实现。</p>
+<p>JPA 是 sun 提出的一个对象持久化规范，各 JavaEE 应用服务器自主选择具体实现，JPA 的设计者是 Hibernate 框架的作者，因此Hibernate作为Jboss服务器中JPA的默认实现，Oracle的Weblogic使用EclipseLink(以前叫TopLink)作为默认的JPA实现，IBM的Websphere和Sun的Glassfish默认使用OpenJPA(Apache的一个开源项目)作为其默认的JPA实现。</p>
+<p>JPA 的底层实现是一些流行的开源 ORM 框架，因此JPA其实也就是java实体对象和关系型数据库建立起映射关系，通过面向对象编程的思想操作关系型数据库的规范。</p>
+<h1 id="1-JPA-历史"><a href="#1-JPA-历史" class="headerlink" title="1. JPA 历史"></a>1. JPA 历史</h1><p>早期版本的EJB，定义持久层结合使用 <code>javax.ejb.EntityBean</code> 接口作为业务逻辑层。</p>
+<ul>
+<li>同时引入 EJB3.0 的持久层分离，并指定为JPA1.0（Java持久性API）。这个API规范随着 JAVA EE5 对2006年5月11日使用JSR220规范发布。</li>
+<li>JPA2.0 的JAVA EE 6规范发布于2009年12月10日并成 Java Community Process JSR317 的一部分。</li>
+<li>JPA2.1 使用 JSR338 的 JAVA EE7的规范发布于2013年4月22日。</li>
+</ul>
+<h1 id="2-JPA-架构"><a href="#2-JPA-架构" class="headerlink" title="2. JPA 架构"></a>2. JPA 架构</h1><p>下图显示了JPA核心类和JPA接口。</p>
+<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/jpa/JPA-01.png" alt></p>
+<table>
+<thead>
+<tr>
+<th>类或接口</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EntityManagerFactory</td>
+<td align="left">这是一个 EntityManager 的工厂类。它创建并管理多个 EntityManager 实例。</td>
+</tr>
+<tr>
+<td>EntityManager</td>
+<td align="left">这是一个接口，它管理的持久化操作的对象。它的工作原理类似工厂的查询实例。</td>
+</tr>
+<tr>
+<td>Entity</td>
+<td align="left">实体是持久性对象是存储在数据库中的记录。</td>
+</tr>
+<tr>
+<td>EntityTransaction</td>
+<td align="left">它与 EntityManager 是一对一的关系。对于每一个 EntityManager ，操作是由 EntityTransaction 类维护。</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td align="left">这个类包含静态方法来获取 EntityManagerFactory 实例。</td>
+</tr>
+<tr>
+<td>Query</td>
+<td align="left">该接口由每个 JPA 供应商，能够获得符合标准的关系对象。</td>
+</tr>
+</tbody></table>
+<p>在上述体系结构中，类和接口之间的关系属于javax.persistence包。下图显示了它们之间的关系。</p>
+<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/jpa/JPA-02.png" alt></p>
+<ul>
+<li>EntityManagerFactory 和 EntityManager 的关系是1对多。这是一个工厂类 EntityManager 实例。</li>
+<li>EntityManager 和 EntityTransaction 之间的关系是1对1。对于每个 EntityManager 操作，只有一个 EntityTransaction 实例。</li>
+<li>EntityManager 和 Query 之间的关系是1对多。查询数众多可以使用一个 EntityManager 实例执行。</li>
+<li>EntityManager 实体之间的关系是1对多。一个 EntityManager 实例可以管理多个实体。</li>
+</ul>
+<h1 id="搭建-JPA-开发环境"><a href="#搭建-JPA-开发环境" class="headerlink" title="搭建 JPA 开发环境"></a>搭建 JPA 开发环境</h1><h2 id="创建-maven-工程"><a href="#创建-maven-工程" class="headerlink" title="创建 maven 工程"></a>创建 maven 工程</h2><p>创建一个空的 maven 工程，然后编写 pom.xml 文件，添加下面配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">spring.version</span>&gt;</span>4.1.2.RELEASE<span class="tag">&lt;/<span class="name">spring.version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">hibernate.version</span>&gt;</span>4.1.9.Final<span class="tag">&lt;/<span class="name">hibernate.version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">hibernate-jpa.version</span>&gt;</span>2.0-cr-1<span class="tag">&lt;/<span class="name">hibernate-jpa.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-beans<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context-support<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-tx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-orm<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate.java-persistence<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jpa-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;hibernate-jpa.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-entitymanager<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;hibernate.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.h2database<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.156<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建实体"><a href="#创建实体" class="headerlink" title="创建实体"></a>创建实体</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javachen.spring4.jpa.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.*;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Max;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Min;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotNull;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Size;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@NamedQuery</span>(query = <span class="string">"Select e from Person e where e.id = :id"</span>,</span><br><span class="line">        name = <span class="string">"find person by id"</span>)</span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"T_PERSON"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"PERSON_ID"</span>)</span><br><span class="line">    <span class="meta">@GeneratedValue</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"PERSON_NAME"</span>)</span><br><span class="line">    <span class="meta">@Size</span>(min = <span class="number">1</span>, max = <span class="number">30</span>)</span><br><span class="line">    <span class="meta">@NotNull</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"AGE"</span>)</span><br><span class="line">    <span class="meta">@Min</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="meta">@Max</span>(<span class="number">200</span>)</span><br><span class="line">    <span class="meta">@NotNull</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"salary"</span>)</span><br><span class="line">    <span class="keyword">private</span> Double salary;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//省略 set、get 方法</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person [id="</span> + id + <span class="string">", name="</span> + name + <span class="string">", age="</span> + age + <span class="string">",salary="</span>+salary+<span class="string">"]"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="persistence-xml"><a href="#persistence-xml" class="headerlink" title="persistence.xml"></a>persistence.xml</h2><p>在这个文件中，我们将注册数据库，并指定实体类。另外，在上述所示的包的层次结构，根据JPA的内容包含在 persistence.xml 。</p>
+<p>在 <code>src/main/resources/META-INF/</code> 目录创建一个文件，名称为 persistence.xml，内容为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">persistence</span> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/persistence"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">version</span>=<span class="string">"2.0"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">persistence-unit</span> <span class="attr">name</span>=<span class="string">"db1-unit"</span></span></span><br><span class="line"><span class="tag">                      <span class="attr">transaction-type</span>=<span class="string">"RESOURCE_LOCAL"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">class</span>&gt;</span>com.javachen.spring4.jpa.entity.Person<span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.driver_class"</span> <span class="attr">value</span>=<span class="string">"net.sf.log4jdbc.DriverSpy"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.url"</span> <span class="attr">value</span>=<span class="string">"jdbc:log4jdbc:h2:mem:example"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.username"</span> <span class="attr">value</span>=<span class="string">"sa"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.password"</span> <span class="attr">value</span>=<span class="string">""</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.dialect"</span> <span class="attr">value</span>=<span class="string">"org.hibernate.dialect.H2Dialect"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.jdbc.batch_size"</span> <span class="attr">value</span>=<span class="string">"30"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.use_sql_comments"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.hbm2ddl.auto"</span> <span class="attr">value</span>=<span class="string">"create"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.show_sql"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.ejb.naming_strategy"</span></span></span><br><span class="line"><span class="tag">                      <span class="attr">value</span>=<span class="string">"org.hibernate.cfg.ImprovedNamingStrategy"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.charSet"</span></span></span><br><span class="line"><span class="tag">                      <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.current_session_context_class"</span> <span class="attr">value</span>=<span class="string">"thread"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">persistence-unit</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">persistence</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果有多个持久化单元，则可以配置多个 persistence-unit 节点。</p>
+<p>以下是 persistence.xml 所有配置项的一个示例说明：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">persistence</span> <span class="attr">version</span>=<span class="string">"1.0"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:persistence</span>=<span class="string">"http://java.sun.com/xml/ns/persistence"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/persistence persistence_1_0.xsd "</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">     Name属性用于定义持久化单元的名字 (name必选,空值也合法);</span></span><br><span class="line"><span class="comment">     transaction-type 指定事务类型(可选：JTA、RESOURCE_LOCAL)</span></span><br><span class="line"><span class="comment">--&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">persistence-unit</span> <span class="attr">name</span>=<span class="string">"unitName"</span> <span class="attr">transaction-type</span>=<span class="string">"JTA"</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- 描述信息.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">description</span>&gt;</span> <span class="tag">&lt;/<span class="name">description</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- javax.persistence.PersistenceProvider接口的一个实现类(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">provider</span>&gt;</span><span class="tag">&lt;/<span class="name">provider</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Jta-data-source和 non-jta-data-source用于分别指定持久化提供商使用的JTA和/或non-JTA数据源的全局JNDI名称(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">jta-data-source</span>&gt;</span>java:/MySqlDS<span class="tag">&lt;/<span class="name">jta-data-source</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">non-jta-data-source</span>&gt;</span><span class="tag">&lt;/<span class="name">non-jta-data-source</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- 声明orm.xml所在位置.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">mapping-file</span>&gt;</span>product.xml<span class="tag">&lt;/<span class="name">mapping-file</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- 以包含persistence.xml的jar文件为基准的相对路径,添加额外的jar文件.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">jar-file</span>&gt;</span>../lib/model.jar<span class="tag">&lt;/<span class="name">jar-file</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- 显式列出实体类,在Java SE 环境中应该显式列出.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">class</span>&gt;</span>com.domain.User<span class="tag">&lt;/<span class="name">class</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- 声明是否扫描jar文件中标注了@Enity类加入到上下文.若不扫描,则如下:(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">exclude-unlisted-classes</span>/&gt;</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!--   厂商专有属性(可选)   --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">properties</span>&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!-- hibernate.hbm2ddl.auto= create-drop / create / update --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.hbm2ddl.auto"</span> <span class="attr">value</span>=<span class="string">"update"</span> /&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.show_sql"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">persistence-unit</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">persistence</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="持久化操作"><a href="#持久化操作" class="headerlink" title="持久化操作"></a>持久化操作</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javachen.spring4.jpa.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.EntityManager;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.EntityManagerFactory;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Persistence;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Query;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        EntityManagerFactory emfactory = Persistence.</span><br><span class="line">                createEntityManagerFactory( <span class="string">"db1-unit"</span> );</span><br><span class="line">        EntityManager entitymanager = emfactory.</span><br><span class="line">                createEntityManager( );</span><br><span class="line">        entitymanager.getTransaction( ).begin( );</span><br><span class="line"></span><br><span class="line">        Person person=<span class="keyword">new</span> Person();</span><br><span class="line">        person.setAge(<span class="number">18</span>);</span><br><span class="line">        person.setSalary(<span class="number">121</span>d);</span><br><span class="line">        person.setName(<span class="string">"zhangsan"</span>);</span><br><span class="line"></span><br><span class="line">        entitymanager.persist( person );</span><br><span class="line">        entitymanager.getTransaction( ).commit( );</span><br><span class="line"></span><br><span class="line">        entitymanager.close();</span><br><span class="line">        emfactory.close( );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中 <code>createEntityManagerFactory()</code> 通过提供我们在 persistent.xml 文件提供持久化单元相同唯一的名称创建一个持久性单元。 EntityManagerFactory对象将由usingcreateEntityManager()方法创建entitymanger实例。 EntityManager对象创建 entitytransactioninstance 事务管理。通过使用 EntityManager 对象，我们可以持久化实体到数据库中。</p>
+<h1 id="3-JPQL"><a href="#3-JPQL" class="headerlink" title="3. JPQL"></a>3. JPQL</h1><p>JPQL 代表 Java 持久化查询语言。它被用来创建针对实体的查询存储在关系数据库中。 JPQL 是基于 SQL 语法的发展。但它不会直接影响到数据库。</p>
+<p>JPQL 可以检索使用 SELECT 子句中的数据，可以使用 UPDATE 子句做批量 UPDATE 和 DELETE 子句。</p>
+<h2 id="3-1-标准查询结构"><a href="#3-1-标准查询结构" class="headerlink" title="3.1 标准查询结构"></a>3.1 标准查询结构</h2><p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">EntityManagerFactory emfactory = Persistence.</span><br><span class="line">                createEntityManagerFactory( <span class="string">"db1-unit"</span> );</span><br><span class="line">EntityManager entitymanager = emfactory.</span><br><span class="line">        createEntityManager( );</span><br><span class="line">entitymanager.getTransaction( ).begin( );</span><br><span class="line"></span><br><span class="line"><span class="comment">//Scalar function</span></span><br><span class="line">Query query = entitymanager.</span><br><span class="line">        createQuery(<span class="string">"Select UPPER(e.name) from Person e"</span>);</span><br><span class="line">List&lt;String&gt; list=query.getResultList();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(String e:list)&#123;</span><br><span class="line">    System.out.println(<span class="string">"Person name :"</span>+e);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Aggregate function</span></span><br><span class="line">Query query1 = entitymanager.</span><br><span class="line">        createQuery(<span class="string">"Select MAX(e.salary) from Person e"</span>);</span><br><span class="line">Double result=(Double) query1.getSingleResult();</span><br><span class="line">System.out.println(<span class="string">"Max Person Salary :"</span>+result);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">entitymanager.close();</span><br><span class="line">emfactory.close( );</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-命名查询"><a href="#3-2-命名查询" class="headerlink" title="3.2 命名查询"></a>3.2 命名查询</h2><p>@NamedQuery 注解被定义为一个预定义的查询字符串，它是不可改变的查询。@NamedQuery 注解加在实体之上，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@NamedQuery</span>(query = <span class="string">"Select e from Person e where e.id = :id"</span>,</span><br><span class="line">        name = <span class="string">"find person by id"</span>)</span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"T_PERSON"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>命名查询使用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.EntityManager;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.EntityManagerFactory;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Persistence;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Query;</span><br><span class="line"><span class="keyword">import</span> com.yiibai.eclipselink.entity.Employee;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedQueries</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String[ ] args )</span></span>&#123;</span><br><span class="line">   	EntityManagerFactory emfactory = Persistence.</span><br><span class="line">   		createEntityManagerFactory( <span class="string">"db1-unit"</span> );</span><br><span class="line">   	EntityManager entitymanager = emfactory.</span><br><span class="line">   		createEntityManager();</span><br><span class="line">   	Query query = entitymanager.createNamedQuery(</span><br><span class="line">   		<span class="string">"find person by id"</span>);</span><br><span class="line">   	query.setParameter(<span class="string">"id"</span>, <span class="number">1</span>);</span><br><span class="line">   	List&lt;Person&gt; list = query.getResultList( );</span><br><span class="line">   	<span class="keyword">for</span>( Person e:list )&#123;</span><br><span class="line">   		System.out.print(<span class="string">"Person ID :"</span>+e.getId( ));</span><br><span class="line">   		System.out.println(<span class="string">"\t Person Name :"</span>+e.getName( ));</span><br><span class="line">   	&#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-动态查询"><a href="#3-3-动态查询" class="headerlink" title="3.3 动态查询"></a>3.3 动态查询</h2><p>下面使用简单的条件<strong>动态查询</strong>返回数据源中的实体类的所有实例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EntityManager em = ...;</span><br><span class="line">CriteriaBuilder cb = em.getCriteriaBuilder();</span><br><span class="line">CriteriaQuery&lt;Entity <span class="class"><span class="keyword">class</span>&gt; <span class="title">cq</span> </span>= cb.createQuery(Entity.class);</span><br><span class="line">Root&lt;Entity&gt; from = cq.from(Entity.class);</span><br><span class="line">cq.select(Entity);</span><br><span class="line">TypedQuery&lt;Entity&gt; q = em.createQuery(cq);</span><br><span class="line">List&lt;Entity&gt; allitems = q.getResultList();</span><br></pre></td></tr></table></figure>
+
+<p>查询演示了基本的步骤来创建一个标准。</p>
+<ul>
+<li><code>EntityManager</code> 实例被用来创建一个 CriteriaBuilder 对象。</li>
+<li><code>CriteriaQuery</code> 实例是用来创建一个查询对象。这个查询对象的属性将与该查询的细节进行修改。</li>
+<li><code>CriteriaQuery.form</code> 方法被调用来设置查询根。</li>
+<li><code>CriteriaQuery.select</code> 被调用来设置结果列表类型。</li>
+<li><code>TypedQuery&lt;T&gt;</code> 实例是用来准备一个查询执行和指定的查询结果的类型。</li>
+<li>在 <code>TypedQuery&lt;T&gt;</code> 对象 getResultList 方法来执行查询。该查询返回实体的集合，结果存储在一个列表中。</li>
+</ul>
+<h1 id="4-实体映射关系"><a href="#4-实体映射关系" class="headerlink" title="4. 实体映射关系"></a>4. 实体映射关系</h1><h2 id="4-1-注解"><a href="#4-1-注解" class="headerlink" title="4.1 注解"></a>4.1 注解</h2><p>在实体中使用到的注解列表如下：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Entity</td>
+<td align="left">声明类为实体或表。</td>
+</tr>
+<tr>
+<td>@Table</td>
+<td align="left">声明表名。</td>
+</tr>
+<tr>
+<td>@Basic</td>
+<td align="left">指定非约束明确的各个字段。</td>
+</tr>
+<tr>
+<td>@Embedded</td>
+<td align="left">指定类或它的值是一个可嵌入的类的实例的实体的属性。</td>
+</tr>
+<tr>
+<td>@Id</td>
+<td align="left">指定的类的属性，用于标识主键。</td>
+</tr>
+<tr>
+<td>@GeneratedValue</td>
+<td align="left">指定主键生成方式，例如自动，手动，或从序列表中获得的值。</td>
+</tr>
+<tr>
+<td>@Transient</td>
+<td align="left">该值永远不会存储在数据库中。</td>
+</tr>
+<tr>
+<td>@Lob</td>
+<td align="left">将属性持久化为 Blob 或者 Clob 类型。</td>
+</tr>
+<tr>
+<td>@Column</td>
+<td align="left">指定字段属性。</td>
+</tr>
+<tr>
+<td>@SequenceGenerator</td>
+<td align="left">指定在 <code>@GeneratedValue</code> 注解中指定的属性的值。它创建了一个序列。</td>
+</tr>
+<tr>
+<td>@TableGenerator</td>
+<td align="left">指定在 <code>@GeneratedValue</code> 批注指定属性的值发生器。它创造了的值生成的表。</td>
+</tr>
+<tr>
+<td>@AccessType</td>
+<td align="left">这种类型的注释用于设置访问类型。</td>
+</tr>
+<tr>
+<td>@JoinColumn</td>
+<td align="left">指定一个实体组织或实体的集合。这是用在多对一和一对多关联。</td>
+</tr>
+<tr>
+<td>@UniqueConstraint</td>
+<td align="left">指定的字段和用于主要或辅助表的唯一约束。</td>
+</tr>
+<tr>
+<td>@ColumnResult</td>
+<td align="left">参考使用 select 子句的 SQL 查询中的列名。</td>
+</tr>
+<tr>
+<td>@ManyToMany</td>
+<td align="left">定义了连接表之间的多对多一对多的关系。</td>
+</tr>
+<tr>
+<td>@ManyToOne</td>
+<td align="left">定义了连接表之间的多对一的关系。</td>
+</tr>
+<tr>
+<td>@OneToMany</td>
+<td align="left">定义了连接表之间存在一个一对多的关系。</td>
+</tr>
+<tr>
+<td>@OneToOne</td>
+<td align="left">定义了连接表之间有一个一对一的关系。</td>
+</tr>
+<tr>
+<td>@NamedQueries</td>
+<td align="left">指定命名查询的列表。</td>
+</tr>
+<tr>
+<td>@NamedQuery</td>
+<td align="left">指定使用静态名称的命名查询。</td>
+</tr>
+</tbody></table>
+<p>1、 <code>@OneToOne</code>：</p>
+<p>一对一映射注解，双向的一对一关系需要在关系维护端(owner side)的 @OneToOne 注解中添加 mappedBy 属性，建表时在关系被维护端(inverse side)建立外键指向关系维护端的主键列。</p>
+<p><strong>用法：</strong><code>@OneToOne(optional=true,casecade=CasecadeType.ALL,mappedBy=”被维护端外键”)</code></p>
+<p>2、 <code>@OneToMany</code>：</p>
+<p>一对多映射注解，双向一对多关系中，一端是关系维护端(owner side)，只能在一端添加 mapped 属性。多端是关系被维护端(inverse side)。建表时在关系被维护端(多端)建立外键指向关系维护端(一端)的主键列。</p>
+<p><strong>用法：</strong> <code>@OneToMany(mappedBy = &quot;维护端(一端)主键&quot;, cascade=CascadeType.ALL)</code></p>
+<blockquote>
+<p><strong>注意：</strong><br>在Hibernate中有个术语叫做维护关系反转，即由对方维护关联关系，使用 <code>inverse=false</code> 来表示关系维护放，在JPA的注解中，mappedBy就相当于inverse=false，即由mappedBy来维护关系。</p>
+</blockquote>
+<p>3、<code>＠ManyToOne</code>：</p>
+<p>多对一映射注解，在双向的一对多关系中，一端一方使用 @OneToMany 注解，多端的一方使用 @ManyToOne 注解。多对一注解用法很简单，它不用维护关系。</p>
+<p><strong>用法：</strong> <code>@ManyToOne(optional = false, fetch = FetchType.EAGER)</code></p>
+<p>4、 <code>@ManyToMany</code>：</p>
+<p>多对多映射，采取中间表连接的映射策略，建立的中间关系表分别引入两边的主键作为外键，形成两个多对一关系。</p>
+<p>双向的多对多关系中，在关系维护端(owner side)的 @ManyToMany 注解中添加 mappedBy 属性，另一方是关系的被维护端(inverse side)，关系的被维护端不能加 mappedBy 属性，建表时，根据两个多端的主键生成一个中间表，中间表的外键是两个多端的主键。</p>
+<p><strong>用法：</strong></p>
+<ul>
+<li>关系维护端——&gt; <code>@ManyToMany(mappedBy=&quot;另一方的关系引用属性&quot;)</code></li>
+<li>关系被维护端——&gt; <code>@ManyToMany(cascade=CascadeType.ALL ,fetch = FetchType.Lazy)</code></li>
+</ul>
+<h2 id="4-2-实体关联映射策略"><a href="#4-2-实体关联映射策略" class="headerlink" title="4.2 实体关联映射策略"></a>4.2 实体关联映射策略</h2><h3 id="4-2-1-一对一关联映射"><a href="#4-2-1-一对一关联映射" class="headerlink" title="4.2.1 一对一关联映射"></a>4.2.1 一对一关联映射</h3><p><strong>(1).一对一主键关联：</strong></p>
+<p>一对一关联映射中，主键关联策略不会在两个关联实体对应的数据库表中添加外键字段，两个实体的表公用同一个主键(主键相同)，其中一个实体的主键既是主键又是外键。</p>
+<p><strong>主键关联映射：</strong>在实体关联属性或方法上添加 @OneToOne 注解的同时添加 <code>@PrimaryKeyJoinColumn</code> 注解(在一对一注解关联映射的任意一端实体添加即可)。</p>
+<p><strong>(2).一对一唯一外键关联：</strong></p>
+<p>一对一关联关系映射中，唯一外键关联策略会在其中一个实体对应数据库表中添加外键字段指向另一个实体表的主键，也是一对一映射关系中最常用的映射策略。</p>
+<p>唯一外键关联：在关联属性或字段上添加 @OneToOne 注解的同时添加 <code>@JoinColumn(name=”数据表列名”，unique=true)</code> 注解。</p>
+<h3 id="4-2-2-一对多关联映射"><a href="#4-2-2-一对多关联映射" class="headerlink" title="4.2.2 一对多关联映射"></a>4.2.2 一对多关联映射</h3><p>在JPA中两个实体之间是一对多关系的称为一对多关联关系映射，如班级和学生关系。</p>
+<p><strong>(1).一对多单向关联映射：</strong></p>
+<p>在一对多单向关联映射中，JPA 会在数据库中自动生成公有的中间表记录关联关系的情况。在一端关联集合属性或字段上添加 @OneToMany 注解即可。</p>
+<p><strong>(2).一对多双向关联映射：</strong></p>
+<p>在一对多双向关联映射中，JPA 不会在数据库中生成公有中间表。在一端关联集合属性或字段上添加 @OneToMany 注解，同时指定其 mappedBy 属性。<br>在多端关联属性或字段上添加 @ManyToOne 注解。</p>
+<p><strong>注意：</strong>一对多关系映射中，mappedBy 只能添加在 OneToMany 注解中，即在多端生成外键。</p>
+<h3 id="4-2-3-多对多关联映射"><a href="#4-2-3-多对多关联映射" class="headerlink" title="4.2.3 多对多关联映射"></a>4.2.3 多对多关联映射</h3><p>在JPA中两个实体之间是多对多关系的称为多对多关联关系映射，如学生和教师关系。</p>
+<p><strong>(1).多对多单向映射：</strong></p>
+<p>在其中任意实体一方关联属性或字段上添加 @ManyToMany 注解。</p>
+<p><strong>(2).多对多双向映射：</strong></p>
+<p>关系维护端关联属性或字段上添加 @ManyToMany 注解，同时指定该注解的 mappedBy 属性。</p>
+<p>关系被维护端关联属性或字段上添加 @ManyToMany 注解。</p>
+<h2 id="4-3-实体继承映射策略"><a href="#4-3-实体继承映射策略" class="headerlink" title="4.3 实体继承映射策略"></a>4.3 实体继承映射策略</h2><p>在 JPA 中，<strong>实体继承关系的映射策略共有三种：单表继承策略、Joined 策略和 TABLE_PER_CLASS 策略</strong>。</p>
+<h3 id="4-3-1-单表继承策略："><a href="#4-3-1-单表继承策略：" class="headerlink" title="4.3.1 单表继承策略："></a>4.3.1 单表继承策略：</h3><p>单表继承策略，父类实体和子类实体共用一张数据库表，在表中通过一列辨别字段来区别不同类别的实体。具体做法如下：</p>
+<p>a.在父类实体的 @Entity 注解下添加如下的注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Inheritance</span>(Strategy=InheritanceType.SINGLE_TABLE)  </span><br><span class="line"><span class="meta">@DiscriminatorColumn</span>(name=<span class="string">"辨别字段列名"</span>)  </span><br><span class="line"><span class="meta">@DiscriminatorValue</span>(父类实体辨别字段列值)</span><br></pre></td></tr></table></figure>
+
+<p>b.在子类实体的 @Entity 注解下添加如下的注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DiscriminatorValue</span>(子类实体辨别字段列值)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-2-Joined-策略："><a href="#4-3-2-Joined-策略：" class="headerlink" title="4.3.2 Joined 策略："></a>4.3.2 Joined 策略：</h3><p>Joined 策略，父类实体和子类实体分别对应数据库中不同的表，子类实体的表中只存在其扩展的特殊属性，父类的公共属性保存在父类实体映射表中。</p>
+<p>具体做法：只需在父类实体的 @Entity 注解下添加如下注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Inheritance</span>(Strategy=InheritanceType.JOINED)</span><br></pre></td></tr></table></figure>
+
+<p>子类实体不需要特殊说明。</p>
+<h3 id="4-3-3-TABLE-PER-CLASS-策略："><a href="#4-3-3-TABLE-PER-CLASS-策略：" class="headerlink" title="4.3.3 TABLE_PER_CLASS 策略："></a>4.3.3 TABLE_PER_CLASS 策略：</h3><p>TABLE_PER_CLASS 策略，父类实体和子类实体每个类分别对应一张数据库中的表，子类表中保存所有属性，包括从父类实体中继承的属性。</p>
+<p>具体做法：只需在父类实体的 @Entity 注解下添加如下注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Inheritance</span>(Strategy=InheritanceType.TABLE_PER_CLASS)</span><br></pre></td></tr></table></figure>
+
+<p>子类实体不需要特殊说明。</p>
+<h1 id="5-参考文章"><a href="#5-参考文章" class="headerlink" title="5. 参考文章"></a>5. 参考文章</h1><ul>
+<li>[1] <a href="http://www.yiibai.com/jpa/" target="_blank" rel="noopener">JPA教程</a></li>
+<li>[2] <a href="http://blog.csdn.net/chjttony/article/details/6086298" target="_blank" rel="noopener">JPA学习笔记1——JPA基础</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    JavaChen
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.javachen.com/2014/12/02/some-usages-of-jpa/" title="JPA的使用">http://blog.javachen.com/2014/12/02/some-usages-of-jpa/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/jpa/" rel="tag"># jpa</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop/" rel="next" title="Hadoop集群部署权限总结">
+                <i class="fa fa-chevron-left"></i> Hadoop集群部署权限总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/12/23/thread-in-python/" rel="prev" title="Python中的多线程">
+                Python中的多线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-post-description"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

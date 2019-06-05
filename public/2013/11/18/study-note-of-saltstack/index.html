@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="saltstack,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="这份文档如其名，是我自己整理的学习 SaltStack 的过程记录。只是过程记录，没有刻意像教程那样去做。所以呢，从前至后，中间不免有一些概念不清不明的地方。因为事实上，在某个阶段对于一些概念本来就不可能明白。所以，整个过程只求在形式上的能用即可。前面就不要太纠结概念和原理，知道怎么用就好。">
+<meta name="keywords" content="saltstack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SaltStack学习笔记">
+<meta property="og:url" content="http://blog.javachen.com/2013/11/18/study-note-of-saltstack/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="这份文档如其名，是我自己整理的学习 SaltStack 的过程记录。只是过程记录，没有刻意像教程那样去做。所以呢，从前至后，中间不免有一些概念不清不明的地方。因为事实上，在某个阶段对于一些概念本来就不可能明白。所以，整个过程只求在形式上的能用即可。前面就不要太纠结概念和原理，知道怎么用就好。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SaltStack学习笔记">
+<meta name="twitter:description" content="这份文档如其名，是我自己整理的学习 SaltStack 的过程记录。只是过程记录，没有刻意像教程那样去做。所以呢，从前至后，中间不免有一些概念不清不明的地方。因为事实上，在某个阶段对于一些概念本来就不可能明白。所以，整个过程只求在形式上的能用即可。前面就不要太纠结概念和原理，知道怎么用就好。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.javachen.com/2013/11/18/study-note-of-saltstack/">
+
+
+
+
+
+  <title>SaltStack学习笔记 | JavaChen Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?50bc6f5d9b045b5895ff44f8bbdbc611";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JavaChen Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/11/18/study-note-of-saltstack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">SaltStack学习笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-18T00:00:00+08:00">
+                2013-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/devops/" itemprop="url" rel="index">
+                    <span itemprop="name">devops</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+              <div class="post-description">
+                  这份文档如其名，是我自己整理的学习 SaltStack 的过程记录。只是过程记录，没有刻意像教程那样去做。所以呢，从前至后，中间不免有一些概念不清不明的地方。因为事实上，在某个阶段对于一些概念本来就不可能明白。所以，整个过程只求在形式上的能用即可。前面就不要太纠结概念和原理，知道怎么用就好。
+              </div>
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-关于本文档"><a href="#1-关于本文档" class="headerlink" title="1. 关于本文档"></a>1. 关于本文档</h1><p>这份文档如其名，是我自己整理的学习 SaltStack 的过程记录。只是过程记录，没有刻意像教程那样去做。所以呢，从前至后，中间不免有一些概念不清不明的地方。因为事实上，在某个阶段对于一些概念本来就不可能明白。所以，整个过程只求在形式上的能用即可。前面就不要太纠结概念和原理，知道怎么用就好。</p>
+<p>希望这篇文章能够让你快速了解并使用saltstack。文章还在编写中。</p>
+<h1 id="2-关于SaltStack"><a href="#2-关于SaltStack" class="headerlink" title="2. 关于SaltStack"></a>2. 关于SaltStack</h1><h2 id="2-1-什么是SaltStack"><a href="#2-1-什么是SaltStack" class="headerlink" title="2.1. 什么是SaltStack"></a>2.1. 什么是SaltStack</h2><p>SaltStack是开源的管理基础设置的轻量级工具，容易搭建，为远程管理服务器提供一种更好、更快速、更有扩展性的解决方案。通过简单、可管理的接口，Salt实现了可以管理成千上百的服务器和处理大数据的能力。</p>
+<ul>
+<li>轻量级配置管理系统，能够维持远端节点运行在预定状态（例如，确保指定的软件包已经安装和特定的系统服务正在运行）</li>
+<li>分布式远程执行系统，用于在远端节点执行命令和查询数据，可以是单独，也可以是选定的条件</li>
+</ul>
+<h2 id="2-2-SaltStack特点"><a href="#2-2-SaltStack特点" class="headerlink" title="2.2. SaltStack特点"></a>2.2. SaltStack特点</h2><h3 id="简单"><a href="#简单" class="headerlink" title="简单"></a>简单</h3><p>兼顾大规模部署与更小的系统的同时提供多功能性是很困难的，Salt是非常简单配置和维护，不管项目的大小。Salt可以胜任管理任意的数量的服务器，不管是本地网络，还是跨数据中心。架构采用C/S模式，在一个后台程序中集成必要功能。默认不需要复杂的配置就可以工作，同时可以定制用于特殊的需求。</p>
+<h3 id="并行执行"><a href="#并行执行" class="headerlink" title="并行执行"></a>并行执行</h3><p>Salt的核心功能：</p>
+<ul>
+<li>通过并行方式让远端节点执行命令</li>
+<li>采用安全的加密/解析协议</li>
+<li>最小化使用网络和负载</li>
+<li>提供简单的程序接口</li>
+<li>Salt引入了更细粒度的控制，允许不通过目标名字，二是通过系统属性分类</li>
+</ul>
+<h3 id="构建在成熟技术之上"><a href="#构建在成熟技术之上" class="headerlink" title="构建在成熟技术之上"></a>构建在成熟技术之上</h3><p>Salt采用了很多技术和技巧。网络层采用优秀的ZeroMQ库，所以守护进程里面包含AMQ代理。Salt采用公钥和主控通讯，同时使用更快的AES加密通信，验证和加密都已经集成在Salt里面。Salt使用msgpack通讯，所以更快速和更轻量网络交换。</p>
+<h3 id="Python-客户端接口"><a href="#Python-客户端接口" class="headerlink" title="Python 客户端接口"></a>Python 客户端接口</h3><p>为了实现简单的扩展，Salt执行例程可以写成简单的Python模块。客户端程序收集的数据可以发送回主控端，可以是其他任意程序。可以通过Python API调用Salt程序，或者命令行，因此，Salt可以用来执行一次性命令，或者大型应用程序中的一部分模块。</p>
+<h3 id="快速，灵活，可扩展"><a href="#快速，灵活，可扩展" class="headerlink" title="快速，灵活，可扩展"></a>快速，灵活，可扩展</h3><p>结果是一个系统可以高速在一台或者一组服务器执行命令。Salt速度很快，配置简单，扩展性好，提供了一个远程执行架构，可以管理多样化需求的任何数量的服务器。整合了世界上最好的远程执行方法，增强处理能力，扩展使用范围，使得可以适用任何多样化复杂的网络。</p>
+<h3 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h3><p>Salt基于Apache 2.0 licence开发，可以用于开源或者自有项目。请反馈你的扩展给项目组，以便更多人受益，共同促进Salt发展。请在你的系统部署 系统，让运维更便捷。</p>
+<p>开发语言：Python</p>
+<h2 id="2-3-支持的系统"><a href="#2-3-支持的系统" class="headerlink" title="2.3. 支持的系统"></a>2.3. 支持的系统</h2><p>常见的系统包可以直接下载安装使用：</p>
+<ul>
+<li><a href="https://admin.fedoraproject.org/pkgdb/acls/name/salt" target="_blank" rel="noopener">Fedora</a></li>
+<li>RedHat Enterprise Linux / Centos (<a href="http://dl.fedoraproject.org/pub/epel/5/x86_64/repoview/salt.html" target="_blank" rel="noopener">EPEL 5</a>, <a href="http://dl.fedoraproject.org/pub/epel/6/x86_64/repoview/salt.html" target="_blank" rel="noopener">EPEL 6</a>)</li>
+<li><a href="https://launchpad.net/~saltstack" target="_blank" rel="noopener">Ubuntu (PPA)</a></li>
+<li><a href="http://aur.archlinux.org/packages.php?ID=47512" target="_blank" rel="noopener">Arch (AUR)</a></li>
+<li><a href="http://www.freebsd.org/cgi/cvsweb.cgi/ports/sysutils/salt/" target="_blank" rel="noopener">FreeBSD</a></li>
+<li><a href="http://packages.gentoo.org/package/app-admin/salt" target="_blank" rel="noopener">Gentoo</a></li>
+<li><a href="http://packages.debian.org/sid/salt-master" target="_blank" rel="noopener">Debian (sid)</a></li>
+<li><a href="http://packages.debian.org/experimental/salt-master" target="_blank" rel="noopener">Debian (experimental)</a></li>
+</ul>
+<h1 id="3-安装SaltStack"><a href="#3-安装SaltStack" class="headerlink" title="3. 安装SaltStack"></a>3. 安装SaltStack</h1><h2 id="3-1-依赖"><a href="#3-1-依赖" class="headerlink" title="3.1. 依赖"></a>3.1. 依赖</h2><p>SaltStack只能安装在类unix的操作系统上并依赖以下组件：</p>
+<ul>
+<li><a href="http://python.org/download/" target="_blank" rel="noopener">Python 2.6</a> &gt;= 2.6 &lt;3.0</li>
+<li><a href="http://www.zeromq.org/" target="_blank" rel="noopener">ZeroMQ</a> &gt;= 2.1.9</li>
+<li><a href="https://github.com/zeromq/pyzmq" target="_blank" rel="noopener">pyzmq</a> &gt;= 2.1.9 - ZeroMQ Python bindings</li>
+<li><a href="http://www.dlitz.net/software/pycrypto/" target="_blank" rel="noopener">PyCrypto</a> - The Python cryptography toolkit</li>
+<li><a href="http://pypi.python.org/pypi/msgpack-python/0.1.12" target="_blank" rel="noopener">msgpack-python</a> - High-performance message interchange format</li>
+<li><a href="http://pyyaml.org/" target="_blank" rel="noopener">YAML</a> - Python YAML bindings</li>
+<li><a href="http://jinja.pocoo.org/" target="_blank" rel="noopener">Jinja2</a> - parsing Salt States (configurable in the master settings)</li>
+</ul>
+<p>可选的依赖：</p>
+<ul>
+<li><a href="http://www.makotemplates.org/" target="_blank" rel="noopener">mako</a> - an optional parser for Salt States (configurable in the master settings)</li>
+<li>gcc - dynamic <a href="http://cython.org/" target="_blank" rel="noopener">Cython</a> module compiling</li>
+</ul>
+<h2 id="3-2-快速安装"><a href="#3-2-快速安装" class="headerlink" title="3.2. 快速安装"></a>3.2. 快速安装</h2><p>可以使用官方提供的<a href="https://github.com/saltstack/salt-bootstrap" target="_blank" rel="noopener">Salt Bootstrap</a>来快速安装SaltStack。</p>
+<p>安装master：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L http://bootstrap.saltstack.org | sudo sh -s -- -M -N</span><br></pre></td></tr></table></figure>
+
+<p>安装minion：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O - http://bootstrap.saltstack.org | sudo sh</span><br></pre></td></tr></table></figure>
+
+<p>当前<a href="https://github.com/saltstack/salt-bootstrap" target="_blank" rel="noopener">Salt Bootstrap</a>已经在以下操作系统测试通过：</p>
+<ul>
+<li>Ubuntu 10.x/11.x/12.x</li>
+<li>Debian 6.x</li>
+<li>CentOS 6.3</li>
+<li>Fedora</li>
+<li>Arch</li>
+<li>FreeBSD 9.0</li>
+</ul>
+<h2 id="3-3-通过rpm安装"><a href="#3-3-通过rpm安装" class="headerlink" title="3.3. 通过rpm安装"></a>3.3. 通过rpm安装</h2><h3 id="3-3-1-下载EPEL-yum源："><a href="#3-3-1-下载EPEL-yum源：" class="headerlink" title="3.3.1. 下载EPEL yum源："></a>3.3.1. 下载EPEL yum源：</h3><p>RHEL 5系统:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh http://mirror.pnl.gov/epel/5/i386/epel-release-5-4.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>RHEL 6系统:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh http://ftp.linux.ncsu.edu/pub/epel/6/i386/epel-release-6-8.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-2-安装包"><a href="#3-3-2-安装包" class="headerlink" title="3.3.2. 安装包"></a>3.3.2. 安装包</h3><p>在master上运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install salt-master</span><br></pre></td></tr></table></figure>
+
+<p>在minion上运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install salt-minion</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-3-安装后"><a href="#3-3-3-安装后" class="headerlink" title="3.3.3. 安装后"></a>3.3.3. 安装后</h3><p>master上设置开启启动并启动服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig salt-master on</span><br><span class="line">service salt-master start</span><br></pre></td></tr></table></figure>
+
+<p>minion上设置开启启动并启动服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig salt-minion on</span><br><span class="line">service salt-minion start</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-排错"><a href="#3-4-排错" class="headerlink" title="3.4. 排错"></a>3.4. 排错</h3><p>当前最新版为0.17.1，如果你也是使用的这个版本并且启动提示如下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@sk1 vagrant]# /etc/init.d/salt-master start</span><br><span class="line">Starting salt-master daemon: Traceback (most recent call last):</span><br><span class="line"> File &quot;/usr/bin/salt-master&quot;, line 10, in &lt;module&gt;</span><br><span class="line">   salt_master()</span><br><span class="line"> File &quot;/usr/lib/python2.6/site-packages/salt/scripts.py&quot;, line 20, in salt_master</span><br><span class="line">   master.start()</span><br><span class="line"> File &quot;/usr/lib/python2.6/site-packages/salt/__init__.py&quot;, line 114, in start</span><br><span class="line">   if check_user(self.config[&apos;user&apos;]):</span><br><span class="line"> File &quot;/usr/lib/python2.6/site-packages/salt/utils/verify.py&quot;, line 296, in check_user</span><br><span class="line">   if user in e.gr_mem] + [pwuser.gid])</span><br><span class="line">AttributeError: &apos;pwd.struct_passwd&apos; object has no attribute &apos;gid&apos;</span><br></pre></td></tr></table></figure>
+
+<p>通过google搜索关键字<code>saltstack &#39;pwd.struct_passwd&#39; object has no attribute &#39;gid&#39;</code>，可以找到这个<a href="https://github.com/saltstack/salt/issues/8176" target="_blank" rel="noopener">issues</a>，查看评论可以发现这是一个bug，将会在0.17.2中被修复。</p>
+<p>我的解决方法是：下载saltstack源码重新编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/saltstack/salt/archive/develop.zip</span><br><span class="line">unzip develop</span><br><span class="line">cd salt-develop/</span><br><span class="line">python2.6 setup.py install</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-配置SaltStack"><a href="#4-配置SaltStack" class="headerlink" title="4. 配置SaltStack"></a>4. 配置SaltStack</h1><h2 id="4-1-master配置"><a href="#4-1-master配置" class="headerlink" title="4.1. master配置"></a>4.1. master配置</h2><p>master不修改配置文件就可以运行，而minion必须修改配置文件中的master id才能和master通讯，配置文件分别在<code>/etc/salt/master</code> 和 <code>/etc/salt/minion</code>。</p>
+<p>master默认监控0.0.0.0上4505和4506端口，你可以在<code>/etc/salt/master</code>中修改为指定ip。</p>
+<p>master关键配置：</p>
+<ul>
+<li><code>interface</code></li>
+<li><code>publish_port</code></li>
+<li><code>user</code></li>
+<li><code>max_open_files</code></li>
+<li><code>worker_threads</code></li>
+<li><code>ret_port</code></li>
+<li><code>pidfile</code></li>
+<li><code>root_dir</code></li>
+<li><code>pki_dir</code></li>
+<li><code>cachedir</code></li>
+<li><code>keep_jobs</code></li>
+<li><code>job_cache</code></li>
+<li><code>ext_job_cache</code></li>
+<li><code>minion_data_cache</code></li>
+<li><code>enforce_mine_cache</code></li>
+<li><code>sock_dir</code></li>
+</ul>
+<p>Master Security配置</p>
+<ul>
+<li><code>open_mode</code></li>
+<li><code>auto_accept</code></li>
+<li><code>autosign_file</code></li>
+<li><code>client_acl</code></li>
+<li><code>client_acl_blacklist</code></li>
+<li><code>external_auth</code></li>
+<li><code>token_expire</code></li>
+</ul>
+<p>Master Module管理</p>
+<ul>
+<li><code>runner_dirs</code></li>
+<li><code>cython_enable</code></li>
+</ul>
+<p>Master State设置</p>
+<ul>
+<li><code>state_verbose</code></li>
+<li><code>state_output</code></li>
+<li><code>state_top</code></li>
+<li><code>external_nodes</code></li>
+<li><code>renderer</code></li>
+<li><code>failhard</code></li>
+<li><code>test</code></li>
+</ul>
+<p>Master File Server设置</p>
+<ul>
+<li><code>fileserver_backend</code></li>
+<li><code>file_roots</code></li>
+<li><code>hash_type</code></li>
+<li><code>file_buffer_size</code></li>
+</ul>
+<p>Pillar配置</p>
+<ul>
+<li><code>pillar_roots</code></li>
+<li><code>ext_pillar</code></li>
+</ul>
+<p>Syndic Server设置</p>
+<ul>
+<li><code>order_masters</code></li>
+<li><code>syndic_master</code></li>
+<li><code>syndic_master_port</code></li>
+<li><code>syndic_log_file</code></li>
+<li><code>syndic_pidfile</code></li>
+</ul>
+<p>Peer发布设置</p>
+<ul>
+<li><code>peer</code></li>
+<li><code>peer_run</code></li>
+</ul>
+<p>Node Groups设置</p>
+<p>Master Logging设置</p>
+<ul>
+<li><code>log_file</code></li>
+<li><code>log_level</code></li>
+<li><code>log_level_logfile</code></li>
+<li><code>log_datefmt</code></li>
+<li><code>log_datefmt_logfile</code></li>
+<li><code>log_fmt_console</code></li>
+<li><code>log_fmt_logfile</code></li>
+<li><code>log_granular_levels</code></li>
+</ul>
+<p>Include配置</p>
+<ul>
+<li><code>default_include</code></li>
+<li><code>include</code></li>
+</ul>
+<h2 id="4-4-minion配置"><a href="#4-4-minion配置" class="headerlink" title="4.4. minion配置"></a>4.4. minion配置</h2><p>Minion主要配置：</p>
+<ul>
+<li><code>master</code></li>
+<li><code>master_port</code></li>
+<li><code>user</code></li>
+<li><code>pidfile</code></li>
+<li><code>root_dir</code></li>
+<li><code>pki_dir</code></li>
+<li><code>id</code></li>
+<li><code>append_domain</code></li>
+<li><code>cachedir</code></li>
+<li><code>verify_env</code></li>
+<li><code>cache_jobs</code></li>
+<li><code>sock_dir</code></li>
+<li><code>backup_mode</code></li>
+<li><code>acceptance_wait_time</code></li>
+<li><code>random_reauth_delay</code></li>
+<li><code>cceptance_wait_time_max</code></li>
+<li><code>dns_check</code></li>
+<li><code>ipc_mode</code></li>
+<li><code>tcp_pub_port</code></li>
+<li><code>tcp_pull_port</code></li>
+</ul>
+<p>Minion Module管理</p>
+<ul>
+<li><code>disable_modules</code></li>
+<li><code>disable_returners</code></li>
+<li><code>module_dirs</code></li>
+<li><code>returner_dirs</code></li>
+<li><code>states_dirs</code></li>
+<li><code>render_dirs</code></li>
+<li><code>cython_enable</code></li>
+<li><code>providers</code></li>
+</ul>
+<p>State Management 设置</p>
+<ul>
+<li><code>renderer</code></li>
+<li><code>state_verbose</code></li>
+<li><code>state_output</code></li>
+<li><code>autoload_dynamic_modules</code></li>
+<li><code>environment</code></li>
+</ul>
+<p>File目录设置</p>
+<ul>
+<li><code>file_client</code></li>
+<li><code>file_roots</code></li>
+<li><code>hash_type</code></li>
+<li><code>pillar_roots</code></li>
+</ul>
+<p>Security设置</p>
+<ul>
+<li><code>open_mode</code></li>
+</ul>
+<p>线程设置</p>
+<ul>
+<li><code>multiprocessing</code></li>
+</ul>
+<p>Minion日志设置</p>
+<ul>
+<li><code>log_file</code></li>
+<li><code>log_level</code></li>
+<li><code>log_level_logfile</code></li>
+<li><code>log_datefmt</code></li>
+<li><code>log_datefmt_logfile</code></li>
+<li><code>log_fmt_console</code></li>
+<li><code>log_fmt_logfile</code></li>
+<li><code>log_granular_levels</code></li>
+</ul>
+<p>Include配置</p>
+<ul>
+<li><code>default_include</code></li>
+<li><code>include</code></li>
+</ul>
+<p>Frozen Build Update Settings</p>
+<ul>
+<li><code>update_url</code></li>
+<li><code>update_restart_services</code></li>
+</ul>
+<h1 id="5-初识SaltStack"><a href="#5-初识SaltStack" class="headerlink" title="5. 初识SaltStack"></a>5. 初识SaltStack</h1><h2 id="5-1-配置"><a href="#5-1-配置" class="headerlink" title="5.1. 配置"></a>5.1. 配置</h2><p>参考上面的配置文件说明修改master和minion配置。这里我的master主机名为sk1，minion主机名为sk2。</p>
+<p>修改master配置文件/etc/salt/master</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">interface: 0.0.0.0</span><br><span class="line">auto_accept: True</span><br></pre></td></tr></table></figure>
+
+<p>修改minion配置文件/etc/salt/minion</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">master: sk1</span><br><span class="line">id: sk2</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-运行salt"><a href="#5-2-运行salt" class="headerlink" title="5.2. 运行salt"></a>5.2. 运行salt</h2><p>然后运行salt，启动master（添加<code>-d</code>参数可以让其后台运行）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt-master</span><br></pre></td></tr></table></figure>
+
+<p>启动minion（添加-d参数可以让其后台运行）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt-minion</span><br></pre></td></tr></table></figure>
+
+<p>如果需要排错，可以添加设置日志级别：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt-master --log-level=debug</span><br></pre></td></tr></table></figure>
+
+<p>如果想以非用户运行，可以添加<code>--user</code>参数</p>
+<h2 id="5-3-管理Key"><a href="#5-3-管理Key" class="headerlink" title="5.3. 管理Key"></a>5.3. 管理Key</h2><p>Salt在master和minion通信之间使用AES加密。在master和minion通信之前，minion上的key需要发送到master并被master接受。可以在master上查看已经接受的key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@sk1 pillar]# salt-key -L</span><br><span class="line">Accepted Keys:</span><br><span class="line">Unaccepted Keys:</span><br><span class="line">sk2</span><br><span class="line">Rejected Keys:</span><br></pre></td></tr></table></figure>
+
+<p>然后运行下面命令可以接受所有未被接受的key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@sk1 pillar]# salt-key -A</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-4-发送命令"><a href="#5-4-发送命令" class="headerlink" title="5.4. 发送命令"></a>5.4. 发送命令</h2><p>在master上发送ping命令检测minon是否被认证成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@sk1 pillar]# salt &apos;*&apos; test.ping</span><br><span class="line">sk2:salt &apos;*&apos; test.ping</span><br><span class="line">    True</span><br></pre></td></tr></table></figure>
+
+<p>True表明测试成功。</p>
+<h1 id="6-配置管理"><a href="#6-配置管理" class="headerlink" title="6. 配置管理"></a>6. 配置管理</h1><h2 id="6-1-states"><a href="#6-1-states" class="headerlink" title="6.1 states"></a>6.1 states</h2><h2 id="6-1-1-states文件"><a href="#6-1-1-states文件" class="headerlink" title="6.1.1 states文件"></a>6.1.1 states文件</h2><p>salt states的核心是sls文件，该文件使用YAML语法定义了一些k/v的数据。</p>
+<p>sls文件存放根路径在master配置文件中定义，默认为<code>/srv/salt</code>,该目录在操作系统上不存在，需要手动创建。</p>
+<p>在salt中可以通过<code>salt://</code>代替根路径，例如你可以通过<code>salt://top.sls</code>访问<code>/srv/salt/top.sls</code>。</p>
+<p>在states中top文件也由master配置文件定义，默认为top.sls，该文件为states的入口文件。</p>
+<p>一个简单的sls文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apache:</span><br><span class="line"> pkg:</span><br><span class="line">   - installed</span><br><span class="line"> service:</span><br><span class="line">   - running</span><br><span class="line">   - require:</span><br><span class="line">     - pkg: apache</span><br></pre></td></tr></table></figure>
+
+<p>说明：此SLS数据确保叫做”apache”的软件包(package)已经安装,并且”apache”服务(service)正在运行中。</p>
+<ul>
+<li>第一行，被称为ID说明(ID Declaration)。ID说明表明可以操控的名字。</li>
+<li>第二行和第四行是State说明(State Declaration)，它们分别使用了pkg和service states。pkg state通过系统的包管理其管理关键包，service state管理系统服务(daemon)。 在pkg及service列下边是运行的方法。方法定义包和服务应该怎么做。此处是软件包应该被安装，服务应该处于运行中。</li>
+<li>第六行使用require。本方法称为”必须指令”(Requisite Statement)，表明只有当apache软件包安装成功时，apache服务才启动起来。</li>
+</ul>
+<p>state和方法可以通过点连起来，上面sls文件和下面文件意思相同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apache:</span><br><span class="line"> pkg.installed</span><br><span class="line"> service.running</span><br><span class="line">   - require:</span><br><span class="line">     - pkg: apache</span><br></pre></td></tr></table></figure>
+
+<p>将上面sls保存为init.sls并放置<code>在sal://apache</code>目录下，结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/srv/salt</span><br><span class="line">├── apache</span><br><span class="line">│   └── init.sls</span><br><span class="line">└── top.sls</span><br></pre></td></tr></table></figure>
+
+<p>top.sls如何定义呢？</p>
+<p>master配置文件中定义了三种环境，每种环境都可以定义多个目录，但是要避免冲突，分别如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># file_roots:</span><br><span class="line">#   base:</span><br><span class="line">#     - /srv/salt/</span><br><span class="line">#   dev:</span><br><span class="line">#     - /srv/salt/dev/services</span><br><span class="line">#     - /srv/salt/dev/states</span><br><span class="line">#   prod:</span><br><span class="line">#     - /srv/salt/prod/services</span><br><span class="line">#     - /srv/salt/prod/states</span><br></pre></td></tr></table></figure>
+
+<p>top.sls可以这样定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">base:</span><br><span class="line">  &apos;*&apos;:</span><br><span class="line">   - apache</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>第一行，声明使用base环境</li>
+<li>第二行，定义target，这里是匹配所有</li>
+<li>第三行，声明使用哪些states目录，salt会寻找每个目录下的init.sls文件。</li>
+</ul>
+<h2 id="6-1-2-运行states"><a href="#6-1-2-运行states" class="headerlink" title="6.1.2 运行states"></a>6.1.2 运行states</h2><p>一旦创建完states并修改完top.sls之后，你可以在master上执行下面命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[root@sk1 salt]# salt &apos;*&apos; state.highstate</span><br><span class="line">sk2:</span><br><span class="line">----------</span><br><span class="line">    State: - pkg</span><br><span class="line">    Name:      httpd</span><br><span class="line">    Function:  installed</span><br><span class="line">        Result:    True</span><br><span class="line">        Comment:   The following packages were installed/updated: httpd.</span><br><span class="line">        Changes:</span><br><span class="line">                   ----------</span><br><span class="line">                   httpd:</span><br><span class="line">                       ----------</span><br><span class="line">                       new:</span><br><span class="line">                           2.2.15-29.el6.centos</span><br><span class="line">                       old:</span><br><span class="line"></span><br><span class="line">----------</span><br><span class="line">    State: - service</span><br><span class="line">    Name:      httpd</span><br><span class="line">    Function:  running</span><br><span class="line">        Result:    True</span><br><span class="line">        Comment:   Service httpd has been enabled, and is running</span><br><span class="line">        Changes:</span><br><span class="line">                   ----------</span><br><span class="line">                   httpd:</span><br><span class="line">                       True</span><br><span class="line"></span><br><span class="line">Summary</span><br><span class="line">------------</span><br><span class="line">Succeeded: 2</span><br><span class="line">Failed:    0</span><br><span class="line">------------</span><br><span class="line">Total:     2</span><br></pre></td></tr></table></figure>
+
+<p>上面命令会触发所有minion从master下载top.sls文件以及其中定一个的states，然后编译、执行。执行完之后，minion会将执行结果的摘要信息汇报给master。</p>
+<h2 id="6-2-Grains"><a href="#6-2-Grains" class="headerlink" title="6.2. Grains"></a>6.2. Grains</h2><h2 id="Pillar"><a href="#Pillar" class="headerlink" title="Pillar"></a>Pillar</h2><h2 id="Renderers"><a href="#Renderers" class="headerlink" title="Renderers"></a>Renderers</h2><h1 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h1><p>在上面的例子中，test.ping是最简单的一个远程执行的命令，你还可以执行一些更加复杂的命令。</p>
+<p>salt执行命令的格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;&lt;target&gt;&apos; &lt;function&gt; [arguments]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>target: 执行salt命令的目标，可以使用正则表达式</li>
+<li>function： 方法，由module提供</li>
+<li>arguments：function的参数</li>
+</ul>
+<p>target可以使用正则表达式匹配：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; test.ping</span><br><span class="line">salt &apos;sk2&apos; test.ping</span><br></pre></td></tr></table></figure>
+
+<p>function是module提供的方法。通过下面命令可以查看所有的function：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; sys.doc</span><br></pre></td></tr></table></figure>
+
+<p>function可以接受参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; cmd.run &apos;uname -a&apos;</span><br></pre></td></tr></table></figure>
+
+<p>并且支持关键字参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; cmd.run &apos;uname -a&apos; cwd=/ user=salt</span><br></pre></td></tr></table></figure>
+
+<p>上面例子意思是：在所有minion上切换到/目录以salt用户运行<code>uname -a</code>命令。</p>
+<p>关键字参数可以参考module的<a href="http://docs.saltstack.com/py-modindex.html" target="_blank" rel="noopener">api</a>,通过api你可以查看<a href="http://docs.saltstack.com/ref/states/all/salt.states.cmd.html#salt.states.cmd.run" target="_blank" rel="noopener">cmd.run</a>的定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">salt.states.cmd.mod_watch(name, **kwargs)</span><br><span class="line">Execute a cmd function based on a watch call</span><br><span class="line"></span><br><span class="line">salt.states.cmd.run(name, onlyif=None, unless=None, cwd=None, user=None, group=None, shell=None, env=(), stateful=False, umask=None, quiet=False, timeout=None, **kwargs)</span><br></pre></td></tr></table></figure>
+
+<p>所有module中的方法定义都与上面类似，说明：</p>
+<ul>
+<li>name： 第一个参数，为执行的命令</li>
+<li>中间的key=alue为keyword参数，都有默认值</li>
+<li>最后一个参数为name中命令的输入参数</li>
+</ul>
+<h2 id="TARGETING"><a href="#TARGETING" class="headerlink" title="TARGETING"></a>TARGETING</h2><h2 id="Returners"><a href="#Returners" class="headerlink" title="Returners"></a>Returners</h2><h2 id="Mine"><a href="#Mine" class="headerlink" title="Mine"></a>Mine</h2><h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li>[1]<a href="http://zhoulg.blog.51cto.com/48455/1140178" target="_blank" rel="noopener">Saltstack服务器集中管理和并行下发命令工具</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    JavaChen
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.javachen.com/2013/11/18/study-note-of-saltstack/" title="SaltStack学习笔记">http://blog.javachen.com/2013/11/18/study-note-of-saltstack/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/saltstack/" rel="tag"># saltstack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/11/16/install-jboss-with-saltstack/" rel="next" title="使用SaltStack安装JBoss">
+                <i class="fa fa-chevron-left"></i> 使用SaltStack安装JBoss
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/12/27/some-git-configs-and-cammands/" rel="prev" title="Git配置和一些常用命令">
+                Git配置和一些常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-post-description"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,3186 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Rumblings by a coder on Java、Hadoop and so on">
+<meta name="keywords" content="java,spring,mybatis,hadoop,hive,hbase">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JavaChen Blog">
+<meta property="og:url" content="http://blog.javachen.com/page/13/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="Rumblings by a coder on Java、Hadoop and so on">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaChen Blog">
+<meta name="twitter:description" content="Rumblings by a coder on Java、Hadoop and so on">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.javachen.com/page/13/">
+
+
+
+
+
+  <title>JavaChen Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?50bc6f5d9b045b5895ff44f8bbdbc611";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JavaChen Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/06/09/note-about-java-factory-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/06/09/note-about-java-factory-model/" itemprop="url">Java笔记：工厂模式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-06-09T00:00:00+08:00">
+                2013-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          工厂模式主要是为创建对象提供接口，以便将创建对象的具体过程屏蔽隔离起来，达到提高灵活性的目的。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/06/09/note-about-java-factory-model/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/06/09/note-about-java-singleton-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/06/09/note-about-java-singleton-model/" itemprop="url">Java笔记：单例模式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-06-09T00:00:00+08:00">
+                2013-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          什么是单例模式呢？就是在整个系统中，只有一个唯一存在的实例。单例模式的实现方式有五种方法：懒汉，恶汉，双重校验锁，枚举和静态内部类。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/06/09/note-about-java-singleton-model/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/06/08/note-about-java-thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/06/08/note-about-java-thread/" itemprop="url">Java笔记：多线程</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-06-08T00:00:00+08:00">
+                2013-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          多线程间堆空间共享，栈空间独立。堆存的是地址，栈存的是变量（如：局部变量）。多线程共同访问的同一个对象（临界资源），如果破坏了不可分割的操作（原子操作），就会造成数据不一致的情况。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/06/08/note-about-java-thread/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/06/08/java-collection-framework/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/06/08/java-collection-framework/" itemprop="url">Java笔记：集合框架实现原理</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-06-08T00:00:00+08:00">
+                2013-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          Java集合是java提供的工具包，包含了常用的数据结构：集合、链表、队列、栈、数组、映射等。Java集合主要可以划分为4个部分：List列表、Set集合、Map映射、工具类(Iterator迭代器、Enumeration枚举类、Arrays和Collections)。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/06/08/java-collection-framework/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/04/17/access-idh-2.3-hbase-in-kettle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/04/17/access-idh-2.3-hbase-in-kettle/" itemprop="url">Kettle访问IDH2.3中的HBase</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-04-17T00:00:00+08:00">
+                2013-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pentaho/" itemprop="url" rel="index">
+                    <span itemprop="name">pentaho</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          Kettle是一款国外开源的ETL工具，纯java编写，可以在Window、Linux、Unix上运行，绿色无需安装，数据抽取高效稳定。[big-data-plugin](https://github.com/pentaho/big-data-plugin)是kettle中用于访问bigdata，包括hadoop、cassandra、mongodb等nosql数据库的一个插件。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/04/17/access-idh-2.3-hbase-in-kettle/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/04/07/add-a-field-from-paramter-to-output/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/04/07/add-a-field-from-paramter-to-output/" itemprop="url">Kettle中添加一个参数字段到输出</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-04-07T00:00:00+08:00">
+                2013-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pentaho/" itemprop="url" rel="index">
+                    <span itemprop="name">pentaho</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          kettle可以将输入流中的字段输出到输出流中，输入输出流可以为数据库、文件或其他，通常情况下输入流中字段为已知确定的，如果我想在输出流中添加一个来自转换的命令行参数的一个字段，该如何操作？
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/04/07/add-a-field-from-paramter-to-output/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/04/06/install-cloudera-cdh-by-yum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/04/06/install-cloudera-cdh-by-yum/" itemprop="url">使用yum源安装CDH集群</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-04-06T00:00:00+08:00">
+                2013-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          本文主要是记录使用yum源安装CDH Hadoop集群的过程，包括HDFS、Yarn、Hive和HBase。本文针对的集群版本为CDH5.4。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/04/06/install-cloudera-cdh-by-yum/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/03/29/install-impala/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/03/29/install-impala/" itemprop="url">安装Impala过程</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-03-29T00:00:00+08:00">
+                2013-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/impala/" itemprop="url" rel="index">
+                    <span itemprop="name">impala</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>与Hive类似，Impala也可以直接与HDFS和HBase库直接交互。只不过Hive和其它建立在MapReduce上的框架适合需要长时间运行的批处理任务。例如：那些批量提取，转化，加载（ETL）类型的Job，而Impala主要用于实时查询。</p>
+<p>Hadoop集群各节点的环境设置及安装过程见 <a href="/2013/04/06/install-cloudera-cdh-by-yum.html">使用yum安装CDH Hadoop集群</a>，参考这篇文章。</p>
+<h1 id="1-环境"><a href="#1-环境" class="headerlink" title="1. 环境"></a>1. 环境</h1><ul>
+<li>CentOS 6.4 x86_64</li>
+<li>CDH 5.0.1</li>
+<li>jdk1.6.0_31</li>
+</ul>
+<p>集群规划为3个节点，每个节点的ip、主机名和部署的组件分配如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.56.121        cdh1     NameNode、Hive、ResourceManager、HBase、impala</span><br><span class="line">192.168.56.122        cdh2     DataNode、SSNameNode、NodeManager、HBase、impala</span><br><span class="line">192.168.56.123        cdh3     DataNode、HBase、NodeManager、impala</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h1><p>目前，CDH 5.0.1中 impala 版本为<code>1.4.0</code>，下载repo文件到 /etc/yum.repos.d/:</p>
+<ul>
+<li>如果你安装的是 CDH4，请下载 <a href="http://archive.cloudera.com/impala/redhat/6/x86_64/impala/1.3.1/" target="_blank" rel="noopener">Red Hat/CentOS 6</a></li>
+<li>如果你安装的是 CDH5，请下载 <a href="http://archive.cloudera.com/impala/redhat/6/x86_64/impala/1.4.0/" target="_blank" rel="noopener">Red Hat/CentOS 6</a></li>
+</ul>
+<p>然后，可以执行下面的命令安装所有的 impala 组件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install impala impala-server impala-state-store impala-catalog impala-shell -y</span><br></pre></td></tr></table></figure>
+
+<p>但是，通常只是在需要的节点上安装对应的服务：</p>
+<ul>
+<li>在 hive metastore 所在节点安装impala-state-store和impala-catalog</li>
+<li>在 DataNode 所在节点安装 impala-server 和 impala-shell</li>
+</ul>
+<h1 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h1><h2 id="3-1-修改配置文件"><a href="#3-1-修改配置文件" class="headerlink" title="3.1 修改配置文件"></a>3.1 修改配置文件</h2><p>查看安装路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ find / -name impala</span><br><span class="line">	/var/run/impala</span><br><span class="line">	/var/lib/alternatives/impala</span><br><span class="line">	/var/<span class="built_in">log</span>/impala</span><br><span class="line">	/usr/lib/impala</span><br><span class="line">	/etc/alternatives/impala</span><br><span class="line">	/etc/default/impala</span><br><span class="line">	/etc/impala</span><br><span class="line">	/etc/default/impala</span><br></pre></td></tr></table></figure>
+
+<p>impalad的配置文件路径由环境变量<code>IMPALA_CONF_DIR</code>指定，默认为<code>/usr/lib/impala/conf</code>，impala 的默认配置在/etc/default/impala，修改该文件中的 <code>IMPALA_CATALOG_SERVICE_HOST</code> 和 <code>IMPALA_STATE_STORE_HOST</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">IMPALA_CATALOG_SERVICE_HOST=cdh1</span><br><span class="line">IMPALA_STATE_STORE_HOST=cdh1</span><br><span class="line">IMPALA_STATE_STORE_PORT=24000</span><br><span class="line">IMPALA_BACKEND_PORT=22000</span><br><span class="line">IMPALA_LOG_DIR=/var/<span class="built_in">log</span>/impala</span><br><span class="line"></span><br><span class="line">IMPALA_CATALOG_ARGS=<span class="string">" -log_dir=<span class="variable">$&#123;IMPALA_LOG_DIR&#125;</span> "</span></span><br><span class="line">IMPALA_STATE_STORE_ARGS=<span class="string">" -log_dir=<span class="variable">$&#123;IMPALA_LOG_DIR&#125;</span> -state_store_port=<span class="variable">$&#123;IMPALA_STATE_STORE_PORT&#125;</span>"</span></span><br><span class="line">IMPALA_SERVER_ARGS=<span class="string">" \</span></span><br><span class="line"><span class="string">    -log_dir=<span class="variable">$&#123;IMPALA_LOG_DIR&#125;</span> \</span></span><br><span class="line"><span class="string">    -catalog_service_host=<span class="variable">$&#123;IMPALA_CATALOG_SERVICE_HOST&#125;</span> \</span></span><br><span class="line"><span class="string">    -state_store_port=<span class="variable">$&#123;IMPALA_STATE_STORE_PORT&#125;</span> \</span></span><br><span class="line"><span class="string">    -use_statestore \</span></span><br><span class="line"><span class="string">    -state_store_host=<span class="variable">$&#123;IMPALA_STATE_STORE_HOST&#125;</span> \</span></span><br><span class="line"><span class="string">    -be_port=<span class="variable">$&#123;IMPALA_BACKEND_PORT&#125;</span>"</span></span><br><span class="line"></span><br><span class="line">ENABLE_CORE_DUMPS=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># LIBHDFS_OPTS=-Djava.library.path=/usr/lib/impala/lib</span></span><br><span class="line"><span class="comment"># MYSQL_CONNECTOR_JAR=/usr/share/java/mysql-connector-java.jar</span></span><br><span class="line"><span class="comment"># IMPALA_BIN=/usr/lib/impala/sbin</span></span><br><span class="line"><span class="comment"># IMPALA_HOME=/usr/lib/impala</span></span><br><span class="line"><span class="comment"># HIVE_HOME=/usr/lib/hive</span></span><br><span class="line"><span class="comment"># HBASE_HOME=/usr/lib/hbase</span></span><br><span class="line"><span class="comment"># IMPALA_CONF_DIR=/etc/impala/conf</span></span><br><span class="line"><span class="comment"># HADOOP_CONF_DIR=/etc/impala/conf</span></span><br><span class="line"><span class="comment"># HIVE_CONF_DIR=/etc/impala/conf</span></span><br><span class="line"><span class="comment"># HBASE_CONF_DIR=/etc/impala/conf</span></span><br></pre></td></tr></table></figure>
+
+<p>设置 impala 可以使用的最大内存：在上面的 <code>IMPALA_SERVER_ARGS</code> 参数值后面添加 <code>-mem_limit=70%</code> 即可。</p>
+<p>如果需要设置 impala 中每一个队列的最大请求数，需要在上面的 <code>IMPALA_SERVER_ARGS</code> 参数值后面添加 <code>-default_pool_max_requests=-1</code> ，该参数设置每一个队列的最大请求数，如果为-1，则表示不做限制。</p>
+<p>在节点cdh1上拷贝<code>hive-site.xml</code>、<code>core-site.xml</code>、<code>hdfs-site.xml</code>至<code>/usr/lib/impala/conf</code>目录并作下面修改在<code>hdfs-site.xml</code>文件中添加如下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.client.read.shortcircuit<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.domain.socket.path<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/var/run/hadoop-hdfs/dn._PORT<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.hdfs-blocks-metadata.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同步以上文件到其他节点。</p>
+<h2 id="3-2-创建socket-path"><a href="#3-2-创建socket-path" class="headerlink" title="3.2 创建socket path"></a>3.2 创建socket path</h2><p>在每个节点上创建/var/run/hadoop-hdfs:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /var/run/hadoop-hdfs</span><br></pre></td></tr></table></figure>
+
+<p>拷贝postgres jdbc jar：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ln -s /usr/share/java/postgresql-jdbc.jar /usr/lib/impala/lib/</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-用户要求"><a href="#3-3-用户要求" class="headerlink" title="3.3 用户要求"></a>3.3 用户要求</h2><p>impala 安装过程中会创建名为 impala 的用户和组，不要删除该用户和组。</p>
+<p>如果想要 impala 和 YARN 和 Llama 合作，需要把 impala 用户加入 hdfs 组。</p>
+<p>impala 在执行 DROP TABLE 操作时，需要把文件移到到 hdfs 的回收站，所以你需要创建一个 hdfs 的目录 /user/impala，并将其设置为impala 用户可写。同样的，impala 需要读取 hive 数据仓库下的数据，故需要把 impala 用户加入 hive 组。</p>
+<p>impala 不能以 root 用户运行，因为 root 用户不允许直接读。</p>
+<p>创建 impala 用户家目录并设置权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo -u hdfs hadoop fs -mkdir /user/impala</span><br><span class="line">sudo -u hdfs hadoop fs -chown impala /user/impala</span><br></pre></td></tr></table></figure>
+
+<p>查看 impala 用户所属的组：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ groups impala</span><br><span class="line">impala : impala hadoop hdfs hive</span><br></pre></td></tr></table></figure>
+
+<p>由上可知，impala 用户是属于 imapal、hadoop、hdfs、hive 用户组的</p>
+<h1 id="4-启动服务"><a href="#4-启动服务" class="headerlink" title="4. 启动服务"></a>4. 启动服务</h1><p>在 cdh1节点启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ service impala-state-store start</span><br><span class="line">$ service impala-catalog start</span><br></pre></td></tr></table></figure>
+
+<p>如果impalad正常启动，可以在<code>/tmp/ impalad.INFO</code>查看。如果出现异常，可以查看<code>/tmp/impalad.ERROR</code>定位错误信息。</p>
+<h1 id="5-使用shell"><a href="#5-使用shell" class="headerlink" title="5. 使用shell"></a>5. 使用shell</h1><p>使用<code>impala-shell</code>启动Impala Shell，连接 cdh1，并刷新元数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;impala-shell</span><br><span class="line">[Not connected] &gt;connect cdh1</span><br><span class="line">[cdh1:21000] &gt;invalidate metadata</span><br><span class="line">[cdh2:21000] &gt;connect cdh2</span><br><span class="line">[cdh2:21000] &gt;select * from t</span><br></pre></td></tr></table></figure>
+
+<p>当在 Hive 中创建表之后，第一次启动 impala-shell 时，请先执行 <code>INVALIDATE METADATA</code> 语句以便 Impala 识别出新创建的表(在 Impala 1.2 及以上版本，你只需要在一个节点上运行 <code>INVALIDATE METADATA</code> ，而不是在所有的 Impala 节点上运行)。</p>
+<p>你也可以添加一些其他参数，查看有哪些参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># impala-shell -h</span></span><br><span class="line">Usage: impala_shell.py [options]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h, --<span class="built_in">help</span>            show this <span class="built_in">help</span> message and <span class="built_in">exit</span></span><br><span class="line">  -i IMPALAD, --impalad=IMPALAD</span><br><span class="line">                        &lt;host:port&gt; of impalad to connect to</span><br><span class="line">  -q QUERY, --query=QUERY</span><br><span class="line">                        Execute a query without the shell</span><br><span class="line">  -f QUERY_FILE, --query_file=QUERY_FILE</span><br><span class="line">                        Execute the queries <span class="keyword">in</span> the query file, delimited by ;</span><br><span class="line">  -k, --kerberos        Connect to a kerberized impalad</span><br><span class="line">  -o OUTPUT_FILE, --output_file=OUTPUT_FILE</span><br><span class="line">                        If <span class="built_in">set</span>, query results will written to the given file.</span><br><span class="line">                        Results from multiple semicolon-terminated queries</span><br><span class="line">                        will be appended to the same file</span><br><span class="line">  -B, --delimited       Output rows <span class="keyword">in</span> delimited mode</span><br><span class="line">  --print_header        Print column names <span class="keyword">in</span> delimited mode, <span class="literal">true</span> by default</span><br><span class="line">                        when pretty-printed.</span><br><span class="line">  --output_delimiter=OUTPUT_DELIMITER</span><br><span class="line">                        Field delimiter to use <span class="keyword">for</span> output <span class="keyword">in</span> delimited mode</span><br><span class="line">  -s KERBEROS_SERVICE_NAME, --kerberos_service_name=KERBEROS_SERVICE_NAME</span><br><span class="line">                        Service name of a kerberized impalad, default is</span><br><span class="line">                        <span class="string">'impala'</span></span><br><span class="line">  -V, --verbose         Enable verbose output</span><br><span class="line">  -p, --show_profiles   Always display query profiles after execution</span><br><span class="line">  --quiet               Disable verbose output</span><br><span class="line">  -v, --version         Print version information</span><br><span class="line">  -c, --ignore_query_failure</span><br><span class="line">                        Continue on query failure</span><br><span class="line">  -r, --refresh_after_connect</span><br><span class="line">                        Refresh Impala catalog after connecting</span><br><span class="line">  -d DEFAULT_DB, --database=DEFAULT_DB</span><br><span class="line">                        Issue a use database <span class="built_in">command</span> on startup.</span><br></pre></td></tr></table></figure>
+
+
+
+<p>例如，你可以在连接时候字段刷新：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ impala-shell -r</span><br><span class="line">Starting Impala Shell <span class="keyword">in</span> unsecure mode</span><br><span class="line">Connected to 192.168.56.121:21000</span><br><span class="line">Server version: impalad version 1.1.1 RELEASE (build 83d5868f005966883a918a819a449f636a5b3d5f)</span><br><span class="line">Invalidating Metadata</span><br><span class="line">Welcome to the Impala shell. Press TAB twice to see a list of available commands.</span><br><span class="line"></span><br><span class="line">Copyright (c) 2012 Cloudera, Inc. All rights reserved.</span><br><span class="line"></span><br><span class="line">(Shell build version: Impala Shell v1.1.1 (83d5868) built on Fri Aug 23 17:28:05 PDT 2013)</span><br><span class="line">Query: invalidate metadata</span><br><span class="line">Query finished, fetching results ...</span><br><span class="line"></span><br><span class="line">Returned 0 row(s) <span class="keyword">in</span> 5.13s</span><br><span class="line">[192.168.56.121:21000] &gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用 impala 导出数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ impala-shell -i <span class="string">'192.168.56.121:21000'</span> -r -q <span class="string">"select * from test"</span> -B --output_delimiter=<span class="string">"\t"</span> -o result.txt</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-参考文章"><a href="#6-参考文章" class="headerlink" title="6. 参考文章"></a>6. 参考文章</h1><ul>
+<li><a href="http://yuntai.1kapp.com/?p=904" target="_blank" rel="noopener">Impala安装文档完整版</a></li>
+<li><a href="http://tech.uc.cn/?p=817" target="_blank" rel="noopener">Impala入门笔记</a></li>
+<li><a href="https://ccp.cloudera.com/display/IMPALA10BETADOC/Installing+and+Using+Cloudera+Impala" target="_blank" rel="noopener">Installing and Using Cloudera Impala</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/03/24/manual-install-Cloudera-Hadoop-CDH/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/03/24/manual-install-Cloudera-Hadoop-CDH/" itemprop="url">手动安装Hadoop集群</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-03-24T00:00:00+08:00">
+                2013-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          手动安装Cloudera Hadoop CDH4
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/03/24/manual-install-Cloudera-Hadoop-CDH/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/03/24/manual-install-Cloudera-hbase-CDH/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/03/24/manual-install-Cloudera-hbase-CDH/" itemprop="url">手动安装Cloudera HBase CDH</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-03-24T00:00:00+08:00">
+                2013-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hbase/" itemprop="url" rel="index">
+                    <span itemprop="name">hbase</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          本文主要记录手动安装Cloudera HBase集群过程，环境设置及Hadoop安装过程见上篇文章。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/03/24/manual-install-Cloudera-hbase-CDH/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/03/24/manual-install-Cloudera-hive-CDH/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/03/24/manual-install-Cloudera-hive-CDH/" itemprop="url">手动安装Cloudera Hive CDH</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-03-24T00:00:00+08:00">
+                2013-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hive/" itemprop="url" rel="index">
+                    <span itemprop="name">hive</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          本文主要记录手动安装CDH Hive过程，环境设置及Hadoop、HBase安装过程见上篇文章。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2013/03/24/manual-install-Cloudera-hive-CDH/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/02/20/summary-of-the-work-in-2012/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/02/20/summary-of-the-work-in-2012/" itemprop="url">未命名</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-02-20T00:00:00+08:00">
+                2013-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>layout: post<br>title: “2012年度总结”<br>description: 2012年是在公司工作的第二年，在总结2012年的得与失的时候，有必要和《2011的度年终总结》相比较，在比较中审视自己在2012年是否有改进2011年存在的不足、是否有实现2011年定下的2012年工作计划。以下是2012年相对于2011年的一些变化。<br>category: work</p>
+<h2 id="tags-work"><a href="#tags-work" class="headerlink" title="tags: [work]"></a>tags: [work]</h2><p>2012年是在公司工作的第二年，在总结2012年的得与失的时候，有必要和《2011的度年终总结》相比较，在比较中审视自己在2012年是否有改进2011年存在的不足、是否有实现2011年定下的2012年工作计划。<br>以下是2012年相对于2011年的一些变化。</p>
+<ul>
+<li>2011年，在调研云计算产品过程中，深刻的意识到自身在linux方面存在的不足；2012年，熟悉了基本的linux命令，能够读懂并编写简单shell脚本；</li>
+<li>2011年，工作环境是win7+fedora；2012年，一直使用fedora操作系统工作、编码；</li>
+<li>2011年，较多的时间花在编写代码、完成开发任务上；2012年，更多的时间花在学习架构的设计、系统的运维、项目的管理上，视野不再局限于开发、精力不再局限于编码。</li>
+<li>2011年，在工作中没有及时提交项目周报，没有及时的跟踪、检查分配下去的任务完成情况，对新人的指导不够；2012年，没有写过项目周报，做到了及是跟踪、检查分配下去的任务完成情况；</li>
+<li>2011年，博客文章篇数较少，平时的总结与分享不够积极；2012年，很少有时间写技术方面的博客；</li>
+<li>2011年，在与客户的交流中底气不足、表达能力不够；2012年，还是发现自己与客户交流中胆怯、没有底气；</li>
+<li>2011年，希望能够将Pentaho的咨询服务工作更多交给其他人完成；2012年，发现大部分的工作还是落在自己身上一个人去完成，没有发挥其他人员的作用；</li>
+<li>2011年，希望2012年能够深入理解Spring、Jboss、Pentaho、缓存、云计算、架构等技术；2012年，了解gemfire、infinispan、jboss cache、cassandra等分布式缓存的实现及原理，但每一个方面都没有时间去深入研究和学习；</li>
+<li>2011年，公司在代码复查方面做的不够；2012年，这方面还是做的不够；</li>
+<li>2011年，项目开发方面没有形成一套成型的开发框架；2012年，还是没有看到一个成熟、易用、简单的开发框架以及相配套开发文档；</li>
+<li>2011年，项目于项目之间在一些同时使用的相关技术上面的沟通于交流做的不够；2012年，团队在项目上还是缺少沟通交流，尤其体现在XXXX项目网站开发上。</li>
+<li>2011年，花了一些时间在Pentaho上，并希望2012年能够创建一个Pentaho社区、一个QQ分享群；2012年，Pentaho方面基本上没有投入；</li>
+<li>2011年，编写文档时候，没有可参考的模版，导致文档编写不规范；2012年，每次写文档时都要去找文档模版；</li>
+</ul>
+<p>2012年参与了XXXXX项目、cassandra项目，。。。。。。此处省略314.15926个字。</p>
+<p>2012年，公司也存在一些不足：上级对下级、项目经理对团队人员了解不足，不知道其工作上、生活上的内心想法以及遇到何种困难；多数情况下，团队自我要求低，积极性不高，没有生机与活力；对新人能力审核不够，对新人培养不够重视，对新人的存在感不够关注；在各个项目的人员安排及使用上、任务分配和工作计划上不合理，导致经常被动加班、熬夜等等。</p>
+<h3 id="2013年工作计划："><a href="#2013年工作计划：" class="headerlink" title="2013年工作计划："></a>2013年工作计划：</h3><ul>
+<li>通过CE考试，熟练掌握shell编程；</li>
+<li>做好项目管理者的角色，培养新人，提高团队人员编码、处理问题的能力；</li>
+<li>深入理解、学习cassandra源码、原理以及cassandra的运维；</li>
+<li>学习hadoop的安装、部署、原理、开发及运维，掌握kettle和nosql的集成，希望积累几个hadoop项目经验；</li>
+<li>学习分布式缓存理论知识，阅读源代码，完善缓存系统的监控及运维</li>
+</ul>
+<p>在经历了2011年和2012年之后，2013年希望自己能够专注细节，深入理解，在技术、管理、交际方面有所成长；希望公司能够重视对团队的培养，能够规范各种规章制度，能够更上一层楼！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2012/06/03/migrate-blog-form-wordpress-to-github-with-octopress/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/06/03/migrate-blog-form-wordpress-to-github-with-octopress/" itemprop="url">使用Octopress将博客从wordpress迁移到GitHub</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-06-03T00:00:00+08:00">
+                2012-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Step1-在本机安装Octopress"><a href="#Step1-在本机安装Octopress" class="headerlink" title="Step1 - 在本机安装Octopress"></a>Step1 - 在本机安装Octopress</h1><p>首先，必须先在本机安装配置<a href="http://git-scm.com/" target="_blank" rel="noopener">Git</a>和<a href="https://rvm.beginrescueend.com/rvm/install/" target="_blank" rel="noopener">Ruby</a>,Octopress需要Ruby版本至少为1.9.2。你可以使用<a href="http://rvm.beginrescueend.com/" target="_blank" rel="noopener">RVM</a>或<a href="https://github.com/sstephenson/rbenv" target="_blank" rel="noopener">rbenv</a>安装ruby，安装方法见Octopress官方文档：<a href="http://octopress.org/docs/setup/" target="_blank" rel="noopener">http://octopress.org/docs/setup/</a></p>
+<p>我使用rvm安装：<br>    rvm install 1.9.2 &amp;&amp; rvm use 1.9.2<br>安装完之后可以查看ruby版本：<br>    ruby –version<br>结果为：<br>    ruby 1.9.2p320 (2012-04-20 revision 35421) [x86_64-linux]</p>
+<p>然后需要从github下载Octopress：<br>    git clone git://github.com/imathis/octopress.git octopress</p>
+<p>因为我fork了Octopress，并在配置文件上做了一些修改，故我从我的仓库地址下载Octopress，命令如下：<br>    git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:javachen/octopress.git<br>运行上面的代码后，你会看到：<br>    Cloning into ‘octopress’…<br>    remote: Counting objects: 6579, done.<br>    remote: Compressing objects: 100% (2361/2361), done.<br>    remote: Total 6579 (delta 3773), reused 6193 (delta 3610)<br>    Receiving objects: 100% (6579/6579), 1.34 MiB | 35 KiB/s, done.<br>    Resolving deltas: 100% (3773/3773), done.</p>
+<p>接下来进入octopress：<br>    cd octopress</p>
+<p>接下来安装依赖：<br>    gem install bundler<br>    rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command<br>    bundle install</p>
+<p>安装Octopress默认的主题：<br>    rake install</p>
+<p>你也可以安装自定义的主题，blog为主题名称：<br>    rake install[‘blog’]</p>
+<p>至此，Octopress所需的环境已经搭建成功。</p>
+<h1 id="Step2-连接GitHub-Pages"><a href="#Step2-连接GitHub-Pages" class="headerlink" title="Step2 - 连接GitHub Pages"></a>Step2 - 连接GitHub Pages</h1><p>首先，你得有一个GitHub的帐号，并且已经创建了一个新的Repository。如果你准备用自己的域名的话，Repository的名称可以随便取，不过正常人在正常情况下，一般都是以域名取名的。如果你没有自己的域名，GitHub是提供二级域名使用的，但是你得把Repository取名为<code>你的帐号.github.com</code>，并且，部署的时候会占用你的master分支。</p>
+<p><em>Tips：</em><br>如果用自己的一级域名，记得把source/CNAME文件内的域名改成你的一级域名，还有在dns管理中把域名的A Record指向IP：207.97.227.245；<br>如果用自己的二级域名，记得把source/CNAME文件内的域名改成你的二级域名，还有在dns管理中把域名的CNAME Record指向网址：charlie.github.com；<br>    echo ‘your-domain.com’ &gt;&gt; source/CNAME<br>如果用GitHub提供的二级域名，记得把source/CNAME删掉。</p>
+<p>完成上述准备工作后，运行：<br>    rake setup_github_pages<br>它会提示你输入有读写权限的Repository Url，这个在GitHub上可以找到。Url形如：<a href="https://github.com/javachen/javachen.github.com.git，javachen.github.com是我的Repository的名称。" target="_blank" rel="noopener">https://github.com/javachen/javachen.github.com.git，javachen.github.com是我的Repository的名称。</a></p>
+<h1 id="Step3-配置你的博客"><a href="#Step3-配置你的博客" class="headerlink" title="Step3 - 配置你的博客"></a>Step3 - 配置你的博客</h1><p>需要配置博客url、名称、作者、rss等信息。<br>    url: <a href="http://javachen.github.com" target="_blank" rel="noopener">http://javachen.github.com</a><br>    title: JavaChen on Java<br>    subtitle: Just some random thoughts about technology,Java and life.<br>    author: javachen<br>    simple_search: <a href="http://google.com/search" target="_blank" rel="noopener">http://google.com/search</a><br>    description:</p>
+<pre><code>date_format: &quot;%Y年%m月%d日&quot;
+
+subscribe_rss: /atom.xml
+subscribe_email:
+email:
+
+# 如果你使用的是一个子目录，如http://site.com/project，则设置为&apos;root: /project&apos;
+root: /
+# 文章标题格式
+permalink: /:year/:month/:day/:title/
+source: source
+destination: public
+plugins: plugins
+code_dir: downloads/code
+# 分类存放路径
+category_dir: categories
+markdown: rdiscount
+pygments: false # default python pygments have been replaced by pygments.rb</code></pre><h1 id="Step4-部署"><a href="#Step4-部署" class="headerlink" title="Step4 - 部署"></a>Step4 - 部署</h1><p>先把整个项目静态化，然后再部署到GitHub：<br>    rake generate<br>    rake deploy<br>当你看到“Github Pages deploy complete”后，就表示你大功已成。Enjoy!</p>
+<p><em>Tips：</em><br>Octopress提供的所有rake方法，可以运行<code>rake -T</code>查看。<br>如果在执行上述命令中ruby报错，则需要一一修复错误，这一步是没有接触过ruby的人比较苦恼的。</p>
+<h1 id="Step5-从Wordpress迁移到Octopress"><a href="#Step5-从Wordpress迁移到Octopress" class="headerlink" title="Step5 - 从Wordpress迁移到Octopress"></a>Step5 - 从Wordpress迁移到Octopress</h1><h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><h3 id="备份评论内容"><a href="#备份评论内容" class="headerlink" title="备份评论内容"></a>备份评论内容</h3><p>Octopress由于是纯静态，所以没有办法存储用户评论了，我们可以使用DISQUS提供的“云评论”服务。首先安装DISQUS的WordPress插件，在插件设置中我们可以将现有的评论内容导入到DISQUS中。DISQUS处理导入数据的时间比较长，往往需要24小时甚至以上的时间。</p>
+<h3 id="备份文章内容"><a href="#备份文章内容" class="headerlink" title="备份文章内容"></a>备份文章内容</h3><p>在WordPress后台我们可以将整站数据备份成一个.xml文件下载下来。同时，我原先文章中的图片都是直接在Wordpress后台上传的，所以要把服务器上<code>wp-content/uploads</code>下的所有文件备份下来。</p>
+<h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><h3 id="迁移文章"><a href="#迁移文章" class="headerlink" title="迁移文章"></a>迁移文章</h3><p>jekyll本身提供了一个从WordPress迁移文章的工具，不过对中文实在是不太友好。这里我使用了YORKXIN的修改版本。将上面备份的wordpress.xml放到Octopress根目录，把脚本放到新建的utils目录中，然后运行：<br>    ruby -r “./utils/wordpressdotcom.rb” -e “Jekyll::WordpressDotCom.process”<br>于是转换好的文章都放进source目录了。</p>
+<h3 id="迁移URL"><a href="#迁移URL" class="headerlink" title="迁移URL"></a>迁移URL</h3><p>迁移URL，便是要保证以前的文章链接能够自动重定向到新的链接上。这样既能保证搜索引擎的索引不受影响，也是一项对读者负责任的行为是吧。不过这是一项挺麻烦的事情。</p>
+<p>幸好我当初建立WordPress的时候就留下了后路。原先网站的链接是这样的：<br>    <a href="http://XXXXXXXXX.com/[year]/[month]/[the-long-long-title].html" target="_blank" rel="noopener">http://XXXXXXXXX.com/[year]/[month]/[the-long-long-title].html</a><br>    <a href="http://XXXXXXXXX.com/page/xx/" target="_blank" rel="noopener">http://XXXXXXXXX.com/page/xx/</a><br>    <a href="http://XXXXXXXXX.com/category/[category-name]/" target="_blank" rel="noopener">http://XXXXXXXXX.com/category/[category-name]/</a><br>这样的格式是比较容易迁移的。如果原先的文章URL是带有数字ID的话，只能说声抱歉了。到_config.yml里面设置一下新站点的文章链接格式，跟原先的格式保持一致：<br>    permalink: /:year/:month/:title/<br>    category_dir: category<br>    pagination_dir:  # 留空</p>
+<h3 id="迁移评论"><a href="#迁移评论" class="headerlink" title="迁移评论"></a>迁移评论</h3><p>既然做好了301，那么迁移评论就显得非常简单了。登录DISQUS后台，进入站点管理后台的“Migrate Threads”栏目，那里有一个“Redirect Crawler”的功能，便是自动跟随301重定向，将评论指向新的网址。点一下那个按钮就大功告成。</p>
+<h3 id="迁移图片"><a href="#迁移图片" class="headerlink" title="迁移图片"></a>迁移图片</h3><p>可以参考<a href="http://log4d.com/2012/05/image-host/" target="_blank" rel="noopener">使用独立图床子域名</a></p>
+<h1 id="Step6-再次部署"><a href="#Step6-再次部署" class="headerlink" title="Step6 - 再次部署"></a>Step6 - 再次部署</h1><pre><code>rake generate
+rake deploy</code></pre><h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li>Octopress Setup： <a href="http://octopress.org/docs/setup/" target="_blank" rel="noopener">http://octopress.org/docs/setup/</a></li>
+<li>Octopress Deploying：<a href="http://octopress.org/docs/deploying/" target="_blank" rel="noopener">http://octopress.org/docs/deploying/</a></li>
+<li>Blog = GitHub + Octopress：<a href="http://mrzhang.me/blog/blog-equals-github-plus-octopress.html" target="_blank" rel="noopener">http://mrzhang.me/blog/blog-equals-github-plus-octopress.html</a></li>
+<li>从Wordpress迁移到Octopress：<a href="http://blog.dayanjia.com/2012/04/migration-to-octopress-from-wordpress/" target="_blank" rel="noopener">http://blog.dayanjia.com/2012/04/migration-to-octopress-from-wordpress/</a></li>
+<li>使用独立图床子域名：<a href="http://log4d.com/2012/05/image-host/" target="_blank" rel="noopener">http://log4d.com/2012/05/image-host/</a> <a href="http://log4d.com/2012/05/image-host/" target="_blank" rel="noopener">http://log4d.com/2012/05/image-host/</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2012/04/13/kettle-dependency-management/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/04/13/kettle-dependency-management/" itemprop="url">Kettle dependency management</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-04-13T00:00:00+08:00">
+                2012-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pentaho/" itemprop="url" rel="index">
+                    <span itemprop="name">pentaho</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>pentaho的项目使用了ant和ivy解决项目依赖,所以必须编译源码需要ivy工具.直接使用ivy编译pentaho的bi server项目,一直没有编译成功.<br>
+使用ivy编译kettle的源代码却是非常容易的事情.</p>
+
+<p>该篇文章翻译并参考了Will Gorman在pentaho的wiki上添加的<a href="http://wiki.pentaho.com/display/EAI/Kettle+dependency+management" target="_blank">Kettle dependency management</a>,文章标题没作修改.<br>
+编写此文,是为了记录编译kettle源码的方法和过程.</p>
+
+<p><strong>以下是对原文的一个简单翻译.</strong>
+将kettle作为一个产品发行是一个很有趣的事情.有很多来自于pentaho其他项目(其中有一些有依赖于kettle)的jar包被导入到kettle.这些jar包必须在发行的时候构建并且加入到kettle中.如果一个核心的库被更新了,我们必须将其导入到kettle中(如果有必要).bi服务器,pentaho报表以及pentaho元数据编辑器都将kettle作为一个服务/引擎资源而被构建的.自从我们已经将这些jar导入到我们的源码仓库,这些项目必须使用ivy明确列出kettle以及他的依赖.当kettle的依赖变化的时候,我们必须审查libext文件是否需要更新.</p>
+
+<p>pentaho创建了一系列的脚本来自动化的安装ivy,解决jar(或者是artifacts),构建并发行artifacts.kettle已经升级使用subfloor(简单的意味着build.xml继承自subfloor的构建脚本).subfloor使用ivy从pentaho仓库()或者ibiblio maven2仓库来获取跟新jar.ibiblio仓库用于大多数第三方的jar文件(如apache-commons).pentaho仓库用于在线的pentaho项目或者一些比在ibiblio的三方库.为了解决kettle的依赖,我们不得不在ivy.xml里创建一个清单.这个文件明确地列出每一个没有传递依赖的jar文件.这意味着libext文件的映射在ivy.xml中是一对一的.
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn pull-right" href="/2012/04/13/kettle-dependency-management/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2012/03/26/hash-and-hash-functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/03/26/hash-and-hash-functions/" itemprop="url">哈希表</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-03-26T00:00:00+08:00">
+                2012-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          一般的线性表、树，数据在结构中的相对位置是**随机**的，即和记录的关键字之间不存在确定的关系，因此，在结构中查找记录时需进行一系列和关键字的比较。这一类查找方法建立在“比较“的基础上，查找的效率依赖于查找过程中所进行的比较次数。 若想能直接找到需要的记录，必须在记录的存储位置和它的关键字之间建立一个确定的对应关系f，使每个关键字和结构中一个唯一的存储位置相对应，这就是哈希表。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn  pull-right" href="/2012/03/26/hash-and-hash-functions/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-post-description"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

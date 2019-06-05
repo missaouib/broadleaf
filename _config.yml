@@ -1,105 +1,99 @@
-# Site settings
-title : JavaChen Blog
-tagline: Ramblings of a coder
-keywords: java,spring,mybatis,hadoop,hive,hbase
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: JavaChen Blog
+subtitle: Ramblings of a coder
 description: Rumblings by a coder on Java、Hadoop and so on
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://blog.javachen.com"
-author:
-    name: JavaChen
-    github: javachen
-    email: junezchen@gmail.com
-    twitter:
-    facebook:
-    weibo: chenzhijun
-
-# Handling Reading
-safe:         false
-include:      []
-exclude:      [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
-keep_files:   []
-encoding:     "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-textile_ext:  "textile"
-
-# Filtering Content
-show_drafts: null
-limit_posts: 0
-future:      false
-unpublished: false
-
-# Plugins
-gems: [jekyll-paginate]
-
-# Conversion
-markdown:    kramdown
-highlighter: rouge
-lsi:         false
-excerpt_separator: <!--more-->
-incremental: false
-
-# Markdown Processors
-rdiscount:
-  extensions: []
-
-redcarpet:
-  extensions: []
-
-kramdown:
-  input: GFM
-  auto_ids:       true
-  footnote_nr:    1
-  entity_output:  as_char
-  toc_levels:     1..6
-  smart_quotes:   lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
-  syntax_highlighter: rouge
-  hard_wrap: false
-
-  extensions:
-    - autolink
-    - footnotes
-    - smart
-    - table
-
-# Outputting
-permalink: /:year/:month/:day/:title.html
-paginate_path: /page:num
-paginate: 15
+keywords: java,spring,mybatis,hadoop,hive,hbase
+author: JavaChen
+language: zh-CN
 timezone: Asia/Shanghai
 
-reward:
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://blog.javachen.com
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: lang
+skip_render:
+
+# Writing
+new_post_name: :year/:year-:month-:day-:title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
   enable: true
-  comment: '真诚赞赏 手有余香'
-  alipay: '/assets/img/alipay.jpg'
-  wxpay: '/assets/img/wxpay.jpg'
+  line_number: true
+  auto_detect: true
+  tab_replace:
 
-footer:
-  since: 2013
-  b2t: true
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 15
+  order_by: -date
 
-# comment
-comments:
-  duoshuo:
-    name: #javachen
-    rcomments:
-        num: 8
-        avatar: 0
-        time: 0
-        title: 0
-        admin: 0
-        length: 12
-  gitalk:
-    enable: true
-    owner:  javachen
-    repo: javachen.github.io
-    clientID: 89e66276f674f3a390ea
-    clientSecret: fc8645dd1e4ce11d673e134fe22e68571d1835e4
-    admin: javachen
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
 
-# 网站统计
-analytics:
-    tencent:
-        uid: #52032901
-    baidu:
-        uid: 50bc6f5d9b045b5895ff44f8bbdbc611
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 15
+pagination_dir: page
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: next
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repository: git@github.com:javachen/javachen.github.io.git
+  branch: master
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+# RSS订阅
+feed:
+  type: atom
+  path: atom.xml
+  limit: 30
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '

@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HBase0.94.15源码：HTable put过程">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="在 HBase中，大部分的操作都是在RegionServer完成的，Client端想要插入、删除、查询数据都需要先找到相应的 RegionServer。什么叫相应的RegionServer？就是管理你要操作的那个Region的RegionServer。Client本身并 不知道哪个RegionServer管理哪个Region，那么它是如何找到相应的RegionServer的？本文就是在研究源码的基">
+<meta name="keywords" content="HBase0.94.15源码：HTable put过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HBase源码分析：HTable put过程">
+<meta property="og:url" content="http://blog.javachen.com/2014/06/13/hbase-code-about-htable-put/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="在 HBase中，大部分的操作都是在RegionServer完成的，Client端想要插入、删除、查询数据都需要先找到相应的 RegionServer。什么叫相应的RegionServer？就是管理你要操作的那个Region的RegionServer。Client本身并 不知道哪个RegionServer管理哪个Region，那么它是如何找到相应的RegionServer的？本文就是在研究源码的基">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/hbase-htable-put-sequence.jpg">
+<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/hbase-MemStoreFlusher-class.jpg">
+<meta property="og:image" content="http://images.cnblogs.com/cnblogs_com/chenli0513/image0030.jpg">
+<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HBase源码分析：HTable put过程">
+<meta name="twitter:description" content="在 HBase中，大部分的操作都是在RegionServer完成的，Client端想要插入、删除、查询数据都需要先找到相应的 RegionServer。什么叫相应的RegionServer？就是管理你要操作的那个Region的RegionServer。Client本身并 不知道哪个RegionServer管理哪个Region，那么它是如何找到相应的RegionServer的？本文就是在研究源码的基">
+<meta name="twitter:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/hbase-htable-put-sequence.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.javachen.com/2014/06/13/hbase-code-about-htable-put/">
+
+
+
+
+
+  <title>HBase源码分析：HTable put过程 | JavaChen Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?50bc6f5d9b045b5895ff44f8bbdbc611";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JavaChen Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2014/06/13/hbase-code-about-htable-put/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">HBase源码分析：HTable put过程</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-13T00:00:00+08:00">
+                2014-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hbase/" itemprop="url" rel="index">
+                    <span itemprop="name">hbase</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+              <div class="post-description">
+                  在 HBase中，大部分的操作都是在RegionServer完成的，Client端想要插入、删除、查询数据都需要先找到相应的 RegionServer。什么叫相应的RegionServer？就是管理你要操作的那个Region的RegionServer。Client本身并 不知道哪个RegionServer管理哪个Region，那么它是如何找到相应的RegionServer的？本文就是在研究源码的基础上了解这个过程。
+              </div>
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>HBase版本：0.94.15-cdh4.7.0</p>
+<p>在 HBase中，大部分的操作都是在RegionServer完成的，Client端想要插入、删除、查询数据都需要先找到相应的 RegionServer。什么叫相应的RegionServer？就是管理你要操作的那个Region的RegionServer。Client本身并 不知道哪个RegionServer管理哪个Region，那么它是如何找到相应的RegionServer的？本文就是在研究源码的基础上了解这个过程。</p>
+<p>首先来看看写过程的序列图：</p>
+<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/hbase-htable-put-sequence.jpg" alt></p>
+<h1 id="客户端代码"><a href="#客户端代码" class="headerlink" title="客户端代码"></a>客户端代码</h1><p>1、put方法</p>
+<p>HTable的put有两个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">final</span> Put put)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">	doPut(put);</span><br><span class="line">	<span class="keyword">if</span> (autoFlush) &#123;</span><br><span class="line">	  flushCommits();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">final</span> List&lt;Put&gt; puts)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (Put put : puts) &#123;</span><br><span class="line">	  doPut(put);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (autoFlush) &#123;</span><br><span class="line">	  flushCommits();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面代码可以看出：你既可以一次put一行记录也可以一次put多行记录，两个方法内部都会调用doPut方法，最后再来根据autoFlush（默认为true）判断是否需要flushCommits，在autoFlush为false的时候，如果当前容量超过了缓冲区大小（默认值为：2097152=2M），也会调用flushCommits方法。也就是说，在自动提交情况下，你可以手动控制通过一次put多条记录（这时候缓冲区不会满），然后将这些记录flush，以提高写操作tps。</p>
+<p>doPut代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">doPut</span><span class="params">(Put put)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">	validatePut(put); <span class="comment">//验证Put有效，主要是判断kv的长度</span></span><br><span class="line">	writeBuffer.add(put); <span class="comment">//写入缓存</span></span><br><span class="line">	currentWriteBufferSize += put.heapSize(); <span class="comment">//计算缓存容量 </span></span><br><span class="line">	<span class="keyword">if</span> (currentWriteBufferSize &gt; writeBufferSize) &#123;</span><br><span class="line">	  flushCommits();  <span class="comment">//如果超过缓存容量，则调用flushCommits()</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、flushCommits方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flushCommits</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      Object[] results = <span class="keyword">new</span> Object[writeBuffer.size()];</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//调用HConnection来提交Put</span></span><br><span class="line">        <span class="keyword">this</span>.connection.processBatch(writeBuffer, tableName, pool, results);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IOException(e);</span><br><span class="line">      &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// mutate list so that it is empty for complete success, or contains</span></span><br><span class="line">        <span class="comment">// only failed records results are returned in the same order as the</span></span><br><span class="line">        <span class="comment">// requests in list walk the list backwards, so we can remove from list</span></span><br><span class="line">        <span class="comment">// without impacting the indexes of earlier members</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = results.length - <span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">          <span class="keyword">if</span> (results[i] <span class="keyword">instanceof</span> Result) &#123;</span><br><span class="line">            <span class="comment">// successful Puts are removed from the list here.</span></span><br><span class="line">            writeBuffer.remove(i);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (clearBufferOnFail) &#123;</span><br><span class="line">        writeBuffer.clear();</span><br><span class="line">        currentWriteBufferSize = <span class="number">0</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// the write buffer was adjusted by processBatchOfPuts</span></span><br><span class="line">        currentWriteBufferSize = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//currentWriteBufferSize又重新计算了一遍，看来一批提交不一定会全部提交完 </span></span><br><span class="line">        <span class="keyword">for</span> (Put aPut : writeBuffer) &#123;</span><br><span class="line">          currentWriteBufferSize += aPut.heapSize();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其核心是调用this.connection的processBatch方法，其参数有：writeBuffer、tableName、pool、results</p>
+<ul>
+<li><p>writeBuffer，缓冲区，带提交的数据</p>
+</li>
+<li><p>tableName，表名</p>
+</li>
+<li><p>pool，ExecutorService类，可以通过HTable构造方法传入一个参数来初始化（例如：HConnectionManager的<code>getTable(byte[] tableName, ExecutorService pool)</code>方法），也可以内部初始化。内部初始化时，其最大线程数由<code>hbase.htable.threads.max</code>设置，keepAliveTime由<code>hbase.htable.threads.keepalivetime</code>设置，默认为60秒</p>
+</li>
+<li><p>results，保存运行结果</p>
+<p>在默认情况下，connection由如下方式初始化：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.connection = HConnectionManager.getConnection(conf); //HConnection的实现类为HConnectionImplementation</span><br></pre></td></tr></table></figure>
+
+<p>3、ConnectionImplementation的processBatch方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">processBatch</span><span class="params">(List&lt;? extends Row&gt; list,</span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">final</span> <span class="keyword">byte</span>[] tableName,</span></span></span><br><span class="line"><span class="function"><span class="params">     ExecutorService pool,</span></span></span><br><span class="line"><span class="function"><span class="params">     Object[] results)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">   <span class="comment">// This belongs in HTable!!! Not in here.  St.Ack</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// results must be the same size as list</span></span><br><span class="line">   <span class="keyword">if</span> (results.length != list.size()) &#123;</span><br><span class="line">     <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"argument results must be the same size as argument list"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   processBatchCallback(list, tableName, pool, results, <span class="keyword">null</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后是调用的processBatchCallback方法，第五个参数为空，即没有回调方法。</p>
+<p>processBatchCallback方法内部可以失败后进行重试，重试次数为<code>hbase.client.retries.number</code>控制，默认为10，每一次重试直接都会休眠一下，每次休眠时间为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pause * HConstants.RETRY_BACKOFF[ntries]+(<span class="keyword">long</span>)(normalPause * RANDOM.nextFloat() * <span class="number">0.01f</span>);</span><br><span class="line"><span class="comment">//RETRY_BACKOFF[] = &#123; 1, 1, 1, 2, 2, 4, 4, 8, 16, 32, 64 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>pause通过<code>hbase.client.pause</code>设置，默认值为1000，即1秒；ntries为当前重复次数</p>
+<p>接下来，第一步，遍历List&lt;? extends Row&gt;，获取每一个行对应HRegion所在位置，并且按regionName对这些待put的行进行分组。</p>
+<p>第二步，发送异步请求到服务端。</p>
+<p>第三步，接收异步请求的结果，收集成功的和失败的，做好重试准备</p>
+<p>第四步，对于失败的，进行重试。</p>
+<p>达到重试次数之后，对运行结果判断是否有异常，如果有则抛出RetriesExhaustedWithDetailsException异常。</p>
+<p>由以上四步可以看出，重点在于第一、二步。</p>
+<p>第一步查找HRegion所在位置过程关键在<code>private HRegionLocation locateRegion(final byte [] tableName,final byte [] row, boolean useCache)</code>方法中，并且为递归方法，过程如下：</p>
+<ul>
+<li>调用locateRegionInMeta方法到.META.表中查找tableName的row所对应的HRegion所在位置，先从本地缓存查找，如果没有，则进行下一步；</li>
+<li>调用locateRegionInMeta方法到-ROOT-表中查找.META.所对应的HRegion所在位置，先从本地缓存查找，如果没有，则进行下一步</li>
+<li>通过rootRegionTracker（即从zk上）获取RootRegionServer地址，即找到-ROOT-表所在的RegionServer地址，然后获取到.META.所在位置，最后在获取.META.表上所有HRegion，并将其加入到本地缓存。</li>
+</ul>
+<p>通过示例描述如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">获取 Table2，RowKey为RK10000的RegionServer</span><br><span class="line"></span><br><span class="line">=&gt; 获取.META.，RowKey为Table2,RK10000, 99999999999999 的RegionServer</span><br><span class="line">   </span><br><span class="line">=&gt; 获取-ROOT-，RowKey为.META.,Table2,RK10000,99999999999999,99999999999999的RegionServer</span><br><span class="line">   </span><br><span class="line">=&gt; 获取-ROOT-的RegionServer</span><br><span class="line">   </span><br><span class="line">=&gt; 从ZooKeeper得到-ROOT-的RegionServer</span><br><span class="line">   </span><br><span class="line">=&gt; 从-ROOT-表中查到RowKey最接近（小于） .META.,Table2,RK10000,99999999999999,99999999999999 的一条Row，并得到.META.的RegionServer  </span><br><span class="line"></span><br><span class="line">=&gt; 从.META.表中查到RowKey最接近（小于）Table2,RK10000,99999999999999 的一条Row，并得到Table2的K10000的Row对应的HRegionLocation</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明：</strong></p>
+<ul>
+<li>当我们创建一个表时，不管是否预建分区，该表创建之后，在.META.上会有一条记录的。</li>
+<li>在客户端第一次连接服务端时，会两次查询缓存并没有查到结果，最后在通过<code>-ROOT-</code>–&gt;<code>.META.</code>–&gt;HRegion找到对应的HRegion所在位置。</li>
+</ul>
+<p>第二步中，先是创建到RegionServer的连接，后是调用RegionServer上的multi方法，显然这是远程调用的过程。第二步中提交的任务通过下面代码创建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> &lt;R&gt; <span class="function">Callable&lt;MultiResponse&gt; <span class="title">createCallable</span><span class="params">(<span class="keyword">final</span> HRegionLocation loc,</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">final</span> MultiAction&lt;R&gt; multi, <span class="keyword">final</span> <span class="keyword">byte</span> [] tableName)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// <span class="doctag">TODO:</span> This does not belong in here!!! St.Ack  HConnections should</span></span><br><span class="line">  <span class="comment">// not be dealing in Callables; Callables have HConnections, not other</span></span><br><span class="line">  <span class="comment">// way around.</span></span><br><span class="line">  <span class="keyword">final</span> HConnection connection = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Callable&lt;MultiResponse&gt;() &#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> MultiResponse <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">     ServerCallable&lt;MultiResponse&gt; callable =</span><br><span class="line">       <span class="keyword">new</span> ServerCallable&lt;MultiResponse&gt;(connection, tableName, <span class="keyword">null</span>) &#123;</span><br><span class="line">         <span class="function"><span class="keyword">public</span> MultiResponse <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> server.multi(multi);</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(<span class="keyword">boolean</span> reload)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">           server = connection.getHRegionConnection(loc.getHostname(), loc.getPort());</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;;</span><br><span class="line">     <span class="keyword">return</span> callable.withoutRetries();</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面代码可以看到，通过<code>connection.getHRegionConnection(loc.getHostname(), loc.getPort())</code>创建一个HRegionInterface的实现类即HRegionServer，方法内使用了代理的方式创建对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server = HBaseRPC.waitForProxy(<span class="keyword">this</span>.rpcEngine,</span><br><span class="line">  serverInterfaceClass, HRegionInterface.VERSION,</span><br><span class="line">  address, <span class="keyword">this</span>.conf,</span><br><span class="line">  <span class="keyword">this</span>.maxRPCAttempts, <span class="keyword">this</span>.rpcTimeout, <span class="keyword">this</span>.rpcTimeout);</span><br></pre></td></tr></table></figure>
+
+<h1 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h1><p>上面客户端调用过程分析完毕，继续跟RegionServer服务端的处理。</p>
+<h3 id="HRegionServer的multi方法"><a href="#HRegionServer的multi方法" class="headerlink" title="HRegionServer的multi方法"></a>HRegionServer的multi方法</h3><p>对于客户端写操作，最终会调用HRegionServer的multi方法。</p>
+<p>因为传递到RegionServer都是按regionName分组的，故最后的操作实际上都是调用的HRegion对象的方法。</p>
+<p>该方法主要就是遍历multi并对actionsForRegion按rowid进行排序，然后分类别对action进行处理，Put和Delete操作会放到一起然后调用batchMutate方法批量提交：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OperationStatus[] codes =region.batchMutate(mutationsWithLocks.toArray(<span class="keyword">new</span> Pair[]&#123;&#125;));</span><br></pre></td></tr></table></figure>
+
+<p>其他的：</p>
+<ul>
+<li>对于Get，会调用get方法；</li>
+<li>对于Exec，会调用execCoprocessor方法；</li>
+<li>对于Increment，会调用increment方法；</li>
+<li>对于Append，会调用append方法；</li>
+<li>对于RowMutations，会调用mutateRow方法；</li>
+</ul>
+<p>对于Put和Delete操作（保存在mutations中），在处理之前，先通过cacheFlusher检查memstore大小吃否超过限定值，如果是，则进行flush。</p>
+<p>接下来遍历mutations，为每个Mutation添加一个锁lock，然后再调用region的batchMutate方法。</p>
+<h3 id="HRegion的batchMutate"><a href="#HRegion的batchMutate" class="headerlink" title="HRegion的batchMutate"></a>HRegion的batchMutate</h3><p>batchMutate方法内部，依次一个个处理：</p>
+<ul>
+<li>先检查是否只读</li>
+<li>检查当前资源是否支持update操作，会比较memstoreSize和blockingMemStoreSize大小，然后会阻塞线程</li>
+<li>调用startRegionOperation，给lock.readLock()加锁</li>
+<li>调用doPreMutationHook执行协作器里的一些方法</li>
+<li>计算其待添加的大小</li>
+<li>计算加入memstore之后的memstore大小</li>
+<li>写完之后，释放lock.readLock()锁</li>
+<li>判断是否需要flush memstore，如果需要，则调用requestFlush方法，其内部实际是通过RegionServerServices中的FlushRequester（其实现类为MemStoreFlusher）来执行flush操作</li>
+</ul>
+<h3 id="MemStoreFlusher-flush过程"><a href="#MemStoreFlusher-flush过程" class="headerlink" title="MemStoreFlusher flush过程"></a>MemStoreFlusher flush过程</h3><p>HRegion中的requestFlush方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">requestFlush</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rsServices == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">synchronized</span> (writestate) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.writestate.isFlushRequested()) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      writestate.flushRequested = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Make request outside of synchronize block; HBASE-818.</span></span><br><span class="line">    <span class="keyword">this</span>.rsServices.getFlushRequester().requestFlush(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">if</span> (LOG.isDebugEnabled()) &#123;</span><br><span class="line">      LOG.debug(<span class="string">"Flush requested on "</span> + <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面this.rsServices.getFlushRequester()其实际上返回的是MemStoreFlusher类。</p>
+<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/hbase-MemStoreFlusher-class.jpg" alt></p>
+<p>MemStoreFlusher内部有一个队列和一个Map：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//保存待flush的对象</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> BlockingQueue&lt;FlushQueueEntry&gt; flushQueue =</span><br><span class="line">    <span class="keyword">new</span> DelayQueue&lt;FlushQueueEntry&gt;();</span><br><span class="line"><span class="comment">//记录队列中存在哪些Region</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;HRegion, FlushRegionEntry&gt; regionsInQueue =</span><br><span class="line">    <span class="keyword">new</span> HashMap&lt;HRegion, FlushRegionEntry&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>MemStoreFlusher构造方法：</p>
+<ul>
+<li>初始化threadWakeFrequency，该值由hbase.server.thread.wakefrequency设置，默认为10 * 1000</li>
+<li>初始化globalMemStoreLimit，该值为最大堆内存乘以hbase.regionserver.global.memstore.upperLimit的值，hbase.regionserver.global.memstore.upperLimit参数默认值为0.4</li>
+<li>初始化globalMemStoreLimitLowMark，该值为最大堆内存乘以hbase.regionserver.global.memstore.lowerLimit的值，hbase.regionserver.global.memstore.lowerLimit参数默认值为0.35</li>
+<li>初始化blockingWaitTime，该值由hbase.hstore.blockingWaitTime设置，默认为90000</li>
+</ul>
+<p>MemStoreFlusher实现了Runnable接口，在RegionServer启动过程中会启动一个线程，其run方法逻辑如下：</p>
+<ul>
+<li>只要RegionServer一直在运行，该线程就不会停止运行</li>
+<li>每隔threadWakeFrequency时间从flushQueue中取出一个对象</li>
+<li>如果取出的对象为空或者WakeupFlushThread，则判断：如果当前RegionServer的总大小大于globalMemStoreLimit值，则找到没有太多storefiles（只个数小于hbase.hstore.blockingStoreFiles的，该参数默认值为7）的最大的region和不管有多少storefiles的最大region，比较两个大小找出最大的一个，然后flush该region，并休眠1秒；最后在唤醒flush线程<ul>
+<li>先flush region上的memstore，这部分代码通过HRegion的internalFlushcache方法来完成，其内部使用了mvcc</li>
+<li>判断是否该拆分，如果是则拆分<ul>
+<li>判断是否该压缩合并，如果是则合并</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果如果取出的对象为FlushRegionEntry，则flush该对象。<ul>
+<li>如果当前region不是meta region并且当前region的storefiles数大于<code>hbase.hstore.blockingStoreFiles</code>，先判断是否要拆分，然后再判断是否需要合并小文件。这个过程会阻塞blockingWaitTime值定义的时间。<ul>
+<li>否则， 直接flush该region上的memstore（调用HRegion的internalFlushcache方法），然后再判断是否需要拆分和合并</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>最后总结一下，HRegionServer作用如下：</p>
+<ul>
+<li>使得被它管理的一系列HRegion能够被客户端来使用，每个HRegion对应了Table中的一个Region，HRegion中由多个HStore组成。</li>
+<li>主要负责响应用户I/O请求，向HDFS文件系统中读写数据。</li>
+</ul>
+<p><img src="http://images.cnblogs.com/cnblogs_com/chenli0513/image0030.jpg" alt></p>
+<p>HRegion定位过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client -&gt; zookeeper -&gt; -ROOT- -&gt; .META -&gt; HRegion地址 -&gt; HRegionServer-&gt; HRegion</span><br></pre></td></tr></table></figure>
+
+<p>在这个过程中客户端先通过zk找到Root表所在的RegionServer（通过zk上的/hbase/root-region-server节点获取），然后找到Meta表对应的HRegion地址，最后在Meta表里找到目标表所在的HRegion地址，这个过程客户端并没有和HMaster进行交互。</p>
+<p>Client端并不会每次数据操作都做这整个路由过程，因为HRegion的相关信息会缓存到本地，当有变化时，通过zk监听器能够及时感知。</p>
+<p>数据写入过程：</p>
+<ul>
+<li>client先根据rowkey找到对应的region和regionserver</li>
+<li>client想regionserver提交写请求</li>
+<li>region找到目标region</li>
+<li>region检查数据是否与scheam一致</li>
+<li>如果客户端没有指定版本，则获取当前系统时间作为数据版本</li>
+<li>将更新写入wal log</li>
+<li>将更新写入memstore</li>
+<li>判断memstore是否需要flush为store文件</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    JavaChen
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.javachen.com/2014/06/13/hbase-code-about-htable-put/" title="HBase源码分析：HTable put过程">http://blog.javachen.com/2014/06/13/hbase-code-about-htable-put/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hbase/" rel="tag"># hbase</a>
+          
+            <a href="/tags/hive/" rel="tag"># hive</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/06/12/hbase-aggregate-client/" rel="next" title="HBase实现简单聚合计算">
+                <i class="fa fa-chevron-left"></i> HBase实现简单聚合计算
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/17/note-about-effective-java/" rel="prev" title="Effective Java 笔记">
+                Effective Java 笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-post-description"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

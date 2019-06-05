@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="impala,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="本文主要整理一下 Impala 每个版本的新特性，方便了解 Impala 做了哪些改进、修复了哪些 bug。">
+<meta name="keywords" content="impala">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Impala新特性">
+<meta property="og:url" content="http://blog.javachen.com/2014/07/29/new-features-in-impala/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="本文主要整理一下 Impala 每个版本的新特性，方便了解 Impala 做了哪些改进、修复了哪些 bug。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Impala新特性">
+<meta name="twitter:description" content="本文主要整理一下 Impala 每个版本的新特性，方便了解 Impala 做了哪些改进、修复了哪些 bug。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.javachen.com/2014/07/29/new-features-in-impala/">
+
+
+
+
+
+  <title>Impala新特性 | JavaChen Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?50bc6f5d9b045b5895ff44f8bbdbc611";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JavaChen Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2014/07/29/new-features-in-impala/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Impala新特性</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-07-29T00:00:00+08:00">
+                2014-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/impala/" itemprop="url" rel="index">
+                    <span itemprop="name">impala</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+              <div class="post-description">
+                  本文主要整理一下 Impala 每个版本的新特性，方便了解 Impala 做了哪些改进、修复了哪些 bug。
+              </div>
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要整理一下 Impala 每个版本的新特性，方便了解 Impala 做了哪些改进、修复了哪些 bug。</p>
+<p>Impala 目前最新版本为 1.4.0，其下载地址为：<a href="http://archive.cloudera.com/impala/redhat/6/x86_64/impala/" target="_blank" rel="noopener">http://archive.cloudera.com/impala/redhat/6/x86_64/impala/</a></p>
+<p>不得不说的事情：</p>
+<ul>
+<li>1.3.1 用于 CDH4</li>
+<li>1.4.0 用于 CDH5</li>
+</ul>
+<h1 id="1-4-0"><a href="#1-4-0" class="headerlink" title="1.4.0"></a>1.4.0</h1><ul>
+<li><a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_decimal.html#decimal" target="_blank" rel="noopener">CDH5</a> 中增加 DECIMAL 数据类型，可以设置精度，其语法为：<code>DECIMAL[(precision[,scale])]</code></li>
+<li>CDH5 中，impala 可以使用 HDFS 缓存特性加快频繁访问的数据的速度，减少 cpu 使用率。当数据缓存到 hdfs cache 中时，impala 可以直接从缓存中读取数据而不需要读磁盘并且减少额外的内存拷贝。<ul>
+<li><a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_hdfs_caching.html" target="_blank" rel="noopener">Centralized Cache Management in HDFS</a></li>
+<li>impala 中使用 HDFS Caching，参考 <a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_perf_hdfs_caching.html#hdfs_caching" target="_blank" rel="noopener">sing HDFS Caching with Impala (CDH 5 Only)</a></li>
+</ul>
+</li>
+<li>Impala 可以使用基于 Sentry 的授权策略，详细说明可以参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_authorization.html#authorization" target="_blank" rel="noopener">Enabling Sentry Authorization for Impala</a></li>
+<li>Impala 支持其他 hadoop 组件创建的 Parquet 格式的文件，你可以在建表语句中指定 Parquet 格式，Impala 中创建 parquet 格式的表，请参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_parquet.html#parquet_ddl_unique_1" target="_blank" rel="noopener">Using the Parquet File Format with Impala Tables</a></li>
+<li>ORDER BY 查询不再要求一个 limit 语句，如果需要排序的结果集的大小超过了内存限制，则会使用临时的磁盘空间用于排序，ORDER BY 语法为：<code>ORDER BY col1 [, col2 ...] [ASC | DESC] [NULLS FIRST | NULLS LAST]</code>，详细说明见：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_order_by.html#order_by" target="_blank" rel="noopener">ORDER BY Clause</a></li>
+<li>LDAP 连接可以使用 SSL 或者 TLS 加密，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_ldap.html#ldap" target="_blank" rel="noopener">Enabling LDAP Authentication for Impala</a></li>
+<li>增加以下内建函数：<ul>
+<li><code>EXTRACT()</code>，用于从一个 TIMESTAMP 字段返回一个 date 或者 time 的字段，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_datetime_functions.html#datetime_functions" target="_blank" rel="noopener">Date and Time Functions</a></li>
+<li><code>TRUNC()</code>，用于将一个 date/time 类型的字段裁剪为一个特定格式的值，如年、月、日、小时等等，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_datetime_functions.html#datetime_functions" target="_blank" rel="noopener">Date and Time Functions</a></li>
+<li><code>ADD_MONTHS()</code></li>
+<li><code>ROUND()</code>，对 DECIMAL 类型的值四舍五入，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_math_functions.html#math_functions" target="_blank" rel="noopener">Mathematical Functions</a></li>
+<li><a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_stddev.html#stddev" target="_blank" rel="noopener">  <code>STDDEV</code>, <code>STDDEV_SAMP</code>, <code>STDDEV_POP</code> Functions</a> 和 <a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_variance.html#variance" target="_blank" rel="noopener"><code>VARIANCE</code>, <code>VARIANCE_SAMP</code>, <code>VARIANCE_POP</code> Functions</a></li>
+<li><code>MAX_INT()</code>、<code>MIN_SMALLINT()</code>等，用于判断数组是否超过最大值和最小值。</li>
+<li><code>IS_INF()</code> 和 <code>IS_NAN()</code>，用于判断是否为数值。</li>
+</ul>
+</li>
+<li><code>SHOW PARTITIONS</code> 语句用于查看分区情况，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_show.html#show" target="_blank" rel="noopener">SHOW Statement</a></li>
+<li>添加 impalad 进程设置参数让你设置所有查询的初始化内存值，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_resource_management.html#resource_management" target="_blank" rel="noopener">Using YARN Resource Management with Impala (CDH 5 Only)</a></li>
+<li>CDH 5.1 中可以利用 Llama 高可用的特性，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_resource_management.html#llama_ha_unique_2" target="_blank" rel="noopener">Using Impala with a Llama High Availability Configuration</a></li>
+<li><code>CREATE TABLE</code> 语句支持 <code>STORED AS AVRO</code>，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_avro.html#avro" target="_blank" rel="noopener">Using the Avro File Format with Impala Tables</a></li>
+<li>impala-shell 中添加 <code>SUMMARY</code> 命令用于查看摘要信息，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_explain_plan.html#perf_summary_unique_1" target="_blank" rel="noopener">Using the SUMMARY Report for Performance Tuning</a></li>
+<li><code>COMPUTE STATS</code> 语句性能改进：<ul>
+<li><code>NDV</code> 函数通过生成本地代码加快速度</li>
+<li>在 1.4.0 或者更高版本，不再统计 NULL 值，其值被看做为 -1，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_perf_stats.html#perf_stats" target="_blank" rel="noopener">How Impala Uses Statistics for Query Optimization</a></li>
+</ul>
+</li>
+<li>分区性能改进。之前只能处理3000个分区，现在没有这个限制，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_partitioning.html#partition_pruning_unique_1" target="_blank" rel="noopener">Partition Pruning for Queries</a></li>
+<li>impala-shell 支持 UTF-8 字符的输入和输出，可以通过参数 <code>--strict_unicode</code> 控制是否忽略不合法的 Unicode 字符。</li>
+</ul>
+<h1 id="1-3-1"><a href="#1-3-1" class="headerlink" title="1.3.1"></a>1.3.1</h1><p>该版本主要是 bug 修复，可以在 CDH 4 和 CDH 5 中使用。</p>
+<ul>
+<li>在 impalad 启动参数中，添加 <code>--insert_inherit_permissions</code> 参数用于设置创建分区的用户。默认的，INSERT 会使用 HDFS 权限为新分区创建目录，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_insert.html#insert" target="_blank" rel="noopener">INSERT Statement</a></li>
+<li><code>SHOW</code> 函数显示每个函数的返回类型，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_show.html#show" target="_blank" rel="noopener">SHOW Statement</a></li>
+<li><code>CREATE TABLE</code> 语句可以使用 <code>FIELDS TERMINATED BY &#39;\0&#39;</code> 语句，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_txtfile.html#txtfile" target="_blank" rel="noopener">Using Text Data Files with Impala Tables</a></li>
+<li>在 1.3.1 以及更高版本后，<code>REGEXP</code> 和 <code>RLIKE</code> 的语义进行修正，和数据库中的语义进行兼容，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_operators.html#regexp_unique_1" target="_blank" rel="noopener">REGEXP Operator</a>。<code>regexp_extract()</code> 和 <code>regexp_replace()</code> 可以不再使用。</li>
+</ul>
+<h1 id="1-3-0"><a href="#1-3-0" class="headerlink" title="1.3.0"></a>1.3.0</h1><ul>
+<li><a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_admission.html#admission_control" target="_blank" rel="noopener">Admission Control and Query Queuing</a></li>
+<li><code>EXPLAIN</code> 以一种更容易读的格式显示更加详细的内容，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_explain.html#explain" target="_blank" rel="noopener">EXPLAIN Statement</a> 和 <a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_explain_plan.html#explain_plan" target="_blank" rel="noopener"> Understanding Impala Query Performance - EXPLAIN Plans and Query Profiles</a></li>
+<li><code>UNIX_TIMESTAMP</code> 、<code>FROM_UNIXTIME</code> 和 <code>INTERVAL</code></li>
+<li>增加条件函数： <code>NULLIF()</code>、<code>NULLIFZERO()</code>、 <code>ZEROIFNULL()</code>，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_conditional_functions.html#conditional_functions" target="_blank" rel="noopener">Conditional Functions</a></li>
+<li>添加新的功能函数：<code>CURRENT_DATABASE()</code>，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_misc_functions.html#misc_functions" target="_blank" rel="noopener">Miscellaneous Functions</a></li>
+<li>和 yarn 集成，只在 CDH5 中可用，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_resource_management.html#resource_management" target="_blank" rel="noopener">Using YARN Resource Management with Impala (CDH 5 Only)</a></li>
+</ul>
+<h1 id="1-2-4"><a href="#1-2-4" class="headerlink" title="1.2.4"></a>1.2.4</h1><p>该版本用于 CDH4，主要针对 1.2.3 做了一些 bug 修复。</p>
+<ul>
+<li>增加 <code>INVALIDATE METADATA table_name</code> 语法刷新新建的一个表</li>
+<li>添加 catalogd 启动参数：<ul>
+<li><code>--load_catalog_in_background</code>，是否后台运行</li>
+<li><code>--num_metadata_loading_threads</code>，并行加载线程</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-2-3"><a href="#1-2-3" class="headerlink" title="1.2.3"></a>1.2.3</h1><blockquote>
+<p>Impala 1.2.3 works with CDH 4 and with CDH 5 beta 2. The resource management feature requires CDH 5 beta.</p>
+</blockquote>
+<p>该版本主要是在 1.2.2 基础上修复 Parquet 兼容性，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Cloudera-Impala-Release-Notes/cirn_known_issues.html#known_issues" target="_blank" rel="noopener">Known Issues and Workarounds in Impala</a></p>
+<h1 id="1-2-2"><a href="#1-2-2" class="headerlink" title="1.2.2"></a>1.2.2</h1><blockquote>
+<p>Impala 1.2.2 works with CDH 4. Its feature set is a superset of features in the Impala 1.2.0 beta, with the exception of resource management, which relies on CDH 5.</p>
+</blockquote>
+<ul>
+<li><code>Join order optimizations</code>，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_perf_joins.html#perf_joins" target="_blank" rel="noopener">Performance Considerations for Join Queries</a></li>
+<li><code>COMPUTE STATS</code></li>
+<li><code>STRAIGHT_JOIN</code>，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_perf_joins.html#straight_join_unique_1" target="_blank" rel="noopener">Overriding Join Reordering with STRAIGHT_JOIN</a></li>
+<li><code>CROSS JOIN</code>，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_tutorial.html#tut_cross_join_unique_2" target="_blank" rel="noopener">Cross Joins and Cartesian Products with the CROSS JOIN Operator</a></li>
+<li>LDAP 支持</li>
+<li>添加 <a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_string_functions.html#string_functions__group_concat" target="_blank" rel="noopener"><code>GROUP_CONCAT()</code></a></li>
+<li><code>INSERT</code> 语句可以添加 <code>SHUFFLE</code> 或者 <code>NOSHUFFLE</code>，主要是用在插入数据到 Parquet 表的分区的时候。</li>
+<li>添加 <code>CAST()</code> 用于类型转换</li>
+<li>添加 <code>fnv_hash()</code> 用于计算 hash 值，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_math_functions.html#math_functions" target="_blank" rel="noopener">Mathematical Functions</a></li>
+<li>支持 <code>STORED AS PARQUET</code> 语句。</li>
+</ul>
+<h1 id="1-2-1"><a href="#1-2-1" class="headerlink" title="1.2.1"></a>1.2.1</h1><ul>
+<li>添加 <code>SHOW TABLE STATS table_name</code> 和 <code>SHOW COLUMN STATS table_name</code> 语法</li>
+<li>添加 <code>CREATE TABLE AS SELECT</code> 语法</li>
+<li>支持 <code>OFFSET</code> 语句，用于分页查询</li>
+<li><code>ORDER BY</code> 语句中添加 <code>NULLS FIRST</code> 和 <code>NULLS LAST</code> 语法支持</li>
+<li>添加<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_functions.html#functions" target="_blank" rel="noopener">内置函数</a>： <code>least()</code>, <code>greatest()</code>, <code>initcap()</code></li>
+<li>添加 <code>ndv()</code> 函数来计算 <code>COUNT(DISTINCT col)</code></li>
+<li><code>LIMIT</code> 语句接受数值表达式作为参数</li>
+<li><code>SHOW CREATE TABLE</code></li>
+<li>添加两个参数：<code>--idle_query_timeout</code> 和 <code>--idle_session_timeout</code>，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_timeouts.html#timeouts" target="_blank" rel="noopener">Setting Timeout Periods for Daemons, Queries, and Sessions</a></li>
+<li>支持 UDFs，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_create_function.html#create_function" target="_blank" rel="noopener">CREATE FUNCTION Statement</a> 和 <a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_drop_function.html#drop_function" target="_blank" rel="noopener">DROP FUNCTION Statement</a></li>
+<li>添加新的同步元数据的机制，详细参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_concepts.html#intro_catalogd_unique_2" target="_blank" rel="noopener">The Impala Catalog Service</a></li>
+<li>添加 <code>CREATE TABLE ... AS SELECT</code> 语法</li>
+<li><code>CREATE TABLE</code> 和 <code>ALTER TABLE</code> 支持 <code>TBLPROPERTIES</code> 和 <code>WITH SERDEPROPERTIES</code> 语句，详细说明参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_create_table.html#create_table" target="_blank" rel="noopener">CREATE TABLE Statement</a> 和 <a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_alter_table.html#alter_table" target="_blank" rel="noopener">ALTER TABLE Statement</a></li>
+<li><code>EXPLAIN</code></li>
+<li><code>SHOW CREATE TABLE</code></li>
+<li><code>LIMIT</code> 语句支持算术表达式</li>
+</ul>
+<p>另外，impala 的一些不兼容的变化，请参考：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Cloudera-Impala-Release-Notes/cirn_incompatible_changes.html" target="_blank" rel="noopener">Incompatible Changes in Impala</a></p>
+<p>Impala 一些已知的问题：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Cloudera-Impala-Release-Notes/cirn_known_issues.html" target="_blank" rel="noopener">Known Issues and Workarounds in Impala</a></p>
+<p>已经修复的问题：<a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Cloudera-Impala-Release-Notes/cirn_fixed_issues.html" target="_blank" rel="noopener">Fixed Issues in Impala</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    JavaChen
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.javachen.com/2014/07/29/new-features-in-impala/" title="Impala新特性">http://blog.javachen.com/2014/07/29/new-features-in-impala/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/impala/" rel="tag"># impala</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/07/28/phoenix-quick-start/" rel="next" title="Phoenix Quick Start">
+                <i class="fa fa-chevron-left"></i> Phoenix Quick Start
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/07/31/summary-of-july-in-2014/" rel="prev" title="2014年7月总结">
+                2014年7月总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-post-description"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

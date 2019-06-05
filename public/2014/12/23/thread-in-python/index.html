@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Python 通过两个标准库 thread 和 threading 提供对线程的支持。Python 的 thread 模块是比较底层的模块，Python 的 threading 模块是对 thread 做了一些包装的，可以更加方便的被使用。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中的多线程">
+<meta property="og:url" content="http://blog.javachen.com/2014/12/23/thread-in-python/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="Python 通过两个标准库 thread 和 threading 提供对线程的支持。Python 的 thread 模块是比较底层的模块，Python 的 threading 模块是对 thread 做了一些包装的，可以更加方便的被使用。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python中的多线程">
+<meta name="twitter:description" content="Python 通过两个标准库 thread 和 threading 提供对线程的支持。Python 的 thread 模块是比较底层的模块，Python 的 threading 模块是对 thread 做了一些包装的，可以更加方便的被使用。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.javachen.com/2014/12/23/thread-in-python/">
+
+
+
+
+
+  <title>Python中的多线程 | JavaChen Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?50bc6f5d9b045b5895ff44f8bbdbc611";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JavaChen Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2014/12/23/thread-in-python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python中的多线程</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-23T00:00:00+08:00">
+                2014-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+              <div class="post-description">
+                  Python 通过两个标准库 thread 和 threading 提供对线程的支持。Python 的 thread 模块是比较底层的模块，Python 的 threading 模块是对 thread 做了一些包装的，可以更加方便的被使用。
+              </div>
+          
+          -->
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="线程模块"><a href="#线程模块" class="headerlink" title="线程模块"></a>线程模块</h3><p>Python 通过两个标准库 thread 和 threading 提供对线程的支持。Python 的 thread 模块是比较底层的模块，Python 的 threading 模块是对 thread 做了一些包装的，可以更加方便的被使用。</p>
+<p><strong>thread 模块提供的其他方法：</strong></p>
+<ul>
+<li><code>start_new_thread(function,args,kwargs=None)</code>：生一个新线程，在新线程中用指定参数和可选的 kwargs 调用 function 函数</li>
+<li><code>allocate_lock()</code>：分配一个 <strong>LockType</strong> 类型的锁对象（注意，此时还没有获得锁）</li>
+<li><code>interrupt_main()</code>：在其他线程中终止主线程</li>
+<li><code>get_ident()</code>：获得一个代表当前线程的魔法数字，常用于从一个字典中获得线程相关的数据。这个数字本身没有任何含义，并且当线程结束后会被新线程复用</li>
+<li><code>exit()</code>：退出线程</li>
+</ul>
+<p><strong>LockType 类型锁对象的函数：</strong></p>
+<ul>
+<li><code>acquire(wait=None)</code>：尝试获取锁对象</li>
+<li><code>locked()</code>：如果获得了锁对象返回 True，否则返回 False</li>
+<li><code>release()</code>：释放锁</li>
+</ul>
+<p>thread 还提供了一个 ThreadLocal 类用于管理线程相关的数据，名为 <code>thread._local</code>，threading 中引用了这个类。</p>
+<p><em>由于 thread 提供的线程功能不多，无法在主线程结束后继续运行，不提供条件变量等等原因，一般不使用 thread 模块。</em></p>
+<p><strong>threading 模块提供的其他方法：</strong></p>
+<ul>
+<li><code>threading.currentThread()</code>：返回当前的线程变量。</li>
+<li><code>threading.enumerate()</code>：返回一个包含正在运行的线程的 list。正在运行指线程启动后、结束前，不包括启动前和终止后的线程。</li>
+<li><code>threading.activeCount()</code>：返回正在运行的线程数量，与 <code>len(threading.enumerate())</code> 有相同的结果。</li>
+</ul>
+<p>除了使用方法外，线程模块同样提供了 Thread 类来处理线程，构造方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread(group=<span class="literal">None</span>, target=<span class="literal">None</span>, name=<span class="literal">None</span>, args=(), kwargs=&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<ul>
+<li><code>group</code>：线程组，目前还没有实现，库引用中提示必须是 None；</li>
+<li><code>target</code>：要执行的方法；</li>
+<li><code>name</code>：线程名；</li>
+<li><code>args/kwargs</code>：要传入方法的参数。</li>
+</ul>
+<p>Thread 类提供了以下实例方法:</p>
+<ul>
+<li><code>run()</code>：用以表示线程活动的方法。</li>
+<li><code>start()</code>：启动线程活动。</li>
+<li><code>join([timeout])</code>：阻塞当前上下文环境的线程，直到调用此方法的线程终止或到达指定的 timeout（可选参数）。</li>
+<li><code>isAlive()</code>：返回线程是否活动的。</li>
+<li><code>getName()</code>：返回线程名。</li>
+<li><code>setName()</code>：设置线程名。</li>
+</ul>
+<p>threading 模块提供的类：Thread, Lock, Rlock, Condition, [Bounded]Semaphore, Event, Timer, local。</p>
+<h3 id="使用-thread-模块创建线程"><a href="#使用-thread-模块创建线程" class="headerlink" title="使用 thread 模块创建线程"></a>使用 thread 模块创建线程</h3><p><strong>函数式：</strong> 调用 thread 模块中的 <code>start_new_thread()</code> 函数来产生新线程。语法如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread.start_new_thread ( function, args[, kwargs] )</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<ul>
+<li><code>function</code> - 线程函数。</li>
+<li><code>args</code> - 传递给线程函数的参数，他必须是个 tuple 类型。</li>
+<li><code>kwargs</code> - 可选参数。</li>
+</ul>
+<p>例子1：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -* - coding: UTF-8 -* -</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> thread</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为线程定义一个函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_time</span><span class="params">( threadName, delay)</span>:</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> count &lt; <span class="number">5</span>:</span><br><span class="line">      time.sleep(delay)</span><br><span class="line">      count += <span class="number">1</span></span><br><span class="line">      <span class="keyword">print</span> <span class="string">"%s: %s"</span> % ( threadName, time.ctime(time.time()) )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建两个线程</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">   thread.start_new_thread( print_time, (<span class="string">"Thread-1"</span>, <span class="number">1</span>, ) )</span><br><span class="line">   thread.start_new_thread( print_time, (<span class="string">"Thread-2"</span>, <span class="number">2</span>, ) )</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">   <span class="keyword">print</span> <span class="string">"Error: unable to start thread"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">   <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Thread-1: Tue Dec 23 14:54:51 2014</span><br><span class="line">Thread-2: Tue Dec 23 14:54:52 2014</span><br><span class="line">Thread-1: Tue Dec 23 14:54:52 2014</span><br><span class="line">Thread-1: Tue Dec 23 14:54:53 2014</span><br><span class="line">Thread-2: Tue Dec 23 14:54:54 2014</span><br><span class="line">Thread-1: Tue Dec 23 14:54:54 2014</span><br><span class="line">Thread-1: Tue Dec 23 14:54:55 2014</span><br><span class="line">Thread-2: Tue Dec 23 14:54:56 2014</span><br><span class="line">Thread-2: Tue Dec 23 14:54:58 2014</span><br><span class="line">Thread-2: Tue Dec 23 14:55:00 2014</span><br></pre></td></tr></table></figure>
+
+<p>主线程没有结束，是因为有个 while 循环一直在执行 pass 语句，导致程序一直没有退出。如果想要主线程主动结束，可以在线程函数中调用 <code>thread.exit()</code>，他抛出SystemExit exception，达到退出线程的目的。</p>
+<h3 id="使用-Threading-模块创建线程"><a href="#使用-Threading-模块创建线程" class="headerlink" title="使用 Threading 模块创建线程"></a>使用 Threading 模块创建线程</h3><p>使用 Threading 模块创建线程，直接从 <code>threading.Thread</code> 继承，然后重写 <code>__init__</code> 方法和<code>run</code> 方法。</p>
+<p>例子2：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -* - coding: UTF-8 -* -</span></span><br><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment">#继承父类threading.Thread</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread</span><span class="params">(Thread)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, delay)</span>:</span></span><br><span class="line">        Thread.__init__(self)</span><br><span class="line">        self.name = name</span><br><span class="line">        self.delay = delay</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span>                   <span class="comment">#把要执行的代码写到run函数里面 线程在创建后会直接运行run函数</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Starting "</span> + self.name</span><br><span class="line">        print_time(self.name, self.delay, <span class="number">5</span>)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Exiting "</span> + self.name</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_time</span><span class="params">(threadName, delay, counter)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> counter:</span><br><span class="line">        time.sleep(delay)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"%s: %s"</span> % (threadName, time.ctime(time.time()))</span><br><span class="line">        counter -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新线程</span></span><br><span class="line">thread1 = myThread(<span class="string">"Thread-1"</span>, <span class="number">1</span>)</span><br><span class="line">thread2 = myThread(<span class="string">"Thread-2"</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启线程</span></span><br><span class="line">thread1.start()</span><br><span class="line">thread2.start()</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Exiting Main Thread"</span></span><br></pre></td></tr></table></figure>
+
+<p>执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Starting Thread-1</span><br><span class="line">Starting Thread-2</span><br><span class="line">Starting Thread-3</span><br><span class="line">Thread-3 processing One</span><br><span class="line">Thread-2 processing Two</span><br><span class="line">Thread-3 processing Three</span><br><span class="line">Thread-1 processing Four</span><br><span class="line">Thread-2 processing Five</span><br><span class="line">Exiting Thread-3</span><br><span class="line">Exiting Thread-1</span><br><span class="line">Exiting Thread-2</span><br><span class="line">Exiting Main Thread</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h3><p>如果多个线程共同对某个数据修改，则可能出现不可预料的结果，为了保证数据的正确性，需要对多个线程进行同步。</p>
+<p>使用 Thread 对象的 <code>Lock</code> 和 <code>Rlock</code> 可以实现简单的线程同步，这两个对象都有 acquire 方法和 release 方法，对于那些需要每次只允许一个线程操作的数据，可以将其操作放到 acquire 和 release 方法之间。</p>
+<p><strong>Lock</strong>（指令锁）是可用的最低级的同步指令。Lock 处于锁定状态时，不被特定的线程拥有。Lock 包含两种状态——锁定和非锁定，以及两个基本的方法。</p>
+<p>可以认为 Lock 有一个锁定池，当线程请求锁定时，将线程至于池中，直到获得锁定后出池。池中的线程处于状态图中的同步阻塞状态。</p>
+<p><strong>构造方法：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lock()</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例方法：</strong></p>
+<ul>
+<li><code>acquire([timeout])</code>：使线程进入同步阻塞状态，尝试获得锁定。</li>
+<li><code>release()</code>：释放锁。使用前线程必须已获得锁定，否则将抛出异常。</li>
+</ul>
+<p><strong>RLock</strong>（可重入锁）是一个可以被同一个线程请求多次的同步指令。RLock 使用了<strong>拥有的线程</strong>和<strong>递归等级</strong>的概念，处于锁定状态时，RLock 被某个线程拥有。拥有RLock的线程可以再次调用acquire()，释放锁时需要调用 release() 相同次数。</p>
+<p>可以认为 RLock 包含一个锁定池和一个初始值为0的计数器，每次成功调用 <code>acquire()/release()</code>，计数器将 +1/-1，为0时锁处于未锁定状态。</p>
+<p>例子3：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -* - coding: UTF-8 -* -</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread,Lock</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">threadLock = Lock()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread</span> <span class="params">(Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, delay)</span>:</span></span><br><span class="line">        Thread.__init__(self)</span><br><span class="line">        self.name = name</span><br><span class="line">        self.delay = delay</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Starting "</span> + self.name</span><br><span class="line">       <span class="comment"># 获得锁，成功获得锁定后返回True</span></span><br><span class="line">       <span class="comment"># 可选的timeout参数不填时将一直阻塞直到获得锁定</span></span><br><span class="line">       <span class="comment"># 否则超时后将返回False</span></span><br><span class="line">        threadLock.acquire()</span><br><span class="line">        print_time(self.name, self.delay, <span class="number">3</span>)</span><br><span class="line">        <span class="comment"># 释放锁</span></span><br><span class="line">        threadLock.release()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_time</span><span class="params">(threadName, delay, counter)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> counter:</span><br><span class="line">        time.sleep(delay)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"%s: %s"</span> % (threadName, time.ctime(time.time()))</span><br><span class="line">        counter -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新线程</span></span><br><span class="line">thread1 = myThread( <span class="string">"Thread-1"</span>, <span class="number">1</span>)</span><br><span class="line">thread2 = myThread(<span class="string">"Thread-2"</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启新线程</span></span><br><span class="line">thread1.start()</span><br><span class="line">thread2.start()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待所有线程完成</span></span><br><span class="line">thread1.join()</span><br><span class="line">thread2.join()</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Exiting Main Thread"</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting Thread-1</span><br><span class="line">Starting Thread-2</span><br><span class="line">Thread-1: Tue Dec 23 16:06:32 2014</span><br><span class="line">Thread-1: Tue Dec 23 16:06:33 2014</span><br><span class="line">Thread-1: Tue Dec 23 16:06:34 2014</span><br><span class="line">Thread-2: Tue Dec 23 16:06:36 2014</span><br><span class="line">Thread-2: Tue Dec 23 16:06:38 2014</span><br><span class="line">Thread-2: Tue Dec 23 16:06:40 2014</span><br><span class="line">Exiting Main Thread</span><br></pre></td></tr></table></figure>
+
+<p>例子3和例子2的区别在于，例子上中 <code>print_time</code> 方法前后添加了 threadLock 的两个方法，并且在主线程调用了两个线程的 join 方法，<br>使得主线程阻塞直到两个子线程运行完成。待子线程运行完成之后，最后才会打印 <code>Exiting Main Thread</code> ，即表示主线程运行完成。</p>
+<p>除了使用 Lock 类获取锁之外，我们还可以使用 Condition 类，condition 的 acquire() 和 release() 方法内部调用了 lock 的 acquire() 和 release()，所以我们可以用 condiction 实例取代 lock 实例，但 lock 的行为不会改变。</p>
+<h3 id="线程优先级队列"><a href="#线程优先级队列" class="headerlink" title="线程优先级队列"></a>线程优先级队列</h3><p>Python 的 Queue 模块中提供了同步的、线程安全的队列类，包括 FIFO（先入先出)队列 Queue，LIFO（后入先出）队列 LifoQueue，和优先级队列 PriorityQueue。这些队列都实现了锁原语，能够在多线程中直接使用。可以使用队列来实现线程间的同步。</p>
+<p>Queue模块中的常用方法:</p>
+<ul>
+<li><code>Queue.qsize()</code>：返回队列的大小</li>
+<li><code>Queue.empty()</code>：如果队列为空，返回 True，反之 False</li>
+<li><code>Queue.full()</code>：如果队列满了，返回 True，反之 False</li>
+<li><code>Queue.full</code>：与 maxsize 大小对应</li>
+<li><code>Queue.get([block[, timeout]])</code>：获取队列，timeout 等待时间</li>
+<li><code>Queue.get_nowait()</code>：相当 <code>Queue.get(False)</code></li>
+<li><code>Queue.put(item)</code>：写入队列，timeout 等待时间</li>
+<li><code>Queue.put_nowait(item)</code>：相当 <code>Queue.put(item, False)</code></li>
+<li><code>Queue.task_done()</code>：在完成一项工作之后，<code>Queue.task_done()</code> 函数向任务已经完成的队列发送一个信号</li>
+<li><code>Queue.join()</code>：实际上意味着等到队列为空，再执行别的操作</li>
+</ul>
+<p>实例4：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -* - coding: UTF-8 -* -</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread,Lock</span><br><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">threadList = [<span class="string">"Thread-1"</span>, <span class="string">"Thread-2"</span>, <span class="string">"Thread-3"</span>]</span><br><span class="line">nameList = [<span class="string">"One"</span>, <span class="string">"Two"</span>, <span class="string">"Three"</span>, <span class="string">"Four"</span>, <span class="string">"Five"</span>]</span><br><span class="line">workQueue = Queue.Queue(<span class="number">10</span>)</span><br><span class="line">queueLock = Lock()</span><br><span class="line">threads = []</span><br><span class="line">exitFlag = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread</span> <span class="params">(Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, q)</span>:</span></span><br><span class="line">        Thread.__init__(self)</span><br><span class="line">        self.name = name</span><br><span class="line">        self.q = q</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Starting "</span> + self.name</span><br><span class="line">        process_data(self.name, self.q)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Exiting "</span> + self.name</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_data</span><span class="params">(threadName, q)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> exitFlag:</span><br><span class="line">        queueLock.acquire()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> workQueue.empty():</span><br><span class="line">            data = q.get()</span><br><span class="line">            queueLock.release()</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"%s processing %s"</span> % (threadName, data)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            queueLock.release()</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新线程</span></span><br><span class="line"><span class="keyword">for</span> tName <span class="keyword">in</span> threadList:</span><br><span class="line">    thread = myThread(tName, workQueue)</span><br><span class="line">    thread.start()</span><br><span class="line">    threads.append(thread)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 填充队列</span></span><br><span class="line">queueLock.acquire()</span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> nameList:</span><br><span class="line">    workQueue.put(word)</span><br><span class="line">queueLock.release()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待队列清空</span></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">not</span> workQueue.empty():</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通知线程是时候退出</span></span><br><span class="line">exitFlag = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待所有线程完成</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">    t.join()</span><br><span class="line"><span class="keyword">print</span> <span class="string">"Exiting Main Thread"</span></span><br></pre></td></tr></table></figure>
+
+<p>例子4中创建了3个线程读取队列的数据，当队列为空时候，三个线程停止运行，另外主线程会一直阻塞直到三个子线程运行完毕，最后再打印 “Exiting Main Thread”。</p>
+<h3 id="生产者和消费者模型"><a href="#生产者和消费者模型" class="headerlink" title="生产者和消费者模型"></a>生产者和消费者模型</h3><blockquote>
+<p>生产者的工作是产生一块数据，放到 buffer 中，如此循环。与此同时，消费者在消耗这些数据（例如从 buffer 中把它们移除），每次一块。<br>这个为描述了两个共享固定大小缓冲队列的进程，即生产者和消费者。</p>
+</blockquote>
+<p>示例5：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread, Condition</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">queue = []</span><br><span class="line">MAX_NUM = <span class="number">10</span></span><br><span class="line">condition = Condition()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProducerThread</span><span class="params">(Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        nums = range(<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">global</span> queue</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            condition.acquire()</span><br><span class="line">            <span class="keyword">if</span> len(queue) == MAX_NUM:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"Queue full, producer is waiting"</span></span><br><span class="line">                condition.wait()</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"Space in queue, Consumer notified the producer"</span></span><br><span class="line">            num = random.choice(nums)</span><br><span class="line">            queue.append(num)</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"Produced"</span>, num</span><br><span class="line">            condition.notify()</span><br><span class="line">            condition.release()</span><br><span class="line">            time.sleep(random.random())</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsumerThread</span><span class="params">(Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">global</span> queue</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            condition.acquire()</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> queue:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"Nothing in queue, consumer is waiting"</span></span><br><span class="line">                condition.wait()</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"Producer added something to queue and notified the consumer"</span></span><br><span class="line">            num = queue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"Consumed"</span>, num</span><br><span class="line">            condition.notify()</span><br><span class="line">            condition.release()</span><br><span class="line">            time.sleep(random.random())</span><br><span class="line"></span><br><span class="line">ProducerThread().start()</span><br><span class="line">ConsumerThread().start()</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中使用了 <strong>Condition</strong>，Condition（条件变量）通常与一个锁关联。需要在多个 Contidion 中共享一个锁时，可以传递一个 Lock/RLock 实例给构造方法，否则它将自己生成一个RLock实例。</p>
+<p>可以认为，除了 Lock 带有的锁定池外，Condition 还包含一个等待池，池中的线程处于状态图中的等待阻塞状态，直到另一个线程调用 notify()/notifyAll() 通知；得到通知后线程进入锁定池等待锁定。</p>
+<p><strong>构造方法：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Condition([lock/rlock])</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例方法：</strong></p>
+<ul>
+<li><code>acquire([timeout])/release()</code>：调用关联的锁的相应方法。</li>
+<li><code>wait([timeout])</code>：调用这个方法将使线程进入 Condition 的等待池等待通知，并释放锁。使用前线程必须已获得锁定，否则将抛出异常。</li>
+<li><code>notify()</code>：调用这个方法将从等待池挑选一个线程并通知，收到通知的线程将自动调用 acquire() 尝试获得锁定（进入锁定池）；其他线程仍然在等待池中。调用这个方法不会释放锁定。使用前线程必须已获得锁定，否则将抛出异常。</li>
+<li><code>notifyAll()</code>：调用这个方法将通知等待池中所有的线程，这些线程都将进入锁定池尝试获得锁定。调用这个方法不会释放锁定。使用前线程必须已获得锁定，否则将抛出异常。</li>
+</ul>
+<p>例子5中生产者和消费者共享一个 list 集合，其实也可以换成 queue。</p>
+<p>例子6：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> Queue <span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line">queue = Queue(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProducerThread</span><span class="params">(Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        nums = range(<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">global</span> queue</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            num = random.choice(nums)</span><br><span class="line">            queue.put(num)</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"Produced"</span>, num</span><br><span class="line">            time.sleep(random.random())</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsumerThread</span><span class="params">(Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">global</span> queue</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            num = queue.get()</span><br><span class="line">            queue.task_done()</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"Consumed"</span>, num</span><br><span class="line">            time.sleep(random.random())</span><br><span class="line"></span><br><span class="line">ProducerThread().start()</span><br><span class="line">ConsumerThread().start()</span><br></pre></td></tr></table></figure>
+
+<p><strong>解释：</strong></p>
+<ul>
+<li>在原来使用 list 的位置，改为使用 Queue 实例（下称队列）。</li>
+<li>这个队列有一个 condition ，它有自己的 lock。如果你使用 Queue，你不需要为 condition 和 lock 而烦恼。</li>
+<li>生产者调用队列的 put 方法来插入数据。</li>
+<li>put() 在插入数据前有一个获取 lock 的逻辑。</li>
+<li>同时，put() 也会检查队列是否已满。如果已满，它会在内部调用 wait()，生产者开始等待。</li>
+<li>消费者使用get方法。</li>
+<li>get() 从队列中移出数据前会获取 lock。</li>
+<li>get() 会检查队列是否为空，如果为空，消费者进入等待状态。</li>
+<li>get() 和 put() 都有适当的 notify()。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文主要介绍了 Python 中创建多线程的两种方法，并简单说了 threading 模块中的 Lock、RLock、Condition 三个类以及 Queue 类的使用方法，另外，还通过代码实现了生产者和消费者模型。</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="http://www.w3cschool.cc/python/python-multithreading.html" target="_blank" rel="noopener">Python多线程</a></li>
+<li><a href="http://blog.jobbole.com/52412/" target="_blank" rel="noopener">Python中的生产者消费者问题</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    JavaChen
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.javachen.com/2014/12/23/thread-in-python/" title="Python中的多线程">http://blog.javachen.com/2014/12/23/thread-in-python/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/12/02/some-usages-of-jpa/" rel="next" title="JPA的使用">
+                <i class="fa fa-chevron-left"></i> JPA的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/06/build-app-with-spring-boot-and-gradle/" rel="prev" title="使用Spring Boot和Gradle创建AngularJS项目">
+                使用Spring Boot和Gradle创建AngularJS项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-post-description"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
