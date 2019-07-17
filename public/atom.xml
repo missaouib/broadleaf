@@ -5,9 +5,9 @@
   <subtitle>Ramblings of a coder</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blog.javachen.com/"/>
-  <updated>2019-06-05T00:55:03.217Z</updated>
-  <id>http://blog.javachen.com/</id>
+  <link href="http://javachen.github.io/"/>
+  <updated>2019-07-01T10:04:10.164Z</updated>
+  <id>http://javachen.github.io/</id>
   
   <author>
     <name>JavaChen</name>
@@ -17,33 +17,131 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Spring Cloud之Eureka服务发现和注册示例</title>
-    <link href="http://blog.javachen.com/2019/06/05/spring-cloud-eureka-service-discovery-and-register-example/"/>
-    <id>http://blog.javachen.com/2019/06/05/spring-cloud-eureka-service-discovery-and-register-example/</id>
-    <published>2019-06-05T00:53:25.000Z</published>
-    <updated>2019-06-05T00:55:03.217Z</updated>
+    <title>Struts2</title>
+    <link href="http://javachen.github.io/2019/07/01/struts2/"/>
+    <id>http://javachen.github.io/2019/07/01/struts2/</id>
+    <published>2019-06-30T16:00:00.000Z</published>
+    <updated>2019-07-01T10:04:10.164Z</updated>
     
     <summary type="html">
     
-      Spring Cloud之Eureka服务发现和注册示例代码，集成Feign。
+      Struts2 是一个基于 MVC 设计模式的 Web 应用框架，它本质上相当于一个 Servlet，在 MVC 设计模式中，Struts2 作为控制器来建立模型与视图的数据交互。Struts2 是 Struts 的下一代产品，是在 struts 和 WebWork 的技术基础上进行了合并的全新的 Struts2 框架。
     
     </summary>
     
-      <category term="spring" scheme="http://blog.javachen.com/categories/spring/"/>
+      <category term="java" scheme="http://javachen.github.io/categories/java/"/>
     
     
-      <category term="spring cloud" scheme="http://blog.javachen.com/tags/spring-cloud/"/>
+      <category term="struts2" scheme="http://javachen.github.io/tags/struts2/"/>
     
-      <category term="eureka" scheme="http://blog.javachen.com/tags/eureka/"/>
+  </entry>
+  
+  <entry>
+    <title>Java Server Faces</title>
+    <link href="http://javachen.github.io/2019/06/29/jsf/"/>
+    <id>http://javachen.github.io/2019/06/29/jsf/</id>
+    <published>2019-06-28T16:00:00.000Z</published>
+    <updated>2019-06-29T12:56:16.904Z</updated>
+    
+    <summary type="html">
+    
+      JSF的诞生还要追溯到2001年，在2001年5月，Sun制定了一个用户界面框架的规范JSR#127，而JSF 规范的1.0到2004年3月才得以面世。由于SUN的官僚作风及商业推广的失败，直到JAVA EE 5的发布，JSF推出1.2版本并作为JAVA EE 5的一部分同时发布。历经5年的风雨，JSF才成为了JAVA企业应用规范的一部份，同时也错过了发展的黄金时期。
+    
+    </summary>
+    
+      <category term="java" scheme="http://javachen.github.io/categories/java/"/>
+    
+    
+      <category term="jsf" scheme="http://javachen.github.io/tags/jsf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Web框架发展历程</title>
+    <link href="http://javachen.github.io/2019/06/29/java-web-framework/"/>
+    <id>http://javachen.github.io/2019/06/29/java-web-framework/</id>
+    <published>2019-06-28T16:00:00.000Z</published>
+    <updated>2019-06-29T12:48:53.327Z</updated>
+    
+    <summary type="html">
+    
+      在 Web 早期的开发中，通常采用的都是 Model1 模式，就是使用 JSP+JavaBean 技术，将页面显示和业务逻辑处理分开，由JSP页面来接收客户端请求，用JavaBean或其他服务完成业务逻辑、数据库操作和返回页面。
+    
+    </summary>
+    
+      <category term="java" scheme="http://javachen.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://javachen.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LVS负载均衡</title>
+    <link href="http://javachen.github.io/2019/06/29/lvs/"/>
+    <id>http://javachen.github.io/2019/06/29/lvs/</id>
+    <published>2019-06-28T16:00:00.000Z</published>
+    <updated>2019-06-29T12:24:11.105Z</updated>
+    
+    <summary type="html">
+    
+      负载均衡(Load Balance)是一种服务器或网络设备的集群技术。负载均衡将特定的业务(网络服务、网络流量等)分担给多个服务器或网络设备，从而提高了业务处理能力，保证了业务的高可用性。常用的负载均衡开源软件有nginx、lvs、haproxy，商业的硬件负载均衡设备F5、Netscale。
+    
+    </summary>
+    
+      <category term="devops" scheme="http://javachen.github.io/categories/devops/"/>
+    
+    
+      <category term="lvs" scheme="http://javachen.github.io/tags/lvs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OSI参考模型</title>
+    <link href="http://javachen.github.io/2019/06/29/osi/"/>
+    <id>http://javachen.github.io/2019/06/29/osi/</id>
+    <published>2019-06-28T16:00:00.000Z</published>
+    <updated>2019-07-02T06:27:17.010Z</updated>
+    
+    <summary type="html">
+    
+      OSI（Open System Interconnect），即开放式系统互联。 一般都叫OSI参考模型，是ISO（国际标准化组织）组织在1985年研究的网络互连模型。
+    
+    </summary>
+    
+      <category term="devops" scheme="http://javachen.github.io/categories/devops/"/>
+    
+    
+      <category term="osi" scheme="http://javachen.github.io/tags/osi/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx服务器</title>
+    <link href="http://javachen.github.io/2019/06/29/nginx/"/>
+    <id>http://javachen.github.io/2019/06/29/nginx/</id>
+    <published>2019-06-28T16:00:00.000Z</published>
+    <updated>2019-07-14T05:12:39.329Z</updated>
+    
+    <summary type="html">
+    
+      本文主要是参考相关资料，整理了Nginx服务器的安装、配置和使用示例。
+    
+    </summary>
+    
+      <category term="devops" scheme="http://javachen.github.io/categories/devops/"/>
+    
+    
+      <category term="nginx" scheme="http://javachen.github.io/tags/nginx/"/>
     
   </entry>
   
   <entry>
     <title>Spring Cloud之Eureka配置示例</title>
-    <link href="http://blog.javachen.com/2019/04/15/spring-cloud-eureka-config-example/"/>
-    <id>http://blog.javachen.com/2019/04/15/spring-cloud-eureka-config-example/</id>
+    <link href="http://javachen.github.io/2019/04/15/spring-cloud-eureka-config-example/"/>
+    <id>http://javachen.github.io/2019/04/15/spring-cloud-eureka-config-example/</id>
     <published>2019-04-14T16:00:00.000Z</published>
-    <updated>2019-05-09T12:56:44.515Z</updated>
+    <updated>2019-07-01T09:59:33.339Z</updated>
     
     <summary type="html">
     
@@ -51,19 +149,19 @@
     
     </summary>
     
-      <category term="spring" scheme="http://blog.javachen.com/categories/spring/"/>
+      <category term="spring" scheme="http://javachen.github.io/categories/spring/"/>
     
     
-      <category term="spring cloud" scheme="http://blog.javachen.com/tags/spring-cloud/"/>
+      <category term="spring cloud" scheme="http://javachen.github.io/tags/spring-cloud/"/>
     
-      <category term="eureka" scheme="http://blog.javachen.com/tags/eureka/"/>
+      <category term="eureka" scheme="http://javachen.github.io/tags/eureka/"/>
     
   </entry>
   
   <entry>
     <title>Spring Boot整合视图层</title>
-    <link href="http://blog.javachen.com/2019/04/07/spring-boot-with-web-view/"/>
-    <id>http://blog.javachen.com/2019/04/07/spring-boot-with-web-view/</id>
+    <link href="http://javachen.github.io/2019/04/07/spring-boot-with-web-view/"/>
+    <id>http://javachen.github.io/2019/04/07/spring-boot-with-web-view/</id>
     <published>2019-04-06T16:00:00.000Z</published>
     <updated>2019-04-07T04:43:15.000Z</updated>
     
@@ -73,17 +171,17 @@
     
     </summary>
     
-      <category term="spring" scheme="http://blog.javachen.com/categories/spring/"/>
+      <category term="spring" scheme="http://javachen.github.io/categories/spring/"/>
     
     
-      <category term="spring boot" scheme="http://blog.javachen.com/tags/spring-boot/"/>
+      <category term="spring boot" scheme="http://javachen.github.io/tags/spring-boot/"/>
     
   </entry>
   
   <entry>
     <title>Spring Boot整合Servlet、Filter、Listener</title>
-    <link href="http://blog.javachen.com/2019/04/07/spring-boot-with-servlet-filter-listener/"/>
-    <id>http://blog.javachen.com/2019/04/07/spring-boot-with-servlet-filter-listener/</id>
+    <link href="http://javachen.github.io/2019/04/07/spring-boot-with-servlet-filter-listener/"/>
+    <id>http://javachen.github.io/2019/04/07/spring-boot-with-servlet-filter-listener/</id>
     <published>2019-04-06T16:00:00.000Z</published>
     <updated>2019-04-07T02:02:49.000Z</updated>
     
@@ -93,17 +191,17 @@
     
     </summary>
     
-      <category term="spring" scheme="http://blog.javachen.com/categories/spring/"/>
+      <category term="spring" scheme="http://javachen.github.io/categories/spring/"/>
     
     
-      <category term="spring boot" scheme="http://blog.javachen.com/tags/spring-boot/"/>
+      <category term="spring boot" scheme="http://javachen.github.io/tags/spring-boot/"/>
     
   </entry>
   
   <entry>
     <title>Zabbix安装过程</title>
-    <link href="http://blog.javachen.com/2019/03/29/install-zabbix/"/>
-    <id>http://blog.javachen.com/2019/03/29/install-zabbix/</id>
+    <link href="http://javachen.github.io/2019/03/29/install-zabbix/"/>
+    <id>http://javachen.github.io/2019/03/29/install-zabbix/</id>
     <published>2019-03-28T16:00:00.000Z</published>
     <updated>2019-03-29T07:41:57.000Z</updated>
     
@@ -113,19 +211,19 @@
     
     </summary>
     
-      <category term="devops" scheme="http://blog.javachen.com/categories/devops/"/>
+      <category term="devops" scheme="http://javachen.github.io/categories/devops/"/>
     
     
-      <category term="zabbix" scheme="http://blog.javachen.com/tags/zabbix/"/>
+      <category term="zabbix" scheme="http://javachen.github.io/tags/zabbix/"/>
     
   </entry>
   
   <entry>
     <title>Cloudera Manager安装Haddop集群</title>
-    <link href="http://blog.javachen.com/2019/03/28/install-hadoop-cluster-with-cm6/"/>
-    <id>http://blog.javachen.com/2019/03/28/install-hadoop-cluster-with-cm6/</id>
+    <link href="http://javachen.github.io/2019/03/28/install-hadoop-cluster-with-cm6/"/>
+    <id>http://javachen.github.io/2019/03/28/install-hadoop-cluster-with-cm6/</id>
     <published>2019-03-27T16:00:00.000Z</published>
-    <updated>2019-06-01T15:14:11.525Z</updated>
+    <updated>2019-06-29T12:22:07.814Z</updated>
     
     <summary type="html">
     
@@ -133,41 +231,21 @@
     
     </summary>
     
-      <category term="hadoop" scheme="http://blog.javachen.com/categories/hadoop/"/>
+      <category term="hadoop" scheme="http://javachen.github.io/categories/hadoop/"/>
     
     
-      <category term="hadoop" scheme="http://blog.javachen.com/tags/hadoop/"/>
+      <category term="cdh" scheme="http://javachen.github.io/tags/cdh/"/>
     
-      <category term="cdh" scheme="http://blog.javachen.com/tags/cdh/"/>
+      <category term="hadoop" scheme="http://javachen.github.io/tags/hadoop/"/>
     
-      <category term="vagrant" scheme="http://blog.javachen.com/tags/vagrant/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis源码分析：如何解析配置文件</title>
-    <link href="http://blog.javachen.com/2016/04/21/how-to-parse-mybatis-configuration/"/>
-    <id>http://blog.javachen.com/2016/04/21/how-to-parse-mybatis-configuration/</id>
-    <published>2016-04-20T16:00:00.000Z</published>
-    <updated>2019-03-27T13:00:58.000Z</updated>
-    
-    <summary type="html">
-    
-      MyBatis可以使用xml或者注解的方式进行配置，不管是哪种方式，最终会将获取到的配置参数设置到Configuration类中，例如，SqlSessionFactoryBuilder类中就是通过解析XML来创建Configuration。
-    
-    </summary>
-    
-      <category term="mybatis" scheme="http://blog.javachen.com/categories/mybatis/"/>
-    
-    
-      <category term="mybatis" scheme="http://blog.javachen.com/tags/mybatis/"/>
+      <category term="vagrant" scheme="http://javachen.github.io/tags/vagrant/"/>
     
   </entry>
   
   <entry>
     <title>MyBatis源码分析：SqlSession</title>
-    <link href="http://blog.javachen.com/2016/04/21/mybatis-sqlSession-source-code/"/>
-    <id>http://blog.javachen.com/2016/04/21/mybatis-sqlSession-source-code/</id>
+    <link href="http://javachen.github.io/2016/04/21/mybatis-sqlSession-source-code/"/>
+    <id>http://javachen.github.io/2016/04/21/mybatis-sqlSession-source-code/</id>
     <published>2016-04-20T16:00:00.000Z</published>
     <updated>2019-03-27T13:01:05.000Z</updated>
     
@@ -177,19 +255,39 @@
     
     </summary>
     
-      <category term="mybatis" scheme="http://blog.javachen.com/categories/mybatis/"/>
+      <category term="mybatis" scheme="http://javachen.github.io/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://blog.javachen.com/tags/mybatis/"/>
+      <category term="mybatis" scheme="http://javachen.github.io/tags/mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis源码分析：如何解析配置文件</title>
+    <link href="http://javachen.github.io/2016/04/21/how-to-parse-mybatis-configuration/"/>
+    <id>http://javachen.github.io/2016/04/21/how-to-parse-mybatis-configuration/</id>
+    <published>2016-04-20T16:00:00.000Z</published>
+    <updated>2019-03-27T13:00:58.000Z</updated>
+    
+    <summary type="html">
+    
+      MyBatis可以使用xml或者注解的方式进行配置，不管是哪种方式，最终会将获取到的配置参数设置到Configuration类中，例如，SqlSessionFactoryBuilder类中就是通过解析XML来创建Configuration。
+    
+    </summary>
+    
+      <category term="mybatis" scheme="http://javachen.github.io/categories/mybatis/"/>
+    
+    
+      <category term="mybatis" scheme="http://javachen.github.io/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>UML类之间关系</title>
-    <link href="http://blog.javachen.com/2016/04/01/uml-class-realation/"/>
-    <id>http://blog.javachen.com/2016/04/01/uml-class-realation/</id>
+    <link href="http://javachen.github.io/2016/04/01/uml-class-realation/"/>
+    <id>http://javachen.github.io/2016/04/01/uml-class-realation/</id>
     <published>2016-03-31T16:00:00.000Z</published>
-    <updated>2019-06-01T07:39:23.498Z</updated>
+    <updated>2019-06-29T12:24:11.099Z</updated>
     
     <summary type="html">
     
@@ -197,21 +295,21 @@
     
     </summary>
     
-      <category term="java" scheme="http://blog.javachen.com/categories/java/"/>
+      <category term="java" scheme="http://javachen.github.io/categories/java/"/>
     
     
-      <category term="uml" scheme="http://blog.javachen.com/tags/uml/"/>
+      <category term="plantuml" scheme="http://javachen.github.io/tags/plantuml/"/>
     
-      <category term="plantuml" scheme="http://blog.javachen.com/tags/plantuml/"/>
+      <category term="uml" scheme="http://javachen.github.io/tags/uml/"/>
     
   </entry>
   
   <entry>
     <title>PlantUML安装和使用</title>
-    <link href="http://blog.javachen.com/2016/02/29/plantuml-install-and-usage/"/>
-    <id>http://blog.javachen.com/2016/02/29/plantuml-install-and-usage/</id>
+    <link href="http://javachen.github.io/2016/02/29/plantuml-install-and-usage/"/>
+    <id>http://javachen.github.io/2016/02/29/plantuml-install-and-usage/</id>
     <published>2016-02-28T16:00:00.000Z</published>
-    <updated>2019-03-27T13:00:50.000Z</updated>
+    <updated>2019-06-29T12:24:11.095Z</updated>
     
     <summary type="html">
     
@@ -219,21 +317,21 @@
     
     </summary>
     
-      <category term="java" scheme="http://blog.javachen.com/categories/java/"/>
+      <category term="java" scheme="http://javachen.github.io/categories/java/"/>
     
     
-      <category term="uml" scheme="http://blog.javachen.com/tags/uml/"/>
+      <category term="plantuml" scheme="http://javachen.github.io/tags/plantuml/"/>
     
-      <category term="plantuml" scheme="http://blog.javachen.com/tags/plantuml/"/>
+      <category term="uml" scheme="http://javachen.github.io/tags/uml/"/>
     
   </entry>
   
   <entry>
     <title>PlantUML类图</title>
-    <link href="http://blog.javachen.com/2016/02/29/plantuml-class-diagram/"/>
-    <id>http://blog.javachen.com/2016/02/29/plantuml-class-diagram/</id>
+    <link href="http://javachen.github.io/2016/02/29/plantuml-class-diagram/"/>
+    <id>http://javachen.github.io/2016/02/29/plantuml-class-diagram/</id>
     <published>2016-02-28T16:00:00.000Z</published>
-    <updated>2019-03-27T13:00:47.000Z</updated>
+    <updated>2019-06-29T12:24:11.094Z</updated>
     
     <summary type="html">
     
@@ -241,21 +339,21 @@
     
     </summary>
     
-      <category term="java" scheme="http://blog.javachen.com/categories/java/"/>
+      <category term="java" scheme="http://javachen.github.io/categories/java/"/>
     
     
-      <category term="uml" scheme="http://blog.javachen.com/tags/uml/"/>
+      <category term="plantuml" scheme="http://javachen.github.io/tags/plantuml/"/>
     
-      <category term="plantuml" scheme="http://blog.javachen.com/tags/plantuml/"/>
+      <category term="uml" scheme="http://javachen.github.io/tags/uml/"/>
     
   </entry>
   
   <entry>
     <title>MyBatis源码分析：Configuration</title>
-    <link href="http://blog.javachen.com/2016/02/26/source-code-analytic-of-mybatis-configuration/"/>
-    <id>http://blog.javachen.com/2016/02/26/source-code-analytic-of-mybatis-configuration/</id>
+    <link href="http://javachen.github.io/2016/02/26/source-code-analytic-of-mybatis-configuration/"/>
+    <id>http://javachen.github.io/2016/02/26/source-code-analytic-of-mybatis-configuration/</id>
     <published>2016-02-25T16:00:00.000Z</published>
-    <updated>2019-03-27T13:00:39.000Z</updated>
+    <updated>2019-06-29T12:24:11.058Z</updated>
     
     <summary type="html">
     
@@ -263,43 +361,19 @@
     
     </summary>
     
-      <category term="mybatis" scheme="http://blog.javachen.com/categories/mybatis/"/>
+      <category term="mybatis" scheme="http://javachen.github.io/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://blog.javachen.com/tags/mybatis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Boot Profile使用</title>
-    <link href="http://blog.javachen.com/2016/02/22/profile-usage-in-spring-boot/"/>
-    <id>http://blog.javachen.com/2016/02/22/profile-usage-in-spring-boot/</id>
-    <published>2016-02-21T16:00:00.000Z</published>
-    <updated>2019-03-27T13:00:33.000Z</updated>
-    
-    <summary type="html">
-    
-      本文主要了解Spring Boot 1.3.0新添加的spring-boot-devtools模块的使用，该模块主要是为了提高开发者开发Spring Boot应用的用户体验。
-    
-    </summary>
-    
-      <category term="spring" scheme="http://blog.javachen.com/categories/spring/"/>
-    
-    
-      <category term="java" scheme="http://blog.javachen.com/tags/java/"/>
-    
-      <category term="spring boot" scheme="http://blog.javachen.com/tags/spring-boot/"/>
-    
-      <category term="spring" scheme="http://blog.javachen.com/tags/spring/"/>
+      <category term="mybatis" scheme="http://javachen.github.io/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>DevTools in Spring Boot</title>
-    <link href="http://blog.javachen.com/2016/02/22/devtools-in-spring-boot/"/>
-    <id>http://blog.javachen.com/2016/02/22/devtools-in-spring-boot/</id>
+    <link href="http://javachen.github.io/2016/02/22/devtools-in-spring-boot/"/>
+    <id>http://javachen.github.io/2016/02/22/devtools-in-spring-boot/</id>
     <published>2016-02-21T16:00:00.000Z</published>
-    <updated>2019-03-27T13:00:31.000Z</updated>
+    <updated>2019-06-29T12:23:25.842Z</updated>
     
     <summary type="html">
     
@@ -307,21 +381,45 @@
     
     </summary>
     
-      <category term="spring" scheme="http://blog.javachen.com/categories/spring/"/>
+      <category term="spring" scheme="http://javachen.github.io/categories/spring/"/>
     
     
-      <category term="java" scheme="http://blog.javachen.com/tags/java/"/>
+      <category term="java" scheme="http://javachen.github.io/tags/java/"/>
     
-      <category term="spring boot" scheme="http://blog.javachen.com/tags/spring-boot/"/>
+      <category term="spring" scheme="http://javachen.github.io/tags/spring/"/>
     
-      <category term="spring" scheme="http://blog.javachen.com/tags/spring/"/>
+      <category term="spring boot" scheme="http://javachen.github.io/tags/spring-boot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Boot Profile使用</title>
+    <link href="http://javachen.github.io/2016/02/22/profile-usage-in-spring-boot/"/>
+    <id>http://javachen.github.io/2016/02/22/profile-usage-in-spring-boot/</id>
+    <published>2016-02-21T16:00:00.000Z</published>
+    <updated>2019-06-29T12:23:25.845Z</updated>
+    
+    <summary type="html">
+    
+      本文主要了解Spring Boot 1.3.0新添加的spring-boot-devtools模块的使用，该模块主要是为了提高开发者开发Spring Boot应用的用户体验。
+    
+    </summary>
+    
+      <category term="spring" scheme="http://javachen.github.io/categories/spring/"/>
+    
+    
+      <category term="java" scheme="http://javachen.github.io/tags/java/"/>
+    
+      <category term="spring" scheme="http://javachen.github.io/tags/spring/"/>
+    
+      <category term="spring boot" scheme="http://javachen.github.io/tags/spring-boot/"/>
     
   </entry>
   
   <entry>
     <title>Scala Reading List</title>
-    <link href="http://blog.javachen.com/2016/01/23/scala-reading-list/"/>
-    <id>http://blog.javachen.com/2016/01/23/scala-reading-list/</id>
+    <link href="http://javachen.github.io/2016/01/23/scala-reading-list/"/>
+    <id>http://javachen.github.io/2016/01/23/scala-reading-list/</id>
     <published>2016-01-22T16:00:00.000Z</published>
     <updated>2019-03-26T08:41:24.000Z</updated>
     
@@ -331,37 +429,17 @@
     
     </summary>
     
-      <category term="scala" scheme="http://blog.javachen.com/categories/scala/"/>
+      <category term="scala" scheme="http://javachen.github.io/categories/scala/"/>
     
     
-      <category term="scala" scheme="http://blog.javachen.com/tags/scala/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Bash内部变量</title>
-    <link href="http://blog.javachen.com/2015/07/09/bash-internal-variables/"/>
-    <id>http://blog.javachen.com/2015/07/09/bash-internal-variables/</id>
-    <published>2015-07-08T16:00:00.000Z</published>
-    <updated>2019-03-26T08:41:24.000Z</updated>
-    
-    <summary type="html">
-    
-      整理Bash中存在一些内部变量。
-    
-    </summary>
-    
-      <category term="devops" scheme="http://blog.javachen.com/categories/devops/"/>
-    
-    
-      <category term="bash" scheme="http://blog.javachen.com/tags/bash/"/>
+      <category term="scala" scheme="http://javachen.github.io/tags/scala/"/>
     
   </entry>
   
   <entry>
     <title>Bash条件判断</title>
-    <link href="http://blog.javachen.com/2015/07/08/bash-if-else/"/>
-    <id>http://blog.javachen.com/2015/07/08/bash-if-else/</id>
+    <link href="http://javachen.github.io/2015/07/08/bash-if-else/"/>
+    <id>http://javachen.github.io/2015/07/08/bash-if-else/</id>
     <published>2015-07-07T16:00:00.000Z</published>
     <updated>2019-03-26T08:41:24.000Z</updated>
     
@@ -371,17 +449,17 @@
     
     </summary>
     
-      <category term="devops" scheme="http://blog.javachen.com/categories/devops/"/>
+      <category term="devops" scheme="http://javachen.github.io/categories/devops/"/>
     
     
-      <category term="bash" scheme="http://blog.javachen.com/tags/bash/"/>
+      <category term="bash" scheme="http://javachen.github.io/tags/bash/"/>
     
   </entry>
   
   <entry>
     <title>Bash中的变量</title>
-    <link href="http://blog.javachen.com/2015/07/07/bash-variable/"/>
-    <id>http://blog.javachen.com/2015/07/07/bash-variable/</id>
+    <link href="http://javachen.github.io/2015/07/07/bash-variable/"/>
+    <id>http://javachen.github.io/2015/07/07/bash-variable/</id>
     <published>2015-07-06T16:00:00.000Z</published>
     <updated>2019-03-26T08:41:24.000Z</updated>
     
@@ -391,17 +469,17 @@
     
     </summary>
     
-      <category term="devops" scheme="http://blog.javachen.com/categories/devops/"/>
+      <category term="devops" scheme="http://javachen.github.io/categories/devops/"/>
     
     
-      <category term="bash" scheme="http://blog.javachen.com/tags/bash/"/>
+      <category term="bash" scheme="http://javachen.github.io/tags/bash/"/>
     
   </entry>
   
   <entry>
     <title>Bash中的特殊字符</title>
-    <link href="http://blog.javachen.com/2015/07/06/bash-special-characters/"/>
-    <id>http://blog.javachen.com/2015/07/06/bash-special-characters/</id>
+    <link href="http://javachen.github.io/2015/07/06/bash-special-characters/"/>
+    <id>http://javachen.github.io/2015/07/06/bash-special-characters/</id>
     <published>2015-07-05T16:00:00.000Z</published>
     <updated>2019-03-26T08:41:24.000Z</updated>
     
@@ -411,41 +489,17 @@
     
     </summary>
     
-      <category term="devops" scheme="http://blog.javachen.com/categories/devops/"/>
+      <category term="devops" scheme="http://javachen.github.io/categories/devops/"/>
     
     
-      <category term="bash" scheme="http://blog.javachen.com/tags/bash/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Jekyll kramdown配置</title>
-    <link href="http://blog.javachen.com/2015/06/30/jekyll-kramdown-config/"/>
-    <id>http://blog.javachen.com/2015/06/30/jekyll-kramdown-config/</id>
-    <published>2015-06-29T16:00:00.000Z</published>
-    <updated>2019-03-27T13:00:18.000Z</updated>
-    
-    <summary type="html">
-    
-      之前博客是使用的redcarpet的markdown语法，现在想改为使用kramdown，这样就可以使用MathJax了。
-    
-    </summary>
-    
-      <category term="web" scheme="http://blog.javachen.com/categories/web/"/>
-    
-    
-      <category term="jekyll" scheme="http://blog.javachen.com/tags/jekyll/"/>
-    
-      <category term="kramdown" scheme="http://blog.javachen.com/tags/kramdown/"/>
-    
-      <category term="markdown" scheme="http://blog.javachen.com/tags/markdown/"/>
+      <category term="bash" scheme="http://javachen.github.io/tags/bash/"/>
     
   </entry>
   
   <entry>
     <title>高级Bash脚本编程入门</title>
-    <link href="http://blog.javachen.com/2015/06/29/advanced-bash-script-programming/"/>
-    <id>http://blog.javachen.com/2015/06/29/advanced-bash-script-programming/</id>
+    <link href="http://javachen.github.io/2015/06/29/advanced-bash-script-programming/"/>
+    <id>http://javachen.github.io/2015/06/29/advanced-bash-script-programming/</id>
     <published>2015-06-28T16:00:00.000Z</published>
     <updated>2019-03-26T08:41:24.000Z</updated>
     
@@ -455,19 +509,19 @@
     
     </summary>
     
-      <category term="devops" scheme="http://blog.javachen.com/categories/devops/"/>
+      <category term="devops" scheme="http://javachen.github.io/categories/devops/"/>
     
     
-      <category term="bash" scheme="http://blog.javachen.com/tags/bash/"/>
+      <category term="bash" scheme="http://javachen.github.io/tags/bash/"/>
     
   </entry>
   
   <entry>
     <title>spark-shell脚本分析</title>
-    <link href="http://blog.javachen.com/2015/06/26/spark-shell-command/"/>
-    <id>http://blog.javachen.com/2015/06/26/spark-shell-command/</id>
+    <link href="http://javachen.github.io/2015/06/26/spark-shell-command/"/>
+    <id>http://javachen.github.io/2015/06/26/spark-shell-command/</id>
     <published>2015-06-25T16:00:00.000Z</published>
-    <updated>2019-03-26T08:41:24.000Z</updated>
+    <updated>2019-06-29T12:23:34.072Z</updated>
     
     <summary type="html">
     
@@ -475,39 +529,19 @@
     
     </summary>
     
-      <category term="spark" scheme="http://blog.javachen.com/categories/spark/"/>
+      <category term="spark" scheme="http://javachen.github.io/categories/spark/"/>
     
     
-      <category term="spark" scheme="http://blog.javachen.com/tags/spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Scala中的对象</title>
-    <link href="http://blog.javachen.com/2015/06/19/scala-object/"/>
-    <id>http://blog.javachen.com/2015/06/19/scala-object/</id>
-    <published>2015-06-18T16:00:00.000Z</published>
-    <updated>2019-03-26T08:41:24.000Z</updated>
-    
-    <summary type="html">
-    
-      主要记录Scala中对象相关的知识点。Scala中没有静态方法或静态字段，但可以使用object这个语法结构来实现相同的功能。对象与类在语法层面上很相似，除了不能提供构造器参数外，对象可以拥有类的所有特性。
-    
-    </summary>
-    
-      <category term="scala" scheme="http://blog.javachen.com/categories/scala/"/>
-    
-    
-      <category term="scala" scheme="http://blog.javachen.com/tags/scala/"/>
+      <category term="spark" scheme="http://javachen.github.io/tags/spark/"/>
     
   </entry>
   
   <entry>
     <title>Scala中的类</title>
-    <link href="http://blog.javachen.com/2015/06/19/scala-class/"/>
-    <id>http://blog.javachen.com/2015/06/19/scala-class/</id>
+    <link href="http://javachen.github.io/2015/06/19/scala-class/"/>
+    <id>http://javachen.github.io/2015/06/19/scala-class/</id>
     <published>2015-06-18T16:00:00.000Z</published>
-    <updated>2019-03-26T08:41:24.000Z</updated>
+    <updated>2019-06-29T12:22:07.812Z</updated>
     
     <summary type="html">
     
@@ -515,39 +549,37 @@
     
     </summary>
     
-      <category term="scala" scheme="http://blog.javachen.com/categories/scala/"/>
+      <category term="scala" scheme="http://javachen.github.io/categories/scala/"/>
     
     
-      <category term="scala" scheme="http://blog.javachen.com/tags/scala/"/>
+      <category term="scala" scheme="http://javachen.github.io/tags/scala/"/>
     
   </entry>
   
   <entry>
-    <title>解决固定导航时锚点偏移问题</title>
-    <link href="http://blog.javachen.com/2015/06/18/fix-anchor-offset-when-using-bootstrap-navbar-fixed-top/"/>
-    <id>http://blog.javachen.com/2015/06/18/fix-anchor-offset-when-using-bootstrap-navbar-fixed-top/</id>
-    <published>2015-06-17T16:00:00.000Z</published>
-    <updated>2019-03-26T08:41:24.000Z</updated>
+    <title>Scala中的对象</title>
+    <link href="http://javachen.github.io/2015/06/19/scala-object/"/>
+    <id>http://javachen.github.io/2015/06/19/scala-object/</id>
+    <published>2015-06-18T16:00:00.000Z</published>
+    <updated>2019-06-29T12:22:07.813Z</updated>
     
     <summary type="html">
     
-      最近基于Bootstrap修改了博客主题，使其支持响应式布局，并且将导航菜单固定住，这样做带来的影响是，点击锚点链接后，锚点没有正确的定位，有一部分内容被导航遮挡住了。
+      主要记录Scala中对象相关的知识点。Scala中没有静态方法或静态字段，但可以使用object这个语法结构来实现相同的功能。对象与类在语法层面上很相似，除了不能提供构造器参数外，对象可以拥有类的所有特性。
     
     </summary>
     
-      <category term="web" scheme="http://blog.javachen.com/categories/web/"/>
+      <category term="scala" scheme="http://javachen.github.io/categories/scala/"/>
     
     
-      <category term="web" scheme="http://blog.javachen.com/tags/web/"/>
-    
-      <category term="javascript" scheme="http://blog.javachen.com/tags/javascript/"/>
+      <category term="scala" scheme="http://javachen.github.io/tags/scala/"/>
     
   </entry>
   
   <entry>
     <title>使用Scala高价函数简化代码</title>
-    <link href="http://blog.javachen.com/2015/06/18/simplify-code-using-scala-higher-order-function/"/>
-    <id>http://blog.javachen.com/2015/06/18/simplify-code-using-scala-higher-order-function/</id>
+    <link href="http://javachen.github.io/2015/06/18/simplify-code-using-scala-higher-order-function/"/>
+    <id>http://javachen.github.io/2015/06/18/simplify-code-using-scala-higher-order-function/</id>
     <published>2015-06-17T16:00:00.000Z</published>
     <updated>2019-03-26T08:41:24.000Z</updated>
     
@@ -557,17 +589,17 @@
     
     </summary>
     
-      <category term="scala" scheme="http://blog.javachen.com/categories/scala/"/>
+      <category term="scala" scheme="http://javachen.github.io/categories/scala/"/>
     
     
-      <category term="scala" scheme="http://blog.javachen.com/tags/scala/"/>
+      <category term="scala" scheme="http://javachen.github.io/tags/scala/"/>
     
   </entry>
   
   <entry>
     <title>推荐系统笔记</title>
-    <link href="http://blog.javachen.com/2015/06/15/note-about-recommendation-system/"/>
-    <id>http://blog.javachen.com/2015/06/15/note-about-recommendation-system/</id>
+    <link href="http://javachen.github.io/2015/06/15/note-about-recommendation-system/"/>
+    <id>http://javachen.github.io/2015/06/15/note-about-recommendation-system/</id>
     <published>2015-06-14T16:00:00.000Z</published>
     <updated>2019-03-26T08:41:24.000Z</updated>
     
@@ -577,19 +609,19 @@
     
     </summary>
     
-      <category term="mahout" scheme="http://blog.javachen.com/categories/mahout/"/>
+      <category term="mahout" scheme="http://javachen.github.io/categories/mahout/"/>
     
     
-      <category term="recommendation" scheme="http://blog.javachen.com/tags/recommendation/"/>
+      <category term="recommendation" scheme="http://javachen.github.io/tags/recommendation/"/>
     
   </entry>
   
   <entry>
     <title>使用Mahout实现协同过滤</title>
-    <link href="http://blog.javachen.com/2015/06/10/collaborative-filtering-using-mahout/"/>
-    <id>http://blog.javachen.com/2015/06/10/collaborative-filtering-using-mahout/</id>
+    <link href="http://javachen.github.io/2015/06/10/collaborative-filtering-using-mahout/"/>
+    <id>http://javachen.github.io/2015/06/10/collaborative-filtering-using-mahout/</id>
     <published>2015-06-09T16:00:00.000Z</published>
-    <updated>2019-03-26T08:41:24.000Z</updated>
+    <updated>2019-06-29T12:23:34.060Z</updated>
     
     <summary type="html">
     
@@ -597,52 +629,12 @@
     
     </summary>
     
-      <category term="mahout" scheme="http://blog.javachen.com/categories/mahout/"/>
+      <category term="mahout" scheme="http://javachen.github.io/categories/mahout/"/>
     
     
-      <category term="mahout" scheme="http://blog.javachen.com/tags/mahout/"/>
+      <category term="mahout" scheme="http://javachen.github.io/tags/mahout/"/>
     
-      <category term="recommendation" scheme="http://blog.javachen.com/tags/recommendation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spark On YARN内存分配</title>
-    <link href="http://blog.javachen.com/2015/06/09/memory-in-spark-on-yarn/"/>
-    <id>http://blog.javachen.com/2015/06/09/memory-in-spark-on-yarn/</id>
-    <published>2015-06-08T16:00:00.000Z</published>
-    <updated>2019-03-26T08:41:24.000Z</updated>
-    
-    <summary type="html">
-    
-      本文主要了解Spark On YARN部署模式下的内存分配情况。
-    
-    </summary>
-    
-      <category term="spark" scheme="http://blog.javachen.com/categories/spark/"/>
-    
-    
-      <category term="spark" scheme="http://blog.javachen.com/tags/spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spark配置参数</title>
-    <link href="http://blog.javachen.com/2015/06/07/spark-configuration/"/>
-    <id>http://blog.javachen.com/2015/06/07/spark-configuration/</id>
-    <published>2015-06-06T16:00:00.000Z</published>
-    <updated>2019-03-26T08:41:24.000Z</updated>
-    
-    <summary type="html">
-    
-      本文主要整理Spark的相关配置参数，便于查询和方便调优。
-    
-    </summary>
-    
-      <category term="spark" scheme="http://blog.javachen.com/categories/spark/"/>
-    
-    
-      <category term="spark" scheme="http://blog.javachen.com/tags/spark/"/>
+      <category term="recommendation" scheme="http://javachen.github.io/tags/recommendation/"/>
     
   </entry>
   

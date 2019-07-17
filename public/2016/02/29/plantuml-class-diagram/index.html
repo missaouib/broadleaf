@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,47 +88,66 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="plantuml,uml,class diagram">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="主要介绍如何使用PlantUML的语法生成类图。">
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="主要介绍如何使用PlantUML的语法生成类图。">
 <meta name="keywords" content="plantuml,uml,class diagram">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PlantUML类图">
-<meta property="og:url" content="http://blog.javachen.com/2016/02/29/plantuml-class-diagram/index.html">
+<meta property="og:url" content="http://javachen.github.io/2016/02/29/plantuml-class-diagram/index.html">
 <meta property="og:site_name" content="JavaChen Blog">
 <meta property="og:description" content="主要介绍如何使用PlantUML的语法生成类图。">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://plantuml.com:80/plantuml/png/Syv9B2usC5ImgT7LLN06SuoidcsU_RHd6XU4QwnW0vSoiNhQklb5unIebAc25bpApEhvxfQd4pgWKkOA-N0f2wiNZRCGKfOAC1b30m00">
 <meta property="og:image" content="http://plantuml.com:80/plantuml/png/Syv9B2usD5ImgT7JKt06SuoidgwRzxnl0nU4QwnW0vSoiNgoR-wBhTEWKgOAMd0fCwYOkK8-NCm2AcQf01CoCW00">
 <meta property="og:image" content="http://plantuml.com:80/plantuml/png/Syv9B2usC5HGCbHIqDBLLL3AJSohL59m1WiRALWf9EVdbIHcvXLpGOIC5VA1gY1i4w1qOdfwKMfwOabcVXvKXQc2hguTs3m8tmm0">
@@ -170,7 +183,7 @@
 <meta property="og:image" content="http://plantuml.com:80/plantuml/png/RSuz3i8m38RXFQVm24CFKR4YTIWNS9CFoIXDaEs17t5t4XWGYD6VtaVoj9mGdOQ1niLSEVfUp0DHY9dDQ5JbQvy85qT9HjDRt5iZnSdaXl3ee5tG8qVGLx-hEJSWjRmCfxJP_e8P__hF5mS5UYFhEMD5SQEvgYEryGa0">
 <meta property="og:image" content="http://plantuml.com:80/plantuml/png/bPBRQi9048RlzodcCeMQ5sW8LOYqK6cnJp1kHhicxeRPqJPetxqvaQOQXIviOFddzFsJ0dM66u8ruuu-7MSGHNENfyHnV5IWe3h62l4QDS4ClT5BAfmtuhY4OwFN9u6riMdmkjgI5YYokuTUUZ5UeYHk0gPv7WoaWpCfU3nGa01PCLAUY_iYHRakC-tSPVPt6zHyTOxUmtJbXL7BaraHswhY02AAu77mZEC1rYHfwYxGLYPnrwLxzRrKVNzDUaCMI_pN9jKxqSbjuTQLMJbtBWZ3i9j_BCuJilu8teMDtK21KhMpz_LkO8TVI_BxNEhqPfWMkeUzd6YKUP3wR1ULiroEizJ-glD_8Jg5uINxUDYDTQYRgpfD9ZUmr0XetUx_6LVvVm00">
 <meta property="og:image" content="http://plantuml.com:80/plantuml/png/bP9HJiCm38RVUuf8FAydg2PDXGeaeDB63c1IhmrBx2frDoJOtUbQDBLbbE8tv_-S-BT3uB0gGQDwWmE45YXNDxTjg8z0DQ4jL9MwyvwzYY9LaovGxp5JosMhlnIUZ_1gKKMVYqK7NXNUDPPYc5hnadLYR9dmcMLJboLxmMoINjSank6G6HzswCeRAHoAqNFe-EmrXahcm0_MOWvsvVFQ8VsdP2CWEEqGTnQrc0Ec9Neu2wFx9u2UbsQa2TVK6-UfAGzek7N3evrV_a8uDf0Es-ZbtrjEap-8n5YSrnQXNElBSFZZqYUmE_OEi-twSVZ-hoLRsXCVwPvxsrR1wGi0">
-<meta property="og:updated_time" content="2019-03-27T13:00:47.000Z">
+<meta property="og:updated_time" content="2019-06-29T12:24:11.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PlantUML类图">
 <meta name="twitter:description" content="主要介绍如何使用PlantUML的语法生成类图。">
@@ -178,37 +191,21 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2016/02/29/plantuml-class-diagram/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://blog.javachen.com/2016/02/29/plantuml-class-diagram/">
-
-
-
-
 
   <title>PlantUML类图 | JavaChen Blog</title>
   
@@ -217,7 +214,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -230,9 +228,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -244,7 +270,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -254,13 +280,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -268,76 +297,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -366,12 +433,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -384,16 +459,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2016/02/29/plantuml-class-diagram/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2016/02/29/plantuml-class-diagram/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -406,11 +483,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">PlantUML类图</h2>
+          <h2 class="post-title" itemprop="name headline">PlantUML类图<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2016/2016-02-29-plantuml-class-diagram.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -418,13 +504,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-29T00:00:00+08:00">
-                2016-02-29
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2016-02-29 00:00:00" itemprop="dateCreated datePublished" datetime="2016-02-29T00:00:00+08:00">2016-02-29</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:24:11" itemprop="dateModified" datetime="2019-06-29T20:24:11+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -440,11 +543,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
 
                 
                 
@@ -453,6 +552,7 @@
           
 
           
+            
             
           
 
@@ -470,6 +570,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -477,7 +578,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -494,12 +595,12 @@
 </ul>
 <p>以上是常见的六种关系，<code>--</code>可以替换成<code>..</code>就可以得到虚线。另外，其中的符号是可以改变方向的，例如：<code>&lt;|--</code>表示右边的类泛化左边的类；<code>--|&gt;</code>表示左边的类泛化右边的类。</p>
 <p>例如，下面的是<code>--</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line"></span><br><span class="line">Class01 &lt;|-- Class02:泛化</span><br><span class="line">Class03 &lt;-- Class04:关联</span><br><span class="line">Class05 *-- Class06:组合</span><br><span class="line">Class07 o-- Class08:聚合</span><br><span class="line">Class09 -- Class10</span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@startuml</span></span><br><span class="line"></span><br><span class="line">Class01 &lt;|-- <span class="attribute">Class02</span>:泛化</span><br><span class="line">Class03 &lt;-- <span class="attribute">Class04</span>:关联</span><br><span class="line">Class05 *-- <span class="attribute">Class06</span>:组合</span><br><span class="line">Class07 o-- <span class="attribute">Class08</span>:聚合</span><br><span class="line">Class09 -- Class10</span><br><span class="line"></span><br><span class="line"><span class="variable">@enduml</span></span><br></pre></td></tr></table></figure>
 
 <p>生成的类图如下：</p>
 <p><img src="http://plantuml.com:80/plantuml/png/Syv9B2usC5ImgT7LLN06SuoidcsU_RHd6XU4QwnW0vSoiNhQklb5unIebAc25bpApEhvxfQd4pgWKkOA-N0f2wiNZRCGKfOAC1b30m00" alt></p>
 <p><code>--</code>可以替换成<code>..</code>，对应的虚线：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line"></span><br><span class="line">Class11 &lt;|.. Class12:实现</span><br><span class="line">Class13 &lt;.. Class14:依赖</span><br><span class="line">Class15 *.. Class16</span><br><span class="line">Class17 o.. Class18</span><br><span class="line">Class19 .. Class20</span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@startuml</span></span><br><span class="line"></span><br><span class="line">Class11 &lt;|.. <span class="attribute">Class12</span>:实现</span><br><span class="line">Class13 &lt;.. <span class="attribute">Class14</span>:依赖</span><br><span class="line">Class15 *.. Class16</span><br><span class="line">Class17 o.. Class18</span><br><span class="line">Class19 .. Class20</span><br><span class="line"></span><br><span class="line"><span class="variable">@enduml</span></span><br></pre></td></tr></table></figure>
 
 <p>生成的类图如下：</p>
 <p><img src="http://plantuml.com:80/plantuml/png/Syv9B2usD5ImgT7JKt06SuoidgwRzxnl0nU4QwnW0vSoiNgoR-wBhTEWKgOAMd0fCwYOkK8-NCm2AcQf01CoCW00" alt></p>
@@ -556,7 +657,7 @@
 <p>注释使用<code>note left of</code>、<code>note right of</code>、<code>note top of</code>、<code>note bottom of</code>关键字进行定义。</p>
 <p>你也可以在最后一个定义的类上使用<code>note left</code>、<code>note right</code>、<code>note top</code>、<code>note bottom</code>关键字。</p>
 <p>注释可以使用<code>..</code>与其他对象进行连接。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">class Object &lt;&lt; general &gt;&gt;</span><br><span class="line">Object &lt;|--- ArrayList</span><br><span class="line"></span><br><span class="line">note top of Object : In java, every class\nextends this one.</span><br><span class="line"></span><br><span class="line">note &quot;This is a floating note&quot; as N1</span><br><span class="line">note &quot;This note is connected\nto several objects.&quot; as N2</span><br><span class="line">Object .. N2</span><br><span class="line">N2 .. ArrayList</span><br><span class="line"></span><br><span class="line">class Foo</span><br><span class="line">note left: On last defined class</span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Object</span> &lt;&lt; <span class="title">general</span> &gt;&gt;</span></span><br><span class="line">Object &lt;|--- ArrayList</span><br><span class="line"></span><br><span class="line">note top <span class="keyword">of</span> Object : In java, every <span class="class"><span class="keyword">class</span>\<span class="title">nextends</span> <span class="title">this</span> <span class="title">one</span>.</span></span><br><span class="line"></span><br><span class="line">note <span class="string">"This is a floating note"</span> <span class="keyword">as</span> N1</span><br><span class="line">note <span class="string">"This note is connected\nto several objects."</span> <span class="keyword">as</span> N2</span><br><span class="line">Object .. N2</span><br><span class="line">N2 .. ArrayList</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line">note left: On last defined <span class="class"><span class="keyword">class</span></span></span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
 
 <p><img src="http://plantuml.com:80/plantuml/png/JOx12eD034JlViNWkGhrA2BqKYWKlVJePQlHAf8KDqY5VdntjO8GI7QIsNdrQAn5-HoeLcGPEcAQp8Wy3tRn6qKHBjDabdjlDGXObA3oXhIxCSMDCPZPd40pJGjg_st5z57Yna9VlOKmnNzt-F22AuDs5ACzT_2B4CQYE1-Frj7rMfXT53KLgy3w68SfQxwDDsEoCyUnVnI97mxaAnMk8bl0IAscA1bELZJKzapDXXxy0000" alt></p>
 <h1 id="注释的其他特性"><a href="#注释的其他特性" class="headerlink" title="注释的其他特性"></a>注释的其他特性</h1><p>注释可以使用一些html标签进行修饰：</p>
@@ -570,11 +671,11 @@
 <li><code>&lt;size:nn&gt;</code> 该表font大小</li>
 <li><code>&lt;img src=&quot;file&quot;&gt;</code> 或者 <code>&lt;img:file&gt;</code>，文件必须是可以访问的。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line"></span><br><span class="line">class Foo</span><br><span class="line">note left: On last defined class</span><br><span class="line"></span><br><span class="line">note top of Object</span><br><span class="line">  In java, &lt;size:18&gt;every&lt;/size&gt; &lt;u&gt;class&lt;/u&gt;</span><br><span class="line">  &lt;b&gt;extends&lt;/b&gt;</span><br><span class="line">  &lt;i&gt;this&lt;/i&gt; one.</span><br><span class="line">end note</span><br><span class="line"></span><br><span class="line">note as N1</span><br><span class="line">  This note is &lt;u&gt;also&lt;/u&gt;</span><br><span class="line">  &lt;b&gt;&lt;color:royalBlue&gt;on several&lt;/color&gt;</span><br><span class="line">  &lt;s&gt;words&lt;/s&gt; lines</span><br><span class="line">  And this is hosted by &lt;img:sourceforge.jpg&gt;</span><br><span class="line">end note</span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line"></span><br><span class="line">class Foo</span><br><span class="line">note left: On<span class="built_in"> last</span> defined class</span><br><span class="line"></span><br><span class="line">note top <span class="keyword">of</span> Object</span><br><span class="line">  In java, <span class="xml"><span class="tag">&lt;<span class="name">size:18</span>&gt;</span>every<span class="tag">&lt;/<span class="name">size</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span>class<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">b</span>&gt;</span>extends<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">i</span>&gt;</span>this<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span> one.</span><br><span class="line"><span class="keyword">end</span> note</span><br><span class="line"></span><br><span class="line">note <span class="keyword">as</span> N1</span><br><span class="line">  This note <span class="literal">is</span> <span class="xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span>also<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">b</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">color:royalBlue</span>&gt;</span>on several<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><span class="xml"></span></span><br><span class="line"><span class="xml">  </span><span class="xml"><span class="tag">&lt;<span class="name">s</span>&gt;</span>words<span class="tag">&lt;/<span class="name">s</span>&gt;</span></span><span class="xml"> lines</span></span><br><span class="line"><span class="xml">  And this is hosted by </span><span class="xml"><span class="tag">&lt;<span class="name">img:sourceforge.jpg</span>&gt;</span></span></span><br><span class="line"><span class="xml">end note</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">@enduml</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="http://plantuml.com/imgp/classes_011.png" alt></p>
 <h1 id="连接上的注释"><a href="#连接上的注释" class="headerlink" title="连接上的注释"></a>连接上的注释</h1><p>可以在连接上定义注释，只需要使用<code>note on link</code>，你可以使用<code>note left on link</code>、<code>note right on link</code>、<code>note top on link</code>、<code>note bottom on link</code>来改变注释的位置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line"></span><br><span class="line">class Dummy</span><br><span class="line">Dummy --&gt; Foo : A link</span><br><span class="line">note on link #red: note that is red</span><br><span class="line"></span><br><span class="line">Dummy --&gt; Foo2 : Another link</span><br><span class="line">note right on link #blue</span><br><span class="line">    this is my note on right link</span><br><span class="line">    and in blue</span><br><span class="line">end note</span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line"></span><br><span class="line"><span class="built_in">class</span> Dummy</span><br><span class="line">Dummy <span class="comment">--&gt; Foo : A link</span></span><br><span class="line">note <span class="keyword">on</span> link <span class="comment">#red: note that is red</span></span><br><span class="line"></span><br><span class="line">Dummy <span class="comment">--&gt; Foo2 : Another link</span></span><br><span class="line">note right <span class="keyword">on</span> link <span class="comment">#blue</span></span><br><span class="line">    this <span class="keyword">is</span> <span class="keyword">my</span> note <span class="keyword">on</span> right link</span><br><span class="line">    <span class="keyword">and</span> <span class="keyword">in</span> blue</span><br><span class="line"><span class="keyword">end</span> note</span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
 
 <p><img src="http://plantuml.com:80/plantuml/png/LOqn2iCm34Ndw1GVCcVfcA5GABs7quZOn971LeRUlefAIGj2IEAzhsSEhU6-RzkBl6COhdYKWX4tv2GhIL564L_GLvv7-4bZKAG6kz2_UpbaOoBNduYQbgXdq9HtfawZ9LYP_FtpuTphWin80cVPveEXDm00" alt></p>
 <h1 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h1><p>可以使用<code>abstract</code>或者<code>interface</code>来定义抽象类或者接口，也可以使用<code>annotation</code>、<code>enum</code>关键字来定义注解或者枚举。</p>
@@ -582,7 +683,7 @@
 
 <p><img src="http://plantuml.com:80/plantuml/png/POzF2u904CNlyodcM0U_GPV8eA0IKec83gDCiQ6ZxAw7_dttT5LKEWtllT-ysQN4M4sfnJGZOt3PoPqo5gZFUdTLP1cdLXK2IYph6wMC3XtaY84cmiN7ywQz0p8DnwjJfZtopxbiqZqMNRlMz7GPT7_i3Nm3Of0ywgxB5JdZdCNwPAcsZNhnR0vV09OgnqZb78jgL_pbEQp79eYFpTnl3t6q3XkMH0fBxcLXLPQQZJcH5YLt0py0" alt></p>
 <h1 id="使用非字母"><a href="#使用非字母" class="headerlink" title="使用非字母"></a>使用非字母</h1><p>类名可以使用非字母的方式显示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">class &quot;This is my class&quot; as class1</span><br><span class="line">class class2 as &quot;It works this way too&quot;</span><br><span class="line"></span><br><span class="line">class2 *-- &quot;foo/dummy&quot; : use</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@startuml</span></span><br><span class="line">class <span class="string">"This is my class"</span> as class1</span><br><span class="line">class class2 as <span class="string">"It works this way too"</span></span><br><span class="line"></span><br><span class="line">class2 *-- <span class="string">"foo/dummy"</span> : use</span><br><span class="line"><span class="variable">@enduml</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="http://plantuml.com:80/plantuml/png/Iyv9B2vMK0h9o2nM0ABSIeLaa8YIGc8nX6N81QOW72EGi99dYK9vVb5siK89I5TvOgL2INw-4XSNL8cMhgw2Kbf-ldvAQMvkfPA2bK9fSIe0" alt></p>
 <h1 id="隐藏字段和方法"><a href="#隐藏字段和方法" class="headerlink" title="隐藏字段和方法"></a>隐藏字段和方法</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@startuml</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy1</span> </span>&#123;</span><br><span class="line">  +myMethods()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy2</span> </span>&#123;</span><br><span class="line">  +hiddenMethod()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy3</span> &lt;&lt;<span class="title">Serializable</span>&gt;&gt; </span>&#123;</span><br><span class="line">    String name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hide members</span><br><span class="line">hide &lt;&lt;Serializable&gt;&gt; circle</span><br><span class="line">show Dummy1 methods</span><br><span class="line">show &lt;&lt;Serializable&gt;&gt; fields</span><br><span class="line"></span><br><span class="line"><span class="meta">@enduml</span></span><br></pre></td></tr></table></figure>
@@ -642,7 +743,7 @@
 <p><img src="http://plantuml.com:80/plantuml/png/Iyv9B2vM22ufJKdDAr6evb9Gy4lCJUMgvO89AHdewMafAUZgAYWPWbdE-QL5nQbS6b05Eb01JGKz1TUyeloSd5oWA1TNCjXWX0ZOx9IY_08DJI0ZEJ4lEJK7oAm50000" alt></p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>还有一些特性，如设置皮肤参数、颜色、拆分大文件等等，请参考<a href="http://zh.plantuml.com/classes.html" target="_blank" rel="noopener">官方文档</a>。</p>
 <h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>一个完整的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">@startuml </span><br><span class="line"></span><br><span class="line">title class-diagram.png</span><br><span class="line">scale 1.5</span><br><span class="line">/&apos;组合关系(composition)&apos;/</span><br><span class="line">class Human &#123;</span><br><span class="line">    - Head mHead;</span><br><span class="line">    - Heart mHeart;</span><br><span class="line">    ..</span><br><span class="line">    - CreditCard mCard;</span><br><span class="line">    --</span><br><span class="line">    + void travel(Vehicle vehicle);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Human *-up- Head : contains &gt;</span><br><span class="line">Human *-up- Heart : contains &gt;</span><br><span class="line"></span><br><span class="line">/&apos;聚合关系(aggregation)&apos;/</span><br><span class="line">Human o-left- CreditCard : owns &gt;</span><br><span class="line"></span><br><span class="line">/&apos;依赖关系(dependency)&apos;/</span><br><span class="line">Human .down.&gt; Vehicle : dependent</span><br><span class="line"></span><br><span class="line">/&apos;关联关系(association&apos;/</span><br><span class="line">Human -down-&gt; Company : associate</span><br><span class="line"></span><br><span class="line">/&apos;继承关系(extention)&apos;/</span><br><span class="line">interface IProgram &#123;</span><br><span class="line">    + void program();</span><br><span class="line">&#125;</span><br><span class="line">class Programmer &#123;</span><br><span class="line">    + void program();</span><br><span class="line">&#125;</span><br><span class="line">Programmer -left-|&gt; Human : extend</span><br><span class="line">Programmer .up.|&gt; IProgram : implement</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@startuml</span> </span><br><span class="line"></span><br><span class="line">title <span class="class"><span class="keyword">class</span>-<span class="title">diagram</span>.<span class="title">png</span></span></span><br><span class="line"><span class="class"><span class="title">scale</span> 1.5</span></span><br><span class="line"><span class="class">/'组合关系(<span class="title">composition</span>)'/</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Human</span> &#123;</span></span><br><span class="line">    - Head mHead;</span><br><span class="line">    - Heart mHeart;</span><br><span class="line">    ..</span><br><span class="line">    - CreditCard mCard;</span><br><span class="line">    --</span><br><span class="line">    + <span class="keyword">void</span> travel(Vehicle vehicle);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Human *-up- <span class="string">Head :</span> contains &gt;</span><br><span class="line">Human *-up- <span class="string">Heart :</span> contains &gt;</span><br><span class="line"></span><br><span class="line"><span class="regexp">/'聚合关系(aggregation)'/</span></span><br><span class="line">Human o-left- <span class="string">CreditCard :</span> owns &gt;</span><br><span class="line"></span><br><span class="line"><span class="regexp">/'依赖关系(dependency)'/</span></span><br><span class="line">Human .down.&gt; <span class="string">Vehicle :</span> dependent</span><br><span class="line"></span><br><span class="line"><span class="regexp">/'关联关系(association'/</span></span><br><span class="line">Human -down-&gt; <span class="string">Company :</span> associate</span><br><span class="line"></span><br><span class="line"><span class="regexp">/'继承关系(extention)'/</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IProgram</span> &#123;</span></span><br><span class="line">    + <span class="keyword">void</span> program();</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Programmer</span> &#123;</span></span><br><span class="line">    + <span class="keyword">void</span> program();</span><br><span class="line">&#125;</span><br><span class="line">Programmer -left-|&gt; <span class="string">Human :</span> extend</span><br><span class="line">Programmer .up.|&gt; <span class="string">IProgram :</span> implement</span><br><span class="line"><span class="meta">@enduml</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="http://plantuml.com:80/plantuml/png/VPA_JiCm4CPtFyLjRK5nnS2IIbcwb8s9tRAlmL9iHuvRg82X4aYmCI0696OUe6Ag12y3j8-14plzmq06MxhxVkVlxkAaAn1umQeg4PBbbYbQwfnKdFdu4Jqc_SvgUVlzUFzzjrWjbbrkL6agwQJHlKwVD2IC9effk2BWlmH6o0Ie-Xni8zOr8Uj2ZDAO6beKqWsPzKXzHYHfhaEO6Yd0MJR5edk6vv9xLzDmzmRaXf3mz44oAUF3AN2Z7PEwWknlrflOI_lcrlENRNCipotch6qkq2OfSEpsdAPWBje2Nn-lw_VdM41WYLgWvhCjJuKNqmnQ-ocqAbVpdbpFdre3LMMuR0ni-AJcamo6Vl9CpppVgf0qstdxUVYCF5uwNpRQbzgX7JEES79gJRtQkA8urZ84kyqWmoAZJg7zHxeZ2gEvpk8Va49ZGEnAwAIaNh2na89KPO7A-_m5" alt></p>
 <p>下面例子，参考自<a href="https://avono-support.atlassian.net/wiki/display/PUML/Class+Diagram" target="_blank" rel="noopener">Class Diagram</a>。</p>
@@ -665,35 +766,72 @@
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2016/02/29/plantuml-class-diagram/" title="PlantUML类图">PlantUML类图</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -702,77 +840,37 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2016/02/29/plantuml-class-diagram/" title="PlantUML类图">http://blog.javachen.com/2016/02/29/plantuml-class-diagram/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/uml/" rel="tag"># uml</a>
+            <a href="/tags/plantuml/" rel="tag"><i class="fa fa-tag"></i> plantuml</a>
           
-            <a href="/tags/plantuml/" rel="tag"># plantuml</a>
+            <a href="/tags/uml/" rel="tag"><i class="fa fa-tag"></i> uml</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/02/26/source-code-analytic-of-mybatis-configuration/" rel="next" title="MyBatis源码分析：Configuration">
-                <i class="fa fa-chevron-left"></i> MyBatis源码分析：Configuration
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/02/29/plantuml-install-and-usage/" rel="prev" title="PlantUML安装和使用">
-                PlantUML安装和使用 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -809,15 +907,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/26/source-code-analytic-of-mybatis-configuration/" rel="next" title="MyBatis源码分析：Configuration">
+                <i class="fa fa-chevron-left"></i> MyBatis源码分析：Configuration
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/29/plantuml-install-and-usage/" rel="prev" title="PlantUML安装和使用">
+                PlantUML安装和使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -831,11 +964,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -856,6 +991,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -869,11 +1005,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -887,96 +1026,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -990,8 +1044,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -1040,6 +1145,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1073,8 +1180,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1243,9 +1351,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1319,9 +1427,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

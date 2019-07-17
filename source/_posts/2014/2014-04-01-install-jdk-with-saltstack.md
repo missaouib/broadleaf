@@ -105,7 +105,7 @@ Total:     4
 
 从上可以看出成功了4个，失败为0。
 
-安装了jdk之后，需要重启minion(还需要**修改minion启动脚本，让minion加载上系统环境变量**，详细说明，见[安装SaltStack和halite](/2013/11/11/install-saltstack-and-halite.html))才能通过下面脚本运行java相关的命令，如java、jps等等：
+安装了jdk之后，需要重启minion(还需要**修改minion启动脚本，让minion加载上系统环境变量**，详细说明，见[安装SaltStack和halite](/images/11/11/install-saltstack-and-halite.html))才能通过下面脚本运行java相关的命令，如java、jps等等：
 
 ~~~python
 salt '*' cmd.run 'jps'

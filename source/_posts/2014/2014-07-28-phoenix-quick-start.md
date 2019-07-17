@@ -23,7 +23,7 @@ Phoenix 是 Salesforce.com 开源的一个 Java 中间件，可以让开发者�
 >
 >Phoenix 为 HBase 提供 SQL 的查询接口，它在客户端解析SQL语句，然后转换为 HBase native 的客户端语言，并行执行查询然后生成标准的JDBC结果集。
 
-Phoenix [最值得关注的一些特性](http://phoenix-hbase.blogspot.com/2013/01/announcing-phoenix-sql-layer-over-hbase.html) 有：
+Phoenix [最值得关注的一些特性](http://phoenix-hbase.blogspot.com/images/01/announcing-phoenix-sql-layer-over-hbase.html) 有：
 
 - 嵌入式的JDBC驱动，实现了大部分的java.sql接口，包括元数据API
 - 可以通过多部行键或是键/值单元对列进行建模
@@ -40,7 +40,7 @@ SQL Support 可以参考 [language reference](http://phoenix.apache.org/language
 - 完全的事物支持
 - 嵌套查询
 - 关联操作: Union、Intersect、Minus
-- 各种各样的内建函数。可以参考[这篇文章](http://phoenix-hbase.blogspot.com/2013/04/how-to-add-your-own-built-in-function.html)添加自定义函数。
+- 各种各样的内建函数。可以参考[这篇文章](http://phoenix-hbase.blogspot.com/images/04/how-to-add-your-own-built-in-function.html)添加自定义函数。
 
 
 # 2. 安装

@@ -13,9 +13,9 @@ published: true
 
 ---
 
->这是一篇翻译，原文：[Spring AOP Example Tutorial – Aspect, Advice, Pointcut, JoinPoint, Annotations, XML Configuration](http://www.journaldev.com/2583/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations-xml-configuration)
+>这是一篇翻译，原文：[Spring AOP Example Tutorial – Aspect, Advice, Pointcut, JoinPoint, Annotations, XML Configuration](http://www.journaldev.com/2583-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations-xml-configuration)
 
-Spring 框架发展出了两个核心概念：[依赖注入](http://www.journaldev.com/2394/dependency-injection-design-pattern-in-java-example-tutorial) 和面向切面编程（AOP）。我们已经了解了 [Spring 的依赖注入](http://www.journaldev.com/2410/spring-dependency-injection-example-with-annotations-and-xml-configuration) 是如何实现的，今天我们来看看面向切面编程的核心概念以及 Spring 框架是如何实现它的。
+Spring 框架发展出了两个核心概念：[依赖注入](http://www.journaldev.com/2394/dependency-injection-design-pattern-in-java-example-tutorial) 和面向切面编程（AOP）。我们已经了解了 [Spring 的依赖注入](http://www.journaldev.com/2410-dependency-injection-example-with-annotations-and-xml-configuration) 是如何实现的，今天我们来看看面向切面编程的核心概念以及 Spring 框架是如何实现它的。
 
 # AOP 概要
 
@@ -47,11 +47,11 @@ AOP 任务将横切任务的直接依赖从类中抽离出来，因为我们不�
 
 上面提到的知识点可能会使我们困惑，但是当我们看到 Spring AOP 的实现之后，就会豁然开朗了。下面我们来创建一个 Spring AOP 的项目。Spring 支持使用 AspectJ 的注解来创建切面，为了简单，我们将直接使用这些注解。上面提到的所有 AOP 的注解都定义在 org.aspectj.lang.annotation 包中。
 
-Spring Tool Suite 提供了对 AspectJ 的支持，所以建议你使用它来创建项目。如果你对 STS 不熟悉，可以参考我的 [Spring MVC 教程](http://www.journaldev.com/2433/spring-mvc-tutorial-for-beginners-with-spring-tool-suite) 来熟悉如何使用它。
+Spring Tool Suite 提供了对 AspectJ 的支持，所以建议你使用它来创建项目。如果你对 STS 不熟悉，可以参考我的 [Spring MVC 教程](http://www.journaldev.com/2433-mvc-tutorial-for-beginners-with-spring-tool-suite) 来熟悉如何使用它。
 
 创建一个简单的 Spring Maven 项目，通过 pom.xml 引入 Spring 的核心库。在项目创建成功之后，我们可以看到下面的目录结构：
 
-![](http://www.journaldev.com/wp-content/uploads/2014/03/Spring-AOP-Example-Project.png)
+![](http://www.journaldev.com/wp-content/uploads/images/03/Spring-AOP-Example-Project.png)
 
 # Spring AOP AspectJ 依赖
 
@@ -73,7 +73,7 @@ Spring 框架默认提供了对 AOP 的支持，既然我们需要使用 AspectJ
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
  
         <!-- Spring -->
-        <spring-framework.version>4.0.2.RELEASE</spring-framework.version>
+        <spring-framework.version>4.0.2.RELEASE<-framework.version>
  
         <!-- Logging -->
         <logback.version>1.0.13</logback.version>
@@ -201,8 +201,8 @@ public class EmployeeService {
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:aop="http://www.springframework.org/schema/aop"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans-beans-4.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop-aop-4.0.xsd">
  
 <!-- Enable AspectJ style of Spring AOP -->
 <aop:aspectj-autoproxy />

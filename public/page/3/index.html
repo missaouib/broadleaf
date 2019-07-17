@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,67 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="Rumblings by a coder on Java、Hadoop and so on">
-<meta name="keywords" content="java,spring,mybatis,hadoop,hive,hbase">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JavaChen Blog">
-<meta property="og:url" content="http://blog.javachen.com/page/3/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="Rumblings by a coder on Java、Hadoop and so on">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaChen Blog">
-<meta name="twitter:description" content="Rumblings by a coder on Java、Hadoop and so on">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -166,12 +135,40 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/page/3/">
-
+  
 
 
 
+
+  <meta name="description" content="Rumblings by a coder on Java、Hadoop and so on">
+<meta name="keywords" content="java,spring,mybatis,hadoop,hive,hbase">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JavaChen Blog">
+<meta property="og:url" content="http://javachen.github.io/page/3/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="Rumblings by a coder on Java、Hadoop and so on">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaChen Blog">
+<meta name="twitter:description" content="Rumblings by a coder on Java、Hadoop and so on">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/page/3/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>JavaChen Blog</title>
   
@@ -180,7 +177,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -193,9 +191,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -208,7 +234,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -218,13 +244,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -232,76 +261,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -330,12 +397,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -348,16 +423,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/06/05/yarn-memory-and-cpu-configuration/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/06/09/memory-in-spark-on-yarn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -372,11 +449,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/06/05/yarn-memory-and-cpu-configuration/" itemprop="url">YARN的内存和CPU配置</a></h2>
+                
+                <a href="/2015/06/09/memory-in-spark-on-yarn/" class="post-title-link" itemprop="url">Spark On YARN内存分配</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -384,13 +470,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-05T00:00:00+08:00">
-                2015-06-05
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-06-09 00:00:00" itemprop="dateCreated datePublished" datetime="2015-06-09T00:00:00+08:00">2015-06-09</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-04 00:43:31" itemprop="dateModified" datetime="2019-07-04T00:43:31+08:00">2019-07-04</time>
+              
             
           </span>
 
@@ -406,11 +509,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mapreduce/" itemprop="url" rel="index">
-                    <span itemprop="name">mapreduce</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
 
                 
                 
@@ -419,6 +518,7 @@
           
 
           
+            
             
           
 
@@ -432,6 +532,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -439,7 +540,375 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          本文主要了解Spark On YARN部署模式下的内存分配情况。
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/06/09/memory-in-spark-on-yarn/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+      
+    
+    
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/06/07/spark-configuration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2015/06/07/spark-configuration/" class="post-title-link" itemprop="url">Spark配置参数</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-06-07 00:00:00" itemprop="dateCreated datePublished" datetime="2015-06-07T00:00:00+08:00">2015-06-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:23:34" itemprop="dateModified" datetime="2019-06-29T20:23:34+08:00">2019-06-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          本文主要整理Spark的相关配置参数，便于查询和方便调优。
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/06/07/spark-configuration/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+      
+    
+    
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/06/05/yarn-memory-and-cpu-configuration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2015/06/05/yarn-memory-and-cpu-configuration/" class="post-title-link" itemprop="url">YARN的内存和CPU配置</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-06-05 00:00:00" itemprop="dateCreated datePublished" datetime="2015-06-05T00:00:00+08:00">2015-06-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-02 01:10:51" itemprop="dateModified" datetime="2019-06-02T01:10:51+08:00">2019-06-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mapreduce/" itemprop="url" rel="index"><span itemprop="name">mapreduce</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -448,24 +917,35 @@
         
           Hadoop YARN同时支持内存和CPU两种资源的调度，本文介绍如何配置YARN对内存和CPU的使用。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/06/05/yarn-memory-and-cpu-configuration/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/06/05/yarn-memory-and-cpu-configuration/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -495,16 +975,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/06/01/how-to-implement-collaborative-filtering-using-spark-als/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/06/01/how-to-implement-collaborative-filtering-using-spark-als/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -519,11 +1001,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/06/01/how-to-implement-collaborative-filtering-using-spark-als/" itemprop="url">如何使用Spark ALS实现协同过滤</a></h2>
+                
+                <a href="/2015/06/01/how-to-implement-collaborative-filtering-using-spark-als/" class="post-title-link" itemprop="url">如何使用Spark ALS实现协同过滤</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -531,13 +1022,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-01T00:00:00+08:00">
-                2015-06-01
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-06-01 00:00:00" itemprop="dateCreated datePublished" datetime="2015-06-01T00:00:00+08:00">2015-06-01</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-04 00:42:57" itemprop="dateModified" datetime="2019-07-04T00:42:57+08:00">2019-07-04</time>
+              
             
           </span>
 
@@ -553,11 +1061,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
 
                 
                 
@@ -566,6 +1070,7 @@
           
 
           
+            
             
           
 
@@ -579,6 +1084,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -586,7 +1092,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -595,24 +1101,35 @@
         
           本文主要记录最近一段时间学习和实现Spark MLlib中的协同过滤的一些总结，希望对大家熟悉Spark ALS算法有所帮助。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/06/01/how-to-implement-collaborative-filtering-using-spark-als/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/06/01/how-to-implement-collaborative-filtering-using-spark-als/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -642,16 +1159,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/04/30/test-hive-with-sentry/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/04/30/install-and-config-sentry/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -666,11 +1185,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/04/30/test-hive-with-sentry/" itemprop="url">测试Hive集成Sentry</a></h2>
+                
+                <a href="/2015/04/30/install-and-config-sentry/" class="post-title-link" itemprop="url">安装和配置Sentry</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -678,13 +1206,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-30T00:00:00+08:00">
-                2015-04-30
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-30 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-30T00:00:00+08:00">2015-04-30</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-04 00:42:06" itemprop="dateModified" datetime="2019-07-04T00:42:06+08:00">2019-07-04</time>
+              
             
           </span>
 
@@ -700,11 +1245,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index">
-                    <span itemprop="name">hive</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a></span>
 
                 
                 
@@ -713,6 +1254,7 @@
           
 
           
+            
             
           
 
@@ -726,6 +1268,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -733,154 +1276,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          本文主要记录测试Hive集成Sentry的过程。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/04/30/test-hive-with-sentry/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/04/30/install-and-config-sentry/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JavaChen Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/04/30/install-and-config-sentry/" itemprop="url">安装和配置Sentry</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-30T00:00:00+08:00">
-                2015-04-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <!--/删除
-          
-          -->
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -889,24 +1285,35 @@
         
           本文主要记录安装和配置Sentry的过程。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/04/30/install-and-config-sentry/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/04/30/install-and-config-sentry/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -936,16 +1343,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/04/29/apache-sentry-architecture/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/04/30/test-hive-with-sentry/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -960,11 +1369,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/04/29/apache-sentry-architecture/" itemprop="url">Apache Sentry架构介绍</a></h2>
+                
+                <a href="/2015/04/30/test-hive-with-sentry/" class="post-title-link" itemprop="url">测试Hive集成Sentry</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -972,13 +1390,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-29T00:00:00+08:00">
-                2015-04-29
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-30 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-30T00:00:00+08:00">2015-04-30</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-04 00:42:36" itemprop="dateModified" datetime="2019-07-04T00:42:36+08:00">2019-07-04</time>
+              
             
           </span>
 
@@ -994,11 +1429,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a></span>
 
                 
                 
@@ -1007,6 +1438,7 @@
           
 
           
+            
             
           
 
@@ -1020,6 +1452,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -1027,7 +1460,191 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          本文主要记录测试Hive集成Sentry的过程。
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/04/30/test-hive-with-sentry/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+      
+    
+    
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/04/29/apache-sentry-architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2015/04/29/apache-sentry-architecture/" class="post-title-link" itemprop="url">Apache Sentry架构介绍</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-29T00:00:00+08:00">2015-04-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-03 12:37:27" itemprop="dateModified" datetime="2019-07-03T12:37:27+08:00">2019-07-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1036,24 +1653,35 @@
         
           Apache Sentry是Cloudera公司发布的一个Hadoop开源组件，截止目前还是Apache的孵化项目，它提供了细粒度级、基于角色的授权以及多租户的管理模式。Sentry当前可以和Hive/Hcatalog、Apache Solr 和Cloudera Impala集成，未来会扩展到其他的Hadoop组件，例如HDFS和HBase。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/04/29/apache-sentry-architecture/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/04/29/apache-sentry-architecture/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -1083,16 +1711,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/04/28/compile-cdh-spark-source-code/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/04/28/compile-cdh-spark-source-code/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -1107,11 +1737,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/04/28/compile-cdh-spark-source-code/" itemprop="url">编译CDH Spark源代码</a></h2>
+                
+                <a href="/2015/04/28/compile-cdh-spark-source-code/" class="post-title-link" itemprop="url">编译CDH Spark源代码</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1119,13 +1758,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-28T00:00:00+08:00">
-                2015-04-28
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-28T00:00:00+08:00">2015-04-28</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:23:34" itemprop="dateModified" datetime="2019-06-29T20:23:34+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -1141,11 +1797,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
 
                 
                 
@@ -1154,6 +1806,7 @@
           
 
           
+            
             
           
 
@@ -1167,6 +1820,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -1174,7 +1828,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1183,24 +1837,35 @@
         
           本文以Cloudera维护的Spark分支项目为例，记录跟新Spark分支以及编译Spark源代码的过程。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/04/28/compile-cdh-spark-source-code/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/04/28/compile-cdh-spark-source-code/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -1230,16 +1895,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/04/23/all-the-uses-of-an-underscore-in-scala/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/04/23/all-the-uses-of-an-underscore-in-scala/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -1254,11 +1921,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/04/23/all-the-uses-of-an-underscore-in-scala/" itemprop="url">Scala中下划线的用途</a></h2>
+                
+                <a href="/2015/04/23/all-the-uses-of-an-underscore-in-scala/" class="post-title-link" itemprop="url">Scala中下划线的用途</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1266,13 +1942,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-23T00:00:00+08:00">
-                2015-04-23
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-23T00:00:00+08:00">2015-04-23</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-01 16:03:13" itemprop="dateModified" datetime="2019-07-01T16:03:13+08:00">2019-07-01</time>
+              
             
           </span>
 
@@ -1288,11 +1981,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/scala/" itemprop="url" rel="index">
-                    <span itemprop="name">scala</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a></span>
 
                 
                 
@@ -1301,6 +1990,7 @@
           
 
           
+            
             
           
 
@@ -1314,6 +2004,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -1321,7 +2012,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1330,24 +2021,35 @@
         
           本文主要整理Scala中下划线的用途。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/04/23/all-the-uses-of-an-underscore-in-scala/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/04/23/all-the-uses-of-an-underscore-in-scala/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -1377,16 +2079,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/04/22/scala-collections/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/04/22/scala-collections/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -1401,11 +2105,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/04/22/scala-collections/" itemprop="url">Scala集合</a></h2>
+                
+                <a href="/2015/04/22/scala-collections/" class="post-title-link" itemprop="url">Scala集合</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1413,13 +2126,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-22T00:00:00+08:00">
-                2015-04-22
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-22T00:00:00+08:00">2015-04-22</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:34:25" itemprop="dateModified" datetime="2019-06-29T20:34:25+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -1435,11 +2165,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/scala/" itemprop="url" rel="index">
-                    <span itemprop="name">scala</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a></span>
 
                 
                 
@@ -1448,6 +2174,7 @@
           
 
           
+            
             
           
 
@@ -1461,6 +2188,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -1468,7 +2196,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1477,24 +2205,35 @@
         
           Scala有一个非常通用，丰富，强大，可组合的集合库，本文主要是整理Scala集合相关知识点。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/04/22/scala-collections/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/04/22/scala-collections/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -1524,16 +2263,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/04/20/basic-of-scala/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/04/20/basic-of-scala/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -1548,11 +2289,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/04/20/basic-of-scala/" itemprop="url">Scala基本语法和概念</a></h2>
+                
+                <a href="/2015/04/20/basic-of-scala/" class="post-title-link" itemprop="url">Scala基本语法和概念</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1560,13 +2310,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-20T00:00:00+08:00">
-                2015-04-20
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-20 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-20T00:00:00+08:00">2015-04-20</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:34:00" itemprop="dateModified" datetime="2019-06-29T20:34:00+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -1582,11 +2349,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/scala/" itemprop="url" rel="index">
-                    <span itemprop="name">scala</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a></span>
 
                 
                 
@@ -1595,6 +2358,7 @@
           
 
           
+            
             
           
 
@@ -1608,6 +2372,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -1615,7 +2380,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1624,24 +2389,35 @@
         
           本文主要包括Scala的安装过程并理解Scala的基本语法和概念，包括表达式、变量、基本类型、函数、流程控制等相关内容。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/04/20/basic-of-scala/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/04/20/basic-of-scala/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -1671,16 +2447,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/04/17/spark-mllib-collaborative-filtering/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/04/17/spark-mllib-collaborative-filtering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -1695,11 +2473,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/04/17/spark-mllib-collaborative-filtering/" itemprop="url">Spark MLlib中的协同过滤</a></h2>
+                
+                <a href="/2015/04/17/spark-mllib-collaborative-filtering/" class="post-title-link" itemprop="url">Spark MLlib中的协同过滤</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1707,13 +2494,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-17T00:00:00+08:00">
-                2015-04-17
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-17 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-17T00:00:00+08:00">2015-04-17</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:23:34" itemprop="dateModified" datetime="2019-06-29T20:23:34+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -1729,11 +2533,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
 
                 
                 
@@ -1742,6 +2542,7 @@
           
 
           
+            
             
           
 
@@ -1755,6 +2556,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -1762,7 +2564,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1771,24 +2573,35 @@
         
           本文主要通过Spark官方的例子理解ALS协同过滤算法的原理和编码过程，然后通过对电影进行推荐来熟悉一个完整的推荐过程。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/04/17/spark-mllib-collaborative-filtering/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/04/17/spark-mllib-collaborative-filtering/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -1818,16 +2631,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/04/03/spark-sql-datasource/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/04/03/spark-sql-datasource/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -1842,11 +2657,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/04/03/spark-sql-datasource/" itemprop="url">Spark SQL中的数据源</a></h2>
+                
+                <a href="/2015/04/03/spark-sql-datasource/" class="post-title-link" itemprop="url">Spark SQL中的数据源</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1854,13 +2678,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-03T00:00:00+08:00">
-                2015-04-03
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-03 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-03T00:00:00+08:00">2015-04-03</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:23:34" itemprop="dateModified" datetime="2019-06-29T20:23:34+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -1876,11 +2717,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
 
                 
                 
@@ -1889,6 +2726,7 @@
           
 
           
+            
             
           
 
@@ -1902,6 +2740,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -1909,7 +2748,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1918,24 +2757,35 @@
         
           Spark 支持通过 DataFrame 来操作大量的数据源，包括外部文件（如 json、avro、parquet、sequencefile 等等）、hive、关系数据库、cassandra 等等。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/04/03/spark-sql-datasource/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/04/03/spark-sql-datasource/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -1965,16 +2815,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/03/30/spark-test-in-local-mode/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/03/30/reading-list-2015-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -1989,11 +2841,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/03/30/spark-test-in-local-mode/" itemprop="url">Spark本地模式运行</a></h2>
+                
+                <a href="/2015/03/30/reading-list-2015-03/" class="post-title-link" itemprop="url">Reading List 2015-03</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -2001,13 +2862,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-30T00:00:00+08:00">
-                2015-03-30
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2015-03-30T00:00:00+08:00">2015-03-30</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:23:34" itemprop="dateModified" datetime="2019-06-29T20:23:34+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -2023,11 +2901,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/work/" itemprop="url" rel="index"><span itemprop="name">work</span></a></span>
 
                 
                 
@@ -2036,6 +2910,7 @@
           
 
           
+            
             
           
 
@@ -2049,6 +2924,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -2056,154 +2932,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          Spark的安装分为几种模式，其中一种是本地运行模式，只需要在单节点上解压即可运行，这种模式不需要依赖Hadoop 环境。在本地运行模式中，master和worker都运行在一个jvm进程中，通过该模式，可以快速的测试Spark的功能。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/03/30/spark-test-in-local-mode/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/03/30/reading-list-2015-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JavaChen Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/03/30/reading-list-2015-03/" itemprop="url">Reading List 2015-03</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-30T00:00:00+08:00">
-                2015-03-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <!--/删除
-          
-          -->
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -2212,24 +2941,35 @@
         
           分享每个月看到的一些文章、链接、工具等等的。本篇文章主要包括 Spark 以及推荐系统相关的文章。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/03/30/reading-list-2015-03/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/03/30/reading-list-2015-03/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
+
 
     
 
     
 
     
+      
+    
+    
+
+
 
     <footer class="post-footer">
       
@@ -2259,16 +2999,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/03/26/spark-sql-dataframe/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/03/30/spark-test-in-local-mode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -2283,11 +3025,20 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/03/26/spark-sql-dataframe/" itemprop="url">Spark SQL中的DataFrame</a></h2>
+                
+                <a href="/2015/03/30/spark-test-in-local-mode/" class="post-title-link" itemprop="url">Spark本地模式运行</a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -2295,13 +3046,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-26T00:00:00+08:00">
-                2015-03-26
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2015-03-30T00:00:00+08:00">2015-03-30</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:23:34" itemprop="dateModified" datetime="2019-06-29T20:23:34+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -2317,11 +3085,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
 
                 
                 
@@ -2330,6 +3094,7 @@
           
 
           
+            
             
           
 
@@ -2343,6 +3108,7 @@
           <!--/删除
           
           -->
+
         </div>
       </header>
     
@@ -2350,180 +3116,44 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
 
       
         
-          在 Spark 1.3 中，SchemaRDD 改为叫做 DataFrame，DataFrame 与关系型数据库中的表很相似，可以通过存在的 RDD、一个 Parquet 文件、结构化的文件、外部数据库、或者对存储在 Apache Hive 中的数据执行 HiveSQL 查询中创建。
+          Spark的安装分为几种模式，其中一种是本地运行模式，只需要在单节点上解压即可运行，这种模式不需要依赖Hadoop 环境。在本地运行模式中，master和worker都运行在一个jvm进程中，通过该模式，可以快速的测试Spark的功能。
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/03/26/spark-sql-dataframe/">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2015/03/30/spark-test-in-local-mode/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
 
     
+    
+    
+
 
     
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
+    
 
     
       
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/03/25/converting-avro-data-to-parquet-format/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JavaChen Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/03/25/converting-avro-data-to-parquet-format/" itemprop="url">将Avro数据转换为Parquet格式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-25T00:00:00+08:00">
-                2015-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <!--/删除
-          
-          -->
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          本文主要测试将Avro数据转换为Parquet格式的过程并查看 Parquet 文件的 schema 和元数据。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn  pull-right" href="/2015/03/25/converting-avro-data-to-parquet-format/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
     
     
 
-    
 
-    
-
-    
 
     <footer class="post-footer">
       
@@ -2549,15 +3179,12 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -2567,11 +3194,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -2592,6 +3221,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -2605,11 +3235,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2623,92 +3256,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -2722,8 +3274,53 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -2772,6 +3369,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -2805,8 +3404,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -2975,9 +3575,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -3051,9 +3651,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

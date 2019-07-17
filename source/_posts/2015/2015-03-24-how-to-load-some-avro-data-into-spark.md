@@ -29,7 +29,7 @@ published: true
 
 # 例子
 
-让我们来看一个例子，创建一个 Avro schema 并生成一些数据。在一个真实案例的例子中，组织机构通常有一些更加普通的格式，例如 XML，的数据，并且他们需要通过一些工具例如  [JAXB](http://www.infoq.com/articles/AVROSchemaJAXB) 将他们的数据转换成 Avro。我们来使用[这个例子](http://www.michael-noll.com/blog/2013/03/17/reading-and-writing-avro-files-from-the-command-line/)，其中 twitter.avsc 如下：
+让我们来看一个例子，创建一个 Avro schema 并生成一些数据。在一个真实案例的例子中，组织机构通常有一些更加普通的格式，例如 XML，的数据，并且他们需要通过一些工具例如  [JAXB](http://www.infoq.com/articles/AVROSchemaJAXB) 将他们的数据转换成 Avro。我们来使用[这个例子](http://www.michael-noll.com/blog/images/03/17/reading-and-writing-avro-files-from-the-command-line/)，其中 twitter.avsc 如下：
 
 ~~~json
 {
@@ -83,7 +83,7 @@ $ jar cvf Twitter.jar com/miguno/avro/*.class
 我们启动 Spark，并将上面创建的 Jar 和一些需要的库（Hadoop 和 Avro）传递给 Spark 程序：
 
 ~~~bash
-$ ./bin/spark-shell --jars /app/avro/avro-mapred-1.7.7-hadoop1.jar,/avro/avro-1.7.7.jar,/app/avro/data/Twitter.jar
+$ ./bin-shell --jars /app/avro/avro-mapred-1.7.7-hadoop1.jar,/avro/avro-1.7.7.jar,/app/avro/data/Twitter.jar
 ~~~
 
 在 REPL 中，我们获取数据并创建一个 RDD：
@@ -123,7 +123,7 @@ res2: String = miguno
 - 我们使用GenericRecord 而不是 Specific ，因为我们生成了 Avro schema（并且导入了它）。更多内容参见 <http://avro.apache.org/docs/current/gettingstartedjava.html>
 - 注意到即使 Avro 类是用 Java 编译的，你还是可以在 Spark 中导入他们，因为 Scala 也是运行在 JVM 之上。
 - Avro 允许你定义一个可选的方式去定义 schema 中每个节点的反序列化类型，即通过 key/value 的键值对，这是方式非常方便。参考 <http://stackoverflow.com/questions/27827649/trying-to-deserialize-avro-in-spark-with-specific-type/27859980?noredirect=1%23comment44240726_27859980> 。
-- 还有大量的其他方式来实现这个功能，一种是使用 Kryo，另一种是使用 Spark SQL。然而，这需要你创建一个 Spark SQL 的上下文（见 <https://github.com/databricks/spark-avro> ），而不是一个纯粹的 Spark/Scala  方式。然而，也许这在将来会是一种最佳方式？
+- 还有大量的其他方式来实现这个功能，一种是使用 Kryo，另一种是使用 Spark SQL。然而，这需要你创建一个 Spark SQL 的上下文（见 <https://github.com/databricks-avro> ），而不是一个纯粹的 Spark/Scala  方式。然而，也许这在将来会是一种最佳方式？
 
 翻译结束。
 

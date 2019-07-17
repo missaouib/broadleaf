@@ -205,7 +205,7 @@ $ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-b
 
 ## 配置和启动 Kafka broker
 
-接下来参考 [Running a Multi-Broker Apache Kafka 0.8 Cluster on a Single Node](http://www.michael-noll.com/blog/2013/03/13/running-a-multi-broker-apache-kafka-cluster-on-a-single-node/) 这篇文章，基于 config/server.properties 配置文件创建多个 broker 的 kafka 集群。
+接下来参考 [Running a Multi-Broker Apache Kafka 0.8 Cluster on a Single Node](http://www.michael-noll.com/blog/images/03/13/running-a-multi-broker-apache-kafka-cluster-on-a-single-node/) 这篇文章，基于 config/server.properties 配置文件创建多个 broker 的 kafka 集群。
 
 创建第一个 broker：
 
@@ -375,5 +375,5 @@ $ tail -n 0 -f  /var/log/nginx/access.log | bin/kafka-console-producer.sh --brok
 
 # 参考文章
 
-- [Running a Multi-Broker Apache Kafka 0.8 Cluster on a Single Node](http://www.michael-noll.com/blog/2013/03/13/running-a-multi-broker-apache-kafka-cluster-on-a-single-node/)
+- [Running a Multi-Broker Apache Kafka 0.8 Cluster on a Single Node](http://www.michael-noll.com/blog/images/03/13/running-a-multi-broker-apache-kafka-cluster-on-a-single-node/)
 - [spark读取 kafka nginx网站日志消息 并写入HDFS中](http://yangqijun.com/archives/227)

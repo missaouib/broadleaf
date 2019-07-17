@@ -25,7 +25,7 @@ published: true
 
 ![](http://www.guozhongxin.com/images/taobao.png)
 
-关于Spark On YARN相关的配置参数，请参考[Spark配置参数](/2015/06/07/spark-configuration.html)。本文主要讨论内存分配情况，所以只需要关注以下几个内心相关的参数：
+关于Spark On YARN相关的配置参数，请参考[Spark配置参数](/2014/06/07/spark-configuration)。本文主要讨论内存分配情况，所以只需要关注以下几个内心相关的参数：
 
 - `spark.driver.memory`：默认值512m
 - `spark.executor.memory`：默认值512m
@@ -36,11 +36,11 @@ published: true
 
 注意：
 
-- `--executor-memory/spark.executor.memory` 控制 executor 的堆的大小，但是 JVM 本身也会占用一定的堆空间，比如内部的 String 或者直接 byte buffer，`spark.yarn.XXX.memoryOverhead`属性决定向 YARN 请求的每个 executor 或dirver或am 的额外堆内存大小，默认值为 `max(384, 0.07 * spark.executor.memory`)
+- `--executor-memory.executor.memory` 控制 executor 的堆的大小，但是 JVM 本身也会占用一定的堆空间，比如内部的 String 或者直接 byte buffer，`spark.yarn.XXX.memoryOverhead`属性决定向 YARN 请求的每个 executor 或dirver或am 的额外堆内存大小，默认值为 `max(384, 0.07 * spark.executor.memory`)
 - 在 executor 执行的时候配置过大的 memory 经常会导致过长的GC延时，64G是推荐的一个 executor 内存大小的上限。
 - HDFS client 在大量并发线程时存在性能问题。大概的估计是每个 executor 中最多5个并行的 task 就可以占满写入带宽。
 
-另外，因为任务是提交到YARN上运行的，所以YARN中有几个关键参数，参考[YARN的内存和CPU配置](/2015/06/05/yarn-memory-and-cpu-configuration.html)：
+另外，因为任务是提交到YARN上运行的，所以YARN中有几个关键参数：
 
 - `yarn.app.mapreduce.am.resource.mb`：AM能够申请的最大内存，默认值为1536MB
 - `yarn.nodemanager.resource.memory-mb`：nodemanager能够申请的最大内存，默认值为8192MB
@@ -78,7 +78,7 @@ Spark集群测试环境为：
   </property>
 ~~~
 
-将spark的日志基本调为DEBUG，并将log4j.logger.org.apache.hadoop设置为WARN建设不必要的输出，修改/etc/spark/conf/log4j.properties：
+将spark的日志基本调为DEBUG，并将log4j.logger.org.apache.hadoop设置为WARN建设不必要的输出，修改/etc/conf/log4j.properties：
 
 ~~~properties
 # Set everything to be logged to the console
@@ -105,7 +105,7 @@ spark-submit --class org.apache.spark.examples.SparkPi \
     --driver-memory 2g \
     --executor-memory 3g \
     --executor-cores 4 \
-    /usr/lib/spark/lib/spark-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \
+    /usr/lib/lib-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \
     100000
 ~~~
 
@@ -119,7 +119,7 @@ spark-submit --class org.apache.spark.examples.SparkPi \
 15/06/08 13:57:03 INFO MemoryStore: MemoryStore started with capacity 1060.3 MB
 
 15/06/08 13:57:04 DEBUG YarnClientSchedulerBackend: ClientArguments called with: --arg bj03-bi-pro-hdpnamenn:51568 --num-executors 4 --num-executors 4 --executor-memory 3g --executor-memory 3g --executor-cores 4 --executor-cores 4 --name Spark Pi
-15/06/08 13:57:04 DEBUG YarnClientSchedulerBackend: [actor] handled message (24.52531 ms) ReviveOffers from Actor[akka://sparkDriver/user/CoarseGrainedScheduler#864850679]
+15/06/08 13:57:04 DEBUG YarnClientSchedulerBackend: [actor] handled message (24.52531 ms) ReviveOffers from Actor[akka:/Driver/user/CoarseGrainedScheduler#864850679]
 15/06/08 13:57:05 INFO Client: Requesting a new application from cluster with 4 NodeManagers
 15/06/08 13:57:05 INFO Client: Verifying our application has not requested more than the maximum memory capability of the cluster (106496 MB per container)
 15/06/08 13:57:05 INFO Client: Will allocate AM container, with 896 MB memory including 384 MB overhead
@@ -129,19 +129,19 @@ spark-submit --class org.apache.spark.examples.SparkPi \
 15/06/08 13:57:07 DEBUG Client: Yarn AM launch context:
 15/06/08 13:57:07 DEBUG Client:     user class: N/A
 15/06/08 13:57:07 DEBUG Client:     env:
-15/06/08 13:57:07 DEBUG Client:         CLASSPATH -> {{PWD}}<CPS>{{PWD}}/__spark__.jar<CPS>$HADOOP_CONF_DIR<CPS>$HADOOP_COMMON_HOME/*<CPS>$HADOOP_COMMON_HOME/lib/*<CPS>$HADOOP_HDFS_HOME/*<CPS>$HADOOP_HDFS_HOME/lib/*<CPS>$HADOOP_MAPRED_HOME/*<CPS>$HADOOP_MAPRED_HOME/lib/*<CPS>$HADOOP_YARN_HOME/*<CPS>$HADOOP_YARN_HOME/lib/*<CPS>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*<CPS>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*<CPS>:/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*:/usr/lib/paquet/lib/*:/usr/lib/avro/lib/*
-15/06/08 13:57:07 DEBUG Client:         SPARK_DIST_CLASSPATH -> :/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*:/usr/lib/paquet/lib/*:/usr/lib/avro/lib/*
+15/06/08 13:57:07 DEBUG Client:         CLASSPATH -> {{PWD}}<CPS>{{PWD}}/__spark__.jar<CPS>$HADOOP_CONF_DIR<CPS>$HADOOP_COMMON_HOME/*<CPS>$HADOOP_COMMON_HOME/lib/*<CPS>$HADOOP_HDFS_HOME/*<CPS>$HADOOP_HDFS_HOME/lib/*<CPS>$HADOOP_MAPRED_HOME/*<CPS>$HADOOP_MAPRED_HOME/lib/*<CPS>$HADOOP_YARN_HOME/*<CPS>$HADOOP_YARN_HOME/lib/*<CPS>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*<CPS>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*<CPS>:/usr/lib/lib-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*:/usr/lib/paquet/lib/*:/usr/lib/avro/lib/*
+15/06/08 13:57:07 DEBUG Client:         SPARK_DIST_CLASSPATH -> :/usr/lib/lib-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*:/usr/lib/paquet/lib/*:/usr/lib/avro/lib/*
 15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_CACHE_FILES_FILE_SIZES -> 97237208
 15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_STAGING_DIR -> .sparkStaging/application_1433742899916_0001
 15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_CACHE_FILES_VISIBILITIES -> PRIVATE
 15/06/08 13:57:07 DEBUG Client:         SPARK_USER -> root
 15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_MODE -> true
 15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_CACHE_FILES_TIME_STAMPS -> 1433743027399
-15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_CACHE_FILES -> hdfs://mycluster:8020/user/root/.sparkStaging/application_1433742899916_0001/spark-assembly-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar#__spark__.jar
+15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_CACHE_FILES -> hdfs://mycluster:8020/user/root/.sparkStaging/application_1433742899916_0001-assembly-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar#__spark__.jar
 15/06/08 13:57:07 DEBUG Client:     resources:
-15/06/08 13:57:07 DEBUG Client:         __spark__.jar -> resource { scheme: "hdfs" host: "mycluster" port: 8020 file: "/user/root/.sparkStaging/application_1433742899916_0001/spark-assembly-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar" } size: 97237208 timestamp: 1433743027399 type: FILE visibility: PRIVATE
+15/06/08 13:57:07 DEBUG Client:         __spark__.jar -> resource { scheme: "hdfs" host: "mycluster" port: 8020 file: "/user/root/.sparkStaging/application_1433742899916_0001-assembly-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar" } size: 97237208 timestamp: 1433743027399 type: FILE visibility: PRIVATE
 15/06/08 13:57:07 DEBUG Client:     command:
-15/06/08 13:57:07 DEBUG Client:         {{JAVA_HOME}}/bin/java -server -Xmx512m -Djava.io.tmpdir={{PWD}}/tmp '-Dspark.eventLog.enabled=true' '-Dspark.executor.instances=4' '-Dspark.executor.memory=3g' '-Dspark.executor.cores=4' '-Dspark.driver.port=51568' '-Dspark.serializer=org.apache.spark.serializer.KryoSerializer' '-Dspark.driver.appUIAddress=http://bj03-bi-pro-hdpnamenn:4040' '-Dspark.executor.id=<driver>' '-Dspark.kryo.classesToRegister=scala.collection.mutable.BitSet,scala.Tuple2,scala.Tuple1,org.apache.spark.mllib.recommendation.Rating' '-Dspark.driver.maxResultSize=8g' '-Dspark.jars=file:/usr/lib/spark/lib/spark-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar' '-Dspark.driver.memory=2g' '-Dspark.eventLog.dir=hdfs://mycluster:8020/user/spark/applicationHistory' '-Dspark.app.name=Spark Pi' '-Dspark.fileserver.uri=http://X.X.X.X:49172' '-Dspark.tachyonStore.folderName=spark-81ae0186-8325-40f2-867b-65ee7c922357' -Dspark.yarn.app.container.log.dir=<LOG_DIR> org.apache.spark.deploy.yarn.ExecutorLauncher --arg 'bj03-bi-pro-hdpnamenn:51568' --executor-memory 3072m --executor-cores 4 --num-executors  4 1> <LOG_DIR>/stdout 2> <LOG_DIR>/stderr
+15/06/08 13:57:07 DEBUG Client:         {{JAVA_HOME}}/bin/java -server -Xmx512m -Djava.io.tmpdir={{PWD}}/tmp '-Dspark.eventLog.enabled=true' '-Dspark.executor.instances=4' '-Dspark.executor.memory=3g' '-Dspark.executor.cores=4' '-Dspark.driver.port=51568' '-Dspark.serializer=org.apache.spark.serializer.KryoSerializer' '-Dspark.driver.appUIAddress=http://bj03-bi-pro-hdpnamenn:4040' '-Dspark.executor.id=<driver>' '-Dspark.kryo.classesToRegister=scala.collection.mutable.BitSet,scala.Tuple2,scala.Tuple1,org.apache.spark.mllib.recommendation.Rating' '-Dspark.driver.maxResultSize=8g' '-Dspark.jars=file:/usr/lib/lib-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar' '-Dspark.driver.memory=2g' '-Dspark.eventLog.dir=hdfs://mycluster:8020/user/applicationHistory' '-Dspark.app.name=Spark Pi' '-Dspark.fileserver.uri=http://X.X.X.X:49172' '-Dspark.tachyonStore.folderName=spark-81ae0186-8325-40f2-867b-65ee7c922357' -Dspark.yarn.app.container.log.dir=<LOG_DIR> org.apache.spark.deploy.yarn.ExecutorLauncher --arg 'bj03-bi-pro-hdpnamenn:51568' --executor-memory 3072m --executor-cores 4 --num-executors  4 1> <LOG_DIR>/stdout 2> <LOG_DIR>/stderr
 15/06/08 13:57:07 DEBUG Client: ===============================================================================
 ~~~
 
@@ -224,7 +224,7 @@ spark-submit --class org.apache.spark.examples.SparkPi \
     --executor-memory 3g \
     --executor-cores 4 \
     --conf spark.yarn.am.memory=1024m \
-    /usr/lib/spark/lib/spark-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \
+    /usr/lib/lib-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \
     100000
 ~~~
 
@@ -232,15 +232,15 @@ spark-submit --class org.apache.spark.examples.SparkPi \
 
 a. Spark Pi 应用启动了5个Container，使用了18G内存、5个CPU core
 
-![](/static/images/hadoop/memory-in-spark-on-yarn-1.jpg)
+![](/images/memory-in-spark-on-yarn-1.jpg)
 
 b. YARN为AM启动了一个Container，占用内存为2048M
 
-![](/static/images/hadoop/memory-in-spark-on-yarn-2.jpg)
+![](/images/memory-in-spark-on-yarn-2.jpg)
 
 c. YARN启动了4个Container运行任务，每一个Container占用内存为4096M
 
-![](/static/images/hadoop/memory-in-spark-on-yarn-3.jpg)
+![](/images/memory-in-spark-on-yarn-3.jpg)
 
 为什么会是`2G +4G *4=18G`呢？第一个Container只申请了2G内存，是因为我们的程序只为AM申请了512m内存，而`yarn.scheduler.minimum-allocation-mb`参数决定了最少要申请2G内存。至于其余的Container，我们设置了executor-memory内存为3G，为什么每一个Container占用内存为4096M呢？
 
@@ -278,16 +278,16 @@ c. YARN启动了4个Container运行任务，每一个Container占用内存为409
 
 打开Spark的管理界面 <http://ip:4040> ，可以看到driver和Executor中内存的占用情况：
 
-![](/static/images/hadoop/memory-in-spark-on-yarn-4.jpg)
+![](/images/memory-in-spark-on-yarn-4.jpg)
 
-从上图可以看到Executor占用了1566.7 MB内存，这是怎样计算出来的？参考[Spark on Yarn: Where Have All the Memory Gone?](http://www.wdong.org/wordpress/blog/2015/01/08/spark-on-yarn-where-have-all-my-memory-gone/)这篇文章，totalExecutorMemory的计算方式为：
+从上图可以看到Executor占用了1566.7 MB内存，这是怎样计算出来的？参考[Spark on Yarn: Where Have All the Memory Gone?](http://www.wdong.org/wordpress/blog/images/01/08-on-yarn-where-have-all-my-memory-gone/)这篇文章，totalExecutorMemory的计算方式为：
 
 ~~~scala
-//yarn/common/src/main/scala/org/apache/spark/deploy/yarn/YarnSparkHadoopUtil.scala
+//yarn/common/src/main/scala/org/apache/deploy/yarn/YarnSparkHadoopUtil.scala
   val MEMORY_OVERHEAD_FACTOR = 0.07
   val MEMORY_OVERHEAD_MIN = 384
 
-//yarn/common/src/main/scala/org/apache/spark/deploy/yarn/YarnAllocator.scala
+//yarn/common/src/main/scala/org/apache/deploy/yarn/YarnAllocator.scala
   protected val memoryOverhead: Int = sparkConf.getInt("spark.yarn.executor.memoryOverhead",
     math.max((MEMORY_OVERHEAD_FACTOR * executorMemory).toInt, MEMORY_OVERHEAD_MIN))
 ......
@@ -300,7 +300,7 @@ c. YARN启动了4个Container运行任务，每一个Container占用内存为409
 这里我们给executor-memory设置的3G内存，memoryOverhead的值为`math.max(0.07 * 3072, 384)=384`，其最大可用内存通过下面代码来计算：
 
 ~~~scala
-//core/src/main/scala/org/apache/spark/storage/BlockManager.scala
+//core/src/main/scala/org/apache/storage/BlockManager.scala
 /** Return the total amount of storage memory available. */
 private def getMaxMemory(conf: SparkConf): Long = {
   val memoryFraction = conf.getDouble("spark.storage.memoryFraction", 0.6)
@@ -328,10 +328,10 @@ $ jps
 22909 Jps
 
 $ ps -ef|grep 21894
-nobody   21894 21892 99 17:28 ?        00:04:49 /usr/java/jdk1.7.0_71/bin/java -server -XX:OnOutOfMemoryError=kill %p -Xms3072m -Xmx3072m  -Djava.io.tmpdir=/data/yarn/local/usercache/root/appcache/application_1433742899916_0069/container_1433742899916_0069_01_000003/tmp -Dspark.driver.port=60235 -Dspark.yarn.app.container.log.dir=/data/yarn/logs/application_1433742899916_0069/container_1433742899916_0069_01_000003 org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url akka.tcp://sparkDriver@bj03-bi-pro-hdpnamenn:60235/user/CoarseGrainedScheduler --executor-id 2 --hostname X.X.X.X --cores 4 --app-id application_1433742899916_0069 --user-class-path file:/data/yarn/local/usercache/root/appcache/application_1433742899916_0069/container_1433742899916_0069_01_000003/__app__.jar
+nobody   21894 21892 99 17:28 ?        00:04:49 /usr/java/jdk1.7.0_71/bin/java -server -XX:OnOutOfMemoryError=kill %p -Xms3072m -Xmx3072m  -Djava.io.tmpdir=/data/yarn/local/usercache/root/appcache/application_1433742899916_0069/container_1433742899916_0069_01_000003/tmp -Dspark.driver.port=60235 -Dspark.yarn.app.container.log.dir=/data/yarn/logs/application_1433742899916_0069/container_1433742899916_0069_01_000003 org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url akka.tcp:/Driver@bj03-bi-pro-hdpnamenn:60235/user/CoarseGrainedScheduler --executor-id 2 --hostname X.X.X.X --cores 4 --app-id application_1433742899916_0069 --user-class-path file:/data/yarn/local/usercache/root/appcache/application_1433742899916_0069/container_1433742899916_0069_01_000003/__app__.jar
 ~~~
 
-可以看到每个CoarseGrainedExecutorBackend进程分配的内存为3072m，如果我们想查看每个executor的jvm运行情况，可以开启jmx。在/etc/spark/conf/spark-defaults.conf中添加下面一行代码：
+可以看到每个CoarseGrainedExecutorBackend进程分配的内存为3072m，如果我们想查看每个executor的jvm运行情况，可以开启jmx。在/etc/conf-defaults.conf中添加下面一行代码：
 
 ~~~properties
 spark.executor.extraJavaOptions -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
@@ -343,16 +343,16 @@ spark.executor.extraJavaOptions -Dcom.sun.management.jmxremote.port=1099 -Dcom.s
 
 由上可知，在client模式下，AM对应的Container内存由`spark.yarn.am.memory`加上`spark.yarn.am.memoryOverhead`来确定，executor加上spark.`yarn.executor.memoryOverhead`的值之后确定对应Container需要申请的内存大小，driver和executor的内存加上`spark.yarn.driver.memoryOverhead`或`spark.yarn.executor.memoryOverhead`的值之后再乘以0.54确定storage memory内存大小。在YARN中，Container申请的内存大小必须为`yarn.scheduler.minimum-allocation-mb`的整数倍。
 
-下面这张图展示了Spark on YARN 内存结构，图片来自[How-to: Tune Your Apache Spark Jobs (Part 2)](http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/)：
+下面这张图展示了Spark on YARN 内存结构，图片来自[How-to: Tune Your Apache Spark Jobs (Part 2)](http://blog.cloudera.com/blog/images/03/how-to-tune-your-apache-spark-jobs-part-2/)：
 
-![](http://blog.cloudera.com/wp-content/uploads/2015/03/spark-tuning2-f1.png)
+![](http://blog.cloudera.com/wp-content/uploads/images/03-tuning2-f1.png)
 
 至于cluster模式下的分析，请参考上面的过程。希望这篇文章对你有所帮助！
 
 # 参考文章
 
 - [Spark1.0.0 on YARN 模式部署](http://blog.csdn.net/book_mmicky/article/details/25714287)
-- [Spark on Yarn: Where Have All the Memory Gone?](http://www.wdong.org/wordpress/blog/2015/01/08/spark-on-yarn-where-have-all-my-memory-gone/)
+- [Spark on Yarn: Where Have All the Memory Gone?](http://www.wdong.org/wordpress/blog/images/01/08-on-yarn-where-have-all-my-memory-gone/)
 - [Apache Spark Jobs 性能调优（二）](https://www.zybuluo.com/xiaop1987/note/102894)
 
 

@@ -3,7 +3,7 @@ layout: post
 
 title: 安装和配置Sentry
 
-category: hadoop
+category: hive
 
 tags: [sentry]
 
@@ -13,7 +13,7 @@ published: true
 
 ---
 
-本文主要记录安装和配置Sentry的过程，关于Sentry的介绍，请参考[Apache Sentry架构介绍](/2015/04/29/apache-sentry-architecture.html)。
+本文主要记录安装和配置Sentry的过程，关于Sentry的介绍，请参考[Apache Sentry架构介绍](/2015/04/29/apache-sentry-architecture)。
 
 # 1. 环境说明
 
@@ -23,7 +23,7 @@ published: true
 - Hadoop版本：`CDH5.4`
 - 运行用户：root
 
-这里，我参考[使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum.html)一文搭建了一个测试集群，并选择cdh1节点来安装sentry服务。
+这里，我参考[使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum)一文搭建了一个测试集群，并选择cdh1节点来安装sentry服务。
 
 # 2. 安装
 
@@ -154,7 +154,7 @@ Sentry store的组映射`sentry.store.group.mapping`有些两种配置方式：`
 
 ## 初始化数据库
 
-如果配置 sentry store 使用 `posrgres` 数据库，当然你也可以使用其他的数据库，则需要创建并初始化数据库。数据库的创建过程，请参考 [Hadoop自动化安装shell脚本](/2013/08/02/hadoop-install-script/)，下面列出关键脚本。
+如果配置 sentry store 使用 `posrgres` 数据库，当然你也可以使用其他的数据库，则需要创建并初始化数据库。数据库的创建过程，请参考 [Hadoop自动化安装shell脚本](/images/08/02/hadoop-install-script/)，下面列出关键脚本。
 
 ~~~bash
 yum install postgresql-server postgresql-jdbc -y

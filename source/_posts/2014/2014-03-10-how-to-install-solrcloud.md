@@ -95,7 +95,7 @@ Mode: follower
 
 # 4. 安装Solr
 
-你可以参考[《Apache Solr介绍及安装》](/2014/02/26/how-to-install-solr.html)
+你可以参考[《Apache Solr介绍及安装》](/images/02/26/how-to-install-solr.html)
 
 简单来说，执行以下命令：
 
@@ -364,7 +364,7 @@ $ sh apache-tomcat-6.0.36/bin/startup.sh
 
 通过 <http://192.168.56.121:8080/solr/> 进行访问，界面如图提示 `There are no SolrCores running. `，这是因为配置文件尚未配置 solrcore。
 
-![There are no SolrCores running](http://7xnrdo.com1.z0.glb.clouddn.com/2014/solr-no-solrcores.png)
+![There are no SolrCores running](/images/solr-no-solrcores.png)
 
 # 7. 创建 Collection、Shard 和 Replication
 
@@ -421,7 +421,7 @@ $ curl 'http://192.168.56.121:8080/solr/admin/collections?action=CREATE&name=pri
 
 可以通过 Web 管理页面，访问 `http://192.168.56.121:8080/solr/#/~cloud`，查看 SolrCloud 集群的分片信息，如图所示:
 
-![SolrCloud-collection-shard](http://7xnrdo.com1.z0.glb.clouddn.com/2014/solrcloud-collection-shard.png)
+![SolrCloud-collection-shard](/images/solrcloud-collection-shard.png)
 
 实际上，我们从192.168.56.121节点可以看到，SOLR 的配置文件内容，已经发生了变化，如下所示：
 
@@ -485,7 +485,7 @@ $ curl 'http://192.168.56.123:8080/solr/admin/cores?action=CREATE&collection=pri
 
 到此为止，我们已经基于3个节点，配置完成了 SolrCloud 集群。最后效果如下：
 
-![solrcloud-collection-shard-replica](http://7xnrdo.com1.z0.glb.clouddn.com/2014/solrcloud-collection-shard-replica.png)
+![solrcloud-collection-shard-replica](/images/solrcloud-collection-shard-replica.png)
 
 
 # 8. 其他说明

@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,71 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="hbase,opentsdb,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="OpenTSDB用HBase存储所有的时序（无须采样）来构建一个分布式、可伸缩的时间序列数据库。它支持秒级数据采集所有metrics，支持永久存储，可以做容量规划，并很容易的接入到现有的报警系统里。OpenTSDB可以从大规模的集群（包括集群中的网络设备、操作系统、应用程序）中获取相应的metrics并进行存储、索引以及服务，从而使得这些数据更容易让人理解，如web化、图形化等。">
-<meta name="keywords" content="hbase,opentsdb">
-<meta property="og:type" content="article">
-<meta property="og:title" content="All Things OpenTSDB">
-<meta property="og:url" content="http://blog.javachen.com/2014/01/22/all-things-opentsdb/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="OpenTSDB用HBase存储所有的时序（无须采样）来构建一个分布式、可伸缩的时间序列数据库。它支持秒级数据采集所有metrics，支持永久存储，可以做容量规划，并很容易的接入到现有的报警系统里。OpenTSDB可以从大规模的集群（包括集群中的网络设备、操作系统、应用程序）中获取相应的metrics并进行存储、索引以及服务，从而使得这些数据更容易让人理解，如web化、图形化等。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/opentsdb-tsdb-schema.png">
-<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/opentsdb-tsdb-uid-schema.png">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="All Things OpenTSDB">
-<meta name="twitter:description" content="OpenTSDB用HBase存储所有的时序（无须采样）来构建一个分布式、可伸缩的时间序列数据库。它支持秒级数据采集所有metrics，支持永久存储，可以做容量规划，并很容易的接入到现有的报警系统里。OpenTSDB可以从大规模的集群（包括集群中的网络设备、操作系统、应用程序）中获取相应的metrics并进行存储、索引以及服务，从而使得这些数据更容易让人理解，如web化、图形化等。">
-<meta name="twitter:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/opentsdb-tsdb-schema.png">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -170,12 +135,44 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2014/01/22/all-things-opentsdb/">
-
+  
 
 
 
+
+  <meta name="description" content="OpenTSDB用HBase存储所有的时序（无须采样）来构建一个分布式、可伸缩的时间序列数据库。它支持秒级数据采集所有metrics，支持永久存储，可以做容量规划，并很容易的接入到现有的报警系统里。OpenTSDB可以从大规模的集群（包括集群中的网络设备、操作系统、应用程序）中获取相应的metrics并进行存储、索引以及服务，从而使得这些数据更容易让人理解，如web化、图形化等。">
+<meta name="keywords" content="hbase,opentsdb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="All Things OpenTSDB">
+<meta property="og:url" content="http://javachen.github.io/2014/01/22/all-things-opentsdb/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="OpenTSDB用HBase存储所有的时序（无须采样）来构建一个分布式、可伸缩的时间序列数据库。它支持秒级数据采集所有metrics，支持永久存储，可以做容量规划，并很容易的接入到现有的报警系统里。OpenTSDB可以从大规模的集群（包括集群中的网络设备、操作系统、应用程序）中获取相应的metrics并进行存储、索引以及服务，从而使得这些数据更容易让人理解，如web化、图形化等。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://javachen.github.io/images/opentsdb-tsdb-schema.png">
+<meta property="og:image" content="http://javachen.github.io/images/opentsdb-tsdb-uid-schema.png">
+<meta property="og:updated_time" content="2019-06-29T12:24:11.025Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="All Things OpenTSDB">
+<meta name="twitter:description" content="OpenTSDB用HBase存储所有的时序（无须采样）来构建一个分布式、可伸缩的时间序列数据库。它支持秒级数据采集所有metrics，支持永久存储，可以做容量规划，并很容易的接入到现有的报警系统里。OpenTSDB可以从大规模的集群（包括集群中的网络设备、操作系统、应用程序）中获取相应的metrics并进行存储、索引以及服务，从而使得这些数据更容易让人理解，如web化、图形化等。">
+<meta name="twitter:image" content="http://javachen.github.io/images/opentsdb-tsdb-schema.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2014/01/22/all-things-opentsdb/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>All Things OpenTSDB | JavaChen Blog</title>
   
@@ -184,7 +181,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -197,9 +195,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -211,7 +237,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -221,13 +247,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -235,76 +264,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -333,12 +400,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -351,16 +426,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2014/01/22/all-things-opentsdb/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2014/01/22/all-things-opentsdb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -373,11 +450,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">All Things OpenTSDB</h2>
+          <h2 class="post-title" itemprop="name headline">All Things OpenTSDB<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2014/2014-01-22-all-things-opentsdb.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -385,13 +471,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-01-22T00:00:00+08:00">
-                2014-01-22
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2014-01-22 00:00:00" itemprop="dateCreated datePublished" datetime="2014-01-22T00:00:00+08:00">2014-01-22</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:24:11" itemprop="dateModified" datetime="2019-06-29T20:24:11+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -407,11 +510,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/devops/" itemprop="url" rel="index">
-                    <span itemprop="name">devops</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/devops/" itemprop="url" rel="index"><span itemprop="name">devops</span></a></span>
 
                 
                 
@@ -420,6 +519,7 @@
           
 
           
+            
             
           
 
@@ -437,6 +537,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -444,7 +545,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -458,7 +559,7 @@
 <li>源代码：<a href="https://github.com/OpenTSDB/opentsdb/" target="_blank" rel="noopener">https://github.com/OpenTSDB/opentsdb/</a></li>
 </ul>
 <h1 id="2-安装OpenTSDB"><a href="#2-安装OpenTSDB" class="headerlink" title="2. 安装OpenTSDB"></a>2. 安装OpenTSDB</h1><h2 id="2-1-依赖"><a href="#2-1-依赖" class="headerlink" title="2.1 依赖"></a>2.1 依赖</h2><p>OpenTSDB依赖jdk和<a href="http://www.gnuplot.info/" target="_blank" rel="noopener">Gnuplot</a>，Gnuplot需要提前安装，版本要求为最小4.2,最大4.4,执行以下命令安装即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install gnuplot autoconf</span><br><span class="line">apt-get install gnuplot</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> gnuplot autoconf</span><br><span class="line">apt-<span class="keyword">get</span> <span class="keyword">install</span> gnuplot</span><br></pre></td></tr></table></figure>
 
 <p>OpenTSDB是用java编写的，但是项目构建不是用的java的方式而是使用的C、C++程序员构建项目的方式。运行时依赖：</p>
 <ul>
@@ -483,10 +584,10 @@
 <li><a href="http://code.google.com/p/powermock/" target="_blank" rel="noopener">PowerMock</a> 1.4 (ASLv2)</li>
 </ul>
 <h2 id="2-2-下载并编译源代码"><a href="#2-2-下载并编译源代码" class="headerlink" title="2.2 下载并编译源代码"></a>2.2 下载并编译源代码</h2><p>首先安装必要依赖：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gnuplot automake autoconf git -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> gnuplot automake autoconf git -y</span><br></pre></td></tr></table></figure>
 
 <p>下载源代码，可以指定最新版本或者手动checkout</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/OpenTSDB/opentsdb.git</span><br><span class="line">cd opentsdb</span><br><span class="line">./build.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone gi<span class="variable">t:</span>//github.<span class="keyword">com</span>/OpenTSDB/opentsdb.git</span><br><span class="line"><span class="keyword">cd</span> opentsdb</span><br><span class="line">./build.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="2-3-安装"><a href="#2-3-安装" class="headerlink" title="2.3 安装"></a>2.3 安装</h2><ul>
 <li><ol>
@@ -506,7 +607,7 @@
 </ol>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tsdtmp=$&#123;TMPDIR-&apos;/tmp&apos;&#125;/tsd    # For best performance, make sure</span><br><span class="line">mkdir -p &quot;$tsdtmp&quot;             # your temporary directory uses tmpfs</span><br><span class="line">./build/tsdb tsd --port=4242 --staticroot=build/staticroot --cachedir=&quot;$tsdtmp&quot; --auto-metric</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tsdtmp</span>=<span class="variable">$&#123;TMPDIR-'/tmp'&#125;</span>/tsd    # <span class="keyword">For</span> best performance, make sure</span><br><span class="line">mkdir -p <span class="string">"<span class="variable">$tsdtmp</span>"</span>             # your temporary directory uses tmpfs</span><br><span class="line">./build/tsdb tsd <span class="attribute">--port</span>=4242 <span class="attribute">--staticroot</span>=build/staticroot <span class="attribute">--cachedir</span>=<span class="string">"<span class="variable">$tsdtmp</span>"</span> --auto-metric</span><br></pre></td></tr></table></figure>
 
 <p>如果你使用的是hbase集群，则你还需要设置<code>--zkquorum</code>，<code>--cachedir</code>对应的目录会产生一些临时文件，你可以设置cron定时任务进行删除。添加<code>--auto-metric</code>，则当新的数据被搜集时自动创建指标。</p>
 <p>你可以将这些参数编写到配置文件中，然后通过<code>--config</code>指定该文件所在路径。</p>
@@ -518,7 +619,7 @@
 </ul>
 <p>从源代码安装gnuplot、autoconf、opentsdb以及tcollector，可以参考：<a href="http://www.adintellig.com/blog/14" target="_blank" rel="noopener">OpenTSDB &amp; tcollector 安装部署（Installation and Deployment）</a></p>
 <h1 id="3-使用向导"><a href="#3-使用向导" class="headerlink" title="3. 使用向导"></a>3. 使用向导</h1><h2 id="3-1-配置"><a href="#3-1-配置" class="headerlink" title="3.1 配置"></a>3.1 配置</h2><p>OpenTSDB的配置参数可以在命令行指定，也可以在配置文件中指定。配置文件使用的是java的properties文件，文件中key为小写，支持逗号连接字符串但是不能有空格。所有的OpenTSDB属性都以tsdb开头，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># List of Zookeeper hosts that manage the HBase cluster</span><br><span class="line">tsd.storage.hbase.zk_quorum = 192.168.1.100</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># List of Zookeeper hosts that manage the HBase cluster</span></span><br><span class="line"><span class="attr">tsd.storage.hbase.zk_quorum</span> = <span class="number">192.168</span>.<span class="number">1.100</span></span><br></pre></td></tr></table></figure>
 
 <p>配置参数优先级：</p>
 <p>命令行参数 &gt; 配置文件 &gt; 默认值</p>
@@ -577,16 +678,16 @@
 <p>metadata的另外一个形式是<code>Annotations</code>，详细说明，请参考<a href="http://opentsdb.net/docs/build/html/user_guide/metadata.html#annotations" target="_blank" rel="noopener">annotations</a></p>
 <p><strong>Tree</strong></p>
 <h2 id="3-3-数据存储方式"><a href="#3-3-数据存储方式" class="headerlink" title="3.3 数据存储方式"></a>3.3 数据存储方式</h2><p>OpenTSDB使用HBase作为后端存储，在安装OpenTSDB之前，需要先启动一个hbase节点或者集群，然后再执行建表语句<code>src/create_table.sh</code>创建hbase表。建表语句如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">create &apos;$UID_TABLE&apos;,</span><br><span class="line">  &#123;NAME =&gt; &apos;id&apos;, COMPRESSION =&gt; &apos;$COMPRESSION&apos;, BLOOMFILTER =&gt; &apos;$BLOOMFILTER&apos;&#125;,</span><br><span class="line">  &#123;NAME =&gt; &apos;name&apos;, COMPRESSION =&gt; &apos;$COMPRESSION&apos;, BLOOMFILTER =&gt; &apos;$BLOOMFILTER&apos;&#125;</span><br><span class="line"></span><br><span class="line">create &apos;$TSDB_TABLE&apos;,</span><br><span class="line">  &#123;NAME =&gt; &apos;t&apos;, VERSIONS =&gt; 1, COMPRESSION =&gt; &apos;$COMPRESSION&apos;, BLOOMFILTER =&gt; &apos;$BLOOMFILTER&apos;&#125;</span><br><span class="line">  </span><br><span class="line">create &apos;$TREE_TABLE&apos;,</span><br><span class="line">  &#123;NAME =&gt; &apos;t&apos;, VERSIONS =&gt; 1, COMPRESSION =&gt; &apos;$COMPRESSION&apos;, BLOOMFILTER =&gt; &apos;$BLOOMFILTER&apos;&#125;</span><br><span class="line">  </span><br><span class="line">create &apos;$META_TABLE&apos;,</span><br><span class="line">  &#123;NAME =&gt; &apos;name&apos;, COMPRESSION =&gt; &apos;$COMPRESSION&apos;, BLOOMFILTER =&gt; &apos;$BLOOMFILTER&apos;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">create <span class="string">'$UID_TABLE'</span>,</span><br><span class="line">  &#123;<span class="function"><span class="params">NAME</span> =&gt;</span> <span class="string">'id'</span>, <span class="function"><span class="params">COMPRESSION</span> =&gt;</span> <span class="string">'$COMPRESSION'</span>, <span class="function"><span class="params">BLOOMFILTER</span> =&gt;</span> <span class="string">'$BLOOMFILTER'</span>&#125;,</span><br><span class="line">  &#123;<span class="function"><span class="params">NAME</span> =&gt;</span> <span class="string">'name'</span>, <span class="function"><span class="params">COMPRESSION</span> =&gt;</span> <span class="string">'$COMPRESSION'</span>, <span class="function"><span class="params">BLOOMFILTER</span> =&gt;</span> <span class="string">'$BLOOMFILTER'</span>&#125;</span><br><span class="line"></span><br><span class="line">create <span class="string">'$TSDB_TABLE'</span>,</span><br><span class="line">  &#123;<span class="function"><span class="params">NAME</span> =&gt;</span> <span class="string">'t'</span>, <span class="function"><span class="params">VERSIONS</span> =&gt;</span> <span class="number">1</span>, <span class="function"><span class="params">COMPRESSION</span> =&gt;</span> <span class="string">'$COMPRESSION'</span>, <span class="function"><span class="params">BLOOMFILTER</span> =&gt;</span> <span class="string">'$BLOOMFILTER'</span>&#125;</span><br><span class="line">  </span><br><span class="line">create <span class="string">'$TREE_TABLE'</span>,</span><br><span class="line">  &#123;<span class="function"><span class="params">NAME</span> =&gt;</span> <span class="string">'t'</span>, <span class="function"><span class="params">VERSIONS</span> =&gt;</span> <span class="number">1</span>, <span class="function"><span class="params">COMPRESSION</span> =&gt;</span> <span class="string">'$COMPRESSION'</span>, <span class="function"><span class="params">BLOOMFILTER</span> =&gt;</span> <span class="string">'$BLOOMFILTER'</span>&#125;</span><br><span class="line">  </span><br><span class="line">create <span class="string">'$META_TABLE'</span>,</span><br><span class="line">  &#123;<span class="function"><span class="params">NAME</span> =&gt;</span> <span class="string">'name'</span>, <span class="function"><span class="params">COMPRESSION</span> =&gt;</span> <span class="string">'$COMPRESSION'</span>, <span class="function"><span class="params">BLOOMFILTER</span> =&gt;</span> <span class="string">'$BLOOMFILTER'</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>从上面可以看出一共创建了4张表，并且可以设置是否压缩、是否启用布隆过滤、保存版本号等等，如果追求hbase读写性能，还可以预建分区。</p>
 <h3 id="3-3-1-Data-Table-Schema"><a href="#3-3-1-Data-Table-Schema" class="headerlink" title="3.3.1 Data Table Schema"></a>3.3.1 Data Table Schema</h3><p>在OpenTSDB中，所有数据存储在一张叫做<code>tsdb</code>的表中，这是为了充分利用hbase有序和region分布式的特点。所有的值都保存在列族<code>t</code>中。</p>
 <p>rowkey为<code>&lt;metric_uid&gt;&lt;timestamp&gt;&lt;tagk1&gt;&lt;tagv1&gt;[...&lt;tagkN&gt;&lt;tagvN&gt;]</code>，UID默认编码为3 Bytes，而时间戳会编码为4 Bytes</p>
 <p>OpenTSDB的tsdb启动之后，会监控指定的socket端口（默认为4242），接收到监控数据，包括指标、时间戳、数据、tag标签，tag标签包括tag名称ID和tag值ID。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myservice.latency.avg 1292148123 42 reqtype=foo host=web42</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myservice.latency.avg 1292148123 42 <span class="attribute">reqtype</span>=foo <span class="attribute">host</span>=web42</span><br></pre></td></tr></table></figure>
 
 <p>对于指标myservice.latency.avg的ID为：[0, 0, -69],reqtype标签名称的ID为：[0, 0, 1], foo标签值的ID为：[0, 1, 11], 标签名称的ID为：[0, 0, 2] web42标签值的ID为：[0, -7, 42]，他们组成rowkey：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[0, 0, -69, 77, 4, -99, 32, 0, 0, 1, 0, 1, 11, 0, 0, 2, 0, -7, 42]</span><br><span class="line"> `-------&apos;  `------------&apos;  `-----&apos;  `------&apos;  `-----&apos;  `-------&apos;</span><br><span class="line"> metric ID  base timestamp  name ID  value ID  name ID  value ID</span><br><span class="line">                            `---------------&apos;  `---------------&apos;</span><br><span class="line">                                first tag         second tag</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">-69</span>, <span class="number">77</span>, <span class="number">4</span>, <span class="number">-99</span>, <span class="number">32</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">11</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">-7</span>, <span class="number">42</span>]</span><br><span class="line"> `-------'  `------------'  `-----'  `------'  `-----'  `-------'</span><br><span class="line"> metric ID  base timestamp  name ID  value ID  name ID  value ID</span><br><span class="line">                            `---------------'  `---------------'</span><br><span class="line">                                first tag         second tag</span><br></pre></td></tr></table></figure>
 
 <p>row表示格式为： 每个数字对应1 byte</p>
 <ul>
@@ -622,7 +723,7 @@
 <p>对于时间戳为1292148123的数据点来说，其转换为以小时为单位的基准时间(去掉小时后的秒）为129214800,偏移为123,转换为二进制为<code>1111011</code>，因为该值为整数且长度为8位（对应为2byte，故最后3bit为<code>100</code>）,故其对应的列族名为：<code>0000011110110100</code>，将其转换为十六进制为<code>07B4</code></p>
 <p><strong>value</strong> 使用8bytes存储，既可以存储long,也可以存储double。</p>
 <p>总结一下，<code>tsdb</code>表结构如下：</p>
-<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/opentsdb-tsdb-schema.png" alt="opentsdb-tsdb-schema"></p>
+<p><img src="/images/opentsdb-tsdb-schema.png" alt="opentsdb-tsdb-schema"></p>
 <h3 id="3-3-2-UID-Table-Schema"><a href="#3-3-2-UID-Table-Schema" class="headerlink" title="3.3.2 UID Table Schema"></a>3.3.2 UID Table Schema</h3><p>一个单独的较小的表叫做<code>tsdb-uid</code>用来存储UID映射，包括正向的和反向的。存在两列族，一列族叫做<code>name</code>用来将一个UID映射到一个字符串，另一个列族叫做<code>id</code>，用来将字符串映射到UID。列族的每一行都至少有以下三列中的一个：</p>
 <ul>
 <li><code>metrics</code> 将metric的名称映射到UID </li>
@@ -637,7 +738,7 @@
 <p><strong>Column Qualifiers</strong> - 上面三种列类型中一种。</p>
 <p><strong>Column Value</strong> - 一个无符号的整数，默认被编码为3个byte，其值为UID。</p>
 <p>例如以下几行数据是从<code>tsdb-uid</code>表中查询出来的数据，第一个列为row key，第二列为”列族:列名”，第三列为值，对应为UID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proc.stat.cpu id:metrics \x00\x00\x01</span><br><span class="line">host id:tagk \x00\x00\x01</span><br><span class="line">cdh1 id:tagv \x00\x00\x01</span><br></pre></td></tr></table></figure>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proc.stat.cpu id:metrics \<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span></span><br><span class="line">host id:tagk \<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span></span><br><span class="line">cdh<span class="number">1</span> id:tagv \<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><strong>name 列族</strong></li>
@@ -646,29 +747,29 @@
 <p><strong>Column Qualifiers</strong> - 上面三种列类型中一种或者为<code>metrics_meta</code>、<code>tagk_meta</code>、<code>tagv_meta</code></p>
 <p><strong>Column Value</strong> - 与UID对应的字符串，对于一个<code>*_meta</code>列，其值将会是一个UTF-8编码的JSON格式字符串。不要在OpenTSDB外部去修改该值，其中的字段顺序会影响<code>CAS</code>调用。</p>
 <p>例如,以下几行数据是从<code>tsdb-uid</code>表中查询出来的数据，第一个列为row key，第二列为”列族:列名”，第三列为值，对应为UID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\x00\x00\x01 name:metrics proc.stat.cpu</span><br><span class="line">\x00\x00\x01 name:tagk host</span><br><span class="line">\x00\x00\x01 name:tagv cdh1</span><br><span class="line">\x00\x00\x01 name:tagk_meta &#123;&quot;uid&quot;:&quot;000001&quot;,&quot;type&quot;:&quot;TAGK&quot;,&quot;name&quot;:&quot;host&quot;,&quot;description&quot;:&quot;&quot;,&quot;notes&quot;:&quot;&quot;,&quot;created&quot;:1395213193,&quot;custom&quot;:null,&quot;displayName&quot;:&quot;&quot;&#125;</span><br><span class="line">\x00\x00\x01 name:tagv_meta &#123;&quot;uid&quot;:&quot;000001&quot;,&quot;type&quot;:&quot;TAGV&quot;,&quot;name&quot;:&quot;cdh1&quot;,&quot;description&quot;:&quot;&quot;,&quot;notes&quot;:&quot;&quot;,&quot;created&quot;:1395213193,&quot;custom&quot;:null,&quot;displayName&quot;:&quot;&quot;&#125;</span><br><span class="line">\x00\x00\x01 name:metric_meta &#123;&quot;uid&quot;:&quot;000001&quot;,&quot;type&quot;:&quot;METRIC&quot;,&quot;name&quot;:&quot;metrics proc.stat.cpu&quot;,&quot;description&quot;:&quot;&quot;,&quot;notes&quot;:&quot;&quot;,&quot;created&quot;:1395213193,&quot;custom&quot;:null,&quot;displayName&quot;:&quot;&quot;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:metrics proc.stat.cpu</span><br><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:tagk host</span><br><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:tagv cdh<span class="number">1</span></span><br><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:tagk_meta &#123;<span class="string">"uid"</span>:<span class="string">"000001"</span>,<span class="string">"type"</span>:<span class="string">"TAGK"</span>,<span class="string">"name"</span>:<span class="string">"host"</span>,<span class="string">"description"</span>:<span class="string">""</span>,<span class="string">"notes"</span>:<span class="string">""</span>,<span class="string">"created"</span>:<span class="number">1395213193</span>,<span class="string">"custom"</span>:<span class="keyword">null</span>,<span class="string">"displayName"</span>:<span class="string">""</span>&#125;</span><br><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:tagv_meta &#123;<span class="string">"uid"</span>:<span class="string">"000001"</span>,<span class="string">"type"</span>:<span class="string">"TAGV"</span>,<span class="string">"name"</span>:<span class="string">"cdh1"</span>,<span class="string">"description"</span>:<span class="string">""</span>,<span class="string">"notes"</span>:<span class="string">""</span>,<span class="string">"created"</span>:<span class="number">1395213193</span>,<span class="string">"custom"</span>:<span class="keyword">null</span>,<span class="string">"displayName"</span>:<span class="string">""</span>&#125;</span><br><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:metric_meta &#123;<span class="string">"uid"</span>:<span class="string">"000001"</span>,<span class="string">"type"</span>:<span class="string">"METRIC"</span>,<span class="string">"name"</span>:<span class="string">"metrics proc.stat.cpu"</span>,<span class="string">"description"</span>:<span class="string">""</span>,<span class="string">"notes"</span>:<span class="string">""</span>,<span class="string">"created"</span>:<span class="number">1395213193</span>,<span class="string">"custom"</span>:<span class="keyword">null</span>,<span class="string">"displayName"</span>:<span class="string">""</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>总结一下，<code>tsdb-uid</code>表结构如下：</p>
-<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/opentsdb-tsdb-uid-schema.png" alt="opentsdb-tsdb-uid-schema"></p>
+<p><img src="/images/opentsdb-tsdb-uid-schema.png" alt="opentsdb-tsdb-uid-schema"></p>
 <p>上图对应的一个datapoint如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proc.stat.cpu 1292148123 80 host=cdh1</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proc<span class="selector-class">.stat</span><span class="selector-class">.cpu</span> <span class="number">1292148123</span> <span class="number">80</span> host=cdh1</span><br></pre></td></tr></table></figure>
 
 <p>从上图可以看出<code>tsdb-uid</code>的表结构以及数据存储方式，对于一个data point来说，其被保存到opentsdb之前，会对<code>metrics</code>、<code>tagk</code>、<code>tagv</code>、<code>metric_meta</code>、<code>tagk_meta</code>、<code>tagv_meta</code>生成一个UID（如上图中的<code>000001</code>）,然后将其插入hbase表中，rowkey为UID，同时会存储多行记录，分别保存<code>metrics</code>、<code>tagk</code>、<code>tagv</code>、<code>metric_meta</code>、<code>tagk_meta</code>、<code>tagv_meta</code>到UID的映射。</p>
 <h3 id="3-3-3-Meta-Table-Schema"><a href="#3-3-3-Meta-Table-Schema" class="headerlink" title="3.3.3 Meta Table Schema"></a>3.3.3 Meta Table Schema</h3><p>这个表是OpenTSDB中不同时间序列的一个索引，可以用来存储一些额外的信息。这个表名称叫做<code>tsdb-meta</code>，该表只有一个列族<code>name</code>，两个列，分别为<code>ts_meta</code>、<code>ts_ctr</code>，该表中数据如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\x00\x00\x01\x00\x00\x01\x00\x00\x01 name:ts_ctr \x00\x00\x00\x00\x00\x00\x00p</span><br><span class="line">\x00\x00\x01\x00\x00\x01\x00\x00\x01 name:ts_meta &#123;&quot;tsuid&quot;:&quot;000001000001000001&quot;,&quot;displayName&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;notes&quot;:&quot;&quot;,&quot;created&quot;:1395213196,&quot;custom&quot;:null,&quot;units&quot;:&quot;&quot;,&quot;dataType&quot;:&quot;&quot;,&quot;retention&quot;:0,&quot;max&quot;:&quot;NaN&quot;,&quot;min&quot;:&quot;NaN&quot;&#125;</span><br><span class="line"></span><br><span class="line">\x00\x00\x02\x00\x00\x01\x00\x00\x01 name:ts_ctr \x00\x00\x00\x00\x00\x00\x00p</span><br><span class="line">\x00\x00\x02\x00\x00\x01\x00\x00\x01 name:ts_meta &#123;&quot;tsuid&quot;:&quot;000002000001000001&quot;,&quot;displayName&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;notes&quot;:&quot;&quot;,&quot;created&quot;:1395213196,&quot;custom&quot;:null,&quot;units&quot;:&quot;&quot;,&quot;dataType&quot;:&quot;&quot;,&quot;retention&quot;:0,&quot;max&quot;:&quot;NaN&quot;,&quot;min&quot;:&quot;NaN&quot;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:ts_ctr \<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>p</span><br><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:ts_meta &#123;<span class="string">"tsuid"</span>:<span class="string">"000001000001000001"</span>,<span class="string">"displayName"</span>:<span class="string">""</span>,<span class="string">"description"</span>:<span class="string">""</span>,<span class="string">"notes"</span>:<span class="string">""</span>,<span class="string">"created"</span>:<span class="number">1395213196</span>,<span class="string">"custom"</span>:<span class="keyword">null</span>,<span class="string">"units"</span>:<span class="string">""</span>,<span class="string">"dataType"</span>:<span class="string">""</span>,<span class="string">"retention"</span>:<span class="number">0</span>,<span class="string">"max"</span>:<span class="string">"NaN"</span>,<span class="string">"min"</span>:<span class="string">"NaN"</span>&#125;</span><br><span class="line"></span><br><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">02</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:ts_ctr \<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>p</span><br><span class="line">\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">02</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">01</span> name:ts_meta &#123;<span class="string">"tsuid"</span>:<span class="string">"000002000001000001"</span>,<span class="string">"displayName"</span>:<span class="string">""</span>,<span class="string">"description"</span>:<span class="string">""</span>,<span class="string">"notes"</span>:<span class="string">""</span>,<span class="string">"created"</span>:<span class="number">1395213196</span>,<span class="string">"custom"</span>:<span class="keyword">null</span>,<span class="string">"units"</span>:<span class="string">""</span>,<span class="string">"dataType"</span>:<span class="string">""</span>,<span class="string">"retention"</span>:<span class="number">0</span>,<span class="string">"max"</span>:<span class="string">"NaN"</span>,<span class="string">"min"</span>:<span class="string">"NaN"</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>Row Key</strong> 和<code>tsdb</code>表一样，其中不包含时间戳，<code>&lt;metric_uid&gt;&lt;tagk1&gt;&lt;tagv1&gt;[...&lt;tagkN&gt;&lt;tagvN&gt;]</code></p>
 <p><strong>TSMeta Column</strong> 和UIDMeta相似，其为UTF-8编码的JSON格式字符串</p>
 <p><strong>ts_ctr Column</strong> 计数器，用来记录一个时间序列中存储的数据个数，其列名为<code>ts_ctr</code>，为8位有符号的整数。</p>
 <h3 id="3-3-4-Tree-Table-Schema"><a href="#3-3-4-Tree-Table-Schema" class="headerlink" title="3.3.4 Tree Table Schema"></a>3.3.4 Tree Table Schema</h3><p>索引表，用于展示树状结构的，类似于文件系统，以方便其他系统使用，例如：<code>Graphite</code></p>
 <h2 id="3-4-如何写数据"><a href="#3-4-如何写数据" class="headerlink" title="3.4 如何写数据"></a>3.4 如何写数据</h2><h2 id="3-5-如何查询数据"><a href="#3-5-如何查询数据" class="headerlink" title="3.5 如何查询数据"></a>3.5 如何查询数据</h2><h2 id="3-6-CLI-Tools"><a href="#3-6-CLI-Tools" class="headerlink" title="3.6 CLI Tools"></a>3.6 CLI Tools</h2><p>tsdb支持以下参数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@cdh1 build]# ./tsdb </span><br><span class="line">usage: tsdb &lt;command&gt; [args]</span><br><span class="line">Valid commands: fsck, import, mkmetric, query, tsd, scan, uid</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@cdh1 build]# ./tsdb </span><br><span class="line">usage: tsdb <span class="symbol">&lt;command&gt;</span> [<span class="keyword">args</span>]</span><br><span class="line">Valid <span class="keyword">command</span><span class="variable">s:</span> fsck, import, mkmetric, query, tsd, scan, uid</span><br></pre></td></tr></table></figure>
 
 <p>通过以下命令创建指标：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./tsdb mkmetric mysql.bytes_received mysql.bytes_sent</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./tsdb mkmetric mysql<span class="selector-class">.bytes_received</span> mysql.bytes_sent</span><br></pre></td></tr></table></figure>
 
 <p>执行上述命令的结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">metrics mysql.bytes_received: [0, 0, -93]</span><br><span class="line">metrics mysql.bytes_sent: [0, 0, -92]</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">metrics</span> <span class="selector-tag">mysql</span><span class="selector-class">.bytes_received</span>: <span class="selector-attr">[0, 0, -93]</span></span><br><span class="line"><span class="selector-tag">metrics</span> <span class="selector-tag">mysql</span><span class="selector-class">.bytes_sent</span>: <span class="selector-attr">[0, 0, -92]</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="3-11-Utilities"><a href="#3-11-Utilities" class="headerlink" title="3.11 Utilities"></a>3.11 Utilities</h2><h2 id="3-12-Logging"><a href="#3-12-Logging" class="headerlink" title="3.12 Logging"></a>3.12 Logging</h2><h1 id="4-HTTP-API"><a href="#4-HTTP-API" class="headerlink" title="4. HTTP API"></a>4. HTTP API</h1><h1 id="5-谁在用OpenTSDB"><a href="#5-谁在用OpenTSDB" class="headerlink" title="5. 谁在用OpenTSDB"></a>5. 谁在用OpenTSDB</h1><ul>
 <li><a href="http://www.stumbleupon.com/" target="_blank" rel="noopener">StumbleUpon</a> StumbleUpon is the easiest way to find cool new websites, videos, photos and images from across the Web</li>
@@ -688,35 +789,72 @@
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2014/01/22/all-things-opentsdb/" title="All Things OpenTSDB">All Things OpenTSDB</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -725,77 +863,37 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2014/01/22/all-things-opentsdb/" title="All Things OpenTSDB">http://blog.javachen.com/2014/01/22/all-things-opentsdb/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/hbase/" rel="tag"># hbase</a>
+            <a href="/tags/hbase/" rel="tag"><i class="fa fa-tag"></i> hbase</a>
           
-            <a href="/tags/opentsdb/" rel="tag"># opentsdb</a>
+            <a href="/tags/opentsdb/" rel="tag"><i class="fa fa-tag"></i> opentsdb</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2014/01/21/all-things-about-jekyll/" rel="next" title="All Things Jekyll">
-                <i class="fa fa-chevron-left"></i> All Things Jekyll
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/01/24/how-to-install-nagios-on-rhel6/" rel="prev" title="在RHEL系统上安装Nagios">
-                在RHEL系统上安装Nagios <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -832,15 +930,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/01/18/bash-problem-when-ssh-access/" rel="next" title="SSH远程连接时环境变量问题">
+                <i class="fa fa-chevron-left"></i> SSH远程连接时环境变量问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/01/24/how-to-install-nagios-on-rhel6/" rel="prev" title="在RHEL系统上安装Nagios">
+                在RHEL系统上安装Nagios <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -854,11 +987,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -879,6 +1014,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -892,11 +1028,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -910,96 +1049,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -1013,8 +1067,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -1063,6 +1168,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1096,8 +1203,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1266,9 +1374,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1342,9 +1450,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

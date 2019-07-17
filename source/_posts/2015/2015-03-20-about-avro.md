@@ -244,4 +244,4 @@ TODO
 # 6. 参考文章
 
 - [Avro简介](http://blog.csdn.net/xyw_blog/article/details/8967362)
-- [Reading and Writing Avro Files From the Command Line](http://www.michael-noll.com/blog/2013/03/17/reading-and-writing-avro-files-from-the-command-line/)
+- [Reading and Writing Avro Files From the Command Line](http://www.michael-noll.com/blog/images/03/17/reading-and-writing-avro-files-from-the-command-line/)

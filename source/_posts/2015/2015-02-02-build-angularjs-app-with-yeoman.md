@@ -29,7 +29,7 @@ Yeoman 主要有三部分组成：`yo`（脚手架工具）、`grunt`（构建�
 
 下面这幅图很形象的表明了他们三者之间的协作关系。
 
-![](/static/images/2015/yo-bower-grunt.jpg)
+![](/images/yo-bower-grunt.jpg)
 
 Yeoman 特性：
 
@@ -181,7 +181,7 @@ $ grunt serve
 
 浏览器访问 <localhost:9000>，你会看到：
 
-![](/static/images/2015/yeoman-web.jpg)
+![](/images/yeoman-web.jpg)
 
 # 创建 AngularJS 应用
 
@@ -210,7 +210,7 @@ angular.module('webApp').controller('MainCtrl', function ($scope) {
 
 页面会显示如下：
 
-![](/static/images/2015/yeoman-mytodo-list.png)
+![](/images/yeoman-mytodo-list.png)
 
 ## 添加一个 todo 项
 
@@ -242,7 +242,7 @@ angular.module('webApp').controller('MainCtrl', function ($scope) {
 
 这时候，页面内容如下：
 
-![](/static/images/2015/yeoman-mytodo-add-remove.png)
+![](/images/yeoman-mytodo-add-remove.png)
 
 修改 main.js 添加 addTodo() 事件：
 
@@ -458,7 +458,7 @@ angular.module('webApp').controller('MainCtrl', function ($scope, localStorageSe
 
 在添加一些项目到列表后，我们再次刷新我们的浏览器的时候，这些项目都还在。
 
-![](/static/images/2015/yeoman-web2.jpg)
+![](/images/yeoman-web2.jpg)
 
 # 测试
 

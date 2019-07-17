@@ -41,7 +41,7 @@ public class HRegionServerStarter {
 
 HRegionServer类继承关系如下：
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2014/hbase-hregionserver-class.jpg)
+![](/images/hbase-hregionserver-class.jpg)
 
 # 构造方法
 

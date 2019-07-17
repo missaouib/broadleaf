@@ -23,11 +23,11 @@ published: true
 	- 机器学习实战
 	- 这才是搜索引擎
 - 调研了 [flume-ng]() 日志采集方案
-	- [大众点评的大数据实践](http://www.csdn.net/article/2013-12-18/2817838-big-data-practice-in-dianping)
+	- [大众点评的大数据实践](http://www.csdn.net/article/images-12-18/2817838-big-data-practice-in-dianping)
 	- [analyzing-twitter-data-with-hadoop](http://blog.cloudera.com/blog/2012/09/analyzing-twitter-data-with-hadoop/)
 	- [Hadoop Analysis of Apache Logs Using Flume-NG, Hive and Pig](http://cuddletech.com/?p=795)
 	- [Log Files with Flume and Hive](http://www.lopakalogic.com/articles/hadoop-articles/log-files-flume-hive/)
-	- [Solving Small Files Problem on CDH4](https://sskaje.me/2013/12/solving-small-files-problem-cdh4/#.U8I48Y2SywI)
+	- [Solving Small Files Problem on CDH4](https://sskaje.me/images/12/solving-small-files-problem-cdh4/#.U8I48Y2SywI)
 	- [flume-ng+Kafka+Storm+HDFS 实时系统搭建](http://blog.csdn.net/weijonathan/article/details/18301321)
 	- [flume-ng+Hadoop实现日志收集](http://gdcsy.blog.163.com/blog/static/127343609201452532339253/)
 	- [基于Flume的美团日志收集系统(一)架构和设计](http://tech.meituan.com/mt-log-system-arch.html)

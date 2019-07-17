@@ -13,17 +13,17 @@ published: true
 
 ---
 
-以下是整理的Spark中的一些配置参数，官方文档请参考[Spark Configuration](https://spark.apache.org/docs/latest/configuration.html)。
+以下是整理的Spark中的一些配置参数，官方文档请参考[Spark Configuration](https:/.apache.org/docs/latest/configuration.html)。
 
 Spark提供三个位置用来配置系统：
 
 - Spark属性：控制大部分的应用程序参数，可以用SparkConf对象或者Java系统属性设置
-- 环境变量：可以通过每个节点的` conf/spark-env.sh`脚本设置。例如IP地址、端口等信息
+- 环境变量：可以通过每个节点的` conf-env.sh`脚本设置。例如IP地址、端口等信息
 - 日志配置：可以通过log4j.properties配置
 
 # Spark属性
 
-Spark属性控制大部分的应用程序设置，并且为每个应用程序分别配置它。这些属性可以直接在[SparkConf](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkConf)上配置，然后传递给`SparkContext`。`SparkConf`
+Spark属性控制大部分的应用程序设置，并且为每个应用程序分别配置它。这些属性可以直接在[SparkConf](http:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkConf)上配置，然后传递给`SparkContext`。`SparkConf`
 允许你配置一些通用的属性（如master URL、应用程序名称等等）以及通过`set()`方法设置的任意键值对。例如，我们可以用如下方式创建一个拥有两个线程的应用程序。
 
 ~~~scala
@@ -45,13 +45,13 @@ val sc = new SparkContext(new SparkConf())
 然后你在运行时设置变量：
 
 ~~~bash
-./bin/spark-submit --name "My app" --master local[4] --conf spark.shuffle.spill=false
+./bin-submit --name "My app" --master local[4] --conf spark.shuffle.spill=false
   --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps" myApp.jar
 ~~~
 
-Spark shell和`spark-submit`工具支持两种方式动态加载配置。第一种方式是命令行选项，例如`--master`，如上面shell显示的那样。`spark-submit`可以接受任何Spark属性，用`--conf`参数表示。但是那些参与Spark应用程序启动的属性要用特定的参数表示。运行`./bin/spark-submit --help`将会显示选项的整个列表。
+Spark shell和`spark-submit`工具支持两种方式动态加载配置。第一种方式是命令行选项，例如`--master`，如上面shell显示的那样。`spark-submit`可以接受任何Spark属性，用`--conf`参数表示。但是那些参与Spark应用程序启动的属性要用特定的参数表示。运行`./bin-submit --help`将会显示选项的整个列表。
 
-`bin/spark-submit`也会从`conf/spark-defaults.conf`中读取配置选项，这个配置文件中，每一行都包含一对以`空格`或者`等号`分开的键和值。例如：
+`bin-submit`也会从`conf-defaults.conf`中读取配置选项，这个配置文件中，每一行都包含一对以`空格`或者`等号`分开的键和值。例如：
 
 ~~~
 spark.master            spark://5.6.7.8:7077
@@ -140,7 +140,7 @@ spark.shuffle.spill.compress | true | 在shuffle时，是否将spilling的数据
 属性名称| 默认值 | 含义
 --- | --- | ---
 spark.eventLog.compress | false | 是否压缩事件日志。需要`spark.eventLog.enabled`为true
-spark.eventLog.dir | file:///tmp/spark-events | Spark事件日志记录的基本目录。在这个基本目录下，Spark为每个应用程序创建一个子目录。各个应用程序记录日志到直到的目录。用户可能想设置这为统一的地点，像HDFS一样，所以历史文件可以通过历史服务器读取
+spark.eventLog.dir | file:///tmp-events | Spark事件日志记录的基本目录。在这个基本目录下，Spark为每个应用程序创建一个子目录。各个应用程序记录日志到直到的目录。用户可能想设置这为统一的地点，像HDFS一样，所以历史文件可以通过历史服务器读取
 spark.eventLog.enabled | false | 是否记录Spark的事件日志。这在应用程序完成后，重新构造web UI是有用的
 spark.ui.killEnabled | true | 运行在web UI中杀死stage和相应的job
 spark.ui.port | 4040 | 你的应用程序dashboard的端口。显示内存和工作量数据
@@ -159,11 +159,11 @@ spark.io.compression.snappy.block.size | 32768 | Snappy压缩中用到的块大�
 spark.kryo.classesToRegister | (none) | 如果你用Kryo序列化，给定的用逗号分隔的自定义类名列表表示要注册的类
 spark.kryo.referenceTracking | true | 当用Kryo序列化时，跟踪是否引用同一对象。如果你的对象图有环，这是必须的设置。如果他们包含相同对象的多个副本，这个设置对效率是有用的。如果你知道不在这两个场景，那么可以禁用它以提高效率 |
 spark.kryo.registrationRequired | false | 是否需要注册为Kyro可用。如果设置为true，然后如果一个没有注册的类序列化，Kyro会抛出异常。如果设置为false，Kryo将会同时写每个对象和其非注册类名。写类名可能造成显著地性能瓶颈。|
-spark.kryo.registrator | (none) | 如果你用Kryo序列化，设置这个类去注册你的自定义类。如果你需要用自定义的方式注册你的类，那么这个属性是有用的。否则`spark.kryo.classesToRegister`会更简单。它应该设置一个继承自[KryoRegistrator](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.serializer.KryoRegistrator)的类
+spark.kryo.registrator | (none) | 如果你用Kryo序列化，设置这个类去注册你的自定义类。如果你需要用自定义的方式注册你的类，那么这个属性是有用的。否则`spark.kryo.classesToRegister`会更简单。它应该设置一个继承自[KryoRegistrator](http:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.serializer.KryoRegistrator)的类
 spark.kryoserializer.buffer.max.mb | 64 | Kryo序列化缓存允许的最大值。这个值必须大于你尝试序列化的对象 |
 spark.kryoserializer.buffer.mb | 0.064 | Kyro序列化缓存的大小。这样worker上的每个核都有一个缓存。如果有需要，缓存会涨到`spark.kryoserializer.buffer.max.mb`设置的值那么大。|
 spark.rdd.compress | true | 是否压缩序列化的RDD分区。在花费一些额外的CPU时间的同时节省大量的空间 |
-spark.serializer | org.apache.spark.serializer.JavaSerializer | 序列化对象使用的类。默认的Java序列化类可以序列化任何可序列化的java对象但是它很慢。所有我们建议用[org.apache.spark.serializer.KryoSerializer](http://spark.apache.org/docs/latest/tuning.html)
+spark.serializer | org.apache.spark.serializer.JavaSerializer | 序列化对象使用的类。默认的Java序列化类可以序列化任何可序列化的java对象但是它很慢。所有我们建议用[org.apache.spark.serializer.KryoSerializer](http:/.apache.org/docs/latest/tuning.html)
 spark.serializer.objectStreamReset | 100 | 当用`org.apache.spark.serializer.JavaSerializer`序列化时，序列化器通过缓存对象防止写多余的数据，然而这会造成这些对象的垃圾回收停止。通过请求'reset'，你从序列化器中flush这些信息并允许收集老的数据。为了关闭这个周期性的reset，你可以将值设为-1。默认情况下，每一百个对象reset一次 |
 
 ### 运行时行为
@@ -304,11 +304,11 @@ spark.yarn.maxAppAttempts  | yarn.resourcemanager.am.max-attempts in YARN | am�
 
 ### Spark on Mesos
 
-使用较少，参考[Running Spark on Mesos](https://spark.apache.org/docs/latest/running-on-mesos.html#configuration)。
+使用较少，参考[Running Spark on Mesos](https:/.apache.org/docs/latest/running-on-mesos.html#configuration)。
 
 ### Spark Standalone Mode
 
-参考[Spark Standalone Mode](https://spark.apache.org/docs/latest/spark-standalone.html#cluster-launch-scripts)。
+参考[Spark Standalone Mode](https:/.apache.org/docs/latest-standalone.html#cluster-launch-scripts)。
 
 ### Spark History Server
 
@@ -328,7 +328,7 @@ Spark History Server的属性：
 | 属性名称  |  默认 |  含义| 
 | :---- |:---- | :---- | 
 | spark.history.provider | org.apache.spark.deploy.history.FsHistoryProvide|应用历史后端实现的类名。 目前只有一个实现, 由Spark提供, 它查看存储在文件系统里面的应用日志 | 
-| spark.history.fs.logDirectory | file:/tmp/spark-events| | 
+| spark.history.fs.logDirectory | file:/tmp-events| | 
 |  spark.history.updateInterval  | 10 | 以秒为单位，多长时间Spark history server显示的信息进行更新。每次更新都会检查持久层事件日志的任何变化。| 
 |  spark.history.retainedApplications |  50 |  在Spark history server上显示的最大应用程序数量，如果超过这个值，旧的应用程序信息将被删除。| 
 |  spark.history.ui.port  |  18080 |  官方版本中，Spark history server的默认访问端口| 
@@ -339,9 +339,9 @@ Spark History Server的属性：
 
 ## 环境变量
 
-通过环境变量配置确定的Spark设置。环境变量从Spark安装目录下的`conf/spark-env.sh`脚本读取（或者windows的`conf/spark-env.cmd`）。在独立的或者Mesos模式下，这个文件可以给机器确定的信息，如主机名。当运行本地应用程序或者提交脚本时，它也起作用。
+通过环境变量配置确定的Spark设置。环境变量从Spark安装目录下的`conf-env.sh`脚本读取（或者windows的`conf-env.cmd`）。在独立的或者Mesos模式下，这个文件可以给机器确定的信息，如主机名。当运行本地应用程序或者提交脚本时，它也起作用。
 
-注意，当Spark安装时，`conf/spark-env.sh`默认是不存在的。你可以复制`conf/spark-env.sh.template`创建它。
+注意，当Spark安装时，`conf-env.sh`默认是不存在的。你可以复制`conf-env.sh.template`创建它。
 
 可以在`spark-env.sh`中设置如下变量：
 
@@ -352,7 +352,7 @@ PYSPARK_PYTHON | PySpark用到的Python二进制执行文件路径
 SPARK_LOCAL_IP | 机器绑定的IP地址
 SPARK_PUBLIC_DNS | 你Spark应用程序通知给其他机器的主机名
 
-除了以上这些，Spark [standalone cluster scripts](http://spark.apache.org/docs/latest/spark-standalone.html#cluster-launch-scripts)也可以设置一些选项。例如每台机器使用的核数以及最大内存。
+除了以上这些，Spark [standalone cluster scripts](http:/.apache.org/docs/latest-standalone.html#cluster-launch-scripts)也可以设置一些选项。例如每台机器使用的核数以及最大内存。
 
 因为`spark-env.sh`是shell脚本，其中的一些可以以编程方式设置。例如，你可以通过特定的网络接口计算`SPARK_LOCAL_IP`。
 

@@ -15,7 +15,7 @@ published: true
 
 在2014年7月1日的 Spark Summit 上，Databricks 宣布终止对 Shark 的开发，将重点放到 Spark SQL 上。在会议上，Databricks 表示，Shark 更多是对 Hive 的改造，替换了 Hive 的物理执行引擎，因此会有一个很快的速度。然而，不容忽视的是，Shark 继承了大量的 Hive 代码，因此给优化和维护带来了大量的麻烦。随着性能优化和先进分析整合的进一步加深，基于 MapReduce 设计的部分无疑成为了整个项目的瓶颈。 详细内容请参看 [Shark, Spark SQL, Hive on Spark, and the future of SQL on Spark](http://databricks.com/blog/2014/07/01/shark-spark-sql-hive-on-spark-and-the-future-of-sql-on-spark.html)。
 
-Spark SQL 允许 Spark 执行用 SQL, HiveQL 或者 Scala 表示的关系查询。在 Spark 1.3 之前，这个模块的核心是一个新类型的 RDD-[SchemaRDD](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SchemaRDD)。 SchemaRDDs 由[行](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.package@Row:org.apache.spark.sql.catalyst.expressions.Row.type)对象组成，行对象拥有一个模式（scheme） 来描述行中每一列的数据类型。SchemaRDD 与关系型数据库中的表很相似，可以通过存在的 RDD、一个 [Parquet](http://parquet.io/) 文件、结构化的文件、外部数据库、或者对存储在 Apache Hive 中的数据执行 HiveSQL 查询中创建。
+Spark SQL 允许 Spark 执行用 SQL, HiveQL 或者 Scala 表示的关系查询。在 Spark 1.3 之前，这个模块的核心是一个新类型的 RDD-[SchemaRDD](http:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SchemaRDD)。 SchemaRDDs 由[行](http:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.package@Row:org.apache.spark.sql.catalyst.expressions.Row.type)对象组成，行对象拥有一个模式（scheme） 来描述行中每一列的数据类型。SchemaRDD 与关系型数据库中的表很相似，可以通过存在的 RDD、一个 [Parquet](http://parquet.io/) 文件、结构化的文件、外部数据库、或者对存储在 Apache Hive 中的数据执行 HiveSQL 查询中创建。
 
 当前 Spark SQL 还处于 alpha 阶段，一些 API 在将将来的版本中可能会有所改变。例如，[Apache Spark 1.3发布，新增Data Frames API，改进Spark SQL和MLlib](http://www.infoq.com/cn/news/2015/03/apache-spark-1.3-released)。在 Spark 1.3 中，SchemaRDD 改为叫做 DataFrame。
 
@@ -23,7 +23,7 @@ Spark SQL 允许 Spark 执行用 SQL, HiveQL 或者 Scala 表示的关系查询�
 
 # 创建 SQLContext
 
-Spark SQL 中所有相关功能的入口点是 [SQLContext](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SQLContext) 类或者它的子类， 创建一个 SQLContext 的所有需要仅仅是一个 SparkContext。
+Spark SQL 中所有相关功能的入口点是 [SQLContext](http:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SQLContext) 类或者它的子类， 创建一个 SQLContext 的所有需要仅仅是一个 SparkContext。
 
 使用 Scala 创建方式如下：
 
@@ -57,10 +57,10 @@ sqlContext = SQLContext(sc)
 
 使用 SQLContext，应用可以从一个存在的 RDD、Hive 表或者数据源中创建 DataFrame。
 
-下载测试数据 [people.json](https://raw.githubusercontent.com/apache/spark/master/examples/src/main/resources/people.json)，并将其上传到 HDFS 上：
+下载测试数据 [people.json](https://raw.githubusercontent.com/apache/master/examples/src/main/resources/people.json)，并将其上传到 HDFS 上：
 
 ~~~bash
-$ wget https://raw.githubusercontent.com/apache/spark/master/examples/src/main/resources/people.json
+$ wget https://raw.githubusercontent.com/apache/master/examples/src/main/resources/people.json
 $ hadoop fs -put people.json
 ~~~
 
@@ -99,7 +99,7 @@ df = sqlContext.jsonFile("people.json")
 df.show()
 ~~~
 
-DataFrame API 请参考 [Scala](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame)、[Java](https://spark.apache.org/docs/latest/api/java/index.html?org/apache/spark/sql/DataFrame.html) 以及 [Python](https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame)。
+DataFrame API 请参考 [Scala](https:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame)、[Java](https:/.apache.org/docs/latest/api/java/index.html?org/apache/sql/DataFrame.html) 以及 [Python](https:/.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame)。
 
 ## DataFrame 操作
 
@@ -199,13 +199,13 @@ Spark SQL 支持两种方法将存在的 RDD 转换为 DataFrame 。第一种方
 
 第二种方法是通过一个编程接口来实现，这个接口允许你构造一个模式，然后在存在的 RDD 上使用它。虽然这种方法更冗长，但是它允许你在运行期之前不知道列以及列的类型的情况下构造 DataFrame。
 
-SQLContext 的 API 见 [SQLContext](https://spark.apache.org/docs/1.3.0/api/scala/index.html#org.apache.spark.sql.SQLContext) 。
+SQLContext 的 API 见 [SQLContext](https:/.apache.org/docs/1.3.0/api/scala/index.html#org.apache.spark.sql.SQLContext) 。
 
 ### 利用反射推断模式
 
 Spark SQL的 Scala 接口支持将包含样本类的 RDD 自动转换为 DataFrame。这个样本类定义了表的模式。样本类的参数名字通过反射来读取，然后作为列的名字。样本类可以嵌套或者包含复杂的类型如序列或者数组。这个 RDD 可以隐式转化为一个 DataFrame，然后注册为一个表，表可以在后续的 sql 语句中使用。
 
-以 [people.txt](https://raw.githubusercontent.com/apache/spark/master/examples/src/main/resources/people.txt) 作为测试数据，使用 Scala 语言来创建 DataFrame：
+以 [people.txt](https://raw.githubusercontent.com/apache/master/examples/src/main/resources/people.txt) 作为测试数据，使用 Scala 语言来创建 DataFrame：
 
 ~~~scala
 // sc is an existing SparkContext.
@@ -571,9 +571,9 @@ for name in names.collect():
 
 # 总结
 
-本文主要介绍了 DataFrame 是什么以及两种从 RDD 创建 DataFrame 的方法，完整的代码见 [Github](https://github.com/javachen/spark-examples)。
+本文主要介绍了 DataFrame 是什么以及两种从 RDD 创建 DataFrame 的方法，完整的代码见 [Github](https://github.com/javachen-examples)。
 
 # 参考文章
 
-- [Spark SQL and DataFrame Guide](https://spark.apache.org/docs/latest/sql-programming-guide.html#dataframes)
-- [Spark 编程指南简体中文版-Spark SQL](http://endymecy.gitbooks.io/spark-programming-guide-zh-cn/content/spark-sql/README.html)
+- [Spark SQL and DataFrame Guide](https:/.apache.org/docs/latest/sql-programming-guide.html#dataframes)
+- [Spark 编程指南简体中文版-Spark SQL](http://endymecy.gitbooks.io-programming-guide-zh-cn/content-sql/README.html)

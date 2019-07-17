@@ -730,7 +730,7 @@ Login successful for user hdfs/cdh2@JAVACHEN.COM using keytab file /etc/hadoop/c
 - 4. 为 DataNode 设置运行用户并配置 `JSVC_HOME`
 - 5. 启动服务前，先获取 ticket 再运行相关命令
 
-上面的过程比较繁琐，我总结了上面的过程并写了一些自动化的脚本方便快速安装、配置以及管理 kerberos，请参考[Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop.html)。
+上面的过程比较繁琐，我总结了上面的过程并写了一些自动化的脚本方便快速安装、配置以及管理 kerberos，请参考[Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop)。
 
 # 12. 参考文章
 
@@ -743,13 +743,12 @@ Login successful for user hdfs/cdh2@JAVACHEN.COM using keytab file /etc/hadoop/c
 
 # 13. 相关文章
 
- - [HDFS配置Kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs.html)
- - [YARN配置Kerberos认证](/2014/11/05/config-kerberos-in-cdh-yarn.html)
- - [Hive配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive.html)
- - [Impala配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala.html)
- - [Zookeeper配置Kerberos认证](/2014/11/18/config-kerberos-in-cdh-zookeeper.html)
- - [Hadoop配置LDAP集成Kerberos](/2014/11/12/config-ldap-with-kerberos-in-cdh-hadoop.html)
- - [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry.html)
- - [配置安全的Impala集群集成Sentry](/2014/11/14/config-secured-impala-with-sentry.html)
- - [Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop.html)
-
+ - [HDFS配置Kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs)
+ - [YARN配置Kerberos认证](/2014/11/05/config-kerberos-in-cdh-yarn)
+ - [Hive配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive)
+ - [Impala配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala)
+ - [Zookeeper配置Kerberos认证](/2014/11/18/config-kerberos-in-cdh-zookeeper.)
+ - [Hadoop配置LDAP集成Kerberos](/2014/11/12/config-ldap-with-kerberos-in-cdh-hadoop)
+ - [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry)
+ - [配置安全的Impala集群集成Sentry](/2014/11/14/config-secured-impala-with-sentry)
+ - [Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop)

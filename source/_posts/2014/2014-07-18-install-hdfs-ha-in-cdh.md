@@ -17,7 +17,7 @@ published: true
 
 最近又安装 hadoop 集群， 故尝试了一下配置 HDFS 的 HA，CDH4支持[Quorum-based Storage](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cdh_hag_hdfs_ha_intro.html#topic_2_1_3_unique_1__section_ptk_fh5_mj_unique_1)和[shared storage using NFS](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cdh_hag_hdfs_ha_intro.html#topic_2_1_3_unique_1__section_czt_fh5_mj_unique_1)两种HA方案，而CDH5只支持第一种方案，即 QJM 的 HA 方案。
 
-关于 hadoop 集群的安装部署过程你可以参考 [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum.html) 或者 [手动安装 hadoop 集群的过程](/2014/07/17/manual-install-cdh-hadoop.html)。
+关于 hadoop 集群的安装部署过程你可以参考 [使用yum安装CDH Hadoop集群](/2019/04/06/install-cloudera-cdh-by-yum) 或者 [手动安装 hadoop 集群的过程](/2014/07/17/manual-install-cdh-hadoop)。
 
 ## 集群规划
 

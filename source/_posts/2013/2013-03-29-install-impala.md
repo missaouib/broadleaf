@@ -1,46 +1,32 @@
 ---
 layout: post
-title: 安装Impala过程
+title: 使用yum源安装Impala过程
 category: impala
-tags: [hadoop, impala, cdh]
-keywords: impala
+tags: [impala]
+keywords: impala,cdh,hadoop,hive
 ---
 
 与Hive类似，Impala也可以直接与HDFS和HBase库直接交互。只不过Hive和其它建立在MapReduce上的框架适合需要长时间运行的批处理任务。例如：那些批量提取，转化，加载（ETL）类型的Job，而Impala主要用于实时查询。
 
-Hadoop集群各节点的环境设置及安装过程见 [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum.html)，参考这篇文章。
-
 # 1. 环境
 
-- CentOS 6.4 x86_64
-- CDH 5.0.1
-- jdk1.6.0_31
-
-集群规划为3个节点，每个节点的ip、主机名和部署的组件分配如下：
-
-~~~
-192.168.56.121        cdh1     NameNode、Hive、ResourceManager、HBase、impala
-192.168.56.122        cdh2     DataNode、SSNameNode、NodeManager、HBase、impala
-192.168.56.123        cdh3     DataNode、HBase、NodeManager、impala
-~~~
+基于 [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum) 这篇文章中的集群环境，进行impala的安装。
 
 # 2. 安装
 
-目前，CDH 5.0.1中 impala 版本为`1.4.0`，下载repo文件到 /etc/yum.repos.d/:
-
- - 如果你安装的是 CDH4，请下载 [Red Hat/CentOS 6](http://archive.cloudera.com/impala/redhat/6/x86_64/impala/1.3.1/)
- - 如果你安装的是 CDH5，请下载 [Red Hat/CentOS 6](http://archive.cloudera.com/impala/redhat/6/x86_64/impala/1.4.0/)
- 
-然后，可以执行下面的命令安装所有的 impala 组件。
+在管理节点 cdh1 上安装：
 
 ~~~bash
-$ sudo yum install impala impala-server impala-state-store impala-catalog impala-shell -y
+$ sudo yum install impala-server impala-state-store impala-catalog impala-shell -y
 ~~~
 
-但是，通常只是在需要的节点上安装对应的服务：
+在 hive metastore 所在节点安装impala-state-store和impala-catalog
 
- - 在 hive metastore 所在节点安装impala-state-store和impala-catalog
- - 在 DataNode 所在节点安装 impala-server 和 impala-shell
+在datanode节点上安装：
+
+~~~bash
+$ sudo yum install impala-server impala-shell -y
+~~~
 
 # 3. 配置
 
@@ -229,7 +215,7 @@ Options:
 ~~~bash
 $ impala-shell -r
 Starting Impala Shell in unsecure mode
-Connected to 192.168.56.121:21000
+Connected to 192.168.56.11:21000
 Server version: impalad version 1.1.1 RELEASE (build 83d5868f005966883a918a819a449f636a5b3d5f)
 Invalidating Metadata
 Welcome to the Impala shell. Press TAB twice to see a list of available commands.
@@ -241,13 +227,13 @@ Query: invalidate metadata
 Query finished, fetching results ...
 
 Returned 0 row(s) in 5.13s
-[192.168.56.121:21000] >                  
+[192.168.56.11:21000] >                  
 ~~~
 
 使用 impala 导出数据：
 
 ~~~bash
-$ impala-shell -i '192.168.56.121:21000' -r -q "select * from test" -B --output_delimiter="\t" -o result.txt
+$ impala-shell -i '192.168.56.11:21000' -r -q "select * from test" -B --output_delimiter="\t" -o result.txt
 ~~~
 
 # 6. 参考文章

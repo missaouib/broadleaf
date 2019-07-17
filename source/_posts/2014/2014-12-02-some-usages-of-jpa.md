@@ -34,14 +34,14 @@ JPA 的底层实现是一些流行的开源 ORM 框架，因此JPA其实也就�
 ![](http://7xnrdo.com1.z0.glb.clouddn.com/jpa/JPA-01.png)
 
 
-|类或接口|	描述|
+|类或接口|  描述|
 |---|:---|
-|EntityManagerFactory|	这是一个 EntityManager 的工厂类。它创建并管理多个 EntityManager 实例。|
-|EntityManager|	这是一个接口，它管理的持久化操作的对象。它的工作原理类似工厂的查询实例。|
-|Entity|	实体是持久性对象是存储在数据库中的记录。|
-|EntityTransaction|	它与 EntityManager 是一对一的关系。对于每一个 EntityManager ，操作是由 EntityTransaction 类维护。|
-|Persistence|	这个类包含静态方法来获取 EntityManagerFactory 实例。|
-|Query|	该接口由每个 JPA 供应商，能够获得符合标准的关系对象。|
+|EntityManagerFactory|  这是一个 EntityManager 的工厂类。它创建并管理多个 EntityManager 实例。|
+|EntityManager| 这是一个接口，它管理的持久化操作的对象。它的工作原理类似工厂的查询实例。|
+|Entity|    实体是持久性对象是存储在数据库中的记录。|
+|EntityTransaction| 它与 EntityManager 是一对一的关系。对于每一个 EntityManager ，操作是由 EntityTransaction 类维护。|
+|Persistence|   这个类包含静态方法来获取 EntityManagerFactory 实例。|
+|Query| 该接口由每个 JPA 供应商，能够获得符合标准的关系对象。|
 
 在上述体系结构中，类和接口之间的关系属于javax.persistence包。下图显示了它们之间的关系。
 
@@ -59,82 +59,82 @@ JPA 的底层实现是一些流行的开源 ORM 框架，因此JPA其实也就�
 
 ~~~xml
 <properties>
-	<spring.version>4.1.2.RELEASE</spring.version>
-	<hibernate.version>4.1.9.Final</hibernate.version>
-	<hibernate-jpa.version>2.0-cr-1</hibernate-jpa.version>
+    <spring.version>4.1.2.RELEASE</spring.version>
+    <hibernate.version>4.1.9.Final</hibernate.version>
+    <hibernate-jpa.version>2.0-cr-1</hibernate-jpa.version>
 </properties>
 
 <dependencies>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-core</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-beans</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-aop</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context-support</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-tx</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-orm</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-jdbc</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
 
-	<dependency>
-		<groupId>org.hibernate.java-persistence</groupId>
-		<artifactId>jpa-api</artifactId>
-		<version>${hibernate-jpa.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-entitymanager</artifactId>
-		<version>${hibernate.version}</version>
-	</dependency>
+    <dependency>
+        <groupId>org.hibernate.java-persistence</groupId>
+        <artifactId>jpa-api</artifactId>
+        <version>${hibernate-jpa.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>${hibernate.version}</version>
+    </dependency>
 
-	<dependency>
+    <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <version>1.3.156</version>
   </dependency>
 
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-test</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
 
-	<dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<version>4.11</version>
-		<scope>test</scope>
-	</dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.11</version>
+        <scope>test</scope>
+    </dependency>
 </dependencies>
 ~~~
 
@@ -176,7 +176,7 @@ public class Person implements Serializable {
     @Column(name = "salary")
     private Double salary;
 
-		//省略 set、get 方法
+        //省略 set、get 方法
 
     @Override
     public String toString() {
@@ -370,18 +370,18 @@ import com.yiibai.eclipselink.entity.Employee;
 
 public class NamedQueries{
    public static void main( String[ ] args ){
-   	EntityManagerFactory emfactory = Persistence.
-   		createEntityManagerFactory( "db1-unit" );
-   	EntityManager entitymanager = emfactory.
-   		createEntityManager();
-   	Query query = entitymanager.createNamedQuery(
-   		"find person by id");
-   	query.setParameter("id", 1);
-   	List<Person> list = query.getResultList( );
-   	for( Person e:list ){
-   		System.out.print("Person ID :"+e.getId( ));
-   		System.out.println("\t Person Name :"+e.getName( ));
-   	}
+    EntityManagerFactory emfactory = Persistence.
+        createEntityManagerFactory( "db1-unit" );
+    EntityManager entitymanager = emfactory.
+        createEntityManager();
+    Query query = entitymanager.createNamedQuery(
+        "find person by id");
+    query.setParameter("id", 1);
+    List<Person> list = query.getResultList( );
+    for( Person e:list ){
+        System.out.print("Person ID :"+e.getId( ));
+        System.out.println("\t Person Name :"+e.getName( ));
+    }
    }
 }
 ~~~
@@ -415,29 +415,29 @@ List<Entity> allitems = q.getResultList();
 
 在实体中使用到的注解列表如下：
 
-|注解|	描述|
+|注解|    描述|
 |---|:---|
-|@Entity|	声明类为实体或表。|
-|@Table|	声明表名。|
-|@Basic|	指定非约束明确的各个字段。|
-|@Embedded|	指定类或它的值是一个可嵌入的类的实例的实体的属性。|
-|@Id|	指定的类的属性，用于标识主键。|
-|@GeneratedValue|	指定主键生成方式，例如自动，手动，或从序列表中获得的值。|
-|@Transient|	该值永远不会存储在数据库中。|
-|@Lob|	将属性持久化为 Blob 或者 Clob 类型。|
-|@Column|	指定字段属性。|
-|@SequenceGenerator	|指定在 `@GeneratedValue` 注解中指定的属性的值。它创建了一个序列。|
-|@TableGenerator	|指定在 `@GeneratedValue` 批注指定属性的值发生器。它创造了的值生成的表。|
-|@AccessType|	这种类型的注释用于设置访问类型。|
-|@JoinColumn|	指定一个实体组织或实体的集合。这是用在多对一和一对多关联。|
-|@UniqueConstraint|	指定的字段和用于主要或辅助表的唯一约束。|
-|@ColumnResult|	参考使用 select 子句的 SQL 查询中的列名。|
-|@ManyToMany	|定义了连接表之间的多对多一对多的关系。|
-|@ManyToOne|	定义了连接表之间的多对一的关系。|
-|@OneToMany	|定义了连接表之间存在一个一对多的关系。|
-|@OneToOne|	定义了连接表之间有一个一对一的关系。|
-|@NamedQueries|	指定命名查询的列表。|
-|@NamedQuery|	指定使用静态名称的命名查询。|
+|@Entity|   声明类为实体或表。|
+|@Table|    声明表名。|
+|@Basic|    指定非约束明确的各个字段。|
+|@Embedded| 指定类或它的值是一个可嵌入的类的实例的实体的属性。|
+|@Id|   指定的类的属性，用于标识主键。|
+|@GeneratedValue|   指定主键生成方式，例如自动，手动，或从序列表中获得的值。|
+|@Transient|    该值永远不会存储在数据库中。|
+|@Lob|  将属性持久化为 Blob 或者 Clob 类型。|
+|@Column|   指定字段属性。|
+|@SequenceGenerator |指定在 `@GeneratedValue` 注解中指定的属性的值。它创建了一个序列。|
+|@TableGenerator    |指定在 `@GeneratedValue` 批注指定属性的值发生器。它创造了的值生成的表。|
+|@AccessType|   这种类型的注释用于设置访问类型。|
+|@JoinColumn|   指定一个实体组织或实体的集合。这是用在多对一和一对多关联。|
+|@UniqueConstraint| 指定的字段和用于主要或辅助表的唯一约束。|
+|@ColumnResult| 参考使用 select 子句的 SQL 查询中的列名。|
+|@ManyToMany    |定义了连接表之间的多对多一对多的关系。|
+|@ManyToOne|    定义了连接表之间的多对一的关系。|
+|@OneToMany |定义了连接表之间存在一个一对多的关系。|
+|@OneToOne| 定义了连接表之间有一个一对一的关系。|
+|@NamedQueries| 指定命名查询的列表。|
+|@NamedQuery|   指定使用静态名称的命名查询。|
 
 1、 `@OneToOne`：
 

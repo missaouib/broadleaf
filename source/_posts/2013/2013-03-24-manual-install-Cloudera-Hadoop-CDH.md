@@ -408,6 +408,6 @@ http://desktop2:8042/node
 
 # 相关文章
 
-- [手动安装Hadoop集群](/2013/03/24/manual-install-Cloudera-hadoop-CDH.html)
-- [手动安装HBase集群](/2013/03/24/manual-install-Cloudera-hbase-CDH.html)
-- [手动安装Hive群](/2013/03/24/manual-install-Cloudera-hive-CDH.html)
+- [手动安装Hadoop集群](/2019/03/24/manual-install-Cloudera-hadoop-CDH.html)
+- [手动安装HBase集群](/2019/03/24/manual-install-Cloudera-hbase-CDH.html)
+- [手动安装Hive群](/2019/03/24/manual-install-Cloudera-hive-CDH.html)

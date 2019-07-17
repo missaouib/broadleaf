@@ -17,11 +17,11 @@ Spark的安装分为几种模式，其中一种是本地运行模式，只需要
 
 # 下载 Spark
 
-下载地址为<http://spark.apache.org/downloads.html>，根据页面提示选择一个合适的版本下载，这里我下载的是 [spark-1.3.0-bin-cdh4.tgz](http://mirror.bit.edu.cn/apache/spark/spark-1.3.0/spark-1.3.0-bin-cdh4.tgz)。下载之后解压：
+下载地址为<http:/.apache.org/downloads.html>，根据页面提示选择一个合适的版本下载，这里我下载的是 [spark-1.3.0-bin-cdh4.tgz](http://mirror.bit.edu.cn/apache-1.3.0-1.3.0-bin-cdh4.tgz)。下载之后解压：
 
 ~~~bash
  cd ~
- wget http://mirror.bit.edu.cn/apache/spark/spark-1.3.0/spark-1.3.0-bin-cdh4.tgz
+ wget http://mirror.bit.edu.cn/apache-1.3.0-1.3.0-bin-cdh4.tgz
  tar -xf spark-1.3.0-bin-cdh4.tgz
  cd spark-1.3.0-bin-cdh4
 ~~~
@@ -52,7 +52,7 @@ Spark的安装分为几种模式，其中一种是本地运行模式，只需要
 
 ~~~bash
 $ MASTER=local 
-$ bin/spark-shell
+$ bin-shell
 ~~~
 
 `MASTER=local`就是表明当前运行在单机模式。如果一切顺利，将看到下面的提示信息：
@@ -64,7 +64,7 @@ Spark context available as sc.
 
 这表明spark-shell中已经内置了Spark context的变量，名称为sc，我们可以直接使用该变量进行后续的操作。
 
-spark-shell 后面设置 master 参数，可以支持更多的模式，请参考 <http://spark.apache.org/docs/latest/submitting-applications.html#master-urls>。
+spark-shell 后面设置 master 参数，可以支持更多的模式，请参考 <http:/.apache.org/docs/latest/submitting-applications.html#master-urls>。
 
 我们在sparkshell中运行一下最简单的例子，统计在README.md中含有Spark的行数有多少，在spark-shell中输入如下代码：
 
@@ -123,7 +123,7 @@ IPYTHON=1  ./bin/pyspark
 IPYTHON_OPTS="notebook"  ./bin/pyspark
 ~~~
 
-从日志可以看到，不管是 bin/pyspark 还是 bin/spark-shell，他们都有两个内置的变量：sc 和 sqlCtx。
+从日志可以看到，不管是 bin/pyspark 还是 bin-shell，他们都有两个内置的变量：sc 和 sqlCtx。
 
 ~~~scala
 SparkContext available as sc, HiveContext available as sqlCtx
@@ -138,10 +138,10 @@ sc 代表着 Spark 的上下文，通过该变量可以执行 Spark 的一些操
 对于 python 程序，我们可以直接使用 spark-submit：
 
 ~~~bash
-$ mkdir -p /usr/lib/spark/examples/python
-$ tar zxvf /usr/lib/spark/lib/python.tar.gz -C /usr/lib/spark/examples/python
+$ mkdir -p /usr/lib/examples/python
+$ tar zxvf /usr/lib/lib/python.tar.gz -C /usr/lib/examples/python
 
-$ ./bin/spark-submit examples/python/pi.py 10
+$ ./bin-submit examples/python/pi.py 10
 ~~~
 
 对于 Java 程序，我们需要先编译代码然后打包运行：

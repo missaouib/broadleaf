@@ -13,13 +13,13 @@ published: true
 
 ---
 
-本文在[安装和配置Sentry](/2015/04/30/install-and-config-sentry.html)基础之上测试Hive集成Sentry。注意：**这里Hive中并没有配置Kerberos认证**。
+本文在[安装和配置Sentry](/2015/04/30/install-and-config-sentry)基础之上测试Hive集成Sentry。注意：**这里Hive中并没有配置Kerberos认证**。
 
-关于配置了Kerberos的Hive集群如何集成Sentry，请参考[配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry.html)。
+关于配置了Kerberos的Hive集群如何集成Sentry，请参考[配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry)。
 
 # 1. 配置Sentry
 
-见[安装和配置Sentry](/2015/04/30/install-and-config-sentry.html)。
+见[安装和配置Sentry](/2015/04/30/install-and-config-sentry)。
 
 # 2. 配置Hive
 

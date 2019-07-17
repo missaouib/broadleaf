@@ -21,7 +21,7 @@ HBase版本：0.94.15-cdh4.7.0
 
 首先来看看写过程的序列图：
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2014/hbase-htable-put-sequence.jpg)
+![](/images/hbase-htable-put-sequence.jpg)
 
 # 客户端代码
 
@@ -286,7 +286,7 @@ private void requestFlush() {
 
 上面this.rsServices.getFlushRequester()其实际上返回的是MemStoreFlusher类。
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2014/hbase-MemStoreFlusher-class.jpg)
+![](/images/hbase-MemStoreFlusher-class.jpg)
 
 MemStoreFlusher内部有一个队列和一个Map：
 

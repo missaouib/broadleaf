@@ -7,7 +7,7 @@ description: Sqoop 是 apache 下用于 RDBMS 和 HDFS 互相导数据的工具�
 
 keywords:  Sqoop 是 apache 下用于 RDBMS 和 HDFS 互相导数据的工具。
 
-category:  hadoop
+category:  hive
 
 tags: [sqoop]
 

@@ -1,3 +1,4 @@
+
 ---
 layout: post
 title: Apache Solr介绍及安装
@@ -9,11 +10,12 @@ category: search-engine
 tags: [solr]
 ---
 
+
 # Solr是什么
 
 Solr是一个基于Lucene java库的企业级搜索服务器，包含XML/HTTP，JSON API，高亮查询结果，缓存，复制，还有一个WEB管理界面。Solr运行在Servlet容器中，其架构如下：
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2014/solr-architecture.jpg)
+![](/images/solr-architecture.jpg)
 
 主要功能包括全文检索，高亮命中，分面搜索(faceted search)，近实时索引，动态集群，数据库集成，富文本索引，空间搜索；通过提供分布式索引，复制，负载均衡查询，自动故障转移和恢复，集中配置等功能实现高可用，可伸缩和可容错。
 

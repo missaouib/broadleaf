@@ -63,7 +63,6 @@ for (_ <- 1 to 10)
 // Imports all the classes in the package matching
 import scala.util.matching._
 
-// Imports all the members of the object Fun (static import in Java).
 import com.test.Fun._
 ~~~
 

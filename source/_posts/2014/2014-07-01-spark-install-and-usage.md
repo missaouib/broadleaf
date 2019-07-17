@@ -23,7 +23,7 @@ published: true
 - Hadoop 版本：`cdh-5.4.0`
 - Spark 版本：`cdh5-1.3.0_5.4.0`
 
-关于 yum 源的配置以及 Hadoop 集群的安装，请参考 [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum.html)。
+关于 yum 源的配置以及 Hadoop 集群的安装，请参考 [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum)。
 
 # 1. 安装
 
@@ -73,10 +73,10 @@ cdh3节点:  spark-worker
 设置环境变量，在 `.bashrc` 或者 `/etc/profile` 中加入下面一行，并使其生效：
 
 ~~~properties
-export SPARK_HOME=/usr/lib/spark
+export SPARK_HOME=/usr/lib
 ~~~
 
-可以修改配置文件 `/etc/spark/conf/spark-env.sh`，其内容如下，你可以根据需要做一些修改，例如，修改 master 的主机名称为cdh1。
+可以修改配置文件 `/etc/conf-env.sh`，其内容如下，你可以根据需要做一些修改，例如，修改 master 的主机名称为cdh1。
 
 ~~~bash
 # 设置 master 主机名称
@@ -86,63 +86,63 @@ export STANDALONE_SPARK_MASTER_HOST=cdh1
 设置 shuffle 和 RDD 数据存储路径，该值默认为`/tmp`。使用默认值，可能会出现`No space left on device`的异常，建议修改为空间较大的分区中的一个目录。
 
 ~~~bash
-export SPARK_LOCAL_DIRS=/data/spark
+export SPARK_LOCAL_DIRS=/data
 ~~~
 
-如果你和我一样使用的是虚拟机运行 spark，则你可能需要修改 spark 进程使用的 jvm 大小（关于 jvm 大小设置的相关逻辑见 `/usr/lib/spark/bin/spark-class`）：
+如果你和我一样使用的是虚拟机运行 spark，则你可能需要修改 spark 进程使用的 jvm 大小（关于 jvm 大小设置的相关逻辑见 `/usr/lib/bin-class`）：
 
 ~~~bash
 export SPARK_DAEMON_MEMORY=256m
 ~~~
 
-更多spark相关的配置参数，请参考 [Spark Configuration](https://spark.apache.org/docs/latest/configuration.html)。
+更多spark相关的配置参数，请参考 [Spark Configuration](https:/.apache.org/docs/latest/configuration.html)。
 
 ## 2.2 配置 Spark History Server
 
  在运行Spark应用程序的时候，driver会提供一个webUI给出应用程序的运行信息，但是该webUI随着应用程序的完成而关闭端口，也就是说，Spark应用程序运行完后，将无法查看应用程序的历史记录。Spark history server就是为了应对这种情况而产生的，通过配置，Spark应用程序在运行完应用程序之后，将应用程序的运行信息写入指定目录，而Spark history server可以将这些运行信息装载并以web的方式供用户浏览。
 
-创建 `/etc/spark/conf/spark-defaults.conf`：
+创建 `/etc/conf-defaults.conf`：
 
 ~~~bash
-cp /etc/spark/conf/spark-defaults.conf.template /etc/spark/conf/spark-defaults.conf
+cp /etc/conf-defaults.conf.template /etc/conf-defaults.conf
 ~~~
 
 添加下面配置：
 
 ~~~properties
 spark.master=spark://cdh1:7077
-spark.eventLog.dir=/user/spark/applicationHistory
+spark.eventLog.dir=/user/applicationHistory
 spark.eventLog.enabled=true
 spark.yarn.historyServer.address=cdh1:18082
 ~~~
 
-如果你是在hdfs上运行Spark，则执行下面命令创建`/user/spark/applicationHistory`目录：
+如果你是在hdfs上运行Spark，则执行下面命令创建`/user/applicationHistory`目录：
 
 ~~~bash
-$ sudo -u hdfs hadoop fs -mkdir /user/spark
-$ sudo -u hdfs hadoop fs -mkdir /user/spark/applicationHistory
-$ sudo -u hdfs hadoop fs -chown -R spark:spark /user/spark
-$ sudo -u hdfs hadoop fs -chmod 1777 /user/spark/applicationHistory
+$ sudo -u hdfs hadoop fs -mkdir /user
+$ sudo -u hdfs hadoop fs -mkdir /user/applicationHistory
+$ sudo -u hdfs hadoop fs -chown -R spark:spark /user
+$ sudo -u hdfs hadoop fs -chmod 1777 /user/applicationHistory
 ~~~
 
 设置 `spark.history.fs.logDirectory` 参数：
 
 ~~~bash
-export SPARK_HISTORY_OPTS="$SPARK_HISTORY_OPTS -Dspark.history.fs.logDirectory=/tmp/spark -Dspark.history.ui.port=18082"
+export SPARK_HISTORY_OPTS="$SPARK_HISTORY_OPTS -Dspark.history.fs.logDirectory=/tmp -Dspark.history.ui.port=18082"
 ~~~
 
-创建 /tmp/spark 目录：
+创建 /tmp 目录：
 
 ~~~bash
-$ mkdir -p /tmp/spark
-$ chown spark:spark /tmp/spark
+$ mkdir -p /tmp
+$ chown spark:spark /tmp
 ~~~
 
 如果集群配置了 kerberos ，则添加下面配置：
 
 ~~~bash
 HOSTNAME=`hostname -f`
-export SPARK_HISTORY_OPTS="$SPARK_HISTORY_OPTS -Dspark.history.kerberos.enabled=true -Dspark.history.kerberos.principal=spark/${HOSTNAME}@LASHOU.COM -Dspark.history.kerberos.keytab=/etc/spark/conf/spark.keytab -Dspark.history.ui.acls.enable=true"
+export SPARK_HISTORY_OPTS="$SPARK_HISTORY_OPTS -Dspark.history.kerberos.enabled=true -Dspark.history.kerberos.principal=spark/${HOSTNAME}@LASHOU.COM -Dspark.history.kerberos.keytab=/etc/conf.keytab -Dspark.history.ui.acls.enable=true"
 ~~~
 
 ## 2.3 和Hive集成
@@ -150,7 +150,7 @@ export SPARK_HISTORY_OPTS="$SPARK_HISTORY_OPTS -Dspark.history.kerberos.enabled=
 Spark和hive集成，最好是将hive的配置文件链接到Spark的配置文件目录：
 
 ~~~bash
-$ ln -s /etc/hive/conf/hive-site.xml /etc/spark/conf/hive-site.xml
+$ ln -s /etc/hive/conf/hive-site.xml /etc/conf/hive-site.xml
 ~~~
 
 ## 2.4 同步配置文件
@@ -158,8 +158,8 @@ $ ln -s /etc/hive/conf/hive-site.xml /etc/spark/conf/hive-site.xml
 修改完 cdh1 节点上的配置文件之后，需要同步到其他节点：
 
 ~~~bash
-scp -r /etc/spark/conf  cdh2:/etc/spark
-scp -r /etc/spark/conf  cdh3:/etc/spark
+scp -r /etc/conf  cdh2:/etc
+scp -r /etc/conf  cdh3:/etc
 ~~~
 
 # 3. 启动和停止
@@ -173,7 +173,7 @@ scp -r /etc/spark/conf  cdh3:/etc/spark
 $ sudo service spark-master start
 
 # 在 cdh1 节点上运行，如果 hadoop 集群配置了 kerberos，则运行之前需要先获取 spark 用户的凭证
-# kinit -k -t /etc/spark/conf/spark.keytab spark/cdh1@JAVACHEN.COM
+# kinit -k -t /etc/conf.keytab spark/cdh1@JAVACHEN.COM
 $ sudo service spark-history-server start
 
 # 在cdh2、cdh3 节点上运行
@@ -198,16 +198,16 @@ $ sudo chkconfig spark-history-server on
 
 ## 3.2 使用 Spark 自带脚本管理集群
 
-另外，你也可以使用 Spark 自带的脚本来启动和停止，这些脚本在 `/usr/lib/spark/sbin` 目录下：
+另外，你也可以使用 Spark 自带的脚本来启动和停止，这些脚本在 `/usr/lib/sbin` 目录下：
 
 ~~~bash
-$ ls /usr/lib/spark/sbin
+$ ls /usr/lib/sbin
 slaves.sh        spark-daemons.sh  start-master.sh  stop-all.sh
 spark-config.sh  spark-executor    start-slave.sh   stop-master.sh
 spark-daemon.sh  start-all.sh      start-slaves.sh  stop-slaves.sh
 ~~~
 
-在master节点修改 `/etc/spark/conf/slaves` 文件添加worker节点的主机名称，并且还需要在master和worker节点之间配置无密码登陆。
+在master节点修改 `/etc/conf/slaves` 文件添加worker节点的主机名称，并且还需要在master和worker节点之间配置无密码登陆。
 
 ~~~
 # A Spark Worker will be started on each of the machines listed below.
@@ -218,7 +218,7 @@ cdh3
 然后，你也可以通过下面脚本启动 master 和 worker：
 
 ~~~bash
-$ cd /usr/lib/spark/sbin
+$ cd /usr/lib/sbin
 $ ./start-master.sh
 $ ./start-slaves.sh
 ~~~
@@ -226,18 +226,18 @@ $ ./start-slaves.sh
 当然，你也可以通过`spark-class`脚本来启动，例如，下面脚本以standalone模式启动worker：
 
 ~~~bash
-$ ./bin/spark-class org.apache.spark.deploy.worker.Worker spark://cdh1:18080
+$ ./bin-class org.apache.spark.deploy.worker.Worker spark://cdh1:18080
 ~~~
 
 ## 3.3 访问web界面
 
 你可以通过 <http://cdh1:18080/> 访问 spark master 的 web 界面。
 
-![spark-master-web-ui](http://7xnrdo.com1.z0.glb.clouddn.com/spark/spark-master-web-ui.jpg)
+![spark-master-web-ui](/images/spark-master-web-ui.jpg)
 
 访问Spark History Server页面：http://cdh1:18082/。
 
-![spark-hs-web-ui](http://7xnrdo.com1.z0.glb.clouddn.com/spark/spark-hs-web-ui.jpg)
+![spark-hs-web-ui](/images/spark-hs-web-ui.jpg)
 
 注意：我这里使用的是CDH版本的 Spark，Spark master UI的端口为`18080`，不是 Apache Spark 的 `8080` 端口。CDH发行版中Spark使用的端口列表如下：
 
@@ -249,13 +249,13 @@ $ ./bin/spark-class org.apache.spark.deploy.worker.Worker spark://cdh1:18080
 
 # 4. 测试
 
-Spark可以以[本地模式运行](/2015/03/30/spark-test-in-local-mode.html)，也支持三种集群管理模式：
+Spark可以以[本地模式运行](/2015/03/30-test-in-local-mode.html)，也支持三种集群管理模式：
 
-- [Standalone](https://spark.apache.org/docs/latest/spark-standalone.html)  – Spark原生的资源管理，由Master负责资源的分配。
-- [Apache Mesos](https://spark.apache.org/docs/latest/running-on-mesos.html)  – 运行在Mesos之上，由Mesos进行资源调度
-- [Hadoop YARN](https://spark.apache.org/docs/latest/running-on-yarn.html) –  运行在Yarn之上，由Yarn进行资源调度。
+- [Standalone](https:/.apache.org/docs/latest-standalone.html)  – Spark原生的资源管理，由Master负责资源的分配。
+- [Apache Mesos](https:/.apache.org/docs/latest/running-on-mesos.html)  – 运行在Mesos之上，由Mesos进行资源调度
+- [Hadoop YARN](https:/.apache.org/docs/latest/running-on-yarn.html) –  运行在Yarn之上，由Yarn进行资源调度。
 
-另外 Spark 的 [EC2 launch scripts](https://spark.apache.org/docs/latest/ec2-scripts.html) 可以帮助你容易地在Amazon EC2上启动standalone cluster.
+另外 Spark 的 [EC2 launch scripts](https:/.apache.org/docs/latest/ec2-scripts.html) 可以帮助你容易地在Amazon EC2上启动standalone cluster.
 
 >- 在集群不是特别大，并且没有 mapReduce 和 Spark 同时运行的需求的情况下，用 Standalone 模式效率最高。
 >- Spark可以在应用间（通过集群管理器）和应用中（如果一个 SparkContext 中有多项计算任务）进行资源调度。
@@ -268,7 +268,7 @@ Standalone 模式是Master-Slaves架构的集群模式，Master存在着单点�
 
 Standalone 模式需要在每一个节点部署Spark应用，并按照实际情况配置故障恢复模式。
 
-你可以使用交互式命令spark-shell、pyspark或者[spark-submit script](https://spark.apache.org/docs/latest/submitting-applications.html)连接到集群，下面以wordcount程序为例：
+你可以使用交互式命令spark-shell、pyspark或者[spark-submit script](https:/.apache.org/docs/latest/submitting-applications.html)连接到集群，下面以wordcount程序为例：
 
 ~~~bash
 $ spark-shell --master spark://cdh1:7077
@@ -309,7 +309,7 @@ cp /usr/lib/hadoop/lib/native/libsnappy.so $JAVA_HOME/jre/lib/amd64/
 使用 spark-submit 以 Standalone 模式运行 SparkPi 程序的命令如下：
 
 ~~~bash
-$ spark-submit --class org.apache.spark.examples.SparkPi  --master spark://cdh1:7077 /usr/lib/spark/lib/spark-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar 10
+$ spark-submit --class org.apache.spark.examples.SparkPi  --master spark://cdh1:7077 /usr/lib/lib-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar 10
 ~~~
 
 **需要说明的是**：`Standalone mode does not support talking to a kerberized HDFS`，如果你以 `spark-shell --master spark://cdh1:7077` 方式访问安装有 kerberos 的 HDFS 集群上访问数据时，会出现下面异常:
@@ -355,17 +355,17 @@ $ spark-submit --class org.apache.spark.examples.SparkPi \
     --executor-memory 2g \
     --executor-cores 1 \
     --queue thequeue \
-    /usr/lib/spark/lib/spark-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \
+    /usr/lib/lib-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \
     10
 ~~~
 
 另外，运行在 YARN 集群之上的时候，可以手动把 spark-assembly 相关的 jar 包拷贝到 hdfs 上去，然后设置 `SPARK_JAR` 环境变量：
 
 ~~~bash
-$ hdfs dfs -mkdir -p /user/spark/share/lib
-$ hdfs dfs -put $SPARK_HOME/lib/spark-assembly.jar  /user/spark/share/lib/spark-assembly.jar
+$ hdfs dfs -mkdir -p /user/share/lib
+$ hdfs dfs -put $SPARK_HOME/lib-assembly.jar  /user/share/lib-assembly.jar
 
-$ SPARK_JAR=hdfs://<nn>:<port>/user/spark/share/lib/spark-assembly.jar
+$ SPARK_JAR=hdfs://<nn>:<port>/user/share/lib-assembly.jar
 ~~~
 
 # 5. Spark-SQL
@@ -373,8 +373,8 @@ $ SPARK_JAR=hdfs://<nn>:<port>/user/spark/share/lib/spark-assembly.jar
 Spark 安装包中包括了 Spark-SQL ，运行 spark-sql 命令，在 cdh5.2 中会出现下面异常：
 
 ~~~bash
-$ cd /usr/lib/spark/bin
-$ ./spark-sql
+$ cd /usr/lib/bin
+$ .-sql
 java.lang.ClassNotFoundException: org.apache.spark.sql.hive.thriftserver.SparkSQLCLIDriver
 	at java.net.URLClassLoader$1.run(URLClassLoader.java:202)
 	at java.security.AccessController.doPrivileged(Native Method)
@@ -409,12 +409,12 @@ Caused by: java.lang.ClassNotFoundException: org.apache.hadoop.hive.cli.CliDrive
 
 ## 编译 Spark-SQL
 
-以下内容参考 [编译Spark源代码](/2015/04/28/compile-cdh-spark-source-code.html)。
+以下内容参考 [编译Spark源代码](/2015/04/28/compile-cdh-spark-source-code)。
 
 下载cdh5-1.3.0_5.4.0分支的代码：
 
 ~~~bash
-$ git clone git@github.com:cloudera/spark.git
+$ git clone git@github.com:cloudera.git
 $ cd spark
 $ git checkout -b origin/cdh5-1.3.0_5.4.0
 ~~~
@@ -452,11 +452,11 @@ $ export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=512M -XX:ReservedCodeCacheSize=512m"
 $ mvn -Pyarn -Dhadoop.version=2.6.0-cdh5.4.0 -Phive -Phive-thriftserver -DskipTests clean package
 ~~~
 
-如果编译成功之后， 会在 assembly/target/scala-2.10 目录下生成：spark-assembly-1.3.0-cdh5.4.0.jar，在 examples/target/scala-2.10 目录下生成：spark-examples-1.3.0-cdh5.4.0.jar，然后将 spark-assembly-1.3.0-cdh5.4.0.jar 拷贝到 /usr/lib/spark/lib 目录，然后再来运行 spark-sql。
+如果编译成功之后， 会在 assembly/target/scala-2.10 目录下生成：spark-assembly-1.3.0-cdh5.4.0.jar，在 examples/target/scala-2.10 目录下生成：spark-examples-1.3.0-cdh5.4.0.jar，然后将 spark-assembly-1.3.0-cdh5.4.0.jar 拷贝到 /usr/lib/lib 目录，然后再来运行 spark-sql。
 
 但是，经测试 cdh5.4.0 版本中的 spark 的 sql/hive-thriftserver 模块存在编译错误，最后无法编译成功，故需要等到 cloudera 官方更新源代码或者等待下一个 cdh 版本集成 spark-sql。
 
-虽然 spark-sql 命令用不了，但是我们可以在 spark-shell 中使用 SQLContext 来运行 sql 语句，限于篇幅，这里不做介绍，你可以参考 <http://www.infoobjects.com/spark-sql-schemardd-programmatically-specifying-schema/>。
+虽然 spark-sql 命令用不了，但是我们可以在 spark-shell 中使用 SQLContext 来运行 sql 语句，限于篇幅，这里不做介绍，你可以参考 <http://www.infoobjects.com-sql-schemardd-programmatically-specifying-schema/>。
 
 # 6. 总结
 
@@ -472,6 +472,6 @@ $ mvn -Pyarn -Dhadoop.version=2.6.0-cdh5.4.0 -Phive -Phive-thriftserver -DskipTe
 
 # 7. 参考文章
 
-- [Spark Standalone Mode](https://spark.apache.org/docs/latest/spark-standalone.html)
+- [Spark Standalone Mode](https:/.apache.org/docs/latest-standalone.html)
 - [Spark连接Hadoop读取HDFS问题小结](http://blog.csdn.net/pelick/article/details/11599391) 
 - [Apache Spark探秘：三种分布式部署方式比较](http://dongxicheng.org/framework-on-yarn/apache-spark-comparing-three-deploying-ways/)

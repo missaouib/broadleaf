@@ -468,8 +468,8 @@ Github 上已经有人或多或少的实现了对知乎数据的爬取，我搜�
 
 - <http://www.52ml.net/tags/Scrapy> 收集了很多关于 Scrapy 的文章，**推荐阅读**
 - [用Python Requests抓取知乎用户信息](http://zihaolucky.github.io/using-python-to-build-zhihu-cralwer/)
-- [使用scrapy框架爬取自己的博文](http://www.it165.net/pro/html/201405/13112.html)
-- [Scrapy 深入一点点](http://github.windwild.net/2013/03/scrapy002/)
+- [使用scrapy框架爬取自己的博文](http://www.it165.net/pro/html/images05/13112.html)
+- [Scrapy 深入一点点](http://github.windwild.net/images/03/scrapy002/)
 - [使用python，scrapy写（定制）爬虫的经验，资料，杂。](http://www.kankanews.com/ICkengine/archives/94817.shtml)
 - [Scrapy 轻松定制网络爬虫](http://blog.pluskid.org/?p=366&cpage=1)
 - [在scrapy中怎么让Spider自动去抓取豆瓣小组页面](http://my.oschina.net/chengye/blog/124162)

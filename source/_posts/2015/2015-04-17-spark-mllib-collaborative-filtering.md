@@ -82,7 +82,7 @@ def load(sc: SparkContext, path: String): MatrixFactorizationModel =
 
 # 代码示例
 
-下面例子来自<http://spark.apache.org/docs/latest/mllib-collaborative-filtering.html>，并做了稍许修改。
+下面例子来自<http:/.apache.org/docs/latest/mllib-collaborative-filtering.html>，并做了稍许修改。
 
 ## Scala 示例
 
@@ -232,9 +232,9 @@ print("Mean Squared Error = " + str(MSE))
 
 另外，在网上找到一些Spark做推荐的项目：
 
-- 提供Restfull接口的实时推荐：<https://github.com/OndraFiedler/spark-recommender>
-- spark-elasticsearch-mllib：<https://github.com/ebiznext/spark-elasticsearch-mllib>
-- Beyond Piwik Web Analytics：<https://github.com/skrusche63/spark-piwik>
+- 提供Restfull接口的实时推荐：<https://github.com/OndraFiedler-recommender>
+- spark-elasticsearch-mllib：<https://github.com/ebiznext-elasticsearch-mllib>
+- Beyond Piwik Web Analytics：<https://github.com/skrusche63-piwik>
 - Serves predictions via a REST API：<https://github.com/SeldonIO/seldon-server>
 - <https://github.com/zhuixun/learningspark>
 - Spark-Movie-Recommendation：<https://github.com/yuriy-voderatskiy/Spark-Movie-Recommendation>

@@ -425,7 +425,7 @@ max: (x: Int, y: Int)Int
 
 函数的基本结构如下：
 
-![](/static/images/2015/scala-function-defined.jpg)
+![](/images/scala-function-defined.jpg)
 
 有时候Scala编译器会需要你定义函数的结果类型。比方说，如果函数是递归的，你就必须显式地定义函数结果类型。然而在max的例子里，你可以不用写结果类型，编译器也能够推断它。同样，如果函数仅由一个句子组成，你可以可选地不写大括号。这样，你就可以把max函数写成这样:
 

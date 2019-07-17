@@ -23,7 +23,7 @@ scala集合API：<http://www.scala-lang.org/docu/files/collections-api/collectio
 
 Scala的所有的集合类都可以在包 `scala.collection` 包中找到，其中的集合类都是高级抽象类或特性。
 
-![](/static/images/2015/scala.collection.png)
+![](/static/images/images/scala.collection.png)
 
 Scala 集合类系统地区分了可变的和不可变的集合。可变集合可以在适当的地方被更新或扩展。这意味着你可以修改，添加，移除一个集合的元素。而不可变集合类，相比之下，永远不会改变。不过，你仍然可以模拟添加，移除或更新操作。但是这些操作将在每一种情况下都返回一个新的集合，同时使原来的集合不发生改变。
 
@@ -32,11 +32,11 @@ Scala 集合类系统地区分了可变的和不可变的集合。可变集合�
 
 下面的图表显示 `scala.collection.immutable` 中的所有集合类。
 
-![](/static/images/2015/scala.collection.immutable.jpg)
+![](/images/scala.collection.immutable.jpg)
 
 下面的图表显示 `scala.collection.mutable` 中的所有集合类。
 
-![](/static/images/2015/scala.collection.mutable.png)
+![](/images/scala.collection.mutable.png)
 
 `默认情况下，Scala 一直采用不可变集合类`。例如，如果你仅写了 `Set` 而没有任何加前缀也没有从其它地方导入 `Set`，你会得到一个不可变的 set，另外如果你写迭代，你也会得到一个不可变的迭代集合类，这是由于这些类在从 scala 中导入的时候都是默认绑定的。为了得到可变的默认版本，你需要显式的声明`collection.mutable.Set`或`collection.mutable.Iterable`。
 

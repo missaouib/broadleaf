@@ -5,11 +5,11 @@ title:  当前数据仓库建设过程
 
 description:  一个典型的企业数据仓库通常包含数据采集、数据加工和存储、数据展现等几个过程，本篇文章将按照这个顺序记录部门当前建设数据仓库的过程。
 
-keywords:  hadoop
+keywords:  hadoop,hive
 
-category:  hadoop
+category:  hive
 
-tags: [hadoop,hive]
+tags: [hive]
 
 published: true 
 

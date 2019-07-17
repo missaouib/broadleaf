@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,68 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="spark,mahout,recommendation,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="分享每个月看到的一些文章、链接、工具等等的。本篇文章主要包括 Spark 以及推荐系统相关的文章。">
-<meta name="keywords" content="spark,mahout,recommendation">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Reading List 2015-03">
-<meta property="og:url" content="http://blog.javachen.com/2015/03/30/reading-list-2015-03/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="分享每个月看到的一些文章、链接、工具等等的。本篇文章主要包括 Spark 以及推荐系统相关的文章。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reading List 2015-03">
-<meta name="twitter:description" content="分享每个月看到的一些文章、链接、工具等等的。本篇文章主要包括 Spark 以及推荐系统相关的文章。">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -167,12 +135,41 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2015/03/30/reading-list-2015-03/">
-
+  
 
 
 
+
+  <meta name="description" content="分享每个月看到的一些文章、链接、工具等等的。本篇文章主要包括 Spark 以及推荐系统相关的文章。">
+<meta name="keywords" content="spark,mahout,recommendation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reading List 2015-03">
+<meta property="og:url" content="http://javachen.github.io/2015/03/30/reading-list-2015-03/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="分享每个月看到的一些文章、链接、工具等等的。本篇文章主要包括 Spark 以及推荐系统相关的文章。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-29T12:23:34.016Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reading List 2015-03">
+<meta name="twitter:description" content="分享每个月看到的一些文章、链接、工具等等的。本篇文章主要包括 Spark 以及推荐系统相关的文章。">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2015/03/30/reading-list-2015-03/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Reading List 2015-03 | JavaChen Blog</title>
   
@@ -181,7 +178,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -194,9 +192,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -208,7 +234,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -218,13 +244,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -232,76 +261,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -330,12 +397,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -348,16 +423,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/03/30/reading-list-2015-03/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/03/30/reading-list-2015-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -370,11 +447,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Reading List 2015-03</h2>
+          <h2 class="post-title" itemprop="name headline">Reading List 2015-03<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2015/2015-03-30-reading-list-2015-03.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -382,13 +468,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-30T00:00:00+08:00">
-                2015-03-30
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2015-03-30T00:00:00+08:00">2015-03-30</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:23:34" itemprop="dateModified" datetime="2019-06-29T20:23:34+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -404,11 +507,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/work/" itemprop="url" rel="index"><span itemprop="name">work</span></a></span>
 
                 
                 
@@ -417,6 +516,7 @@
           
 
           
+            
             
           
 
@@ -434,6 +534,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -441,7 +542,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -450,7 +551,7 @@
         <p>这个月主要在关注流式处理和推荐系统方面的技术。如何从零构建一个推荐系统？网上能找到的有指导意义的资料太少，只能一点点摸索？</p>
 <h3 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h3><ul>
 <li><a href="https://forum.leancloud.cn/t/ji-zhu-xiang-jie-leancloud-chi-xian-shu-ju-fen-xi-gong-neng-jie-shao/281" target="_blank" rel="noopener">LeanCloud 离线数据分析功能介绍</a></li>
-<li>Spark在腾讯数据仓库TDW的应用 <a href="http://www.biaodianfu.com/spark-tdw.html" target="_blank" rel="noopener">http://www.biaodianfu.com/spark-tdw.html</a></li>
+<li>Spark在腾讯数据仓库TDW的应用 <a href="http://www.biaodianfu.com-tdw.html" target="_blank" rel="noopener">http://www.biaodianfu.com-tdw.html</a></li>
 <li>Spark on Yarn：小火花照亮大数据 <a href="http://rdc.taobao.org/?p=512" target="_blank" rel="noopener">http://rdc.taobao.org/?p=512</a></li>
 <li>Spark on Yarn：性能调优 <a href="http://rdc.taobao.org/?p=533" target="_blank" rel="noopener">http://rdc.taobao.org/?p=533</a></li>
 </ul>
@@ -458,7 +559,7 @@
 <li>Spark Shell Examples <a href="https://altiscale.zendesk.com/hc/en-us/articles/202627136-Spark-Shell-Examples" target="_blank" rel="noopener">https://altiscale.zendesk.com/hc/en-us/articles/202627136-Spark-Shell-Examples</a></li>
 <li><a href="http://www.javacodegeeks.com//?s=spark" target="_blank" rel="noopener">http://www.javacodegeeks.com//?s=spark</a></li>
 <li>Spark SQL join 的例子：<a href="https://gist.github.com/ceteri/11381941" target="_blank" rel="noopener">https://gist.github.com/ceteri/11381941</a></li>
-<li>Spark Cook Book：<a href="http://www.infoobjects.com/spark-cookbook/" target="_blank" rel="noopener">http://www.infoobjects.com/spark-cookbook/</a></li>
+<li>Spark Cook Book：<a href="http://www.infoobjects.com-cookbook/" target="_blank" rel="noopener">http://www.infoobjects.com-cookbook/</a></li>
 </ul>
 <h3 id="Spark做推荐系统"><a href="#Spark做推荐系统" class="headerlink" title="Spark做推荐系统"></a>Spark做推荐系统</h3><ul>
 <li>spark机器学习 <a href="http://blog.selfup.cn/category/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0" target="_blank" rel="noopener">http://blog.selfup.cn/category/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0</a></li>
@@ -474,7 +575,7 @@
 <li>协同过滤算法在MapReduce与Spark上实现对比 <a href="http://data.qq.com/article?id=823" target="_blank" rel="noopener">http://data.qq.com/article?id=823</a></li>
 <li>ItemBased with Spark <a href="http://weikey.me/articles/187.html" target="_blank" rel="noopener">http://weikey.me/articles/187.html</a></li>
 <li>Collaborative Filtering with Spark <a href="http://www.slideshare.net/MrChrisJohnson/collaborative-filtering-with-spark" target="_blank" rel="noopener">http://www.slideshare.net/MrChrisJohnson/collaborative-filtering-with-spark</a></li>
-<li>Movie Recommendations and More With Spark  <a href="http://mlnick.github.io/blog/2013/04/01/movie-recommendations-and-more-with-spark/" target="_blank" rel="noopener">http://mlnick.github.io/blog/2013/04/01/movie-recommendations-and-more-with-spark/</a></li>
+<li>Movie Recommendations and More With Spark  <a href="http://mlnick.github.io/blog/images/04/01/movie-recommendations-and-more-with-spark/" target="_blank" rel="noopener">http://mlnick.github.io/blog/images/04/01/movie-recommendations-and-more-with-spark/</a></li>
 <li>Movie Recommendation with Mllib <a href="https://databricks-training.s3.amazonaws.com/movie-recommendation-with-mllib.html" target="_blank" rel="noopener">https://databricks-training.s3.amazonaws.com/movie-recommendation-with-mllib.html</a></li>
 <li>基于ALS算法的简易在线推荐系统 <a href="http://ju.outofmemory.cn/entry/110756" target="_blank" rel="noopener">http://ju.outofmemory.cn/entry/110756</a></li>
 <li>ALS 在 Spark MLlib 中的实现 <a href="http://dataunion.org/16856.html" target="_blank" rel="noopener">http://dataunion.org/16856.html</a></li>
@@ -484,10 +585,10 @@
 <li>Spark上矩阵运算库 <a href="http://blog.csdn.net/u014252240/article/category/2384017" target="_blank" rel="noopener">http://blog.csdn.net/u014252240/article/category/2384017</a></li>
 <li>用MongoDB和Spark实现电影推荐 <a href="http://www.infoq.com/cn/news/2014/12/mongdb-spark-movie-recommend" target="_blank" rel="noopener">http://www.infoq.com/cn/news/2014/12/mongdb-spark-movie-recommend</a></li>
 <li>基于Spark构建推荐引擎之一：基于物品的协同过滤推荐 <a href="http://blog.csdn.net/sunbow0/article/details/42737541" target="_blank" rel="noopener">http://blog.csdn.net/sunbow0/article/details/42737541</a></li>
-<li>2015的 spark-summit ，使用 Spark 实时推荐系统：<a href="http://spark-summit.org/wp-content/uploads/2015/03/SSE15-18-Neumann-Alla.pdf" target="_blank" rel="noopener">http://spark-summit.org/wp-content/uploads/2015/03/SSE15-18-Neumann-Alla.pdf</a></li>
+<li>2015的 spark-summit ，使用 Spark 实时推荐系统：<a href="http:/-summit.org/wp-content/uploads/2015/03/SSE15-18-Neumann-Alla.pdf" target="_blank" rel="noopener">http:/-summit.org/wp-content/uploads/2015/03/SSE15-18-Neumann-Alla.pdf</a></li>
 <li>基于PredictionIO的推荐引擎打造，及大规模多标签分类探索 <a href="http://www.uml.org.cn/yunjisuan/2015041410.asp" target="_blank" rel="noopener">http://www.uml.org.cn/yunjisuan/2015041410.asp</a></li>
-<li>PDF：MLlib: Scalable Machine Learning on Spark <a href="http://stanford.edu/~rezab/sparkworkshop/slides/xiangrui.pdf" target="_blank" rel="noopener">http://stanford.edu/~rezab/sparkworkshop/slides/xiangrui.pdf</a></li>
-<li>使用Spark的MLlib、Hbase作为模型、Hive作数据清洗的核心推荐引擎,在Spark on Yarn测试通过 <a href="https://github.com/wbj0110/spark_resrecomend" target="_blank" rel="noopener">https://github.com/wbj0110/spark_resrecomend</a></li>
+<li>PDF：MLlib: Scalable Machine Learning on Spark <a href="http://stanford.edu/~rezabworkshop/slides/xiangrui.pdf" target="_blank" rel="noopener">http://stanford.edu/~rezabworkshop/slides/xiangrui.pdf</a></li>
+<li>使用Spark的MLlib、Hbase作为模型、Hive作数据清洗的核心推荐引擎,在Spark on Yarn测试通过 <a href="https://github.com/wbj0110_resrecomend" target="_blank" rel="noopener">https://github.com/wbj0110_resrecomend</a></li>
 </ul>
 <h3 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h3><ul>
 <li>推荐算法总结Recommendation <a href="http://blog.csdn.net/oopsoom/article/details/33740799" target="_blank" rel="noopener">http://blog.csdn.net/oopsoom/article/details/33740799</a></li>
@@ -506,7 +607,7 @@
 <li>使用Mahout Kmeans算法进行中文聚类 <a href="http://weikey.me/articles/133.html" target="_blank" rel="noopener">http://weikey.me/articles/133.html</a></li>
 <li>漫谈“推荐系统” <a href="http://youngfor.me/post/recsys/man-tan-tui-jian-xi-tong" target="_blank" rel="noopener">http://youngfor.me/post/recsys/man-tan-tui-jian-xi-tong</a></li>
 <li><a href="http://semocean.com/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%BB%8F%E5%85%B8%E8%AE%BA%E6%96%87%E6%96%87%E7%8C%AE%E5%8F%8A%E8%B5%84%E6%96%99/" target="_blank" rel="noopener">推荐系统经典论文文献及业界应用</a> </li>
-<li>自己动手写一个推荐系统 <a href="http://www.cnblogs.com/flclain/archive/2013/03/03/2941397.html" target="_blank" rel="noopener">http://www.cnblogs.com/flclain/archive/2013/03/03/2941397.html</a></li>
+<li>自己动手写一个推荐系统 <a href="http://www.cnblogs.com/flclain/archive/images/03/03/2941397.html" target="_blank" rel="noopener">http://www.cnblogs.com/flclain/archive/images/03/03/2941397.html</a></li>
 <li>什么是好的推荐系统 <a href="http://guoze.me/2015/01/29/good-recommendation/" target="_blank" rel="noopener">http://guoze.me/2015/01/29/good-recommendation/</a></li>
 <li>58同城的大数据环境下实现一个O2O通用推荐引擎的实践 <a href="http://www.tuicool.com/articles/3MFBfq" target="_blank" rel="noopener">http://www.tuicool.com/articles/3MFBfq</a></li>
 <li>58同城推荐系统架构设计与实现 <a href="http://chuansong.me/n/949426" target="_blank" rel="noopener">http://chuansong.me/n/949426</a></li>
@@ -525,7 +626,7 @@
 <li>爱奇艺推荐系统的整体技术架构 <a href="http://edu.51cto.com/lesson/id-56393.html" target="_blank" rel="noopener">http://edu.51cto.com/lesson/id-56393.html</a></li>
 <li>推荐系统架构小结 <a href="http://blog.csdn.net/idonot/article/details/7996733" target="_blank" rel="noopener">http://blog.csdn.net/idonot/article/details/7996733</a></li>
 <li>淘宝推荐系统的学习 <a href="http://www.biaodianfu.com/taobao-recommendation-system.html" target="_blank" rel="noopener">http://www.biaodianfu.com/taobao-recommendation-system.html</a></li>
-<li>协同过滤算法：在线推荐系统如何工作？ <a href="http://www.csdn.net/article/2013-01-30/2814014-Collaborative-Filtering" target="_blank" rel="noopener">http://www.csdn.net/article/2013-01-30/2814014-Collaborative-Filtering</a></li>
+<li>协同过滤算法：在线推荐系统如何工作？ <a href="http://www.csdn.net/article/images-01-30/2814014-Collaborative-Filtering" target="_blank" rel="noopener">http://www.csdn.net/article/images-01-30/2814014-Collaborative-Filtering</a></li>
 <li><a href="http://semocean.com/%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0-%E4%BB%A5%E7%99%BE%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D%E6%90%9C%E7%B4%A2%E6%8E%A8/" target="_blank" rel="noopener">一个完整推荐系统的设计实现-以百度关键词搜索推荐为例</a> </li>
 <li>活用您的 Big Data，實現線上服務行銷的精準推薦 <a href="http://www.slideshare.net/etusolution/big-data-13084872" target="_blank" rel="noopener">http://www.slideshare.net/etusolution/big-data-13084872</a></li>
 <li>推荐系统规划 <a href="http://www.slideshare.net/2005000613/ss-16169751?qid=4f0d8f9f-8b65-4d60-9685-5464a4b7b731" target="_blank" rel="noopener">http://www.slideshare.net/2005000613/ss-16169751?qid=4f0d8f9f-8b65-4d60-9685-5464a4b7b731</a></li>
@@ -560,35 +661,72 @@
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2015/03/30/reading-list-2015-03/" title="Reading List 2015-03">Reading List 2015-03</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -597,79 +735,39 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2015/03/30/reading-list-2015-03/" title="Reading List 2015-03">http://blog.javachen.com/2015/03/30/reading-list-2015-03/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/spark/" rel="tag"># spark</a>
+            <a href="/tags/spark/" rel="tag"><i class="fa fa-tag"></i> spark</a>
           
-            <a href="/tags/mahout/" rel="tag"># mahout</a>
+            <a href="/tags/mahout/" rel="tag"><i class="fa fa-tag"></i> mahout</a>
           
-            <a href="/tags/recommendation/" rel="tag"># recommendation</a>
+            <a href="/tags/recommendation/" rel="tag"><i class="fa fa-tag"></i> recommendation</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/03/26/spark-sql-dataframe/" rel="next" title="Spark SQL中的DataFrame">
-                <i class="fa fa-chevron-left"></i> Spark SQL中的DataFrame
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/03/30/spark-test-in-local-mode/" rel="prev" title="Spark本地模式运行">
-                Spark本地模式运行 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -706,15 +804,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/30/spark-test-in-local-mode/" rel="next" title="Spark本地模式运行">
+                <i class="fa fa-chevron-left"></i> Spark本地模式运行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/03/spark-sql-datasource/" rel="prev" title="Spark SQL中的数据源">
+                Spark SQL中的数据源 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -728,11 +861,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -753,6 +888,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -766,11 +902,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -784,96 +923,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -887,8 +941,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -937,6 +1042,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -970,8 +1077,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1140,9 +1248,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1216,9 +1324,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

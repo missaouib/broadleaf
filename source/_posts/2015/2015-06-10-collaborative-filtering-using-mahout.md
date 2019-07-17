@@ -237,7 +237,7 @@ System.out.println(stats.getRecall());
 
 # 在Spark中运行
 
-在Spark中运行，需要将Mahout相关的jar添加到Spark的classpath中，修改/etc/spark/conf/spark-env.sh，添加下面两行代码：
+在Spark中运行，需要将Mahout相关的jar添加到Spark的classpath中，修改/etc/conf-env.sh，添加下面两行代码：
 
 ~~~properties
 SPARK_DIST_CLASSPATH="$SPARK_DIST_CLASSPATH:/usr/lib/mahout/lib/*"
@@ -382,4 +382,4 @@ drwxr-xr-x   - root hadoop          0 2015-06-10 14:42 temp/weights
 
 # 参考文章
 
-- [协同过滤原理与Mahout实现](http://matrix-lisp.github.io/blog/2013/12/20/mahout-taste-CF/)
+- [协同过滤原理与Mahout实现](http://matrix-lisp.github.io/blog/images/12/20/mahout-taste-CF/)

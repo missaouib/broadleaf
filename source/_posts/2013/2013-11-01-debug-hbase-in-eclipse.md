@@ -9,7 +9,7 @@ tags: [hbase]
 这篇文章记录一下如何在eclipse中调试运行hbase。
 
 # 下载并编译源代码
-请参考[编译hbase源代码并打补丁](http://blog.javachen.com/hbase/2013/10/28/compile-hbase-source-code-and-apply-patches/)
+请参考[编译hbase源代码并打补丁](http://blog.javachen.com/hbase/images/10/28/compile-hbase-source-code-and-apply-patches/)
 
 # 修改配置文件
 

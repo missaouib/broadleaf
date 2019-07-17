@@ -57,7 +57,7 @@ $ hdfs dfsadmin -saveNamespace
 /etc/hbase/conf
 /etc/zookeeper/conf
 /etc/impala/conf
-/etc/spark/conf
+/etc/conf
 /etc/sentry/conf
 /etc/default/impala
 ~~~

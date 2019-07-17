@@ -11,7 +11,7 @@ description: 记录 CDH Hadoop 集群上配置 Zookeeper 集成 Kerberos 的过�
 
 ---
 
-参考 [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum.html) 安装 hadoop 集群，集群包括三个节点，每个节点的ip、主机名和部署的组件分配如下：
+参考 [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum) 安装 hadoop 集群，集群包括三个节点，每个节点的ip、主机名和部署的组件分配如下：
 
 ~~~
 192.168.56.121        cdh1     NameNode、Hive、ResourceManager、HBase、impala-state-store、impala-catalog、Kerberos Server、zookeeper-server
@@ -206,12 +206,12 @@ k: cdh1:2181(CONNECTED) 0] create /znode1 sasl:zkcli@JAVACHEN.COM:cdwra
 
 # 3 相关文章
 
- - [HDFS配置Kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs.html)
- - [YARN配置Kerberos认证](/2014/11/05/config-kerberos-in-cdh-yarn.html)
- - [Hive配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive.html)
- - [Impala配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala.html)
- - [Zookeeper配置Kerberos认证](/2014/11/18/config-kerberos-in-cdh-zookeeper.html)
- - [Hadoop配置LDAP集成Kerberos](/2014/11/12/config-ldap-with-kerberos-in-cdh-hadoop.html)
- - [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry.html)
- - [配置安全的Impala集群集成Sentry](/2014/11/14/config-secured-impala-with-sentry.html)
- - [Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop.html)
+ - [HDFS配置Kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs)
+ - [YARN配置Kerberos认证](/2014/11/05/config-kerberos-in-cdh-yarn)
+ - [Hive配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive)
+ - [Impala配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala)
+ - [Zookeeper配置Kerberos认证](/2014/11/18/config-kerberos-in-cdh-zookeeper.)
+ - [Hadoop配置LDAP集成Kerberos](/2014/11/12/config-ldap-with-kerberos-in-cdh-hadoop)
+ - [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry)
+ - [配置安全的Impala集群集成Sentry](/2014/11/14/config-secured-impala-with-sentry)
+ - [Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop)

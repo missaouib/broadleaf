@@ -30,7 +30,7 @@ java中的类如果有main方法就能运行，故直接查找`org.apache.hadoop
 
 CliDriver类中的方法有：
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2013/Hive-CliDriver-method.jpg)
+![](/images/Hive-CliDriver-method.jpg)
 
 main方法代码如下：
 
@@ -102,7 +102,7 @@ shell_cmd的内容大概如下：
 
 以本地模式运行时，会通过CommandProcessorFactory工厂解析输入的语句来获得一个CommandProcessor，CommandProcessor接口的实现类见下图：
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2013/CommandProcessor-implements.jpg)
+![](/images/CommandProcessor-implements.jpg)
 
 从上图可以看到指定的命令(`set/dfs/add/delete/reset`)交给指定的CommandProcessor处理，其余的(指hql语句)交给Driver类来处理。
 
@@ -112,7 +112,7 @@ shell_cmd的内容大概如下：
 
 作为尝试，第一次使用思维导图分析代码逻辑，简单整理了一下CliDriver类的运行逻辑，如下图。以后还需要加强画图和表达能力。
 
-![hive-cli-clidriver](http://7xnrdo.com1.z0.glb.clouddn.com/2013/hive-cli-clidriver.jpg)
+![hive-cli-clidriver](/images/hive-cli-clidriver.jpg)
 
 # 参考文章
 

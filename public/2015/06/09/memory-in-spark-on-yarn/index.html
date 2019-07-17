@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,75 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="spark,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="本文主要了解Spark On YARN部署模式下的内存分配情况。">
-<meta name="keywords" content="spark">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spark On YARN内存分配">
-<meta property="og:url" content="http://blog.javachen.com/2015/06/09/memory-in-spark-on-yarn/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="本文主要了解Spark On YARN部署模式下的内存分配情况。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.guozhongxin.com/images/taobao.png">
-<meta property="og:image" content="http://blog.javachen.com/static/images/hadoop/memory-in-spark-on-yarn-1.jpg">
-<meta property="og:image" content="http://blog.javachen.com/static/images/hadoop/memory-in-spark-on-yarn-2.jpg">
-<meta property="og:image" content="http://blog.javachen.com/static/images/hadoop/memory-in-spark-on-yarn-3.jpg">
-<meta property="og:image" content="http://blog.javachen.com/static/images/hadoop/memory-in-spark-on-yarn-4.jpg">
-<meta property="og:image" content="http://blog.cloudera.com/wp-content/uploads/2015/03/spark-tuning2-f1.png">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark On YARN内存分配">
-<meta name="twitter:description" content="本文主要了解Spark On YARN部署模式下的内存分配情况。">
-<meta name="twitter:image" content="http://www.guozhongxin.com/images/taobao.png">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -174,12 +135,48 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2015/06/09/memory-in-spark-on-yarn/">
-
+  
 
 
 
+
+  <meta name="description" content="本文主要了解Spark On YARN部署模式下的内存分配情况。">
+<meta name="keywords" content="spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark On YARN内存分配">
+<meta property="og:url" content="http://javachen.github.io/2015/06/09/memory-in-spark-on-yarn/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="本文主要了解Spark On YARN部署模式下的内存分配情况。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.guozhongxin.com/images/taobao.png">
+<meta property="og:image" content="http://javachen.github.io/images/memory-in-spark-on-yarn-1.jpg">
+<meta property="og:image" content="http://javachen.github.io/images/memory-in-spark-on-yarn-2.jpg">
+<meta property="og:image" content="http://javachen.github.io/images/memory-in-spark-on-yarn-3.jpg">
+<meta property="og:image" content="http://javachen.github.io/images/memory-in-spark-on-yarn-4.jpg">
+<meta property="og:image" content="http://blog.cloudera.com/wp-content/uploads/images/03-tuning2-f1.png">
+<meta property="og:updated_time" content="2019-07-03T16:43:31.689Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark On YARN内存分配">
+<meta name="twitter:description" content="本文主要了解Spark On YARN部署模式下的内存分配情况。">
+<meta name="twitter:image" content="http://www.guozhongxin.com/images/taobao.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2015/06/09/memory-in-spark-on-yarn/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Spark On YARN内存分配 | JavaChen Blog</title>
   
@@ -188,7 +185,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -201,9 +199,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -215,7 +241,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -225,13 +251,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -239,76 +268,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -337,12 +404,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -355,16 +430,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/06/09/memory-in-spark-on-yarn/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/06/09/memory-in-spark-on-yarn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -377,11 +454,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Spark On YARN内存分配</h2>
+          <h2 class="post-title" itemprop="name headline">Spark On YARN内存分配<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2015/2015-06-09-memory-in-spark-on-yarn.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -389,13 +475,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-09T00:00:00+08:00">
-                2015-06-09
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-06-09 00:00:00" itemprop="dateCreated datePublished" datetime="2015-06-09T00:00:00+08:00">2015-06-09</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-04 00:43:31" itemprop="dateModified" datetime="2019-07-04T00:43:31+08:00">2019-07-04</time>
+              
             
           </span>
 
@@ -411,11 +514,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
 
                 
                 
@@ -424,6 +523,7 @@
           
 
           
+            
             
           
 
@@ -441,6 +541,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -448,7 +549,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -459,7 +560,7 @@
 <p>当在YARN上运行Spark作业，每个Spark executor作为一个YARN容器运行。Spark可以使得多个Tasks在同一个容器里面运行。</p>
 <p>下图是yarn-cluster模式的作业执行图，图片来源于网络：</p>
 <p><img src="http://www.guozhongxin.com/images/taobao.png" alt></p>
-<p>关于Spark On YARN相关的配置参数，请参考<a href="/2015/06/07/spark-configuration.html">Spark配置参数</a>。本文主要讨论内存分配情况，所以只需要关注以下几个内心相关的参数：</p>
+<p>关于Spark On YARN相关的配置参数，请参考<a href="/2014/06/07/spark-configuration">Spark配置参数</a>。本文主要讨论内存分配情况，所以只需要关注以下几个内心相关的参数：</p>
 <ul>
 <li><code>spark.driver.memory</code>：默认值512m</li>
 <li><code>spark.executor.memory</code>：默认值512m</li>
@@ -470,11 +571,11 @@
 </ul>
 <p>注意：</p>
 <ul>
-<li><code>--executor-memory/spark.executor.memory</code> 控制 executor 的堆的大小，但是 JVM 本身也会占用一定的堆空间，比如内部的 String 或者直接 byte buffer，<code>spark.yarn.XXX.memoryOverhead</code>属性决定向 YARN 请求的每个 executor 或dirver或am 的额外堆内存大小，默认值为 <code>max(384, 0.07 * spark.executor.memory</code>)</li>
+<li><code>--executor-memory.executor.memory</code> 控制 executor 的堆的大小，但是 JVM 本身也会占用一定的堆空间，比如内部的 String 或者直接 byte buffer，<code>spark.yarn.XXX.memoryOverhead</code>属性决定向 YARN 请求的每个 executor 或dirver或am 的额外堆内存大小，默认值为 <code>max(384, 0.07 * spark.executor.memory</code>)</li>
 <li>在 executor 执行的时候配置过大的 memory 经常会导致过长的GC延时，64G是推荐的一个 executor 内存大小的上限。</li>
 <li>HDFS client 在大量并发线程时存在性能问题。大概的估计是每个 executor 中最多5个并行的 task 就可以占满写入带宽。</li>
 </ul>
-<p>另外，因为任务是提交到YARN上运行的，所以YARN中有几个关键参数，参考<a href="/2015/06/05/yarn-memory-and-cpu-configuration.html">YARN的内存和CPU配置</a>：</p>
+<p>另外，因为任务是提交到YARN上运行的，所以YARN中有几个关键参数：</p>
 <ul>
 <li><code>yarn.app.mapreduce.am.resource.mb</code>：AM能够申请的最大内存，默认值为1536MB</li>
 <li><code>yarn.nodemanager.resource.memory-mb</code>：nodemanager能够申请的最大内存，默认值为8192MB</li>
@@ -492,14 +593,14 @@
 <p>注意：YARN集群部署在Spark集群之上的，每一个worker节点上同时部署了一个NodeManager，并且YARN集群中的配置如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.resource.memory-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>106496<span class="tag">&lt;/<span class="name">value</span>&gt;</span> <span class="comment">&lt;!-- 104G --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.scheduler.minimum-allocation-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>2048<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.scheduler.maximum-allocation-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>106496<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.app.mapreduce.am.resource.mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>2048<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>将spark的日志基本调为DEBUG，并将log4j.logger.org.apache.hadoop设置为WARN建设不必要的输出，修改/etc/spark/conf/log4j.properties：</p>
+<p>将spark的日志基本调为DEBUG，并将log4j.logger.org.apache.hadoop设置为WARN建设不必要的输出，修改/etc/conf/log4j.properties：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Set everything to be logged to the console</span><br><span class="line">log4j.rootCategory=DEBUG, console</span><br><span class="line">log4j.appender.console=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.console.target=System.err</span><br><span class="line">log4j.appender.console.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.console.layout.ConversionPattern=%d&#123;yy/MM/dd HH:mm:ss&#125; %p %c&#123;1&#125;: %m%n</span><br><span class="line"></span><br><span class="line"># Settings to quiet third party logs that are too verbose</span><br><span class="line">log4j.logger.org.eclipse.jetty=WARN</span><br><span class="line">log4j.logger.org.apache.hadoop=WARN</span><br><span class="line">log4j.logger.org.eclipse.jetty.util.component.AbstractLifeCycle=ERROR</span><br><span class="line">log4j.logger.org.apache.spark.repl.SparkIMain$exprTyper=INFO</span><br><span class="line">log4j.logger.org.apache.spark.repl.SparkILoop$SparkILoopInterpreter=INFO</span><br></pre></td></tr></table></figure>
 
 <p>接下来是运行测试程序，以官方自带的SparkPi例子为例，<code>下面主要测试client模式，至于cluster模式请参考下面的过程</code>。运行下面命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spark-submit --class org.apache.spark.examples.SparkPi \</span><br><span class="line">    --master yarn-client  \</span><br><span class="line">    --num-executors 4 \</span><br><span class="line">    --driver-memory 2g \</span><br><span class="line">    --executor-memory 3g \</span><br><span class="line">    --executor-cores 4 \</span><br><span class="line">    /usr/lib/spark/lib/spark-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \</span><br><span class="line">    100000</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spark-submit --class org.apache.spark.examples.SparkPi \</span><br><span class="line">    --master yarn-client  \</span><br><span class="line">    --num-executors 4 \</span><br><span class="line">    --driver-memory 2g \</span><br><span class="line">    --executor-memory 3g \</span><br><span class="line">    --executor-cores 4 \</span><br><span class="line">    /usr/lib/lib-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \</span><br><span class="line">    100000</span><br></pre></td></tr></table></figure>
 
 <p>观察输出日志（无关的日志被略去）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">15/06/08 13:57:01 INFO SparkContext: Running Spark version 1.3.0</span><br><span class="line">15/06/08 13:57:02 INFO SecurityManager: Changing view acls to: root</span><br><span class="line">15/06/08 13:57:02 INFO SecurityManager: Changing modify acls to: root</span><br><span class="line"></span><br><span class="line">15/06/08 13:57:03 INFO MemoryStore: MemoryStore started with capacity 1060.3 MB</span><br><span class="line"></span><br><span class="line">15/06/08 13:57:04 DEBUG YarnClientSchedulerBackend: ClientArguments called with: --arg bj03-bi-pro-hdpnamenn:51568 --num-executors 4 --num-executors 4 --executor-memory 3g --executor-memory 3g --executor-cores 4 --executor-cores 4 --name Spark Pi</span><br><span class="line">15/06/08 13:57:04 DEBUG YarnClientSchedulerBackend: [actor] handled message (24.52531 ms) ReviveOffers from Actor[akka://sparkDriver/user/CoarseGrainedScheduler#864850679]</span><br><span class="line">15/06/08 13:57:05 INFO Client: Requesting a new application from cluster with 4 NodeManagers</span><br><span class="line">15/06/08 13:57:05 INFO Client: Verifying our application has not requested more than the maximum memory capability of the cluster (106496 MB per container)</span><br><span class="line">15/06/08 13:57:05 INFO Client: Will allocate AM container, with 896 MB memory including 384 MB overhead</span><br><span class="line">15/06/08 13:57:05 INFO Client: Setting up container launch context for our AM</span><br><span class="line"></span><br><span class="line">15/06/08 13:57:07 DEBUG Client: ===============================================================================</span><br><span class="line">15/06/08 13:57:07 DEBUG Client: Yarn AM launch context:</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:     user class: N/A</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:     env:</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         CLASSPATH -&gt; &#123;&#123;PWD&#125;&#125;&lt;CPS&gt;&#123;&#123;PWD&#125;&#125;/__spark__.jar&lt;CPS&gt;$HADOOP_CONF_DIR&lt;CPS&gt;$HADOOP_COMMON_HOME/*&lt;CPS&gt;$HADOOP_COMMON_HOME/lib/*&lt;CPS&gt;$HADOOP_HDFS_HOME/*&lt;CPS&gt;$HADOOP_HDFS_HOME/lib/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/lib/*&lt;CPS&gt;$HADOOP_YARN_HOME/*&lt;CPS&gt;$HADOOP_YARN_HOME/lib/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*&lt;CPS&gt;:/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*:/usr/lib/paquet/lib/*:/usr/lib/avro/lib/*</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         SPARK_DIST_CLASSPATH -&gt; :/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*:/usr/lib/paquet/lib/*:/usr/lib/avro/lib/*</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_CACHE_FILES_FILE_SIZES -&gt; 97237208</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_STAGING_DIR -&gt; .sparkStaging/application_1433742899916_0001</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_CACHE_FILES_VISIBILITIES -&gt; PRIVATE</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         SPARK_USER -&gt; root</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_MODE -&gt; true</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_CACHE_FILES_TIME_STAMPS -&gt; 1433743027399</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         SPARK_YARN_CACHE_FILES -&gt; hdfs://mycluster:8020/user/root/.sparkStaging/application_1433742899916_0001/spark-assembly-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar#__spark__.jar</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:     resources:</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         __spark__.jar -&gt; resource &#123; scheme: &quot;hdfs&quot; host: &quot;mycluster&quot; port: 8020 file: &quot;/user/root/.sparkStaging/application_1433742899916_0001/spark-assembly-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar&quot; &#125; size: 97237208 timestamp: 1433743027399 type: FILE visibility: PRIVATE</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:     command:</span><br><span class="line">15/06/08 13:57:07 DEBUG Client:         &#123;&#123;JAVA_HOME&#125;&#125;/bin/java -server -Xmx512m -Djava.io.tmpdir=&#123;&#123;PWD&#125;&#125;/tmp &apos;-Dspark.eventLog.enabled=true&apos; &apos;-Dspark.executor.instances=4&apos; &apos;-Dspark.executor.memory=3g&apos; &apos;-Dspark.executor.cores=4&apos; &apos;-Dspark.driver.port=51568&apos; &apos;-Dspark.serializer=org.apache.spark.serializer.KryoSerializer&apos; &apos;-Dspark.driver.appUIAddress=http://bj03-bi-pro-hdpnamenn:4040&apos; &apos;-Dspark.executor.id=&lt;driver&gt;&apos; &apos;-Dspark.kryo.classesToRegister=scala.collection.mutable.BitSet,scala.Tuple2,scala.Tuple1,org.apache.spark.mllib.recommendation.Rating&apos; &apos;-Dspark.driver.maxResultSize=8g&apos; &apos;-Dspark.jars=file:/usr/lib/spark/lib/spark-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar&apos; &apos;-Dspark.driver.memory=2g&apos; &apos;-Dspark.eventLog.dir=hdfs://mycluster:8020/user/spark/applicationHistory&apos; &apos;-Dspark.app.name=Spark Pi&apos; &apos;-Dspark.fileserver.uri=http://X.X.X.X:49172&apos; &apos;-Dspark.tachyonStore.folderName=spark-81ae0186-8325-40f2-867b-65ee7c922357&apos; -Dspark.yarn.app.container.log.dir=&lt;LOG_DIR&gt; org.apache.spark.deploy.yarn.ExecutorLauncher --arg &apos;bj03-bi-pro-hdpnamenn:51568&apos; --executor-memory 3072m --executor-cores 4 --num-executors  4 1&gt; &lt;LOG_DIR&gt;/stdout 2&gt; &lt;LOG_DIR&gt;/stderr</span><br><span class="line">15/06/08 13:57:07 DEBUG Client: ===============================================================================</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">01</span> INFO <span class="symbol">SparkContext:</span> Running Spark version <span class="number">1.3</span>.<span class="number">0</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">02</span> INFO <span class="symbol">SecurityManager:</span> Changing view acls <span class="symbol">to:</span> root</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">02</span> INFO <span class="symbol">SecurityManager:</span> Changing modify acls <span class="symbol">to:</span> root</span><br><span class="line"></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">03</span> INFO <span class="symbol">MemoryStore:</span> MemoryStore started <span class="keyword">with</span> capacity <span class="number">1060.3</span> MB</span><br><span class="line"></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">04</span> DEBUG <span class="symbol">YarnClientSchedulerBackend:</span> ClientArguments called <span class="symbol">with:</span> --arg bj03-bi-pro-<span class="symbol">hdpnamenn:</span><span class="number">51568</span> --num-executors <span class="number">4</span> --num-executors <span class="number">4</span> --executor-memory <span class="number">3</span>g --executor-memory <span class="number">3</span>g --executor-cores <span class="number">4</span> --executor-cores <span class="number">4</span> --name Spark Pi</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">04</span> DEBUG <span class="symbol">YarnClientSchedulerBackend:</span> [actor] handled message (<span class="number">24.52531</span> ms) ReviveOffers from Actor[<span class="symbol">akka:</span>/Driver/user/CoarseGrainedScheduler<span class="comment">#864850679]</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">05</span> INFO <span class="symbol">Client:</span> Requesting a new application from cluster <span class="keyword">with</span> <span class="number">4</span> NodeManagers</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">05</span> INFO <span class="symbol">Client:</span> Verifying our application has <span class="keyword">not</span> requested more than the maximum memory capability of the cluster (<span class="number">106496</span> MB per container)</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">05</span> INFO <span class="symbol">Client:</span> Will allocate AM container, <span class="keyword">with</span> <span class="number">896</span> MB memory including <span class="number">384</span> MB overhead</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">05</span> INFO <span class="symbol">Client:</span> Setting up container launch context <span class="keyword">for</span> our AM</span><br><span class="line"></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span> ===============================================================================</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span> Yarn AM launch <span class="symbol">context:</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>     user <span class="symbol">class:</span> N/A</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>     <span class="symbol">env:</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         CLASSPATH -&gt; &#123;&#123;PWD&#125;&#125;&lt;CPS&gt;&#123;&#123;PWD&#125;&#125;/__spark_<span class="number">_</span>.jar&lt;CPS&gt;<span class="variable">$HADOOP_CONF_DIR</span>&lt;CPS&gt;<span class="variable">$HADOOP_COMMON_HOME</span>/*&lt;CPS&gt;<span class="variable">$HADOOP_COMMON_HOME</span>/lib/*&lt;CPS&gt;<span class="variable">$HADOOP_HDFS_HOME</span>/*&lt;CPS&gt;<span class="variable">$HADOOP_HDFS_HOME</span>/lib/*&lt;CPS&gt;<span class="variable">$HADOOP_MAPRED_HOME</span>/*&lt;CPS&gt;<span class="variable">$HADOOP_MAPRED_HOME</span>/lib/*&lt;CPS&gt;<span class="variable">$HADOOP_YARN_HOME</span>/*&lt;CPS&gt;<span class="variable">$HADOOP_YARN_HOME</span>/lib/*&lt;CPS&gt;<span class="variable">$HADOOP_MAPRED_HOME</span>/share/hadoop/mapreduce/*&lt;CPS&gt;<span class="variable">$HADOOP_MAPRED_HOME</span>/share/hadoop/mapreduce/lib/*&lt;CPS&gt;<span class="symbol">:/usr/lib/lib-assembly</span>.jar::/usr/lib/hadoop/lib/*<span class="symbol">:/usr/lib/hadoop/*</span><span class="symbol">:/usr/lib/hadoop-hdfs/lib/*</span><span class="symbol">:/usr/lib/hadoop-hdfs/*</span><span class="symbol">:/usr/lib/hadoop-mapreduce/lib/*</span><span class="symbol">:/usr/lib/hadoop-mapreduce/*</span><span class="symbol">:/usr/lib/hadoop-yarn/lib/*</span><span class="symbol">:/usr/lib/hadoop-yarn/*</span><span class="symbol">:/usr/lib/hive/lib/*</span><span class="symbol">:/usr/lib/flume-ng/lib/*</span><span class="symbol">:/usr/lib/paquet/lib/*</span><span class="symbol">:/usr/lib/avro/lib/*</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         SPARK_DIST_CLASSPATH -&gt; <span class="symbol">:/usr/lib/lib-assembly</span>.jar::/usr/lib/hadoop/lib/*<span class="symbol">:/usr/lib/hadoop/*</span><span class="symbol">:/usr/lib/hadoop-hdfs/lib/*</span><span class="symbol">:/usr/lib/hadoop-hdfs/*</span><span class="symbol">:/usr/lib/hadoop-mapreduce/lib/*</span><span class="symbol">:/usr/lib/hadoop-mapreduce/*</span><span class="symbol">:/usr/lib/hadoop-yarn/lib/*</span><span class="symbol">:/usr/lib/hadoop-yarn/*</span><span class="symbol">:/usr/lib/hive/lib/*</span><span class="symbol">:/usr/lib/flume-ng/lib/*</span><span class="symbol">:/usr/lib/paquet/lib/*</span><span class="symbol">:/usr/lib/avro/lib/*</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         SPARK_YARN_CACHE_FILES_FILE_SIZES -&gt; <span class="number">97237208</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         SPARK_YARN_STAGING_DIR -&gt; .sparkStaging/application_1433742899916_0001</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         SPARK_YARN_CACHE_FILES_VISIBILITIES -&gt; PRIVATE</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         SPARK_USER -&gt; root</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         SPARK_YARN_MODE -&gt; <span class="keyword">true</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         SPARK_YARN_CACHE_FILES_TIME_STAMPS -&gt; <span class="number">1433743027399</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         SPARK_YARN_CACHE_FILES -&gt; <span class="symbol">hdfs:</span>/<span class="regexp">/mycluster:8020/user</span><span class="regexp">/root/</span>.sparkStaging/application_1433742899916_0001-assembly-<span class="number">1.3</span>.<span class="number">0</span>-cdh5.<span class="number">4.0</span>-hadoop2.<span class="number">6.0</span>-cdh5.<span class="number">4.0</span>.jar<span class="comment">#__spark__.jar</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>     <span class="symbol">resources:</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         __spark_<span class="number">_</span>.jar -&gt; resource &#123; <span class="symbol">scheme:</span> <span class="string">"hdfs"</span> <span class="symbol">host:</span> <span class="string">"mycluster"</span> <span class="symbol">port:</span> <span class="number">8020</span> <span class="symbol">file:</span> <span class="string">"/user/root/.sparkStaging/application_1433742899916_0001-assembly-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar"</span> &#125; <span class="symbol">size:</span> <span class="number">97237208</span> <span class="symbol">timestamp:</span> <span class="number">1433743027399</span> <span class="symbol">type:</span> FILE <span class="symbol">visibility:</span> PRIVATE</span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>     <span class="symbol">command:</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span>         &#123;&#123;JAVA_HOME&#125;&#125;/bin/java -server -Xmx512m -Djava.io.tmpdir=&#123;&#123;PWD&#125;&#125;/tmp <span class="string">'-Dspark.eventLog.enabled=true'</span> <span class="string">'-Dspark.executor.instances=4'</span> <span class="string">'-Dspark.executor.memory=3g'</span> <span class="string">'-Dspark.executor.cores=4'</span> <span class="string">'-Dspark.driver.port=51568'</span> <span class="string">'-Dspark.serializer=org.apache.spark.serializer.KryoSerializer'</span> <span class="string">'-Dspark.driver.appUIAddress=http://bj03-bi-pro-hdpnamenn:4040'</span> <span class="string">'-Dspark.executor.id=&lt;driver&gt;'</span> <span class="string">'-Dspark.kryo.classesToRegister=scala.collection.mutable.BitSet,scala.Tuple2,scala.Tuple1,org.apache.spark.mllib.recommendation.Rating'</span> <span class="string">'-Dspark.driver.maxResultSize=8g'</span> <span class="string">'-Dspark.jars=file:/usr/lib/lib-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar'</span> <span class="string">'-Dspark.driver.memory=2g'</span> <span class="string">'-Dspark.eventLog.dir=hdfs://mycluster:8020/user/applicationHistory'</span> <span class="string">'-Dspark.app.name=Spark Pi'</span> <span class="string">'-Dspark.fileserver.uri=http://X.X.X.X:49172'</span> <span class="string">'-Dspark.tachyonStore.folderName=spark-81ae0186-8325-40f2-867b-65ee7c922357'</span> -Dspark.yarn.app.container.log.dir=&lt;LOG_DIR&gt; org.apache.spark.deploy.yarn.ExecutorLauncher --arg <span class="string">'bj03-bi-pro-hdpnamenn:51568'</span> --executor-memory <span class="number">3072</span>m --executor-cores <span class="number">4</span> --num-executors  <span class="number">4</span> <span class="number">1</span>&gt; &lt;LOG_DIR&gt;<span class="regexp">/stdout 2&gt; &lt;LOG_DIR&gt;/stderr</span></span><br><span class="line"><span class="number">15</span>/<span class="number">06</span>/08 <span class="number">13</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">07</span> DEBUG <span class="symbol">Client:</span> ===============================================================================</span><br></pre></td></tr></table></figure>
 
 <p>从<code>Will allocate AM container, with 896 MB memory including 384 MB overhead</code>日志可以看到，AM占用了<code>896 MB</code>内存，除掉<code>384 MB</code>的overhead内存，实际上只有<code>512 MB</code>，即<code>spark.yarn.am.memory</code>的默认值，另外可以看到YARN集群有4个NodeManager，每个container最多有106496 MB内存。</p>
 <p>Yarn AM launch context启动了一个Java进程，设置的JVM内存为<code>512m</code>，见<code>/bin/java -server -Xmx512m</code>。</p>
@@ -510,18 +611,18 @@
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">def</span> <span class="title">validateArgs</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">  <span class="keyword">if</span> (numExecutors &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">IllegalArgumentException</span>(</span><br><span class="line">      <span class="string">"You must specify at least 1 executor!\n"</span> + getUsageMessage())</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (executorCores &lt; sparkConf.getInt(<span class="string">"spark.task.cpus"</span>, <span class="number">1</span>)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">SparkException</span>(<span class="string">"Executor cores must not be less than "</span> +</span><br><span class="line">      <span class="string">"spark.task.cpus."</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (isClusterMode) &#123;</span><br><span class="line">    <span class="keyword">for</span> (key &lt;- <span class="type">Seq</span>(amMemKey, amMemOverheadKey, amCoresKey)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (sparkConf.contains(key)) &#123;</span><br><span class="line">        println(<span class="string">s"<span class="subst">$key</span> is set but does not apply in cluster mode."</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    amMemory = driverMemory</span><br><span class="line">    amCores = driverCores</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (key &lt;- <span class="type">Seq</span>(driverMemOverheadKey, driverCoresKey)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (sparkConf.contains(key)) &#123;</span><br><span class="line">        println(<span class="string">s"<span class="subst">$key</span> is set but does not apply in client mode."</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    sparkConf.getOption(amMemKey)</span><br><span class="line">      .map(<span class="type">Utils</span>.memoryStringToMb)</span><br><span class="line">      .foreach &#123; mem =&gt; amMemory = mem &#125;</span><br><span class="line">    sparkConf.getOption(amCoresKey)</span><br><span class="line">      .map(_.toInt)</span><br><span class="line">      .foreach &#123; cores =&gt; amCores = cores &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>从上面代码可以看到当 isClusterMode 为true时，则args.amMemory值为driverMemory的值；否则，则从<code>spark.yarn.am.memory</code>中取，如果没有设置该属性，则取默认值512m。isClusterMode 为true的条件是 userClass 不为空，<code>def isClusterMode: Boolean = userClass != null</code>，即输出参数需要有<code>--class</code>参数，而从下面日志可以看到ClientArguments的输出参数中并没有该参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15/06/08 13:57:04 DEBUG YarnClientSchedulerBackend: ClientArguments called with: --arg bj03-bi-pro-hdpnamenn:51568 --num-executors 4 --num-executors 4 --executor-memory 3g --executor-memory 3g --executor-cores 4 --executor-cores 4 --name Spark Pi</span><br></pre></td></tr></table></figure>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">15/06/08</span> <span class="comment">13:57:04</span> <span class="comment">DEBUG</span> <span class="comment">YarnClientSchedulerBackend:</span> <span class="comment">ClientArguments</span> <span class="comment">called</span> <span class="comment">with:</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">arg</span> <span class="comment">bj03</span><span class="literal">-</span><span class="comment">bi</span><span class="literal">-</span><span class="comment">pro</span><span class="literal">-</span><span class="comment">hdpnamenn:51568</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">num</span><span class="literal">-</span><span class="comment">executors</span> <span class="comment">4</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">num</span><span class="literal">-</span><span class="comment">executors</span> <span class="comment">4</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">executor</span><span class="literal">-</span><span class="comment">memory</span> <span class="comment">3g</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">executor</span><span class="literal">-</span><span class="comment">memory</span> <span class="comment">3g</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">executor</span><span class="literal">-</span><span class="comment">cores</span> <span class="comment">4</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">executor</span><span class="literal">-</span><span class="comment">cores</span> <span class="comment">4</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">Spark</span> <span class="comment">Pi</span></span><br></pre></td></tr></table></figure>
 
 <p>故，要想设置AM申请的内存值，要么使用cluster模式，要么在client模式中，是有<code>--conf</code>手动设置<code>spark.yarn.am.memory</code>属性，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spark-submit --class org.apache.spark.examples.SparkPi \</span><br><span class="line">    --master yarn-client  \</span><br><span class="line">    --num-executors 4 \</span><br><span class="line">    --driver-memory 2g \</span><br><span class="line">    --executor-memory 3g \</span><br><span class="line">    --executor-cores 4 \</span><br><span class="line">    --conf spark.yarn.am.memory=1024m \</span><br><span class="line">    /usr/lib/spark/lib/spark-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \</span><br><span class="line">    100000</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spark-submit --class org.apache.spark.examples.SparkPi \</span><br><span class="line">    --master yarn-client  \</span><br><span class="line">    --num-executors 4 \</span><br><span class="line">    --driver-memory 2g \</span><br><span class="line">    --executor-memory 3g \</span><br><span class="line">    --executor-cores 4 \</span><br><span class="line">    --conf spark.yarn.am.memory=1024m \</span><br><span class="line">    /usr/lib/lib-examples-1.3.0-cdh5.4.0-hadoop2.6.0-cdh5.4.0.jar \</span><br><span class="line">    100000</span><br></pre></td></tr></table></figure>
 
 <p>打开YARN管理界面，可以看到：</p>
 <p>a. Spark Pi 应用启动了5个Container，使用了18G内存、5个CPU core</p>
-<p><img src="/static/images/hadoop/memory-in-spark-on-yarn-1.jpg" alt></p>
+<p><img src="/images/memory-in-spark-on-yarn-1.jpg" alt></p>
 <p>b. YARN为AM启动了一个Container，占用内存为2048M</p>
-<p><img src="/static/images/hadoop/memory-in-spark-on-yarn-2.jpg" alt></p>
+<p><img src="/images/memory-in-spark-on-yarn-2.jpg" alt></p>
 <p>c. YARN启动了4个Container运行任务，每一个Container占用内存为4096M</p>
-<p><img src="/static/images/hadoop/memory-in-spark-on-yarn-3.jpg" alt></p>
+<p><img src="/images/memory-in-spark-on-yarn-3.jpg" alt></p>
 <p>为什么会是<code>2G +4G *4=18G</code>呢？第一个Container只申请了2G内存，是因为我们的程序只为AM申请了512m内存，而<code>yarn.scheduler.minimum-allocation-mb</code>参数决定了最少要申请2G内存。至于其余的Container，我们设置了executor-memory内存为3G，为什么每一个Container占用内存为4096M呢？</p>
 <p>为了找出规律，多测试几组数据，分别测试并收集executor-memory为3G、4G、5G、6G时每个executor对应的Container内存申请情况：</p>
 <ul>
@@ -544,63 +645,100 @@
 <p>另外，需要注意memoryOverhead的计算方法，当executorMemory的值很大时，memoryOverhead的值相应会变大，这个时候就不是384m了，相应的Container申请的内存值也变大了，例如：当executorMemory设置为90G时，memoryOverhead值为<code>math.max(0.07 * 90G, 384m)=6.3G</code>，其对应的Container申请的内存为98G。</p>
 <p>回头看看给AM对应的Container分配2G内存原因，512+384=896，小于2G，故分配2G，你可以在设置<code>spark.yarn.am.memory</code>的值之后再来观察。</p>
 <p>打开Spark的管理界面 <a href="http://ip:4040" target="_blank" rel="noopener">http://ip:4040</a> ，可以看到driver和Executor中内存的占用情况：</p>
-<p><img src="/static/images/hadoop/memory-in-spark-on-yarn-4.jpg" alt></p>
-<p>从上图可以看到Executor占用了1566.7 MB内存，这是怎样计算出来的？参考<a href="http://www.wdong.org/wordpress/blog/2015/01/08/spark-on-yarn-where-have-all-my-memory-gone/" target="_blank" rel="noopener">Spark on Yarn: Where Have All the Memory Gone?</a>这篇文章，totalExecutorMemory的计算方式为：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//yarn/common/src/main/scala/org/apache/spark/deploy/yarn/YarnSparkHadoopUtil.scala</span></span><br><span class="line">  <span class="keyword">val</span> <span class="type">MEMORY_OVERHEAD_FACTOR</span> = <span class="number">0.07</span></span><br><span class="line">  <span class="keyword">val</span> <span class="type">MEMORY_OVERHEAD_MIN</span> = <span class="number">384</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//yarn/common/src/main/scala/org/apache/spark/deploy/yarn/YarnAllocator.scala</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">val</span> memoryOverhead: <span class="type">Int</span> = sparkConf.getInt(<span class="string">"spark.yarn.executor.memoryOverhead"</span>,</span><br><span class="line">    math.max((<span class="type">MEMORY_OVERHEAD_FACTOR</span> * executorMemory).toInt, <span class="type">MEMORY_OVERHEAD_MIN</span>))</span><br><span class="line">......</span><br><span class="line">      <span class="keyword">val</span> totalExecutorMemory = executorMemory + memoryOverhead</span><br><span class="line">      numPendingAllocate.addAndGet(missing)</span><br><span class="line">      logInfo(<span class="string">s"Will allocate <span class="subst">$missing</span> executor containers, each with <span class="subst">$totalExecutorMemory</span> MB "</span> +</span><br><span class="line">        <span class="string">s"memory including <span class="subst">$memoryOverhead</span> MB overhead"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/memory-in-spark-on-yarn-4.jpg" alt></p>
+<p>从上图可以看到Executor占用了1566.7 MB内存，这是怎样计算出来的？参考<a href="http://www.wdong.org/wordpress/blog/images/01/08-on-yarn-where-have-all-my-memory-gone/" target="_blank" rel="noopener">Spark on Yarn: Where Have All the Memory Gone?</a>这篇文章，totalExecutorMemory的计算方式为：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//yarn/common/src/main/scala/org/apache/deploy/yarn/YarnSparkHadoopUtil.scala</span></span><br><span class="line">  <span class="keyword">val</span> <span class="type">MEMORY_OVERHEAD_FACTOR</span> = <span class="number">0.07</span></span><br><span class="line">  <span class="keyword">val</span> <span class="type">MEMORY_OVERHEAD_MIN</span> = <span class="number">384</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//yarn/common/src/main/scala/org/apache/deploy/yarn/YarnAllocator.scala</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">val</span> memoryOverhead: <span class="type">Int</span> = sparkConf.getInt(<span class="string">"spark.yarn.executor.memoryOverhead"</span>,</span><br><span class="line">    math.max((<span class="type">MEMORY_OVERHEAD_FACTOR</span> * executorMemory).toInt, <span class="type">MEMORY_OVERHEAD_MIN</span>))</span><br><span class="line">......</span><br><span class="line">      <span class="keyword">val</span> totalExecutorMemory = executorMemory + memoryOverhead</span><br><span class="line">      numPendingAllocate.addAndGet(missing)</span><br><span class="line">      logInfo(<span class="string">s"Will allocate <span class="subst">$missing</span> executor containers, each with <span class="subst">$totalExecutorMemory</span> MB "</span> +</span><br><span class="line">        <span class="string">s"memory including <span class="subst">$memoryOverhead</span> MB overhead"</span>)</span><br></pre></td></tr></table></figure>
 
 <p>这里我们给executor-memory设置的3G内存，memoryOverhead的值为<code>math.max(0.07 * 3072, 384)=384</code>，其最大可用内存通过下面代码来计算：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//core/src/main/scala/org/apache/spark/storage/BlockManager.scala</span></span><br><span class="line"><span class="comment">/** Return the total amount of storage memory available. */</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">def</span> <span class="title">getMaxMemory</span></span>(conf: <span class="type">SparkConf</span>): <span class="type">Long</span> = &#123;</span><br><span class="line">  <span class="keyword">val</span> memoryFraction = conf.getDouble(<span class="string">"spark.storage.memoryFraction"</span>, <span class="number">0.6</span>)</span><br><span class="line">  <span class="keyword">val</span> safetyFraction = conf.getDouble(<span class="string">"spark.storage.safetyFraction"</span>, <span class="number">0.9</span>)</span><br><span class="line">  (<span class="type">Runtime</span>.getRuntime.maxMemory * memoryFraction * safetyFraction).toLong</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//core/src/main/scala/org/apache/storage/BlockManager.scala</span></span><br><span class="line"><span class="comment">/** Return the total amount of storage memory available. */</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">def</span> <span class="title">getMaxMemory</span></span>(conf: <span class="type">SparkConf</span>): <span class="type">Long</span> = &#123;</span><br><span class="line">  <span class="keyword">val</span> memoryFraction = conf.getDouble(<span class="string">"spark.storage.memoryFraction"</span>, <span class="number">0.6</span>)</span><br><span class="line">  <span class="keyword">val</span> safetyFraction = conf.getDouble(<span class="string">"spark.storage.safetyFraction"</span>, <span class="number">0.9</span>)</span><br><span class="line">  (<span class="type">Runtime</span>.getRuntime.maxMemory * memoryFraction * safetyFraction).toLong</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>即，对于executor-memory设置3G时，executor内存占用大约为 3072m * 0.6 * 0.9 = 1658.88m，注意：实际上是应该乘以<code>Runtime.getRuntime.maxMemory</code>的值，该值小于3072m。</p>
 <p>上图中driver占用了1060.3 MB，此时driver-memory的值是位2G，故driver中存储内存占用为：2048m * 0.6 * 0.9 =1105.92m，注意：实际上是应该乘以<code>Runtime.getRuntime.maxMemory</code>的值，该值小于2048m。</p>
 <p>这时候，查看worker节点CoarseGrainedExecutorBackend进程启动脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ jps</span><br><span class="line">46841 Worker</span><br><span class="line">21894 CoarseGrainedExecutorBackend</span><br><span class="line">9345</span><br><span class="line">21816 ExecutorLauncher</span><br><span class="line">43369</span><br><span class="line">24300 NodeManager</span><br><span class="line">38012 JournalNode</span><br><span class="line">36929 QuorumPeerMain</span><br><span class="line">22909 Jps</span><br><span class="line"></span><br><span class="line">$ ps -ef|grep 21894</span><br><span class="line">nobody   21894 21892 99 17:28 ?        00:04:49 /usr/java/jdk1.7.0_71/bin/java -server -XX:OnOutOfMemoryError=<span class="built_in">kill</span> %p -Xms3072m -Xmx3072m  -Djava.io.tmpdir=/data/yarn/<span class="built_in">local</span>/usercache/root/appcache/application_1433742899916_0069/container_1433742899916_0069_01_000003/tmp -Dspark.driver.port=60235 -Dspark.yarn.app.container.log.dir=/data/yarn/logs/application_1433742899916_0069/container_1433742899916_0069_01_000003 org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url akka.tcp://sparkDriver@bj03-bi-pro-hdpnamenn:60235/user/CoarseGrainedScheduler --executor-id 2 --hostname X.X.X.X --cores 4 --app-id application_1433742899916_0069 --user-class-path file:/data/yarn/<span class="built_in">local</span>/usercache/root/appcache/application_1433742899916_0069/container_1433742899916_0069_01_000003/__app__.jar</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ jps</span><br><span class="line">46841 Worker</span><br><span class="line">21894 CoarseGrainedExecutorBackend</span><br><span class="line">9345</span><br><span class="line">21816 ExecutorLauncher</span><br><span class="line">43369</span><br><span class="line">24300 NodeManager</span><br><span class="line">38012 JournalNode</span><br><span class="line">36929 QuorumPeerMain</span><br><span class="line">22909 Jps</span><br><span class="line"></span><br><span class="line">$ ps -ef|grep 21894</span><br><span class="line">nobody   21894 21892 99 17:28 ?        00:04:49 /usr/java/jdk1.7.0_71/bin/java -server -XX:OnOutOfMemoryError=<span class="built_in">kill</span> %p -Xms3072m -Xmx3072m  -Djava.io.tmpdir=/data/yarn/<span class="built_in">local</span>/usercache/root/appcache/application_1433742899916_0069/container_1433742899916_0069_01_000003/tmp -Dspark.driver.port=60235 -Dspark.yarn.app.container.log.dir=/data/yarn/logs/application_1433742899916_0069/container_1433742899916_0069_01_000003 org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url akka.tcp:/Driver@bj03-bi-pro-hdpnamenn:60235/user/CoarseGrainedScheduler --executor-id 2 --hostname X.X.X.X --cores 4 --app-id application_1433742899916_0069 --user-class-path file:/data/yarn/<span class="built_in">local</span>/usercache/root/appcache/application_1433742899916_0069/container_1433742899916_0069_01_000003/__app__.jar</span><br></pre></td></tr></table></figure>
 
-<p>可以看到每个CoarseGrainedExecutorBackend进程分配的内存为3072m，如果我们想查看每个executor的jvm运行情况，可以开启jmx。在/etc/spark/conf/spark-defaults.conf中添加下面一行代码：</p>
+<p>可以看到每个CoarseGrainedExecutorBackend进程分配的内存为3072m，如果我们想查看每个executor的jvm运行情况，可以开启jmx。在/etc/conf-defaults.conf中添加下面一行代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.executor.extraJavaOptions -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false</span><br></pre></td></tr></table></figure>
 
 <p>然后，通过jconsole监控jvm堆内存运行情况，这样方便调试内存大小。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>由上可知，在client模式下，AM对应的Container内存由<code>spark.yarn.am.memory</code>加上<code>spark.yarn.am.memoryOverhead</code>来确定，executor加上spark.<code>yarn.executor.memoryOverhead</code>的值之后确定对应Container需要申请的内存大小，driver和executor的内存加上<code>spark.yarn.driver.memoryOverhead</code>或<code>spark.yarn.executor.memoryOverhead</code>的值之后再乘以0.54确定storage memory内存大小。在YARN中，Container申请的内存大小必须为<code>yarn.scheduler.minimum-allocation-mb</code>的整数倍。</p>
-<p>下面这张图展示了Spark on YARN 内存结构，图片来自<a href="http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/" target="_blank" rel="noopener">How-to: Tune Your Apache Spark Jobs (Part 2)</a>：</p>
-<p><img src="http://blog.cloudera.com/wp-content/uploads/2015/03/spark-tuning2-f1.png" alt></p>
+<p>下面这张图展示了Spark on YARN 内存结构，图片来自<a href="http://blog.cloudera.com/blog/images/03/how-to-tune-your-apache-spark-jobs-part-2/" target="_blank" rel="noopener">How-to: Tune Your Apache Spark Jobs (Part 2)</a>：</p>
+<p><img src="http://blog.cloudera.com/wp-content/uploads/images/03-tuning2-f1.png" alt></p>
 <p>至于cluster模式下的分析，请参考上面的过程。希望这篇文章对你有所帮助！</p>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
 <li><a href="http://blog.csdn.net/book_mmicky/article/details/25714287" target="_blank" rel="noopener">Spark1.0.0 on YARN 模式部署</a></li>
-<li><a href="http://www.wdong.org/wordpress/blog/2015/01/08/spark-on-yarn-where-have-all-my-memory-gone/" target="_blank" rel="noopener">Spark on Yarn: Where Have All the Memory Gone?</a></li>
+<li><a href="http://www.wdong.org/wordpress/blog/images/01/08-on-yarn-where-have-all-my-memory-gone/" target="_blank" rel="noopener">Spark on Yarn: Where Have All the Memory Gone?</a></li>
 <li><a href="https://www.zybuluo.com/xiaop1987/note/102894" target="_blank" rel="noopener">Apache Spark Jobs 性能调优（二）</a></li>
 </ul>
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2015/06/09/memory-in-spark-on-yarn/" title="Spark On YARN内存分配">Spark On YARN内存分配</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -609,75 +747,35 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2015/06/09/memory-in-spark-on-yarn/" title="Spark On YARN内存分配">http://blog.javachen.com/2015/06/09/memory-in-spark-on-yarn/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/spark/" rel="tag"># spark</a>
+            <a href="/tags/spark/" rel="tag"><i class="fa fa-tag"></i> spark</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/06/07/spark-configuration/" rel="next" title="Spark配置参数">
-                <i class="fa fa-chevron-left"></i> Spark配置参数
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/06/10/collaborative-filtering-using-mahout/" rel="prev" title="使用Mahout实现协同过滤">
-                使用Mahout实现协同过滤 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -714,15 +812,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/07/spark-configuration/" rel="next" title="Spark配置参数">
+                <i class="fa fa-chevron-left"></i> Spark配置参数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/10/collaborative-filtering-using-mahout/" rel="prev" title="使用Mahout实现协同过滤">
+                使用Mahout实现协同过滤 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -736,11 +869,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -761,6 +896,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -774,11 +910,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -792,96 +931,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -895,8 +949,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -945,6 +1050,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -978,8 +1085,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1148,9 +1256,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1224,9 +1332,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

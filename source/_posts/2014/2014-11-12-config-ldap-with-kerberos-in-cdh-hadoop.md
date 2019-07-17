@@ -13,7 +13,7 @@ description: 本文主要记录 cdh hadoop 集群配置 LDAP 集成 Kerberos 的
 
 本文主要记录 cdh hadoop 集群集成 ldap 的过程，这里 ldap 安装的是 [OpenLDAP](http://www.openldap.org/) 。LDAP 用来做账号管理，Kerberos作为认证。授权一般来说是由应用来决定的，通过在 LDAP 数据库中配置一些属性可以让应用程序来进行授权判断。
 
-关于 Kerberos 的安装和 HDFS 配置 kerberos 认证，请参考 [HDFS配置kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs.html)。
+关于 Kerberos 的安装和 HDFS 配置 kerberos 认证，请参考 [HDFS配置kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs)。
 
 # 1. 环境说明
 
@@ -434,7 +434,7 @@ $ ldapsearch
 
 使用 LDAP 客户端工具进行测试，这里我使用的是 LDAP Browser/Editor：
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2015/hadoop-ldap-LdapBrowser.jpg)
+![](/2015/hadoop-ldap-LdapBrowser.jpg)
 
 # 4. 配置 Hive 集成 LDAP
 
@@ -548,8 +548,8 @@ $ beeline -u "jdbc:hive2://cdh1:21050/default;" -n test -p test
 # 6. 参考文章
 
 - [New in CDH 5.2: Impala Authentication with LDAP and Kerberos](http://www.tuicool.com/articles/6fy6z2r)
-- [使用 LDAP + Kerberos 实现集中用户认证及授权系统](http://blog.clanzx.net/2013/09/27/ldap-kerberos.html)
-- [Linux NFS服务器的安装与配置](http://www.cnblogs.com/mchina/archive/2013/01/03/2840040.html)
+- [使用 LDAP + Kerberos 实现集中用户认证及授权系统](http://blog.clanzx.net/images/09/27/ldap-kerberos.html)
+- [Linux NFS服务器的安装与配置](http://www.cnblogs.com/mchina/archive/images/01/03/2840040.html)
 - [linux的LDAP认证服务器的配置及客户端pam网络验证实例](http://blog.csdn.net/kakane/article/details/7455922)
 - [Kerberos and LDAP](https://help.ubuntu.com/10.04/serverguide/kerberos-ldap.html)
 - [RHEL6配置简单LDAP服务器](http://blog.sina.com.cn/s/blog_64aac6750101gwst.html)
@@ -562,12 +562,12 @@ $ beeline -u "jdbc:hive2://cdh1:21050/default;" -n test -p test
 
 # 7 相关文章
 
- - [HDFS配置Kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs.html)
- - [YARN配置Kerberos认证](/2014/11/05/config-kerberos-in-cdh-yarn.html)
- - [Hive配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive.html)
- - [Impala配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala.html)
- - [Zookeeper配置Kerberos认证](/2014/11/18/config-kerberos-in-cdh-zookeeper.html)
- - [Hadoop配置LDAP集成Kerberos](/2014/11/12/config-ldap-with-kerberos-in-cdh-hadoop.html)
- - [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry.html)
- - [配置安全的Impala集群集成Sentry](/2014/11/14/config-secured-impala-with-sentry.html)
- - [Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop.html)
+  - [HDFS配置Kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs)
+ - [YARN配置Kerberos认证](/2014/11/05/config-kerberos-in-cdh-yarn)
+ - [Hive配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive)
+ - [Impala配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala)
+ - [Zookeeper配置Kerberos认证](/2014/11/18/config-kerberos-in-cdh-zookeeper.)
+ - [Hadoop配置LDAP集成Kerberos](/2014/11/12/config-ldap-with-kerberos-in-cdh-hadoop)
+ - [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry)
+ - [配置安全的Impala集群集成Sentry](/2014/11/14/config-secured-impala-with-sentry)
+ - [Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop)

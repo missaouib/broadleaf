@@ -541,4 +541,4 @@ class Ant extends {
 
 # 参考文章
 
-- [Scala学习——类](http://nerd-is.in/2013-08/scala-learning-classes/)
+- [Scala学习——类](http://nerd-is.in/images-08/scala-learning-classes/)

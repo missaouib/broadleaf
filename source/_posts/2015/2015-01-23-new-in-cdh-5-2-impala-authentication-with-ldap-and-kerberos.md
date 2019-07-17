@@ -13,7 +13,7 @@ published: true
 
 ---
 
-这是一篇翻译的文章，原文为 [New in CDH 5.2: Impala Authentication with LDAP and Kerberos](http://blog.cloudera.com/blog/2014/10/new-in-cdh-5-2-impala-authentication-with-ldap-and-kerberos/)。由于翻译水平有限，难免会一些翻译不准确的地方，欢迎指正！
+这是一篇翻译的文章，原文为 [New in CDH 5.2: Impala Authentication with LDAP and Kerberos](http://blog.cloudera.com/blog/images/10/new-in-cdh-5-2-impala-authentication-with-ldap-and-kerberos/)。由于翻译水平有限，难免会一些翻译不准确的地方，欢迎指正！
 
 -----
 
@@ -32,7 +32,7 @@ Impala，是基于 Apache Hadoop 的一个开源的分析数据库，使用 Kerb
 |LDAP Only|Hadoop 集群 没有开启 Kerberos 认证，但是你想认证连接 Impala 的外包的客户端，如你使用 Active Directory 或者其他的 LDAP 服务。|
 |Kerberos and LDAP| Hadoop 集群开启 Kerberos 认证。在 Impala 外部的用户没有 Kerberos principal，但是有一个 LDAP 的凭证。|
 
-![impala-ldap](http://blog.cloudera.com/wp-content/uploads/2014/10/impala-ldap-f1.png)
+![impala-ldap](http://blog.cloudera.com/wp-content/uploads/images/10/impala-ldap-f1.png)
 
 在这篇文章中，我将解释为何以及如何使用 LDAP 和 Kerberos 的组合来建立 Impala 认证。
 
@@ -84,7 +84,7 @@ Kerberos是一个优雅的协议，但是当出现错误的时候实际的实现
 
 [Cloudera documentation for Kerberos and Impala](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/Impala/Installing-and-Using-Impala/ciiu_kerberos.html) 给出了详细的说明，这里只做简要介绍：
 
-![](http://blog.cloudera.com/wp-content/uploads/2014/10/impala-auth-tab2.png)
+![](http://blog.cloudera.com/wp-content/uploads/images/10/impala-auth-tab2.png)
 
 # 2. LDAP
 
@@ -180,7 +180,7 @@ TLS 连接的认证需要使用证书来完成，所以 impalad 进程（作为 
 
 [Cloudera documentation for LDAP and Impala](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/Impala/Installing-and-Using-Impala/ciiu_ldap.html) 一文包括这部分的信息，并且建议你阅读 [TLS between the Impala client and the Impala daemon](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/Impala/Installing-and-Using-Impala/ciiu_ssl.html) 这篇文章。
 
-![](http://blog.cloudera.com/wp-content/uploads/2014/10/impala-auth-tab3.png)
+![](http://blog.cloudera.com/wp-content/uploads/images/10/impala-auth-tab3.png)
 
 # 3. 一起使用
 

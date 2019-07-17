@@ -12,7 +12,7 @@ tags: [hadoop, hive]
 
 # 概括
 
-从《[hive cli的入口类](/2013/08/21/hive-CliDriver.html)》中可以知道hive中处理hive命令的处理器一共有以下几种：
+从《[hive cli的入口类](/images/08/21/hive-CliDriver.html)》中可以知道hive中处理hive命令的处理器一共有以下几种：
 
 ~~~
 （1）set       SetProcessor，设置修改参数,设置到SessionState的HiveConf里。 
@@ -25,7 +25,7 @@ tags: [hadoop, hive]
 
 Driver类的主要作用是用来编译并执行hive命令，然后返回执行结果。这里主要分析Driver类的运行逻辑，其时序图如下：
 
-![hive-driver](http://7xnrdo.com1.z0.glb.clouddn.com/2013/Hive-Driver-sequence.jpg)
+![hive-driver](/images/Hive-Driver-sequence.jpg)
 
 从时序图上可以看出有以下步骤：
 
@@ -279,7 +279,7 @@ twitter的mapreduce可视化项目监控项目[ambrose](https://github.com/twitt
 
 hive Driver类的执行过程如下（该图是根据hive-0.11版本画出来的）：
 
-![hive-driver](http://7xnrdo.com1.z0.glb.clouddn.com/2013/hive-driver.jpg)
+![hive-driver](/images/hive-driver.jpg)
 
 
 # 参考文章

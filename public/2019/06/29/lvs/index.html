@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="负载均衡(Load Balance)是一种服务器或网络设备的集群技术。负载均衡将特定的业务(网络服务、网络流量等)分担给多个服务器或网络设备，从而提高了业务处理能力，保证了业务的高可用性。常用的负载均衡开源软件有nginx、lvs、haproxy，商业的硬件负载均衡设备F5、Netscale。">
+<meta name="keywords" content="lvs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LVS负载均衡">
+<meta property="og:url" content="http://javachen.github.io/2019/06/29/lvs/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="负载均衡(Load Balance)是一种服务器或网络设备的集群技术。负载均衡将特定的业务(网络服务、网络流量等)分担给多个服务器或网络设备，从而提高了业务处理能力，保证了业务的高可用性。常用的负载均衡开源软件有nginx、lvs、haproxy，商业的硬件负载均衡设备F5、Netscale。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUbnjtA3Z67ZHXHLUUibz8QevDr4m31hzxJK8sceZ6zSj4icdOruibPVj4w/?wx_fmt=png&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUiagzhFwc3xweprtlT94l6RbibTV6Ojs2NLcenpmOYop7GiaG4JqrNfn1g/?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUUpQ7OCz2x1iaV4ibGF1ic5anU6iaRguk6YMIr6Pq63Mu7HvVe2Sn7YcIDQ/?wx_fmt=png">
+<meta property="og:image" content="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUoATXK0VaPToR6gicj03yK764ycVohjibjX2pUxSLLFfQvLouWqRCxdzg/?wx_fmt=png">
+<meta property="og:updated_time" content="2019-06-29T12:24:11.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LVS负载均衡">
+<meta name="twitter:description" content="负载均衡(Load Balance)是一种服务器或网络设备的集群技术。负载均衡将特定的业务(网络服务、网络流量等)分担给多个服务器或网络设备，从而提高了业务处理能力，保证了业务的高可用性。常用的负载均衡开源软件有nginx、lvs、haproxy，商业的硬件负载均衡设备F5、Netscale。">
+<meta name="twitter:image" content="https://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUbnjtA3Z67ZHXHLUUibz8QevDr4m31hzxJK8sceZ6zSj4icdOruibPVj4w/?wx_fmt=png&wxfrom=5&wx_lazy=1">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2019/06/29/lvs/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>LVS负载均衡 | JavaChen Blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?50bc6f5d9b045b5895ff44f8bbdbc611";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JavaChen Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2019/06/29/lvs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">LVS负载均衡<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2019/2019-06-29-lvs.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-29 00:00:00 / 修改时间：20:24:11" itemprop="dateCreated datePublished" datetime="2019-06-29T00:00:00+08:00">2019-06-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/devops/" itemprop="url" rel="index"><span itemprop="name">devops</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+              <div class="post-description">
+                  负载均衡(Load Balance)是一种服务器或网络设备的集群技术。负载均衡将特定的业务(网络服务、网络流量等)分担给多个服务器或网络设备，从而提高了业务处理能力，保证了业务的高可用性。常用的负载均衡开源软件有nginx、lvs、haproxy，商业的硬件负载均衡设备F5、Netscale。
+              </div>
+          
+          -->
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h1><p>​       负载均衡(Load Balance)是一种服务器或网络设备的集群技术。负载均衡将特定的业务(网络服务、网络流量等)分担给多个服务器或网络设备，从而提高了业务处理能力，保证了业务的高可用性。常用的负载均衡开源软件有nginx、lvs、haproxy，商业的硬件负载均衡设备F5、Netscale。</p>
+<p>​       不同负载均衡软件对应的OSI参考模型如下：</p>
+<ul>
+<li>lvs：四层</li>
+<li>nginx：七层</li>
+<li>haproxy：七层</li>
+<li>F5：4-7层</li>
+</ul>
+<p>​       LVS是 Linux Virtual Server 的简称，也就是Linux虚拟服务器。这是一个由章文嵩博士发起的一个开源项目，它的官方网站是<a href="http://www.linuxvirtualserver.org/" target="_blank" rel="noopener">http://www.linuxvirtualserver.org</a> 现在 LVS 已经是 Linux 内核标准的一部分。使用 LVS 可以达到的技术目标是：通过 LVS 达到的负载均衡技术和 Linux 操作系统实现一个高性能高可用的 Linux 服务器集群，它具有良好的可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的性能。LVS 是一个实现负载均衡集群的开源软件项目，LVS架构从逻辑上可分为调度层Director Server、Real Server和共享存储。</p>
+<h1 id="2、LVS的组成"><a href="#2、LVS的组成" class="headerlink" title="2、LVS的组成"></a>2、<strong>LVS的组成</strong></h1><p>LVS 由2部分程序组成，包括 ipvs 和 ipvsadm。</p>
+<ul>
+<li><p>ipvs(ip virtual server)：一段代码工作在内核空间，叫ipvs，是真正生效实现调度的代码。</p>
+</li>
+<li><p>ipvsadm：另外一段是工作在用户空间，叫ipvsadm，负责为ipvs内核框架编写规则，定义谁是集群服务，而谁是后端真实的服务器。</p>
+</li>
+</ul>
+<h1 id="3、工作原理"><a href="#3、工作原理" class="headerlink" title="3、工作原理"></a>3、<strong>工作原理</strong></h1><p>​       负载均衡技术有很多实现方案，有基于DNS域名轮流解析的方法、有基于客户端调度访问的方法、有基于应用层系统负载的调度方法，还有基于IP地址的调度方法，在这些负载调度算法中，执行效率最高的是IP负载均衡技术。</p>
+<p>​       LVS 的IP负载均衡技术是通过IPVS模块来实现的，IPVS是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。</p>
+<p>​       调用过程如下：</p>
+<p><img src="https://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUbnjtA3Z67ZHXHLUUibz8QevDr4m31hzxJK8sceZ6zSj4icdOruibPVj4w/?wx_fmt=png&wxfrom=5&wx_lazy=1" alt="img"></p>
+<ul>
+<li><ol>
+<li>当用户向负载均衡调度器（Director Server）发起请求，调度器将请求发往至内核空。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>PREROUTING链首先会接收到用户请求，判断目标IP确定是本机IP，将数据包发往INPUT链。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>IPVS是工作在INPUT链上的，当用户请求到达INPUT时，IPVS会将用户请求和自己已定义好的集群服务进行比对，如果用户请求的就是定义的集群服务，那么此时IPVS会强行修改数据包里的目标IP地址及端口，并将新的数据包发往POSTROUTING链。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>POSTROUTING链接收数据包后发现目标IP地址刚好是自己的后端服务器，那么此时通过选路，将数据包最终发送给后端的服务器。</li>
+</ol>
+</li>
+</ul>
+<p>​       当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是IPVS实现的重点技术，IPVS实现负载均衡机制有三种，分别是NAT、TUN和DR。</p>
+<h2 id="3-1、LVS相关术语"><a href="#3-1、LVS相关术语" class="headerlink" title="3.1、LVS相关术语"></a><strong>3.1、LVS相关术语</strong></h2><ul>
+<li><ol>
+<li>DS：Director Server。指的是前端负载均衡器节点。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>RS：Real Server。后端真实的工作服务器。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>VIP：向外部直接面向用户请求，作为用户请求的目标的IP地址。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>DIP：Director Server IP，主要用于和内部主机通讯的IP地址。</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>RIP：Real Server IP，后端服务器的IP地址。</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>CIP：Client IP，访问客户端的IP地址。</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-2、NAT模式"><a href="#3-2、NAT模式" class="headerlink" title="3.2、NAT模式"></a>3.2、NAT模式</h2><p>​       VS/NAT： 即（Virtual Server via Network Address Translation），也就是网络地址翻译技术实现虚拟服务器，当用户请求到达调度器时，调度器将请求报文的目标地址（即虚拟IP地址）改写成选定的Real Server地址，同时报文的目标端口也改成选定的Real Server的相应端口，最后将报文请求发送到选定的Real Server。在服务器端得到数据后，Real Server返回数据给用户时，需要再次经过负载调度器将报文的源地址和源端口改成虚拟IP地址和相应端口，然后把数据发送给用户，完成整个负载调度过程。</p>
+<p>​参考架构图来说明：<br><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUiagzhFwc3xweprtlT94l6RbibTV6Ojs2NLcenpmOYop7GiaG4JqrNfn1g/?wx_fmt=png" alt="img"></p>
+<ul>
+<li><ol>
+<li>当用户请求到达Director Server，此时请求的数据报文会先到内核空间的PREROUTING链。 此时报文源IP为CIP，目标IP为VIP，即<strong>CIP-VIP</strong>。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>PREROUTING检查发现数据包的目标IP是本机，将数据包送至INPUT链。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>IPVS比对数据包请求的服务是否为集群服务，若是，修改数据包的目标IP地址为后端服务器IP，然后将数据包发至POSTROUTING链。此时报文源IP为CIP，目标IP为RIP，即<strong>CIP-RIP</strong>。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>POSTROUTING链通过选路，将数据包发送给Real Server。</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>Real Server比对发现目标为自己的IP，开始构建响应报文发回给Director Server。 此时报文源IP为RIP，目标IP为CIP，即<strong>RIP-CIP</strong>。</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>Director Server在响应客户端前，此时会将源IP地址修改为自己的VIP地址，然后响应给客户端。 此时报文源IP为VIP，目标IP为CIP，即<strong>VIP-CIP</strong>。</li>
+</ol>
+</li>
+</ul>
+<p><strong>LVS-NAT模型特性：</strong></p>
+<ul>
+<li>Director Server：只转发，不建立链接，不做三次握手。要保证三次握手到四次分手不可分割。后端RS镜像，不发出socket。</li>
+<li>RS应该使用私有地址，<strong>RS的网关必须指向DIP</strong>，DIP和RIP必须在同一个网段内。</li>
+<li>支持端口映射。</li>
+<li>支持所有操作系统及私有网络，且只需一个公网 IP 地址。</li>
+<li>缺陷<ul>
+<li>请求和响应报文都需要经过Director Server，高负载场景中，Director Server易成为性能瓶颈。</li>
+</ul>
+</li>
+</ul>
+<p>S_NAT模式：虚拟机上的NAT模式，修改源地址。</p>
+<p>例如：在两个虚拟机访问百度网站</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.56</span><span class="selector-class">.121</span>、192<span class="selector-class">.168</span><span class="selector-class">.56</span><span class="selector-class">.122</span>———&gt;（192<span class="selector-class">.168</span><span class="selector-class">.56</span><span class="selector-class">.1</span>）<span class="selector-tag">NAT</span>路由器（18<span class="selector-class">.18</span><span class="selector-class">.18</span><span class="selector-class">.8</span>）———&gt;百度 123<span class="selector-class">.123</span><span class="selector-class">.123</span><span class="selector-class">.88</span></span><br></pre></td></tr></table></figure>
+
+<p>过程：在NAT路由器，修改源地址为对外的网卡地址。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CIP-<span class="built_in">RIP</span>  -&gt; CIP-VIP -&gt; VIP:DIP -&gt; DIP:<span class="built_in">RIP</span> </span><br><span class="line"></span><br><span class="line"><span class="number">192.168</span><span class="meta">.56</span><span class="meta">.121</span>:<span class="number">1212</span> -&gt; <span class="number">123.123</span><span class="meta">.123</span><span class="meta">.88</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="number">192.168</span><span class="meta">.56</span><span class="meta">.122</span>:<span class="number">1313</span> -&gt; <span class="number">123.123</span><span class="meta">.123</span><span class="meta">.88</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line">            |</span><br><span class="line"></span><br><span class="line"><span class="number">192.168</span><span class="meta">.56</span><span class="meta">.121</span>:<span class="number">1212</span> -&gt; <span class="number">192.168</span><span class="meta">.56</span><span class="meta">.1</span>:<span class="number">2345</span></span><br><span class="line"></span><br><span class="line"><span class="number">192.168</span><span class="meta">.56</span><span class="meta">.121</span>:<span class="number">1313</span> -&gt; <span class="number">192.168</span><span class="meta">.56</span><span class="meta">.1</span>:<span class="number">3456</span></span><br><span class="line"></span><br><span class="line">      |</span><br><span class="line"></span><br><span class="line"><span class="number">18.18</span><span class="meta">.18</span><span class="meta">.8</span>:<span class="number">2345</span> -&gt; <span class="number">123.123</span><span class="meta">.123</span><span class="meta">.88</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="number">18.18</span><span class="meta">.18</span><span class="meta">.8</span>:<span class="number">3456</span> -&gt; <span class="number">123.123</span><span class="meta">.123</span><span class="meta">.88</span>:<span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3、DR模式"><a href="#3-3、DR模式" class="headerlink" title="3.3、DR模式"></a>3.3、DR模式</h2><p>​       VS/DR： 即（Virtual Server via Direct Routing），也就是用直接路由技术实现虚拟服务器。它的连接调度和管理与VS/NAT一样，但它的报文转发方法有不同，<strong>VS/DR通过改写请求报文的MAC地址为挑选出的RS的MAC地址</strong>（MAC地址欺骗），将请求发送到Real Server，而Real Server将响应直接返回给客户。</p>
+<p>​       参考架构图来说明：</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUUpQ7OCz2x1iaV4ibGF1ic5anU6iaRguk6YMIr6Pq63Mu7HvVe2Sn7YcIDQ/?wx_fmt=png" alt="img"></p>
+<ul>
+<li><ol>
+<li>当用户请求到达Director Server，此时请求的数据报文会先到内核空间的PREROUTING链。 此时报文的源IP为CIP，目标IP为VIP，即CIP-VIP。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>PREROUTING检查发现数据包的目标IP是本机，将数据包送至INPUT链。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>IPVS比对数据包请求的服务是否为集群服务，若是，将请求报文中的源MAC地址修改为DIP的MAC地址，将目标MAC地址修改RIP的MAC地址，然后将数据包发至POSTROUTING链。 此时的源IP和目的IP均未修改，仅修改了源MAC地址为DIP的MAC地址，目标MAC地址为RIP的MAC地址。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>由于DS和RS在同一个网络中，所以是通过链路层来传输。POSTROUTING链检查目标MAC地址为RIP的MAC地址，那么此时数据包将会发至Real Server。</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>RS发现请求报文的MAC地址是自己的MAC地址，就接收此报文。处理完成之后，将响应报文通过lo接口传送给eth0网卡然后向外发出。 此时的源IP地址为VIP，目标IP为CIP。</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>响应报文最终送达至客户端。</li>
+</ol>
+</li>
+</ul>
+<p><strong>LVS-DR模型特性</strong></p>
+<ul>
+<li>Director Server：只转发，不建立链接，不做三次握手。要保证三次握手到四次分手不可分割。后端RS镜像，不发出socket。</li>
+<li>所有的请求报文经由Director Server，但响应报文必须不能经过Director Server。。<ul>
+<li>在前端路由器做静态地址路由绑定，将对于VIP的地址仅路由到Director Server</li>
+<li>用户未必有路由操作权限，因为有可能是运营商提供的，所以这个方法未必实用</li>
+<li>arptables：在arp的层次上实现在ARP解析时做防火墙规则，过滤RS响应ARP请求。这是由iptables提供的</li>
+<li>通过改写请求报文的MAC地址，将请求发送到RS，而RS将响应直接返回给客户，性能最好。<ul>
+<li>修改RS上内核参数（<code>arp_ignore</code>和<code>arp_announce</code>），将RS上的VIP配置在lo接口的别名上，创建一个隐藏的VIP，并限制其不能响应对VIP地址解析请求。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RS可以使用私有地址；也可以是公网地址，如果使用公网地址，此时可以通过互联网对RIP进行直接访问</li>
+<li>RS可以是大多数常见的操作系统。</li>
+<li>缺陷<ul>
+<li>不支持地址转换，也不支持端口映射。</li>
+<li>必须要求Director Server与Real Server都有一块网卡连在同一物理网段上。</li>
+</ul>
+</li>
+</ul>
+<p><strong>隐藏VIP的方法：</strong></p>
+<p>修改kernel parameter：</p>
+<ul>
+<li>目标mac地址全为F，交换机触发广播</li>
+<li><code>/proc/sys/net/ipv4/conf/*IF*/</code></li>
+<li><code>arp_ignore</code>：定义收到ARP请求时的响应级别<ul>
+<li>0：只要本地配置的有相应地址，就给予响应，默认值。</li>
+<li><strong>1：仅在请求的目标MAC地址配置请求到达接口上的时候，才给予响应。</strong></li>
+</ul>
+</li>
+<li><code>arp_announce</code>：定义将自己地址向外通告时的通告级别<ul>
+<li>0：将本地任何接口上的任何地址向外通告，默认值。</li>
+<li>1：视图仅向目标网络通告与其网络匹配的地址</li>
+<li><strong>2：仅向与本地接口上地址匹配的网络进行通告</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="3-4、TUN模式"><a href="#3-4、TUN模式" class="headerlink" title="3.4、TUN模式"></a>3.4、TUN模式</h2><p>​       VS/TUN ：即（Virtual Server via IP Tunneling），也就是IP隧道技术实现虚拟服务器。它的连接调度和管理与VS/NAT方式一样，只是它的报文转发方法不同，VS/TUN方式中，调度器采用IP隧道技术将用户请求转发到某个Real Server，而这个Real Server将直接响应用户的请求，不再经过Director Server，此外，对Real Server的地域位置没有要求，可以和Director Server位于同一个网段，也可以是独立的一个网络。因此，在TUN方式中，调度器Director Server将只处理用户的报文请求，集群系统的吞吐量大大提高。</p>
+<p>​       在原有的IP报文外再次封装多一层IP首部，内部IP首部(源地址为CIP，目标IIP为VIP)，外层IP首部(源地址为DIP，目标IP为RIP)，参考架构图来说明：</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUoATXK0VaPToR6gicj03yK764ycVohjibjX2pUxSLLFfQvLouWqRCxdzg/?wx_fmt=png" alt="img"></p>
+<ul>
+<li><ol>
+<li>当用户请求到达Director Server，此时请求的数据报文会先到内核空间的PREROUTING链。 此时报文的源IP为CIP，目标IP为VIP 。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>PREROUTING检查发现数据包的目标IP是本机，将数据包送至INPUT链。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>IPVS比对数据包请求的服务是否为集群服务，若是，在请求报文的首部再次封装一层IP报文，封装源IP为DIP，目标IP为RIP。然后发至POSTROUTING链。 此时源IP为DIP，目标IP为RIP。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>POSTROUTING链根据最新封装的IP报文，将数据包发至RS（因为在外层封装多了一层IP首部，所以可以理解为此时通过隧道传输）。 此时源IP为DIP，目标IP为RIP。</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>RS接收到报文后发现是自己的IP地址，就将报文接收下来，拆除掉最外层的IP后，会发现里面还有一层IP首部，而且目标是自己的lo接口VIP，那么此时RS开始处理此请求，处理完成之后，通过lo接口送给eth0网卡，然后向外传递。 此时的源IP地址为VIP，目标IP为CIP。</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>响应报文最终送达至客户端。</li>
+</ol>
+</li>
+</ul>
+<p><strong>LVS-Tun模型特性</strong>：</p>
+<ul>
+<li>DS采用IP隧道技术将用户请求转发到某个RS，而这个RS将直接响应用户请求，不再经过DR，DR只处理用户的报文请求，从而使集群系统吞吐量大大提高。</li>
+<li>RS的网关不能指向DIP。</li>
+<li>缺点：<ul>
+<li>RIP、VIP、DIP全是公网地址</li>
+<li>不支持端口映射</li>
+<li>RS的系统必须支持隧道</li>
+</ul>
+</li>
+</ul>
+<h1 id="4、调度算法"><a href="#4、调度算法" class="headerlink" title="4、调度算法"></a>4、调度算法</h1><p>根据前面的介绍，我们了解了LVS的三种工作模式，但不管实际环境中采用的是哪种模式，调度算法进行调度的策略与算法都是LVS的核心技术，LVS在内核中主要实现了一下十种调度算法。</p>
+<h2 id="4-1、轮询调度"><a href="#4-1、轮询调度" class="headerlink" title="4.1、轮询调度"></a>4.1、轮询调度</h2><p>轮询调度（Round Robin 简称’RR’）算法就是按依次循环的方式将请求调度到不同的服务器上，该算法最大的特点就是实现简单。轮询算法假设所有的服务器处理请求的能力都一样的，调度器会将所有的请求平均分配给每个真实服务器。</p>
+<h2 id="4-2、加权轮询调度"><a href="#4-2、加权轮询调度" class="headerlink" title="4.2、加权轮询调度"></a>4.2、加权轮询调度</h2><p>加权轮询（Weight Round Robin 简称’WRR’）算法主要是对轮询算法的一种优化与补充，LVS会考虑每台服务器的性能，并给每台服务器添加一个权值，如果服务器A的权值为1，服务器B的权值为2，则调度器调度到服务器B的请求会是服务器A的两倍。权值越高的服务器，处理的请求越多。</p>
+<h2 id="4-3、最小连接调度"><a href="#4-3、最小连接调度" class="headerlink" title="4.3、最小连接调度"></a>4.3、最小连接调度</h2><p>最小连接调度（Least Connections 简称’LC’）算法是把新的连接请求分配到当前连接数最小的服务器。最小连接调度是一种动态的调度算法，它通过服务器当前活跃的连接数来估计服务器的情况。调度器需要记录各个服务器已建立连接的数目，当一个请求被调度到某台服务器，其连接数加1；当连接中断或者超时，其连接数减1。</p>
+<p>（集群系统的真实服务器具有相近的系统性能，采用最小连接调度算法可以比较好地均衡负载。)</p>
+<h2 id="4-4、加权最小连接调度"><a href="#4-4、加权最小连接调度" class="headerlink" title="4.4、加权最小连接调度"></a>4.4、加权最小连接调度</h2><p>加权最少连接（Weight Least Connections 简称’WLC’）算法是最小连接调度的超集，各个服务器相应的权值表示其处理性能。服务器的缺省权值为1，系统管理员可以动态地设置服务器的权值。加权最小连接调度在调度新连接时尽可能使服务器的已建立连接数和其权值成比例。调度器可以自动问询真实服务器的负载情况，并动态地调整其权值。</p>
+<h2 id="4-5、基于局部的最少连接"><a href="#4-5、基于局部的最少连接" class="headerlink" title="4.5、基于局部的最少连接"></a>4.5、基于局部的最少连接</h2><p>基于局部的最少连接调度（Locality-Based Least Connections 简称’LBLC’）算法是针对请求报文的目标IP地址的 负载均衡调度，目前主要用于Cache集群系统，因为在Cache集群客户请求报文的目标IP地址是变化的。这里假设任何后端服务器都可以处理任一请求，算法的设计目标是在服务器的负载基本平衡情况下，将相同目标IP地址的请求调度到同一台服务器，来提高各台服务器的访问局部性和Cache命中率，从而提升整个集群系统的处理能力。LBLC调度算法先根据请求的目标IP地址找出该目标IP地址最近使用的服务器，若该服务器是可用的且没有超载，将请求发送到该服务器；若服务器不存在，或者该服务器超载且有服务器处于一半的工作负载，则使用’最少连接’的原则选出一个可用的服务器，将请求发送到服务器。</p>
+<h2 id="4-6、带复制的基于局部性的最少连接"><a href="#4-6、带复制的基于局部性的最少连接" class="headerlink" title="4.6、带复制的基于局部性的最少连接"></a>4.6、带复制的基于局部性的最少连接</h2><p>带复制的基于局部性的最少连接（Locality-Based Least Connections with Replication  简称’LBLCR’）算法也是针对目标IP地址的负载均衡，目前主要用于Cache集群系统，它与LBLC算法不同之处是它要维护从一个目标IP地址到一组服务器的映射，而LBLC算法维护从一个目标IP地址到一台服务器的映射。按’最小连接’原则从该服务器组中选出一一台服务器，若服务器没有超载，将请求发送到该服务器；若服务器超载，则按’最小连接’原则从整个集群中选出一台服务器，将该服务器加入到这个服务器组中，将请求发送到该服务器。同时，当该服务器组有一段时间没有被修改，将最忙的服务器从服务器组中删除，以降低复制的程度。</p>
+<h2 id="4-7、目标地址散列调度"><a href="#4-7、目标地址散列调度" class="headerlink" title="4.7、目标地址散列调度"></a>4.7、目标地址散列调度</h2><p>目标地址散列调度（Destination Hashing 简称’DH’）算法先根据请求的目标IP地址，作为散列键（Hash Key）从静态分配的散列表找出对应的服务器，若该服务器是可用的且并未超载，将请求发送到该服务器，否则返回空。</p>
+<h2 id="4-8、源地址散列调度U"><a href="#4-8、源地址散列调度U" class="headerlink" title="4.8、源地址散列调度U"></a>4.8、源地址散列调度U</h2><p>源地址散列调度（Source Hashing  简称’SH’）算法先根据请求的源IP地址，作为散列键（Hash Key）从静态分配的散列表找出对应的服务器，若该服务器是可用的且并未超载，将请求发送到该服务器，否则返回空。它采用的散列函数与目标地址散列调度算法的相同，它的算法流程与目标地址散列调度算法的基本相似。</p>
+<h2 id="4-9、最短的期望的延迟"><a href="#4-9、最短的期望的延迟" class="headerlink" title="4.9、最短的期望的延迟"></a>4.9、最短的期望的延迟</h2><p>最短的期望的延迟调度（Shortest Expected Delay 简称’SED’）算法基于WLC算法。举个例子吧，ABC三台服务器的权重分别为1、2、3 。那么如果使用WLC算法的话一个新请求进入时它可能会分给ABC中的任意一个。使用SED算法后会进行一个运算</p>
+<p>A：（1+1）/1=2   B：（1+2）/2=3/2   C：（1+3）/3=4/3   就把请求交给得出运算结果最小的服务器。</p>
+<h2 id="4-10、最少队列调度"><a href="#4-10、最少队列调度" class="headerlink" title="4.10、最少队列调度"></a>4.10、最少队列调度</h2><p>最少队列调度（Never Queue 简称’NQ’）算法，无需队列。如果有realserver的连接数等于0就直接分配过去，不需要在进行SED运算。</p>
+<h1 id="5、实验"><a href="#5、实验" class="headerlink" title="5、实验"></a>5、实验</h1><h2 id="5-1、NAT模型实验"><a href="#5-1、NAT模型实验" class="headerlink" title="5.1、NAT模型实验"></a>5.1、NAT模型实验</h2><p><strong>1、实验环境</strong></p>
+<p>使用vagrant创建三台VirtualBox虚拟机服务器，删除NAT网卡，配置网络为host-only连接。node1作为DS，node2、node3作为RS，<strong>RS上只能配置一个网卡eth0，并且修改/etc/sysconfig/network-scripts/ifcfg-eth0，网关要指向DS的DIP地址。</strong>这部分内容可以参考<a href="https://javachen.github.io/images/02/23/create-virtualbox-by-vagrant/">使用Vagrant创建虚拟机</a>中的第六章节。</p>
+<p>在node1上添加一个桥接网卡，IP修改为静态ip，172.20.10.8。</p>
+<p>节点信息如下：</p>
+<ul>
+<li><p>DS：node1，VIP=172.20.10.8，DIP=192.168.56.11</p>
+</li>
+<li><p>RS：</p>
+<ul>
+<li>node2，RIP=192.168.56.12，GATEWAY=192.168.56.11</li>
+<li>node3，RIP=192.168.56.13，GATEWAY=192.168.56.11   </li>
+</ul>
+</li>
+</ul>
+<p>2、<strong>安装</strong></p>
+<p>两个RS上都安装 httpd 服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y httpd</span><br></pre></td></tr></table></figure>
+
+<p>DS上安装 ipvsadm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y ipvsadm</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、配置DS</strong></p>
+<p>查看VIP地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ifconfig eth1</span><br><span class="line">eth2: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 172.20.10.8  netmask 255.255.255.0  broadcast 172.20.10.255</span><br><span class="line">        inet6 fe80::a00:27ff:feb2:822e  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 08:00:27:b2:82:2e  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 623  bytes 51088 (49.8 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 239  bytes 23144 (22.6 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br></pre></td></tr></table></figure>
+
+<p>开启路由转发功能:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br></pre></td></tr></table></figure>
+
+<p>关闭 icmp 的重定向：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="number">0</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>ipv4<span class="regexp">/conf/</span>all/send_redirects</span><br><span class="line">echo <span class="number">0</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>ipv4<span class="regexp">/conf/</span><span class="keyword">default</span>/send_redirects</span><br><span class="line">echo <span class="number">0</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>ipv4<span class="regexp">/conf/</span>eth1/send_redirects</span><br><span class="line">echo <span class="number">0</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>ipv4<span class="regexp">/conf/</span>eth2/send_redirects</span><br></pre></td></tr></table></figure>
+
+<p>设置 nat 防火墙</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iptables -t<span class="built_in"> nat </span>-F</span><br><span class="line"></span><br><span class="line">iptables -t<span class="built_in"> nat </span>-X</span><br><span class="line"></span><br><span class="line">iptables -t<span class="built_in"> nat </span>-A POSTROUTING -s 192.168.56.0/24 -j MASQUERADE</span><br></pre></td></tr></table></figure>
+
+<p><strong>4、启动RS上的httpd</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig httpd on</span><br><span class="line">service httpd start</span><br></pre></td></tr></table></figure>
+
+<p>在每个RS节点上的httpd服务的默认路径 /var/www/html/ 下新建一个入口访问页index.html。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr show eth0 |grep <span class="string">'192.168.56.'</span> |awk <span class="string">'&#123;print $2&#125;'</span> &gt;/var/www/html/index.html</span><br></pre></td></tr></table></figure>
+
+<p>检查node2和node3节点的路由表：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ route -n</span><br><span class="line">Kernel IP routing table</span><br><span class="line">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</span><br><span class="line">0.0.0.0         10.0.2.2        0.0.0.0         UG    100    0        0 eth0</span><br><span class="line">0.0.0.0         192.168.56.11   0.0.0.0         UG    101    0        0 eth1</span><br><span class="line">10.0.2.0        0.0.0.0         255.255.255.0   U     100    0        0 eth0</span><br><span class="line">192.168.56.0    0.0.0.0         255.255.255.0   U     101    0        0 eth1</span><br></pre></td></tr></table></figure>
+
+<p>在客户端节点，测试两台RS能访问index.html，但是VIP（172.20.10.8）不能访问。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://192.168.56.12/</span><br><span class="line">192.168.56.12/24</span><br><span class="line"></span><br><span class="line">$ curl http://192.168.56.13/</span><br><span class="line">192.168.56.13/24</span><br><span class="line"></span><br><span class="line">$ curl http://172.20.10.8</span><br><span class="line">curl: (7) Failed to connect to 172.20.10.8 port 80: Connection refused</span><br></pre></td></tr></table></figure>
+
+<p><strong>5、启动DS的ipvsadm并配置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先清除规则</span></span><br><span class="line">ipvsadm -C</span><br><span class="line"></span><br><span class="line">ipvsadm -A -t 172.20.10.8:80 -s rr </span><br><span class="line">ipvsadm -a -t 172.20.10.8:80 -r 192.168.56.12:80 -m -w 1 <span class="comment">#NAT模式</span></span><br><span class="line">ipvsadm -a -t 172.20.10.8:80 -r 192.168.56.13:80 -m -w 1 <span class="comment">#NAT模式</span></span><br><span class="line"></span><br><span class="line">ipvsadm -ln</span><br></pre></td></tr></table></figure>
+
+<p><strong>6、再测试</strong></p>
+<p>在客户端节点上，访问<a href="http://172.20.10.8，可以看到内容。或者在终端访问：" target="_blank" rel="noopener">http://172.20.10.8，可以看到内容。或者在终端访问：</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ curl 172.20.10.8</span><br><span class="line">192.168.56.13/24</span><br><span class="line">$ curl 172.20.10.8</span><br><span class="line">192.168.56.12/24</span><br></pre></td></tr></table></figure>
+
+<p>在DS上运行下面命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ ipvsadm -ln</span><br><span class="line">IP Virtual Server version 1.2.1 (size=4096)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">TCP  172.20.10.8:80 rr</span><br><span class="line">  -&gt; 192.168.56.12:80             Masq    1      0          3</span><br><span class="line">  -&gt; 192.168.56.13:80             Masq    1      0          4</span><br><span class="line"></span><br><span class="line">$ ipvsadm -lnc</span><br><span class="line">IPVS connection entries</span><br><span class="line">pro expire state       <span class="built_in">source</span>             virtual            destination</span><br><span class="line">TCP 15:01  ESTABLISHED 172.20.10.2:60449  172.20.10.8:80     192.168.56.12:80</span><br><span class="line">TCP 14:56  ESTABLISHED 172.20.10.2:60450  172.20.10.8:80     192.168.56.13:80</span><br><span class="line"></span><br><span class="line"><span class="comment">#没有监听80端口</span></span><br><span class="line">$ netstat -natp</span><br><span class="line">Active Internet connections (servers and established)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</span><br><span class="line">tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd</span><br><span class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2385/sshd</span><br><span class="line">tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      2580/master</span><br><span class="line">tcp        0      0 10.0.2.15:22            10.0.2.2:58944          ESTABLISHED 2783/sshd: vagrant</span><br><span class="line">tcp        0      0 10.0.2.15:22            10.0.2.2:59157          ESTABLISHED 3114/sshd: vagrant</span><br><span class="line">tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd</span><br><span class="line">tcp6       0      0 :::22                   :::*                    LISTEN      2385/sshd</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2、DR模型实验"><a href="#5-2、DR模型实验" class="headerlink" title="5.2、DR模型实验"></a>5.2、DR模型实验</h2><p><strong>1、实验环境</strong></p>
+<p>准备3台虚拟机，使eth0在同一个网段上,使DIP和RIP在统一网段</p>
+<p>lvs   VIP=192.168.56.120，DIP=192.168.56.121</p>
+<p>RS   192.168.56.122、192.168.56.123</p>
+<p><strong>2、安装</strong></p>
+<p>两个RS上都安装 httpd 服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y httpd</span><br></pre></td></tr></table></figure>
+
+<p>DS上安装 ipvsadm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y ipvsadm</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、配置DS</strong></p>
+<p>添加VIP：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig enp0s8:0 192.168.56.120/24</span><br></pre></td></tr></table></figure>
+
+<p>开启路由转发功能:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br></pre></td></tr></table></figure>
+
+<p><strong>4、配置RS</strong></p>
+<p>调整RS的通过响应级别：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 1  &gt; /proc/sys/net/ipv4/conf/enp0s8/arp_ignore </span><br><span class="line"><span class="built_in">echo</span> 2  &gt; /proc/sys/net/ipv4/conf/enp0s8/arp_announce </span><br><span class="line"><span class="built_in">echo</span> 1  &gt; /proc/sys/net/ipv4/conf/all/arp_ignore </span><br><span class="line"><span class="built_in">echo</span> 2  &gt; /proc/sys/net/ipv4/conf/all/arp_announce</span><br></pre></td></tr></table></figure>
+
+<p>配置RS的VIP：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifconfig lo:8 192.168.56.120 netmask 255.255.255.255</span><br><span class="line"></span><br><span class="line">route <span class="builtin-name">add</span> -host 192.168.56.120 lo:8</span><br></pre></td></tr></table></figure>
+
+<p><strong>5、启动RS上的httpd</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd</span><br><span class="line">service httpd start</span><br></pre></td></tr></table></figure>
+
+<p>在httpd服务的默认路径 /var/www/html/ 下新建一个入口访问页index.html。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr show enp0s8 |grep <span class="string">'192.168.56.'</span> |awk <span class="string">'&#123;print $2&#125;'</span> &gt;/var/www/html/index.html</span><br></pre></td></tr></table></figure>
+
+<p>测试两台RS能否访问index.html，但是VIP不能访问。</p>
+<p><strong>6、启动DS的ipvsadm并配置</strong></p>
+<p>ipvsadm：管理集群服务</p>
+<ul>
+<li>添加  -A -t|u|f service-address [-s scheduler]<ul>
+<li>-t TCP协议的集群</li>
+<li>-u  UDP协议的集群<ul>
+<li>service-address:   IP:PORT</li>
+</ul>
+</li>
+<li>-f 防火墙标记<ul>
+<li>service-address:Mark Number</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>修改 -E</li>
+<li>删除 -D  -t|u|f service-address</li>
+</ul>
+<p>管理集群服务中的RS：</p>
+<ul>
+<li>添加：-a -t|u|f service-address -r server-address [-g|i|m] [-w weight]</li>
+<li>-r server-address 某RS的地址，在NAT模型中，可使用IP:PORT实现端口映射<ul>
+<li>[-g|i|m] LVS类型</li>
+<li>-g：代表gateway，意思为直接路由</li>
+<li>-i：隧道模型</li>
+<li>-m：(masq)伪装，NAT模式</li>
+</ul>
+</li>
+<li>修改： -e</li>
+<li>删除：-d  -t|u|f service-address -r server-address</li>
+<li>查看<ul>
+<li>-L|l</li>
+<li>-n 数字显示主机地址和端口</li>
+<li>–stats：统计数据</li>
+<li>–rate：速率</li>
+<li>–timeout：显示tcp、tcpfin和udp的会话超时时长</li>
+<li>-c：显示当前的ipvs连接状况</li>
+</ul>
+</li>
+<li>删除所有集群服务<ul>
+<li>-C 删除ipvs规则</li>
+</ul>
+</li>
+<li>保存规则<ul>
+<li>-S    ipvsadm -S &gt;/path/to/file</li>
+</ul>
+</li>
+<li>载入此前的规则：<ul>
+<li>-R   ipvsadm -R &gt;/path/to/file</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ipvsadm -A -t 192.168.56.120:80 -s rr </span><br><span class="line">ipvsadm -a -t 192.168.56.120:80 -r 192.168.56.122 -g </span><br><span class="line">ipvsadm -a -t 192.168.56.120:80 -r 192.168.56.123 -g</span><br><span class="line"></span><br><span class="line">ipvsadm -ln</span><br><span class="line"></span><br><span class="line"><span class="comment">#浏览器访问vip</span></span><br><span class="line">ipvsadm -lnc</span><br><span class="line">netstat -natp</span><br></pre></td></tr></table></figure>
+
+<h1 id="6、参考文章"><a href="#6、参考文章" class="headerlink" title="6、参考文章"></a>6、参考文章</h1><ul>
+<li><a href="http://blog.sina.com.cn/s/blog_17698e9160102xecx.html" target="_blank" rel="noopener">LVS服务原理以及搭建（理论+干货）</a></li>
+<li><a href="https://blog.csdn.net/Ki8Qzvka6Gz4n450m/article/details/79119665" target="_blank" rel="noopener">超详细！使用 LVS 实现负载均衡原理及安装配置详解</a></li>
+<li><a href="https://www.jianshu.com/p/95036f79386f" target="_blank" rel="noopener">Keepalived &amp; LVS 搭建高可用的Web服务</a></li>
+<li><a href="https://www.jianshu.com/p/ca73a93d5843" target="_blank" rel="noopener">通过普通SSH命令登录Vagrant虚拟机</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2019/06/29/lvs/" title="LVS负载均衡">LVS负载均衡</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/lvs/" rel="tag"><i class="fa fa-tag"></i> lvs</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/29/osi/" rel="next" title="OSI参考模型">
+                <i class="fa fa-chevron-left"></i> OSI参考模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/29/java-web-framework/" rel="prev" title="Java Web框架发展历程">
+                Java Web框架发展历程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

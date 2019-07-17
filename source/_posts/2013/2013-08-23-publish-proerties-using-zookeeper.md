@@ -56,7 +56,7 @@ tags: [zookeeper]
 
 基于ZooKeeper的特性,借助ZooKeeper可以实现一个可靠的、简单的、修改配置能够实时生效的配置信息存储方案,整体的设计方案如图：
 
-![基于zookeeper的方案](http://7xnrdo.com1.z0.glb.clouddn.com/2013/zookeeper-01.jpg)
+![基于zookeeper的方案](/images/zookeeper-01.jpg)
 
 整个配置信息存储方案由三部分组成:ZooKeeper服务器集群、配置管理程序、分布式应用程序。
 
@@ -64,7 +64,7 @@ ZooKeeper服务器集群存储配置信息,在服务器上创建一个保存数�
 
 当配置信息发生变化时，分布式应用会更新程序中使用配置信息。
 
-![修改配置的时许图](http://7xnrdo.com1.z0.glb.clouddn.com/2013/zookeeper-02.jpg)
+![修改配置的时许图](/images/zookeeper-02.jpg)
 
 # 源代码
 

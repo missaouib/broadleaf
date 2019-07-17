@@ -17,12 +17,12 @@ published: true
 
 # 下载代码
 
-在Github上fork Cloudera维护的[Spark]( https://github.com/cloudera/spark)项目到自己的github账号里，对应的地址为<https://github.com/javachen/spark>。
+在Github上fork Cloudera维护的[Spark]( https://github.com/cloudera)项目到自己的github账号里，对应的地址为<https://github.com/javachen>。
 
 下载代码：
 
 ~~~bash
-$ git clone https://github.com/javachen/spark
+$ git clone https://github.com/javachen
 ~~~
 
 然后，切换到最新的分支，当前为 cdh5-1.3.0_5.4.0。
@@ -44,7 +44,7 @@ $ git checkout cdh5-1.3.0_5.4.0
 
 ~~~bash
 # 添加远程仓库地址
-$ git remote add cdh git@github.com:cloudera/spark.git
+$ git remote add cdh git@github.com:cloudera.git
 
 # 抓取远程仓库更新：
 $ git fetch cdh
@@ -172,4 +172,4 @@ $ ./make-distribution.sh
 
 # 参考
 
-- [Building Spark](http://spark.apache.org/docs/latest/building-spark.html)
+- [Building Spark](http:/.apache.org/docs/latest/building-spark.html)

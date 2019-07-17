@@ -38,7 +38,7 @@ published: true
 
 # 1. 安装JDK
 
-安装jdk有很多方法，可以参考文博客[使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum.html)中的jdk安装步骤，需要说明的是下面的zookeeper集群安装方法也可以参考此文。
+安装jdk有很多方法，可以参考文博客[使用yum安装CDH Hadoop集群](/images/04/06/install-cloudera-cdh-by-yum.html)中的jdk安装步骤，需要说明的是下面的zookeeper集群安装方法也可以参考此文。
 
 不管你用什么方法，最后需要配置JAVA_HOME并检测当前jdk版本：
 
@@ -51,7 +51,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.6-b01, mixed mode)
 
 # 2. 安装Zookeeper集群
 
-可以参考文博客[使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum.html)中的Zookeeper集群安装步骤。
+可以参考文博客[使用yum安装CDH Hadoop集群](/images/04/06/install-cloudera-cdh-by-yum.html)中的Zookeeper集群安装步骤。
 
 # 3. 安装Python及依赖
 

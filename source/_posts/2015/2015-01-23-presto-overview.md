@@ -19,7 +19,7 @@ Presto 是一个运行在集群之上的分布式系统。一个完全的安装�
 
 下面是一个架构图（图来自 <http://www.dw4e.com/?p=141>，此图将官网的架构图稍微修改了一下，增加了 Discovery 的服务，这样可能看起来会更清楚一些）：
 
-![](http://www.dw4e.com/wp-content/uploads/2013/11/presto.png)
+![](http://www.dw4e.com/wp-content/uploads/images/11/presto.png)
 
 Presto 查询引擎是一个 Master-Slave 的架构，由一个 Coordinato r节点，一个 Discovery Server 节点，多个 Worker 节点组成，Discovery Server 通常内嵌于 Coordinator 节点中。Coordinator 负责解析 SQL 语句，生成执行计划，分发执行任务给 Worker 节点执行。Worker 节点负责实际执行查询任务。Worker 节点启动后向 Discovery Server 服务注册，Coordinator 从 Discovery Server 获得可以正常工作的 Worker 节点。如果配置了 Hive Connector，需要配置一个 Hive MetaStore 服务为 Presto 提供 Hive 元信息，Worker 节点与 HDFS 交互读取数据。
 

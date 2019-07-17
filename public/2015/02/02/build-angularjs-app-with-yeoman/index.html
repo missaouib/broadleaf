@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,73 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="angular.js,yeoman,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="Yeoman 是 Google 的团队和外部贡献者团队合作开发的，他的目标是通过 Grunt（一个用于开发任务自动化的命令行工具）和 Bower（一个HTML、CSS、Javascript 和图片等前端资源的包管理器）的包装为开发者创建一个易用的工作流。">
-<meta name="keywords" content="angular.js,yeoman">
-<meta property="og:type" content="article">
-<meta property="og:title" content="用Yeoman构建AngularJS项目">
-<meta property="og:url" content="http://blog.javachen.com/2015/02/02/build-angularjs-app-with-yeoman/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="Yeoman 是 Google 的团队和外部贡献者团队合作开发的，他的目标是通过 Grunt（一个用于开发任务自动化的命令行工具）和 Bower（一个HTML、CSS、Javascript 和图片等前端资源的包管理器）的包装为开发者创建一个易用的工作流。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://blog.javachen.com/static/images/2015/yo-bower-grunt.jpg">
-<meta property="og:image" content="http://blog.javachen.com/static/images/2015/yeoman-web.jpg">
-<meta property="og:image" content="http://blog.javachen.com/static/images/2015/yeoman-mytodo-list.png">
-<meta property="og:image" content="http://blog.javachen.com/static/images/2015/yeoman-mytodo-add-remove.png">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用Yeoman构建AngularJS项目">
-<meta name="twitter:description" content="Yeoman 是 Google 的团队和外部贡献者团队合作开发的，他的目标是通过 Grunt（一个用于开发任务自动化的命令行工具）和 Bower（一个HTML、CSS、Javascript 和图片等前端资源的包管理器）的包装为开发者创建一个易用的工作流。">
-<meta name="twitter:image" content="http://blog.javachen.com/static/images/2015/yo-bower-grunt.jpg">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -172,12 +135,46 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2015/02/02/build-angularjs-app-with-yeoman/">
-
+  
 
 
 
+
+  <meta name="description" content="Yeoman 是 Google 的团队和外部贡献者团队合作开发的，他的目标是通过 Grunt（一个用于开发任务自动化的命令行工具）和 Bower（一个HTML、CSS、Javascript 和图片等前端资源的包管理器）的包装为开发者创建一个易用的工作流。">
+<meta name="keywords" content="angular.js,yeoman">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Yeoman构建AngularJS项目">
+<meta property="og:url" content="http://javachen.github.io/2015/02/02/build-angularjs-app-with-yeoman/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="Yeoman 是 Google 的团队和外部贡献者团队合作开发的，他的目标是通过 Grunt（一个用于开发任务自动化的命令行工具）和 Bower（一个HTML、CSS、Javascript 和图片等前端资源的包管理器）的包装为开发者创建一个易用的工作流。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://javachen.github.io/images/yo-bower-grunt.jpg">
+<meta property="og:image" content="http://javachen.github.io/images/yeoman-web.jpg">
+<meta property="og:image" content="http://javachen.github.io/images/yeoman-mytodo-list.png">
+<meta property="og:image" content="http://javachen.github.io/images/yeoman-mytodo-add-remove.png">
+<meta property="og:updated_time" content="2019-06-29T12:30:57.097Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Yeoman构建AngularJS项目">
+<meta name="twitter:description" content="Yeoman 是 Google 的团队和外部贡献者团队合作开发的，他的目标是通过 Grunt（一个用于开发任务自动化的命令行工具）和 Bower（一个HTML、CSS、Javascript 和图片等前端资源的包管理器）的包装为开发者创建一个易用的工作流。">
+<meta name="twitter:image" content="http://javachen.github.io/images/yo-bower-grunt.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2015/02/02/build-angularjs-app-with-yeoman/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>用Yeoman构建AngularJS项目 | JavaChen Blog</title>
   
@@ -186,7 +183,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -199,9 +197,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -213,7 +239,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -223,13 +249,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -237,76 +266,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -335,12 +402,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -353,16 +428,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/02/02/build-angularjs-app-with-yeoman/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/02/02/build-angularjs-app-with-yeoman/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -375,11 +452,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">用Yeoman构建AngularJS项目</h2>
+          <h2 class="post-title" itemprop="name headline">用Yeoman构建AngularJS项目<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2015/2015-02-02-build-angularjs-app-with-yeoman.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -387,13 +473,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-02T00:00:00+08:00">
-                2015-02-02
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-02-02 00:00:00" itemprop="dateCreated datePublished" datetime="2015-02-02T00:00:00+08:00">2015-02-02</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:30:57" itemprop="dateModified" datetime="2019-06-29T20:30:57+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -409,11 +512,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
 
                 
                 
@@ -422,6 +521,7 @@
           
 
           
+            
             
           
 
@@ -439,6 +539,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -446,7 +547,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -462,7 +563,7 @@
 <li><a href="http://bower.io/" target="_blank" rel="noopener">Bower</a> 被用来进行依赖管理，所以你不再需要手动的下载和管理你的脚本了。</li>
 </ul>
 <p>下面这幅图很形象的表明了他们三者之间的协作关系。</p>
-<p><img src="/static/images/2015/yo-bower-grunt.jpg" alt></p>
+<p><img src="/images/yo-bower-grunt.jpg" alt></p>
 <p>Yeoman 特性：</p>
 <ul>
 <li><code>快速创建骨架应用程序</code>。使用可自定义的模板（例如：HTML5、Boilerplate、Twitter Bootstrap 等）、AMD（通过 RequireJS）以及其他工具轻松地创建新项目的骨架。</li>
@@ -506,14 +607,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ yo angular</span><br><span class="line"></span><br><span class="line">     _-----_</span><br><span class="line">    |       |    .--------------------------.</span><br><span class="line">    |--(o)--|    |    Welcome to Yeoman,    |</span><br><span class="line">   `---------´   |   ladies and gentlemen!  |</span><br><span class="line">    ( _´U`_ )    <span class="string">'--------------------------'</span></span><br><span class="line">    /___A___\</span><br><span class="line">     |  ~  |</span><br><span class="line">   __<span class="string">'.___.'</span>__</span><br><span class="line"> ´   `  |° ´ Y `</span><br><span class="line"></span><br><span class="line">Out of the box I include Bootstrap and some AngularJS recommended modules.</span><br><span class="line"></span><br><span class="line">? Would you like to use Sass (with Compass)? No</span><br><span class="line">? Would you like to include Bootstrap? Yes</span><br><span class="line">? Which modules would you like to include? angular-animate.js, angular-cookies.js, angular-resource.js, angular-route.js, angular-sanitize.js, angular-touch.js</span><br></pre></td></tr></table></figure>
 
 <p>选择需要下载的模块，然后回车。过一段时间之后，生成的目录结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mytodo</span><br><span class="line">├── Gruntfile.js</span><br><span class="line">├── app</span><br><span class="line">│   ├── 404.html</span><br><span class="line">│   ├── favicon.ico</span><br><span class="line">│   ├── images</span><br><span class="line">│   │   └── yeoman.png</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   ├── robots.txt</span><br><span class="line">│   ├── scripts</span><br><span class="line">│   │   ├── app.js</span><br><span class="line">│   │   └── controllers</span><br><span class="line">│   ├── styles</span><br><span class="line">│   │   └── main.css</span><br><span class="line">│   └── views</span><br><span class="line">│       ├── about.html</span><br><span class="line">│       └── main.html</span><br><span class="line">├── bower.json</span><br><span class="line">├── bower_components</span><br><span class="line">├── package.json</span><br><span class="line">└── test</span><br><span class="line">    ├── karma.conf.js</span><br><span class="line">    └── spec</span><br><span class="line">        └── controllers</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mytodo</span><br><span class="line">├── Gruntfile.js</span><br><span class="line">├── app</span><br><span class="line">│   ├── <span class="number">404</span>.html</span><br><span class="line">│   ├── favicon.ico</span><br><span class="line">│   ├── images</span><br><span class="line">│   │   └── yeoman.png</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   ├── robots.txt</span><br><span class="line">│   ├── scripts</span><br><span class="line">│   │   ├── app.js</span><br><span class="line">│   │   └── controllers</span><br><span class="line">│   ├── styles</span><br><span class="line">│   │   └── main.css</span><br><span class="line">│   └── views</span><br><span class="line">│       ├── about.html</span><br><span class="line">│       └── main.html</span><br><span class="line">├── bower.json</span><br><span class="line">├── bower_components</span><br><span class="line">├── package.json</span><br><span class="line">└── test</span><br><span class="line">    ├── karma<span class="selector-class">.conf</span><span class="selector-class">.js</span></span><br><span class="line">    └── spec</span><br><span class="line">        └── controllers</span><br></pre></td></tr></table></figure>
 
 <p>示例中的所有 js 代码都使用了严格模式，有关严格模式的内容可以参考 <a href="http://www.waylau.com/javascript-use-strict-mode/" target="_blank" rel="noopener">http://www.waylau.com/javascript-use-strict-mode/</a></p>
 <p>运行下面命令启动服务：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ grunt serve</span><br></pre></td></tr></table></figure>
 
 <p>浏览器访问 <a href="localhost:9000" target="_blank" rel="noopener">localhost:9000</a>，你会看到：</p>
-<p><img src="/static/images/2015/yeoman-web.jpg" alt></p>
+<p><img src="/images/yeoman-web.jpg" alt></p>
 <h1 id="创建-AngularJS-应用"><a href="#创建-AngularJS-应用" class="headerlink" title="创建 AngularJS 应用"></a>创建 AngularJS 应用</h1><h2 id="创建新模板展现-Todo-列表"><a href="#创建新模板展现-Todo-列表" class="headerlink" title="创建新模板展现 Todo 列表"></a>创建新模板展现 Todo 列表</h2><p>打开 scripts/controllers/main.js ，代码修改为：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line">angular.module(<span class="string">'webApp'</span>).controller(<span class="string">'MainCtrl'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">    $scope.todos = [<span class="string">'Item 1'</span>, <span class="string">'Item 2'</span>, <span class="string">'Item 3'</span>];</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 
@@ -521,12 +622,12 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>My todos<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"form-group"</span> <span class="attr">ng-repeat</span>=<span class="string">"todo in todos"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model</span>=<span class="string">"todo"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>页面会显示如下：</p>
-<p><img src="/static/images/2015/yeoman-mytodo-list.png" alt></p>
+<p><img src="/images/yeoman-mytodo-list.png" alt></p>
 <h2 id="添加一个-todo-项"><a href="#添加一个-todo-项" class="headerlink" title="添加一个 todo 项"></a>添加一个 todo 项</h2><p>首先，添加一个输入框和添加按钮，将 views/main.html 修改为：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>My todos<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Todos input --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">role</span>=<span class="string">"form"</span> <span class="attr">ng-submit</span>=<span class="string">"addTodo()"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"input-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model</span>=<span class="string">"todo"</span> <span class="attr">placeholder</span>=<span class="string">"What needs to be done?"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"input-group-btn"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> <span class="attr">value</span>=<span class="string">"Add"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Todos list --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"form-group"</span> <span class="attr">ng-repeat</span>=<span class="string">"todo in todos"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model</span>=<span class="string">"todo"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>这时候，页面内容如下：</p>
-<p><img src="/static/images/2015/yeoman-mytodo-add-remove.png" alt></p>
+<p><img src="/images/yeoman-mytodo-add-remove.png" alt></p>
 <p>修改 main.js 添加 addTodo() 事件：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line">angular.module(<span class="string">'webApp'</span>)</span><br><span class="line">  .controller(<span class="string">'MainCtrl'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">    $scope.todos = [<span class="string">'Item 1'</span>, <span class="string">'Item 2'</span>, <span class="string">'Item 3'</span>];</span><br><span class="line">    $scope.addTodo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      $scope.todos.push($scope.todo);</span><br><span class="line">      $scope.todo = <span class="string">''</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 
@@ -573,7 +674,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line">angular</span><br><span class="line">  .module(<span class="string">'webApp'</span>, [</span><br><span class="line">    <span class="string">'ngAnimate'</span>,</span><br><span class="line">    <span class="string">'ngCookies'</span>,</span><br><span class="line">    <span class="string">'ngResource'</span>,</span><br><span class="line">    <span class="string">'ngRoute'</span>,</span><br><span class="line">    <span class="string">'ngSanitize'</span>,</span><br><span class="line">    <span class="string">'ngTouch'</span>,</span><br><span class="line">    <span class="string">'ui.sortable'</span>,</span><br><span class="line">    <span class="string">'LocalStorageModule'</span></span><br><span class="line">  ]).config([<span class="string">'localStorageServiceProvider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">localStorageServiceProvider</span>)</span>&#123;</span><br><span class="line">    localStorageServiceProvider.setPrefix(<span class="string">'ls'</span>);</span><br><span class="line">  &#125;]).config(<span class="function"><span class="keyword">function</span> (<span class="params">$routeProvider</span>) </span>&#123;</span><br><span class="line">    $routeProvider</span><br><span class="line">      .when(<span class="string">'/'</span>, &#123;</span><br><span class="line">        templateUrl: <span class="string">'views/main.html'</span>,</span><br><span class="line">        controller: <span class="string">'MainCtrl'</span></span><br><span class="line">      &#125;)</span><br><span class="line">      .when(<span class="string">'/about'</span>, &#123;</span><br><span class="line">        templateUrl: <span class="string">'views/about.html'</span>,</span><br><span class="line">        controller: <span class="string">'AboutCtrl'</span></span><br><span class="line">      &#125;)</span><br><span class="line">      .otherwise(&#123;</span><br><span class="line">        redirectTo: <span class="string">'/'</span></span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 
 <p>然后，需要修改 scripts/controllers/main.js ，改为从本地存储访问数据：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line">angular.module(<span class="string">'webApp'</span>).controller(<span class="string">'MainCtrl'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, localStorageService</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化时为空</span></span><br><span class="line">    <span class="keyword">var</span> todosInStore = localStorageService.get(<span class="string">'todos'</span>);</span><br><span class="line"></span><br><span class="line">    $scope.todos = todosInStore &amp;&amp; todosInStore.split(<span class="string">'\n'</span>) || [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 监听变化</span></span><br><span class="line">    $scope.$watch(<span class="string">'todos'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      localStorageService.add(<span class="string">'todos'</span>, $scope.todos.join(<span class="string">'\n'</span>));</span><br><span class="line">    &#125;, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    $scope.addTodo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      $scope.todos.push($scope.todo);</span><br><span class="line">      $scope.todo = <span class="string">''</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    $scope.removeTodo = <span class="function"><span class="keyword">function</span> (<span class="params">index</span>) </span>&#123;</span><br><span class="line">      $scope.todos.splice(index, <span class="number">1</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line">~~~  </span><br><span class="line"></span><br><span class="line">在浏览器中查看应用，你会发现 todo 列表中没有任何东西。因为这个应用从本地存储中读取了 todo 数组，而本地存储中还没有任何 todo 项。</span><br><span class="line"></span><br><span class="line">在添加一些项目到列表后，我们再次刷新我们的浏览器的时候，这些项目都还在。</span><br><span class="line"></span><br><span class="line">![](<span class="regexp">/static/im</span>ages/<span class="number">2015</span>/yeoman-web2.jpg)</span><br><span class="line"></span><br><span class="line"># 测试</span><br><span class="line"></span><br><span class="line">[Karma](http:<span class="comment">//karma-runner.github.io/) 是一个 JS 测试框架。Angular 生成器本身已经包括了两个测试框架：[ngScenario](https://code.angularjs.org/1.2.16/docs/guide/e2e-testing) 和 [Jasmine](http://jasmine.github.io/)。当之前我们运行 `yo angular` 的时候，在 mytodo 文件夹下会生成了一个 test 目录，还有一个 karma.conf.js 文件，它会被放入在 Node 模块中以使用 Karma。我们将会编辑一个 Jasmine 脚本来完成我们的测试。现在先来看看要怎么进行测试。</span></span><br><span class="line"></span><br><span class="line">先安装依赖：</span><br><span class="line"></span><br><span class="line">~~~bash</span><br><span class="line">$ npm install -g phantomjs</span><br><span class="line">$ npm install grunt-karma --save-dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line">angular.module(<span class="string">'webApp'</span>).controller(<span class="string">'MainCtrl'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, localStorageService</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化时为空</span></span><br><span class="line">    <span class="keyword">var</span> todosInStore = localStorageService.get(<span class="string">'todos'</span>);</span><br><span class="line"></span><br><span class="line">    $scope.todos = todosInStore &amp;&amp; todosInStore.split(<span class="string">'\n'</span>) || [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 监听变化</span></span><br><span class="line">    $scope.$watch(<span class="string">'todos'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      localStorageService.add(<span class="string">'todos'</span>, $scope.todos.join(<span class="string">'\n'</span>));</span><br><span class="line">    &#125;, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    $scope.addTodo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      $scope.todos.push($scope.todo);</span><br><span class="line">      $scope.todo = <span class="string">''</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    $scope.removeTodo = <span class="function"><span class="keyword">function</span> (<span class="params">index</span>) </span>&#123;</span><br><span class="line">      $scope.todos.splice(index, <span class="number">1</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line">~~~  </span><br><span class="line"></span><br><span class="line">在浏览器中查看应用，你会发现 todo 列表中没有任何东西。因为这个应用从本地存储中读取了 todo 数组，而本地存储中还没有任何 todo 项。</span><br><span class="line"></span><br><span class="line">在添加一些项目到列表后，我们再次刷新我们的浏览器的时候，这些项目都还在。</span><br><span class="line"></span><br><span class="line">![](<span class="regexp">/images/y</span>eoman-web2.jpg)</span><br><span class="line"></span><br><span class="line"># 测试</span><br><span class="line"></span><br><span class="line">[Karma](http:<span class="comment">//karma-runner.github.io/) 是一个 JS 测试框架。Angular 生成器本身已经包括了两个测试框架：[ngScenario](https://code.angularjs.org/1.2.16/docs/guide/e2e-testing) 和 [Jasmine](http://jasmine.github.io/)。当之前我们运行 `yo angular` 的时候，在 mytodo 文件夹下会生成了一个 test 目录，还有一个 karma.conf.js 文件，它会被放入在 Node 模块中以使用 Karma。我们将会编辑一个 Jasmine 脚本来完成我们的测试。现在先来看看要怎么进行测试。</span></span><br><span class="line"></span><br><span class="line">先安装依赖：</span><br><span class="line"></span><br><span class="line">~~~bash</span><br><span class="line">$ npm install -g phantomjs</span><br><span class="line">$ npm install grunt-karma --save-dev</span><br></pre></td></tr></table></figure>
 
 <h2 id="更新-Karma-配置"><a href="#更新-Karma-配置" class="headerlink" title="更新 Karma 配置"></a>更新 Karma 配置</h2><p>首先，修改 karma.conf.js，添加</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'bower_components/jquery/dist/jquery.js'</span>,</span><br><span class="line"><span class="string">'bower_components/jquery-ui/ui/jquery-ui.js'</span>,</span><br><span class="line"><span class="string">'bower_components/angular-ui-sortable/sortable.js'</span>,</span><br></pre></td></tr></table></figure>
@@ -615,35 +716,72 @@
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2015/02/02/build-angularjs-app-with-yeoman/" title="用Yeoman构建AngularJS项目">用Yeoman构建AngularJS项目</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -652,77 +790,37 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2015/02/02/build-angularjs-app-with-yeoman/" title="用Yeoman构建AngularJS项目">http://blog.javachen.com/2015/02/02/build-angularjs-app-with-yeoman/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/angular-js/" rel="tag"># angular.js</a>
+            <a href="/tags/angular-js/" rel="tag"><i class="fa fa-tag"></i> angular.js</a>
           
-            <a href="/tags/yeoman/" rel="tag"># yeoman</a>
+            <a href="/tags/yeoman/" rel="tag"><i class="fa fa-tag"></i> yeoman</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/02/02/quick-start-of-requirejs/" rel="next" title="Require.JS快速入门">
-                <i class="fa fa-chevron-left"></i> Require.JS快速入门
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/02/03/spark-programming-guide/" rel="prev" title="Spark编程指南笔记">
-                Spark编程指南笔记 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -759,15 +857,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/02/02/quick-start-of-requirejs/" rel="next" title="Require.JS快速入门">
+                <i class="fa fa-chevron-left"></i> Require.JS快速入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/02/03/spark-programming-guide/" rel="prev" title="Spark编程指南笔记">
+                Spark编程指南笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -781,11 +914,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -806,6 +941,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -819,11 +955,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -837,96 +976,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -940,8 +994,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -990,6 +1095,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1023,8 +1130,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1193,9 +1301,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1269,9 +1377,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

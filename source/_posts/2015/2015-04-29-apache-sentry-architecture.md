@@ -3,7 +3,7 @@ layout: post
 
 title: Apache Sentry架构介绍
 
-category: hadoop
+category: hive
 
 tags: [ sentry,hive,impala ]
 
@@ -133,4 +133,4 @@ Sentry通过pre-listener hook集成到Hive Metastore。metastore在执行metadat
 
 - [Apache Sentry architecture overview](https://blogs.apache.org/sentry/tags/architecture)
 - [为什么Cloudera要创建Hadoop安全组件Sentry？](http://developer.51cto.com/art/201502/465091.htm)
-- [Cloudera发布Hadoop开源组件Sentry：提供细粒度基于角色的安全控制](http://www.csdn.net/article/2013-08-14/2816575-with-sentry-cloudera-fills-hadoops-enterprise-security-gap)
+- [Cloudera发布Hadoop开源组件Sentry：提供细粒度基于角色的安全控制](http://www.csdn.net/article/images-08-14/2816575-with-sentry-cloudera-fills-hadoops-enterprise-security-gap)

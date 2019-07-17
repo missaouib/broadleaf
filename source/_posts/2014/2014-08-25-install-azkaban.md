@@ -189,4 +189,4 @@ sh bin/azkaban-executor-start.sh
 
 ## 1.7 生产环境使用
 
-这部分内容详细说明见 [当前数据仓库建设过程](/2014/10/23/hive-warehouse-in-2014.html) 一文中的任务调度这一章节内容。
+这部分内容详细说明见 [当前数据仓库建设过程](/images/10/23/hive-warehouse-in-2014.html) 一文中的任务调度这一章节内容。

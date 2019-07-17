@@ -46,9 +46,9 @@ Spring 中的配置：
     xmlns:jee="http://www.springframework.org/schema/jee"
     xsi:schemaLocation="
        http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/beans-beans-3.0.xsd
        http://www.springframework.org/schema/jee
-       http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+       http://www.springframework.org/schema/jee-jee-3.0.xsd">
 
   <jee:jndi-lookup id="entityManagerFactory"  jndi-name="persistence/persistenceUnit"/>
 
@@ -139,7 +139,7 @@ Spring 中的配置：
 <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
 	<property name="persistenceXmlLocation">
 	    <list>
-	     <value>org/springframework/orm/jpa/domain/persistence-multi.xml</value>
+	     <value>orgframework/orm/domain/persistence-multi.xml</value>
 	     <value>classpath:/my/package/**/custom-persistence.xml</value>
 	     <value>classpath*:META-INF/persistence.xml</value>
 	    </list>

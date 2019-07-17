@@ -71,36 +71,36 @@ Java1.1之所以要重新设计，主要是为了添加国际化支持(即添加
 
 以字节为单位的输入流的框架图：
 
-<img src="http://images.cnitblog.com/blog/497634/201310/20234201-95f7519c9a174cbbb8b3c6e0a076a56d.jpg" width="500"/>
+<img src="http://images.cnitblog.com/blog/497634/images10/20234201-95f7519c9a174cbbb8b3c6e0a076a56d.jpg" width="500"/>
 
 是以字节为单位的输出流的框架图：
 
-<img src="http://images.cnitblog.com/blog/497634/201310/20234231-929b2961bb604a05922c9a6ce1348110.jpg" width="500"/>
+<img src="http://images.cnitblog.com/blog/497634/images10/20234231-929b2961bb604a05922c9a6ce1348110.jpg" width="500"/>
 
 以字节为单位的输入流和输出流关联的框架图：
 
-<img src="http://images.cnitblog.com/blog/497634/201310/20234245-b708d62c6397495db7915d8fee6616f7.jpg" alt="" width="740"/>
+<img src="http://images.cnitblog.com/blog/497634/images10/20234245-b708d62c6397495db7915d8fee6616f7.jpg" alt="" width="740"/>
 
 以字符为单位的输入流的框架图：
 
-<img src="http://images.cnitblog.com/blog/497634/201310/20234317-f9f030ae18904626b08b8d464e87eed1.jpg" alt="" width="500"/>
+<img src="http://images.cnitblog.com/blog/497634/images10/20234317-f9f030ae18904626b08b8d464e87eed1.jpg" alt="" width="500"/>
 
 以字符为单位的输出流的框架图：
 
-<img src="http://images.cnitblog.com/blog/497634/201310/20234330-d18eb674e6ba44beb6d65b05c602f065.jpg" alt="" width="500"/>
+<img src="http://images.cnitblog.com/blog/497634/images10/20234330-d18eb674e6ba44beb6d65b05c602f065.jpg" alt="" width="500"/>
 
 以字符为单位的输入流和输出流关联的框架图：
 
-<img src="http://images.cnitblog.com/blog/497634/201310/20234410-c986ccb259594865ae75f14f19e1179f.jpg" alt="" width="500"/>
+<img src="http://images.cnitblog.com/blog/497634/images10/20234410-c986ccb259594865ae75f14f19e1179f.jpg" alt="" width="500"/>
 
 字节转换为字符流的框架图：
 
-<img src="http://images.cnitblog.com/blog/497634/201310/20234430-bb419718ff01462c8d94fc2ac3e1aeb6.jpg" alt="" width="500"/>
+<img src="http://images.cnitblog.com/blog/497634/images10/20234430-bb419718ff01462c8d94fc2ac3e1aeb6.jpg" alt="" width="500"/>
 
 字节和字符的输入流对应关系：
 
-<img src="http://images.cnitblog.com/blog/497634/201310/20234451-97f7312056a642ccb58ca02a2803dbb4.jpg" alt="" width="740"/>
+<img src="http://images.cnitblog.com/blog/497634/images10/20234451-97f7312056a642ccb58ca02a2803dbb4.jpg" alt="" width="740"/>
 
 字节和字符的输出流对应关系：
 
-<img src="http://images.cnitblog.com/blog/497634/201310/20234541-d488f6a75e524979acfe8a77ff14ec78.jpg" alt="" width="740"/>
+<img src="http://images.cnitblog.com/blog/497634/images10/20234541-d488f6a75e524979acfe8a77ff14ec78.jpg" alt="" width="740"/>

@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,70 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="spring boot,spring,gradle,angular.js,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="本文主要是记录快速使用 Spring Boot 和 Gradle 创建 AngularJS 项目的过程。">
-<meta name="keywords" content="spring boot,spring,gradle,angular.js">
-<meta property="og:type" content="article">
-<meta property="og:title" content="使用Spring Boot和Gradle创建AngularJS项目">
-<meta property="og:url" content="http://blog.javachen.com/2015/01/06/build-app-with-spring-boot-and-gradle/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="本文主要是记录快速使用 Spring Boot 和 Gradle 创建 AngularJS 项目的过程。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://blog.javachen.com/static/images/2015/checklist-first-run.png">
-<meta property="og:updated_time" content="2019-05-04T04:29:20.788Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Spring Boot和Gradle创建AngularJS项目">
-<meta name="twitter:description" content="本文主要是记录快速使用 Spring Boot 和 Gradle 创建 AngularJS 项目的过程。">
-<meta name="twitter:image" content="http://blog.javachen.com/static/images/2015/checklist-first-run.png">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -169,12 +135,43 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2015/01/06/build-app-with-spring-boot-and-gradle/">
-
+  
 
 
 
+
+  <meta name="description" content="本文主要是记录快速使用 Spring Boot 和 Gradle 创建 AngularJS 项目的过程。">
+<meta name="keywords" content="gradle,spring,spring boot,angular.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Spring Boot和Gradle创建AngularJS项目">
+<meta property="og:url" content="http://javachen.github.io/2015/01/06/build-app-with-spring-boot-and-gradle/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="本文主要是记录快速使用 Spring Boot 和 Gradle 创建 AngularJS 项目的过程。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://javachen.github.io/images/checklist-first-run.png">
+<meta property="og:updated_time" content="2019-06-29T12:27:47.195Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Spring Boot和Gradle创建AngularJS项目">
+<meta name="twitter:description" content="本文主要是记录快速使用 Spring Boot 和 Gradle 创建 AngularJS 项目的过程。">
+<meta name="twitter:image" content="http://javachen.github.io/images/checklist-first-run.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2015/01/06/build-app-with-spring-boot-and-gradle/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>使用Spring Boot和Gradle创建AngularJS项目 | JavaChen Blog</title>
   
@@ -183,7 +180,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -196,9 +194,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -210,7 +236,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -220,13 +246,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -234,76 +263,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -332,12 +399,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -350,16 +425,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/01/06/build-app-with-spring-boot-and-gradle/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/01/06/build-app-with-spring-boot-and-gradle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -372,11 +449,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">使用Spring Boot和Gradle创建AngularJS项目</h2>
+          <h2 class="post-title" itemprop="name headline">使用Spring Boot和Gradle创建AngularJS项目<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2015/2015-01-06-build-app-with-spring-boot-and-gradle.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -384,13 +470,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-06T00:00:00+08:00">
-                2015-01-06
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2015-01-06T00:00:00+08:00">2015-01-06</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:27:47" itemprop="dateModified" datetime="2019-06-29T20:27:47+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -406,11 +509,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a></span>
 
                 
                 
@@ -419,6 +518,7 @@
           
 
           
+            
             
           
 
@@ -436,6 +536,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -443,13 +544,13 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
 
       
-        <p><a href="http://projects.spring.io/spring-boot" target="_blank" rel="noopener">Spring Boot</a> 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 Spring 应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。</p>
+        <p><a href="http://projects.spring.io-boot" target="_blank" rel="noopener">Spring Boot</a> 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 Spring 应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。</p>
 <p>本文主要是记录使用 Spring Boot 和 Gradle 创建项目的过程，其中会包括 Spring Boot 的安装及使用方法，希望通过这篇文章能够快速搭建一个项目。</p>
 <h1 id="1-开发环境"><a href="#1-开发环境" class="headerlink" title="1. 开发环境"></a>1. 开发环境</h1><ul>
 <li>操作系统: mac</li>
@@ -459,11 +560,11 @@
 <li>IDE：Idea</li>
 </ul>
 <h1 id="2-创建项目"><a href="#2-创建项目" class="headerlink" title="2. 创建项目"></a>2. 创建项目</h1><p>你可以通过 <a href="http://start.spring.io/" target="_blank" rel="noopener">Spring Initializr</a> 来创建一个空的项目，也可以手动创建，这里我使用的是手动创建 gradle 项目。</p>
-<p>参考 <a href="/2014/09/15/build-project-with-gradle.html">使用Gradle构建项目</a> 创建一个 ng-spring-boot 项目，执行的命令如下：</p>
+<p>参考 <a href="/images/build-project-with-gradle.html">使用Gradle构建项目</a> 创建一个 ng-spring-boot 项目，执行的命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir ng-spring-boot &amp;&amp; <span class="built_in">cd</span> ng-spring-boot</span><br><span class="line">$ gradle init</span><br></pre></td></tr></table></figure>
 
 <p>ng-spring-boot 目录结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">➜  ng-spring-boot  tree</span><br><span class="line">.</span><br><span class="line">├── build.gradle</span><br><span class="line">├── gradle</span><br><span class="line">│   └── wrapper</span><br><span class="line">│       ├── gradle-wrapper.jar</span><br><span class="line">│       └── gradle-wrapper.properties</span><br><span class="line">├── gradlew</span><br><span class="line">├── gradlew.bat</span><br><span class="line">└── settings.gradle</span><br><span class="line"></span><br><span class="line">2 directories, 6 files</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">➜  ng-spring-boot  tree</span><br><span class="line">.</span><br><span class="line">├── build.gradle</span><br><span class="line">├── gradle</span><br><span class="line">│   └── wrapper</span><br><span class="line">│       ├── gradle-wrapper.jar</span><br><span class="line">│       └── gradle-wrapper.properties</span><br><span class="line">├── gradlew</span><br><span class="line">├── gradlew.bat</span><br><span class="line">└── settings.gradle</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> directories, <span class="number">6</span> files</span><br></pre></td></tr></table></figure>
 
 <p>然后修改 build.gradle 文件：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    ext &#123;</span><br><span class="line">        springBootVersion = <span class="string">'2.1.3.RELEASE'</span></span><br><span class="line">    &#125;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath(<span class="string">"org.springframework.boot:spring-boot-gradle-plugin:$&#123;springBootVersion&#125;"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'java'</span></span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'eclipse'</span></span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'idea'</span></span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'spring-boot'</span></span><br><span class="line"></span><br><span class="line">jar &#123;</span><br><span class="line">    baseName = <span class="string">'ng-spring-boot'</span></span><br><span class="line">    version = <span class="string">'1.0.0-SNAPSHOT'</span></span><br><span class="line">&#125;</span><br><span class="line">sourceCompatibility = <span class="number">1.8</span></span><br><span class="line">targetCompatibility = <span class="number">1.8</span></span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">    maven &#123; url <span class="string">"https://repo.spring.io/libs-release"</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile(<span class="string">"org.springframework.boot:spring-boot-starter-data-jpa"</span>)</span><br><span class="line">    compile(<span class="string">"org.springframework.boot:spring-boot-starter-web"</span>)</span><br><span class="line">    compile(<span class="string">"org.springframework.boot:spring-boot-starter-actuator"</span>)</span><br><span class="line">    runtime(<span class="string">"org.hsqldb:hsqldb"</span>)</span><br><span class="line">    testCompile(<span class="string">"org.springframework.boot:spring-boot-starter-test"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">eclipse &#123;</span><br><span class="line">    classpath &#123;</span><br><span class="line">         containers.remove(<span class="string">'org.eclipse.jdt.launching.JRE_CONTAINER'</span>)</span><br><span class="line">         containers <span class="string">'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task wrapper(<span class="string">type:</span> Wrapper) &#123;</span><br><span class="line">    gradleVersion = <span class="string">'2.3'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -526,10 +627,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./gradlew build &amp;&amp; java -jar build/libs/ng-spring-boot-1.0.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
 
 <p>启动过程中你会看到如下内容，这部分内容是在 Application 类中打印出来的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Let&apos;s inspect the beans provided by Spring Boot:</span><br><span class="line">application</span><br><span class="line">beanNameHandlerMapping</span><br><span class="line">defaultServletHandlerMapping</span><br><span class="line">dispatcherServlet</span><br><span class="line">embeddedServletContainerCustomizerBeanPostProcessor</span><br><span class="line">handlerExceptionResolver</span><br><span class="line">helloController</span><br><span class="line">httpRequestHandlerAdapter</span><br><span class="line">messageSource</span><br><span class="line">mvcContentNegotiationManager</span><br><span class="line">mvcConversionService</span><br><span class="line">mvcValidator</span><br><span class="line">org.springframework.boot.autoconfigure.MessageSourceAutoConfiguration</span><br><span class="line">org.springframework.boot.autoconfigure.PropertyPlaceholderAutoConfiguration</span><br><span class="line">org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration</span><br><span class="line">org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration$DispatcherServletConfiguration</span><br><span class="line">org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration$EmbeddedTomcat</span><br><span class="line">org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration</span><br><span class="line">org.springframework.boot.context.embedded.properties.ServerProperties</span><br><span class="line">org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor</span><br><span class="line">org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor</span><br><span class="line">org.springframework.context.annotation.internalAutowiredAnnotationProcessor</span><br><span class="line">org.springframework.context.annotation.internalCommonAnnotationProcessor</span><br><span class="line">org.springframework.context.annotation.internalConfigurationAnnotationProcessor</span><br><span class="line">org.springframework.context.annotation.internalRequiredAnnotationProcessor</span><br><span class="line">org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration</span><br><span class="line">propertySourcesBinder</span><br><span class="line">propertySourcesPlaceholderConfigurer</span><br><span class="line">requestMappingHandlerAdapter</span><br><span class="line">requestMappingHandlerMapping</span><br><span class="line">resourceHandlerMapping</span><br><span class="line">simpleControllerHandlerAdapter</span><br><span class="line">tomcatEmbeddedServletContainerFactory</span><br><span class="line">viewControllerHandlerMapping</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Let's <span class="keyword">inspect</span> the beans provided <span class="keyword">by</span> Spring <span class="keyword">Boot</span>:</span><br><span class="line">application</span><br><span class="line">beanNameHandlerMapping</span><br><span class="line">defaultServletHandlerMapping</span><br><span class="line">dispatcherServlet</span><br><span class="line">embeddedServletContainerCustomizerBeanPostProcessor</span><br><span class="line">handlerExceptionResolver</span><br><span class="line">helloController</span><br><span class="line">httpRequestHandlerAdapter</span><br><span class="line">messageSource</span><br><span class="line">mvcContentNegotiationManager</span><br><span class="line">mvcConversionService</span><br><span class="line">mvcValidator</span><br><span class="line">org.springframework.<span class="keyword">boot</span>.autoconfigure.MessageSourceAutoConfiguration</span><br><span class="line">org.springframework.<span class="keyword">boot</span>.autoconfigure.PropertyPlaceholderAutoConfiguration</span><br><span class="line">org.springframework.<span class="keyword">boot</span>.autoconfigure.web.EmbeddedServletContainerAutoConfiguration</span><br><span class="line">org.springframework.<span class="keyword">boot</span>.autoconfigure.web.EmbeddedServletContainerAutoConfiguration<span class="variable">$DispatcherServletConfiguration</span></span><br><span class="line">org.springframework.<span class="keyword">boot</span>.autoconfigure.web.EmbeddedServletContainerAutoConfiguration<span class="variable">$EmbeddedTomcat</span></span><br><span class="line">org.springframework.<span class="keyword">boot</span>.autoconfigure.web.ServerPropertiesAutoConfiguration</span><br><span class="line">org.springframework.<span class="keyword">boot</span>.context.embedded.properties.ServerProperties</span><br><span class="line">org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor</span><br><span class="line">org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor</span><br><span class="line">org.springframework.context.annotation.internalAutowiredAnnotationProcessor</span><br><span class="line">org.springframework.context.annotation.internalCommonAnnotationProcessor</span><br><span class="line">org.springframework.context.annotation.internalConfigurationAnnotationProcessor</span><br><span class="line">org.springframework.context.annotation.internalRequiredAnnotationProcessor</span><br><span class="line">org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration</span><br><span class="line">propertySourcesBinder</span><br><span class="line">propertySourcesPlaceholderConfigurer</span><br><span class="line">requestMappingHandlerAdapter</span><br><span class="line">requestMappingHandlerMapping</span><br><span class="line">resourceHandlerMapping</span><br><span class="line">simpleControllerHandlerAdapter</span><br><span class="line">tomcatEmbeddedServletContainerFactory</span><br><span class="line">viewControllerHandlerMapping</span><br></pre></td></tr></table></figure>
 
 <p>你也可以启动远程调试：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./gradlew build </span><br><span class="line"></span><br><span class="line">$ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,<span class="built_in">suspend</span>=n \</span><br><span class="line">       -jar build/libs/spring-boot-examples-1.0.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./gradlew build </span><br><span class="line"></span><br><span class="line">$ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,<span class="built_in">suspend</span>=n \</span><br><span class="line">       -jar build/libs-boot-examples-1.0.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
 
 <p>接下来，打开浏览器访问 <a href="http://localhost:8080/items" target="_blank" rel="noopener">http://localhost:8080/items</a>，你会看到页面输出一个空的数组。然后，你可以使用浏览器的 Restfull 插件来添加、删除、修改数据。</p>
 <h1 id="8-添加前端库文件"><a href="#8-添加前端库文件" class="headerlink" title="8. 添加前端库文件"></a>8. 添加前端库文件</h1><p>这里主要使用 Bower 来管理前端依赖，包括 angular 和 bootstrap。</p>
@@ -541,16 +642,16 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"ng-spring-boot"</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"angular"</span>: <span class="string">"~1.3.0"</span>,</span><br><span class="line">    <span class="attr">"angular-resource"</span>: <span class="string">"~1.3.0"</span>,</span><br><span class="line">    <span class="attr">"bootstrap-css-only"</span>: <span class="string">"~3.2.0"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果你没有安装 Bower，则运行下面命令进行安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g bower</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> -g bower</span><br></pre></td></tr></table></figure>
 
 <p>安装之后下载依赖：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bower install</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bower </span>install</span><br></pre></td></tr></table></figure>
 
 <p>运行成功之后，查看 src/main/resources/static/bower_components 目录结构：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">src/main/resources/static/bower_components</span><br><span class="line">├── angular</span><br><span class="line">├── angular-resource</span><br><span class="line">└── bootstrap-css-only</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">src<span class="regexp">/main/</span>resources<span class="regexp">/static/</span>bower_components</span><br><span class="line">├── angular</span><br><span class="line">├── angular-resource</span><br><span class="line">└── bootstrap-css-only</span><br></pre></td></tr></table></figure>
 
 <p>我们可以将bower_components目录改名为lib，同时修改.bowerrc文件如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;directory&quot;: &quot;src/main/resources/static/libs&quot;,</span><br><span class="line">  &quot;json&quot;: &quot;bower.json&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"directory"</span>: <span class="string">"src/main/resources/static/libs"</span>,</span><br><span class="line">  <span class="attr">"json"</span>: <span class="string">"bower.json"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="9-创建前端页面"><a href="#9-创建前端页面" class="headerlink" title="9. 创建前端页面"></a>9. 创建前端页面</h1><blockquote>
 <p>注意：</p>
@@ -569,7 +670,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">angular</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> AppController = <span class="function"><span class="keyword">function</span>(<span class="params">$scope, Item</span>) </span>&#123;</span><br><span class="line">    Item.query(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">      $scope.items = response ? response : [];</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    $scope.addItem = <span class="function"><span class="keyword">function</span>(<span class="params">description</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">new</span> Item(&#123;</span><br><span class="line">        description: description,</span><br><span class="line">        checked: <span class="literal">false</span></span><br><span class="line">      &#125;).$save(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">        $scope.items.push(item);</span><br><span class="line">      &#125;);</span><br><span class="line">      $scope.newItem = <span class="string">""</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    $scope.updateItem = <span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">      item.$update();</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    $scope.deleteItem = <span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">      item.$remove(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        $scope.items.splice($scope.items.indexOf(item), <span class="number">1</span>);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">  AppController.$inject = [<span class="string">'$scope'</span>, <span class="string">'Item'</span>];</span><br><span class="line">  angular.module(<span class="string">"myApp.controllers"</span>).controller(<span class="string">"AppController"</span>, AppController);</span><br><span class="line">&#125;(angular));</span><br></pre></td></tr></table></figure>
 
 <h1 id="10-测试前端页面"><a href="#10-测试前端页面" class="headerlink" title="10. 测试前端页面"></a>10. 测试前端页面</h1><p>再一次打开浏览器，访问 <a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a> 进行测试。</p>
-<p><img src="/static/images/2015/checklist-first-run.png" alt></p>
+<p><img src="/images/checklist-first-run.png" alt></p>
 <h1 id="11-前后端分离部署"><a href="#11-前后端分离部署" class="headerlink" title="11. 前后端分离部署"></a>11. 前后端分离部署</h1><p>对于AngularJS应用，我们可以使用nodejs或者其他容器部署应用，例如，这里可以使用groovy服务来启动前端服务，然后通过http请求调用后端服务的接口。</p>
 <p>先创建app.groovy文件：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span> <span class="class"><span class="keyword">class</span> <span class="title">JsApp</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure>
@@ -578,7 +679,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">angular</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ItemFactory = <span class="function"><span class="keyword">function</span>(<span class="params">$resource</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $resource(<span class="string">'http://localhost:8080/items/:id'</span>, &#123;</span><br><span class="line">      id: <span class="string">'@id'</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      update: &#123;</span><br><span class="line">        method: <span class="string">"PUT"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      remove: &#123;</span><br><span class="line">        method: <span class="string">"DELETE"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">  ItemFactory.$inject = [<span class="string">'$resource'</span>];</span><br><span class="line">  angular.module(<span class="string">"myApp.services"</span>).factory(<span class="string">"Item"</span>, ItemFactory);</span><br><span class="line">&#125;(angular));</span><br></pre></td></tr></table></figure>
 
 <p>然后，启动groovy服务来托管静态文件，这里使用9000端口：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring run app.groovy -- --server.port=9000</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring <span class="builtin-name">run</span> app.groovy -- --server.<span class="attribute">port</span>=9000</span><br></pre></td></tr></table></figure>
 
 <p>这时候，就可以服务 <a href="http://localhost:9000/" target="_blank" rel="noopener">http://localhost:9000/</a> 来查看前端页面了。</p>
 <p>这样，前后端就是分别部署属于两个不同的应用了，为了解决跨域的问题，需要添加一个过滤器，如下：</p>
@@ -586,45 +687,82 @@
 
 <p>然后，重启应用就可以了。</p>
 <h1 id="12-总结"><a href="#12-总结" class="headerlink" title="12. 总结"></a>12. 总结</h1><p>本文主要是记录快速使用 Spring Boot 和 Gradle 创建 AngularJS 项目的过程，并介绍了如何将前后端进行分离和解决跨域访问的问题，希望能对你有所帮助。</p>
-<p>文中相关的源码在 <a href="https://github.com/javachen/spring-boot-examples/tree/master/ng-spring-boot" target="_blank" rel="noopener">ng-spring-boot</a>，你可以下载该项目，然后编译、运行代码。</p>
+<p>文中相关的源码在 <a href="https://github.com/javachen-boot-examples/tree/master/ng-spring-boot" target="_blank" rel="noopener">ng-spring-boot</a>，你可以下载该项目，然后编译、运行代码。</p>
 <h1 id="13-参考文章"><a href="#13-参考文章" class="headerlink" title="13. 参考文章"></a>13. 参考文章</h1><ul>
 <li><a href="http://g00glen00b.be/prototyping-spring-boot-angularjs/" target="_blank" rel="noopener">Rapid prototyping with Spring Boot and AngularJS</a></li>
-<li><a href="http://spring.io/guides/gs/spring-boot/" target="_blank" rel="noopener">Building an Application with Spring Boot</a></li>
-<li><a href="http://spring.io/guides/gs/rest-service/" target="_blank" rel="noopener">Building a RESTful Web Service</a></li>
-<li><a href="http://spring.io/guides/gs/rest-service-cors" target="_blank" rel="noopener">Enabling Cross Origin Requests for a RESTful Web Service</a></li>
+<li><a href="http:/.io/guides/gs-boot/" target="_blank" rel="noopener">Building an Application with Spring Boot</a></li>
+<li><a href="http:/.io/guides/gs/rest-service/" target="_blank" rel="noopener">Building a RESTful Web Service</a></li>
+<li><a href="http:/.io/guides/gs/rest-service-cors" target="_blank" rel="noopener">Enabling Cross Origin Requests for a RESTful Web Service</a></li>
 </ul>
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2015/01/06/build-app-with-spring-boot-and-gradle/" title="使用Spring Boot和Gradle创建AngularJS项目">使用Spring Boot和Gradle创建AngularJS项目</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -633,81 +771,41 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2015/01/06/build-app-with-spring-boot-and-gradle/" title="使用Spring Boot和Gradle创建AngularJS项目">http://blog.javachen.com/2015/01/06/build-app-with-spring-boot-and-gradle/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/spring-boot/" rel="tag"># spring boot</a>
+            <a href="/tags/gradle/" rel="tag"><i class="fa fa-tag"></i> gradle</a>
           
-            <a href="/tags/spring/" rel="tag"># spring</a>
+            <a href="/tags/spring/" rel="tag"><i class="fa fa-tag"></i> spring</a>
           
-            <a href="/tags/gradle/" rel="tag"># gradle</a>
+            <a href="/tags/spring-boot/" rel="tag"><i class="fa fa-tag"></i> spring boot</a>
           
-            <a href="/tags/angular-js/" rel="tag"># angular.js</a>
+            <a href="/tags/angular-js/" rel="tag"><i class="fa fa-tag"></i> angular.js</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2014/12/23/thread-in-python/" rel="next" title="Python中的多线程">
-                <i class="fa fa-chevron-left"></i> Python中的多线程
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/01/07/build-multi-module-project-with-gradle/" rel="prev" title="Gradle构建多模块项目">
-                Gradle构建多模块项目 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -744,15 +842,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/12/02/some-usages-of-jpa/" rel="next" title="JPA的使用">
+                <i class="fa fa-chevron-left"></i> JPA的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/07/build-multi-module-project-with-gradle/" rel="prev" title="Gradle构建多模块项目">
+                Gradle构建多模块项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -766,11 +899,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -791,6 +926,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -804,11 +940,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -822,96 +961,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -925,8 +979,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -975,6 +1080,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1008,8 +1115,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1178,9 +1286,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1254,9 +1362,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

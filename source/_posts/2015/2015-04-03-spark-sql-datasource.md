@@ -321,10 +321,10 @@ results = sqlContext.sql("FROM src SELECT key, value").collect()
 
 # JDBC 数据源
 
-Spark SQL 支持通过 JDBC 访问关系数据库，这需要用到 [JdbcRDD](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.JdbcRDD)。为了访问某一个关系数据库，需要将其驱动添加到 classpath，例如：
+Spark SQL 支持通过 JDBC 访问关系数据库，这需要用到 [JdbcRDD](https:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.JdbcRDD)。为了访问某一个关系数据库，需要将其驱动添加到 classpath，例如：
 
 ~~~
-SPARK_CLASSPATH=postgresql-9.3-1102-jdbc41.jar bin/spark-shell
+SPARK_CLASSPATH=postgresql-9.3-1102-jdbc41.jar bin-shell
 ~~~
 
 访问 jdbc 数据源需要提供以下参数：
@@ -371,7 +371,7 @@ OPTIONS (
 
 # 访问 Avro
 
-这不是 Spark 内置的数据源，要想访问 Avro 数据源 ，需要做些处理。这部分内容可以参考 [如何将Avro数据加载到Spark](http://blog.javachen.com/2015/03/24/how-to-load-some-avro-data-into-spark.html) 和 [Spark with Avro](http://www.infoobjects.com/spark-with-avro.html)。
+这不是 Spark 内置的数据源，要想访问 Avro 数据源 ，需要做些处理。这部分内容可以参考 [如何将Avro数据加载到Spark](http://blog.javachen.com/2015/03/24/how-to-load-some-avro-data-into-spark.html) 和 [Spark with Avro](http://www.infoobjects.com-with-avro.html)。
 
 # 访问 Cassandra
 
@@ -450,6 +450,6 @@ scala> alldepts.foreach(println)
 
 # 参考文章
 
-- [Spark SQL and DataFrame Guide](https://spark.apache.org/docs/latest/sql-programming-guide.html#dataframes)
-- [Spark 编程指南简体中文版-Spark SQL](http://endymecy.gitbooks.io/spark-programming-guide-zh-cn/content/spark-sql/README.html)
-- [spark-cookbook](http://www.infoobjects.com/spark-cookbook/)
+- [Spark SQL and DataFrame Guide](https:/.apache.org/docs/latest/sql-programming-guide.html#dataframes)
+- [Spark 编程指南简体中文版-Spark SQL](http://endymecy.gitbooks.io-programming-guide-zh-cn/content-sql/README.html)
+- [spark-cookbook](http://www.infoobjects.com-cookbook/)

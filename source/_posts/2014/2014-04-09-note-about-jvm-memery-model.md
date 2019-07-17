@@ -98,7 +98,7 @@ published: true
 
 Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域，这些区域都有各自的用途，以及创建和销毁的时间。有的区域随着虚拟机进程的启动就存在了， 有的区域则是依赖用户线程。根据《Java虚拟机规范（第二版）》，Java 虚拟机所管理的内存包含如下图的几个区域。
 
-![Java-Memory.png](http://7xnrdo.com1.z0.glb.clouddn.com/2014/Java-Memory.png)
+![Java-Memory.png](/images/Java-Memory.png)
 
  由上图可以看出 JVM 组成如下：
 
@@ -153,7 +153,7 @@ Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分
 
 在 Java 中，堆被划分成两个不同的区域：新生代 ( Young )、老年代 ( Old )。新生代 ( Young ) 又被划分为三个区域：Eden、From Survivor、To Survivor。
 
-![jvm-heap.png](http://7xnrdo.com1.z0.glb.clouddn.com/2014/jvm-heap.png)
+![jvm-heap.png](/images/jvm-heap.png)
 
 ​从图中可以看出： `堆大小 = 新生代 + 老年代`，其中，堆的大小可以通过参数 `-Xms`、`-Xmx` 来指定。本人使用的是 JDK1.6，以下涉及的 JVM 默认值均以该版本为准。
 
@@ -242,7 +242,7 @@ JDK1.4 中出现了 NIO，其引入了一种基于通道与缓冲区的 I/O 方�
 
 # 3. 垃圾回收过程
 
-![jvm-heap.png](http://7xnrdo.com1.z0.glb.clouddn.com/2014/jvm-heap.png)
+![jvm-heap.png](/images/jvm-heap.png)
 
 JVM 采用一种`分代回收` (generational collection) 的策略，用较高的频率对年轻的对象进行扫描和回收，这种叫做 `minor collection` ，而对老对象的检查回收频率要低很多，称为 `major collection`。这样就不需要每次 GC 都将内存中所有对象都检查一遍。
 

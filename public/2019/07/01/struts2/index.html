@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Struts2 是一个基于 MVC 设计模式的 Web 应用框架，它本质上相当于一个 Servlet，在 MVC 设计模式中，Struts2 作为控制器来建立模型与视图的数据交互。Struts2 是 Struts 的下一代产品，是在 struts 和 WebWork 的技术基础上进行了合并的全新的 Struts2 框架。">
+<meta name="keywords" content="struts2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struts2">
+<meta property="og:url" content="http://javachen.github.io/2019/07/01/struts2/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="Struts2 是一个基于 MVC 设计模式的 Web 应用框架，它本质上相当于一个 Servlet，在 MVC 设计模式中，Struts2 作为控制器来建立模型与视图的数据交互。Struts2 是 Struts 的下一代产品，是在 struts 和 WebWork 的技术基础上进行了合并的全新的 Struts2 框架。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://javachen.github.io/images/struts2-1.png">
+<meta property="og:image" content="https://7n.w3cschool.cn/attachments/tuploads/struts_2/struts-mvc.jpg">
+<meta property="og:image" content="https://7n.w3cschool.cn/attachments/tuploads/struts_2/actioninvocation.jpg">
+<meta property="og:updated_time" content="2019-07-01T10:04:10.164Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Struts2">
+<meta name="twitter:description" content="Struts2 是一个基于 MVC 设计模式的 Web 应用框架，它本质上相当于一个 Servlet，在 MVC 设计模式中，Struts2 作为控制器来建立模型与视图的数据交互。Struts2 是 Struts 的下一代产品，是在 struts 和 WebWork 的技术基础上进行了合并的全新的 Struts2 框架。">
+<meta name="twitter:image" content="http://javachen.github.io/images/struts2-1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2019/07/01/struts2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Struts2 | JavaChen Blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?50bc6f5d9b045b5895ff44f8bbdbc611";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JavaChen Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2019/07/01/struts2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Struts2<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2019/2019-07-01-struts2.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-01 00:00:00 / 修改时间：18:04:10" itemprop="dateCreated datePublished" datetime="2019-07-01T00:00:00+08:00">2019-07-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+              <div class="post-description">
+                  Struts2 是一个基于 MVC 设计模式的 Web 应用框架，它本质上相当于一个 Servlet，在 MVC 设计模式中，Struts2 作为控制器来建立模型与视图的数据交互。Struts2 是 Struts 的下一代产品，是在 struts 和 WebWork 的技术基础上进行了合并的全新的 Struts2 框架。
+              </div>
+          
+          -->
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Struts2概述"><a href="#Struts2概述" class="headerlink" title="Struts2概述"></a>Struts2概述</h1><p>​Struts2 是一个基于 MVC 设计模式的 Web 应用框架，它本质上相当于一个 Servlet，在 MVC 设计模式中，Struts2 作为控制器来建立模型与视图的数据交互。Struts2 是 Struts 的下一代产品，是在 struts 和 WebWork 的技术基础上进行了合并的全新的 Struts2 框架。</p>
+<p>​Struts2 以 WebWork 为核心，采用拦截器的机制来处理用户的请求，这样的设计也使得业务逻辑控制器能够与 Servlet API 完全脱离开。</p>
+<p><img src="/images/struts2-1.png" alt="img"></p>
+<p>​使用Struts2之前必须有一定的J2EE技术的储备，包括：</p>
+<ul>
+<li><a href="http://docs.oracle.com/javase/tutorial/index.html" target="_blank" rel="noopener">熟悉Java</a></li>
+<li><a href="https://docs.oracle.com/javaee/7/tutorial/" target="_blank" rel="noopener">熟悉Java EE</a></li>
+<li><a href="http://www.ietf.org/rfc/rfc2616.txt?number=2616" target="_blank" rel="noopener">HTTP</a>、<a href="http://www.w3.org/MarkUp/" target="_blank" rel="noopener">HTML</a></li>
+<li>HTTP Request/Response</li>
+<li>Java语言和应用框架：面向对象编程</li>
+<li><a href="https://www.cnblogs.com/hopefu/p/4709777.html" target="_blank" rel="noopener">反射和内省</a></li>
+<li><a href="http://docs.oracle.com/javase/tutorial/essential/environment/properties.html" target="_blank" rel="noopener">Properties</a>和<a href="http://docs.oracle.com/javase/tutorial/i18n/resbundle/concept.html" target="_blank" rel="noopener">ResourceBundles</a></li>
+<li>多线程</li>
+<li>JavaScript、AJAX 和 SOAP</li>
+<li><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnafd.html" target="_blank" rel="noopener">Servlets</a>、Filters 和 Web Containers</li>
+<li>Web应用<ul>
+<li><a href="http://maven.apache.org/" target="_blank" rel="noopener">Maven</a></li>
+<li>Tomcat</li>
+<li>Jetty</li>
+</ul>
+</li>
+<li>Sessions</li>
+<li><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijrp.html" target="_blank" rel="noopener">Security</a>  <a href="http://shiro.apache.org/" target="_blank" rel="noopener">Apache Shiro</a> 或者 <a href="http://www.springframework.org/spring-security/" target="_blank" rel="noopener">Spring Security</a></li>
+<li>JavaServer Pages, <a href="http://www.oracle.com/technetwork/java/javaee/jsp/index.html" target="_blank" rel="noopener">JSP</a> Tag Libraries, and JavaServer Faces<ul>
+<li><a href="http://www.freemarker.org/" target="_blank" rel="noopener">Freemarker</a></li>
+<li><a href="http://www.lowagie.com/iText/" target="_blank" rel="noopener">iText (PDF)</a></li>
+<li><a href="http://jaspersoft.com/" target="_blank" rel="noopener">JasperReports</a></li>
+<li><a href="http://velocity.apache.org/" target="_blank" rel="noopener">Velocity</a></li>
+<li><a href="http://www.w3.org/TR/xslt" target="_blank" rel="noopener">XSLT</a> </li>
+</ul>
+</li>
+<li>XML</li>
+<li>MVC</li>
+<li>业务逻辑框架<ul>
+<li><a href="http://springframework.org/" target="_blank" rel="noopener">Spring</a></li>
+<li><a href="http://code.google.com/p/google-guice/‎" target="_blank" rel="noopener">Google Guice</a></li>
+<li><a href="http://commons.apache.org/chain/" target="_blank" rel="noopener">Commons Chain of Responsiblity</a></li>
+</ul>
+</li>
+<li>数据访问框架<ul>
+<li><a href="http://cayenne.apache.org/" target="_blank" rel="noopener">Apache Cayenne</a></li>
+<li><a href="http://docs.oracle.com/javaee/5/tutorial/doc/bnblr.html" target="_blank" rel="noopener">Enterprise Java Beans</a></li>
+<li><a href="http://www.hibernate.org/" target="_blank" rel="noopener">Hibernate</a></li>
+<li><a href="http://code.google.com/p/mybatis" target="_blank" rel="noopener">myBATIS</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="Struts2-MVC架构"><a href="#Struts2-MVC架构" class="headerlink" title="Struts2 MVC架构"></a>Struts2 MVC架构</h1><p>​模型（Model）、视图（View）、控制器（Controller），通常简称MVC，是一种开发web应用程序的软件设计模式。</p>
+<p>​MVC普及的原因在于它区分了应用程序的逻辑层和用户界面层，并支持开发关注点的分离。在MVC模式下，控制器接收了所有来自应用程序的请求后，调用模型去准备视图所需要的数据，然后视图使用由控制器提供的数据最终生成一个可视的响应。MVC的抽象概念可通过以下图形进行表述：</p>
+<p><img src="https://7n.w3cschool.cn/attachments/tuploads/struts_2/struts-mvc.jpg" alt="Struts MVC"></p>
+<p>该软件设计模式由以下三部分组成:　　</p>
+<ul>
+<li><strong>模型</strong>：模型主要负责管理应用程序的数据，它通过响应视图的请求和控制器的指令来更新自身的数据。</li>
+<li><strong>视图</strong>：通过控制器的指令触发所展现的一种特殊的数据格式。它们是基于像JSP、ASP、PHP之类模板系统的脚本，较易与AJAX技术进行整合。</li>
+<li><strong>控制器</strong>：控制器负责响应用户输入并执行数据模型对象的交互。控制器在接收、确认输入后执行修改数据模型状态的业务操作。</li>
+</ul>
+<h1 id="Struts2原理"><a href="#Struts2原理" class="headerlink" title="Struts2原理"></a>Struts2原理</h1><p>Struts2运行流程：</p>
+<ul>
+<li>1、浏览器发送一个请求</li>
+<li>2、该请求被web.xml中配置的StrutsPrepareAndExecuteFilter过滤器拦截，根据URL去配置文件中查找对应的ActionMapping</li>
+<li>3、ActionMapping根据namespae、name、method创建一个ActionProxy</li>
+<li>4、ActionMapping找Result，ActionProxy创建一个ActionInvocation的实例，如果Result不为空，则调用ActionInvocation返回相应的结果，否则，ActionProxy直接运行。</li>
+</ul>
+<h1 id="Struts2入门例子"><a href="#Struts2入门例子" class="headerlink" title="Struts2入门例子"></a>Struts2入门例子</h1><h2 id="1、创建maven项目"><a href="#1、创建maven项目" class="headerlink" title="1、创建maven项目"></a>1、创建maven项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DgroupId=com.javachen -DartifactId=helloworld </span><br><span class="line"> -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>pom.xml build节点如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>helloworld<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>添加jetty插件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>helloworld<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.eclipse.jetty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jetty-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jetty-plugin.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">webApp</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">contextPath</span>&gt;</span>/$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">contextPath</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">webApp</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stopKey</span>&gt;</span>CTRL+C<span class="tag">&lt;/<span class="name">stopKey</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stopPort</span>&gt;</span>8999<span class="tag">&lt;/<span class="name">stopPort</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scanIntervalSeconds</span>&gt;</span>10<span class="tag">&lt;/<span class="name">scanIntervalSeconds</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scanTargets</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">scanTarget</span>&gt;</span>src/main/webapp/WEB-INF/web.xml<span class="tag">&lt;/<span class="name">scanTarget</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">scanTargets</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 properties 节点添加 jetty-plugin.version 节点设置版本：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">jetty-plugin.version</span>&gt;</span>9.4.11.v20180605<span class="tag">&lt;/<span class="name">jetty-plugin.version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以使用<code>mvn jetty:run</code>运行jetty插件，默认端口为8080。</p>
+<h2 id="2、创建index-jsp"><a href="#2、创建index-jsp" class="headerlink" title="2、创建index.jsp"></a>2、创建index.jsp</h2><p>在src/main/webapp目录创建index.jsp：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span> <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Basic Struts 2 Application - Welcome<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Welcome To Struts 2!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行<code>mvn jetty:run</code>，打开浏览器，访问 <a href="http://localhost:8080/helloworld/index.jsp" target="_blank" rel="noopener">http://localhost:8080/helloworld/index.jsp</a> 将看到：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Welcome</span> To <span class="keyword">Struts </span><span class="number">2</span>!</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、添加-Struts2"><a href="#3、添加-Struts2" class="headerlink" title="3、添加  Struts2"></a>3、添加  Struts2</h2><p>pom.xml添加：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.struts<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>struts2-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;struts2.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 properties 节点添加 struts2.version 节点设置版本：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">struts2.version</span>&gt;</span>2.5.20<span class="tag">&lt;/<span class="name">struts2.version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4、添加Logging"><a href="#4、添加Logging" class="headerlink" title="4、添加Logging"></a>4、添加Logging</h2><p>在src/main/resources目录添加log4j2.xml：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Appenders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"STDOUT"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d %-5p [%t] %C&#123;2&#125; (%F:%L) - %m%n"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Console</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Appenders</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Loggers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Logger</span> <span class="attr">name</span>=<span class="string">"com.opensymphony.xwork2"</span> <span class="attr">level</span>=<span class="string">"debug"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Logger</span> <span class="attr">name</span>=<span class="string">"org.apache.struts2"</span> <span class="attr">level</span>=<span class="string">"debug"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Root</span> <span class="attr">level</span>=<span class="string">"warn"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">"STDOUT"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Root</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Loggers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>pom.xml</strong>添加log4j2依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j2.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j2.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 properties 节点添加 log4j2.version 节点设置版本：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">log4j2.version</span>&gt;</span>2.10.0<span class="tag">&lt;/<span class="name">log4j2.version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>完整的pom如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.javachen<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>helloworld<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>helloworld Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">struts2.version</span>&gt;</span>2.5.20<span class="tag">&lt;/<span class="name">struts2.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">log4j2.version</span>&gt;</span>2.10.0<span class="tag">&lt;/<span class="name">log4j2.version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">jetty-plugin.version</span>&gt;</span>9.4.11.v20180605<span class="tag">&lt;/<span class="name">jetty-plugin.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.struts<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>struts2-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;struts2.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j2.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j2.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>helloworld<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.eclipse.jetty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jetty-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jetty-plugin.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">webApp</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">contextPath</span>&gt;</span>/$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">contextPath</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">webApp</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">stopKey</span>&gt;</span>CTRL+C<span class="tag">&lt;/<span class="name">stopKey</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">stopPort</span>&gt;</span>8999<span class="tag">&lt;/<span class="name">stopPort</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">scanIntervalSeconds</span>&gt;</span>10<span class="tag">&lt;/<span class="name">scanIntervalSeconds</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">scanTargets</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">scanTarget</span>&gt;</span>src/main/webapp/WEB-INF/web.xml<span class="tag">&lt;/<span class="name">scanTarget</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">scanTargets</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里也可以使用 <code>dependencyManagement</code> 来管理 struts2 和 log4j2 的依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">struts2.version</span>&gt;</span>2.5.20<span class="tag">&lt;/<span class="name">struts2.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">log4j2.version</span>&gt;</span>2.10.0<span class="tag">&lt;/<span class="name">log4j2.version</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">jetty-plugin.version</span>&gt;</span>9.4.11.v20180605<span class="tag">&lt;/<span class="name">jetty-plugin.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.struts<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>struts2-bom<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;struts2.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-bom<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j2.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Struts 2 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.struts<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>struts2-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5、添加Struts-2过滤器"><a href="#5、添加Struts-2过滤器" class="headerlink" title="5、添加Struts 2过滤器"></a>5、添加Struts 2过滤器</h2><p>修改 web.xml ：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">id</span>=<span class="string">"WebApp_ID"</span> <span class="attr">version</span>=<span class="string">"2.4"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>6、创建 struts.xml</p>
+<p>src/main/resources 目录下创建 struts.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></span><br><span class="line"><span class="meta">    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"</span></span><br><span class="line"><span class="meta">    "http://struts.apache.org/dtds/struts-2.5.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"helloworld"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span>&gt;</span>/index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>index.action</code> 请求会重定向到 <code>index.jsp</code>。</p>
+<h2 id="7、构建并运行程序"><a href="#7、构建并运行程序" class="headerlink" title="7、构建并运行程序"></a>7、构建并运行程序</h2><p>运行 <code>mvn jetty:run</code> 访问 <a href="http://localhost:8080/helloworld/index.action" target="_blank" rel="noopener">http://localhost:8080/helloworld/index.action</a> 和 <a href="http://localhost:8080/helloworld/index.jsp" target="_blank" rel="noopener">http://localhost:8080/helloworld/index.jsp</a> 会看到一样的内容。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Welcome</span> To <span class="keyword">Struts </span><span class="number">2</span>!</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、创建-Model-类"><a href="#8、创建-Model-类" class="headerlink" title="8、创建 Model 类"></a>8、创建 Model 类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.apache.struts.helloworld.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageStore</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MessageStore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        message = <span class="string">"Hello Struts User"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9、创建-Action-类"><a href="#9、创建-Action-类" class="headerlink" title="9、创建 Action 类"></a>9、创建 Action 类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.apache.struts.helloworld.action;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.struts.helloworld.model.MessageStore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionSupport;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> MessageStore messageStore;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        messageStore = <span class="keyword">new</span> MessageStore() ;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageStore <span class="title">getMessageStore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> messageStore;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="10、创建视图"><a href="#10、创建视图" class="headerlink" title="10、创建视图"></a>10、创建视图</h2><p>在src/main/resources目录创建 HelloWorld.jsp</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span> <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">prefix</span>=<span class="string">"s"</span> <span class="attr">uri</span>=<span class="string">"/struts-tags"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">s:property</span> <span class="attr">value</span>=<span class="string">"messageStore.message"</span> /&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;s:property&gt;</code> 标签返回的是 <code>HelloWorldAction</code> 类的 <code>getMessageStore()</code>方法的值。<code>.message</code>返回的是 <code>MessageStore</code> 对象的 <code>getMessage</code> 方法的值。</p>
+<h2 id="11、修改-struts-xml"><a href="#11、修改-struts-xml" class="headerlink" title="11、修改 struts.xml"></a>11、修改 struts.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></span><br><span class="line"><span class="meta">      "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"</span></span><br><span class="line"><span class="meta">      "http://struts.apache.org/dtds/struts-2.5.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"helloworld"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">result</span>&gt;</span>/index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"hello"</span> <span class="attr">class</span>=<span class="string">"org.apache.struts.helloworld.action.HelloWorldAction"</span> <span class="attr">method</span>=<span class="string">"execute"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/HelloWorld.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="12、修改-index-jsp"><a href="#12、修改-index-jsp" class="headerlink" title="12、修改 index.jsp"></a>12、修改 index.jsp</h2><p>添加url链接：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span> <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">prefix</span>=<span class="string">"s"</span> <span class="attr">uri</span>=<span class="string">"/struts-tags"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Basic Struts 2 Application - Welcome<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Welcome To Struts 2!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;s:url action='hello'/&gt;"</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="13、再次运行应用"><a href="#13、再次运行应用" class="headerlink" title="13、再次运行应用"></a>13、再次运行应用</h2><p>运行 <code>mvn jetty:run</code> 访问 <a href="http://localhost:8080/helloworld/index.action" target="_blank" rel="noopener">http://localhost:8080/helloworld/index.action</a> ，再点击页面上的链接，跳转到 HelloWorld.jsp。</p>
+<h2 id="14、运行原理"><a href="#14、运行原理" class="headerlink" title="14、运行原理"></a>14、运行原理</h2><p>1、浏览器访问 <code>hello.action</code>，该请求被 <code>web.xml</code> 中的 <code>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</code> 过滤器拦截。</p>
+<p>2、框架找到名称为<code>hello</code>的<code>ActionMapping</code>，对应类为 <code>HelloWorldAction</code>，然后执行该类的 <code>execute</code> 方法。</p>
+<p>3、<code>execute</code> 方法创建 <code>MessageStore</code> 对象，并返回 <code>success</code>，框架找到其对应的视图文件 <code>HelloWorld.jsp</code>。</p>
+<p>4、<code>HelloWorld.jsp</code> 页面运行时，<code>&lt;s:property value=&quot;messageStore.message&quot; /&gt;</code> 调用 <code>HelloWorldAction</code> 的对应的方法。</p>
+<p>5、HTML 页面返回给浏览器。</p>
+<h1 id="Struts2配置文件"><a href="#Struts2配置文件" class="headerlink" title="Struts2配置文件"></a>Struts2配置文件</h1><p>Struts2中需要的配置文件有：<strong>web.xml</strong>、<strong>struts.xml</strong>、<strong>struts-config.xml *<em>以及 *</em>struts.properties</strong>。</p>
+<h2 id="web-xml"><a href="#web-xml" class="headerlink" title="web.xml"></a>web.xml</h2><p>web.xml 配置文件是一种 J2EE 配置文件，决定 servlet 容器的 HTTP 元素需求如何进行处理。</p>
+<p>在该文件中定义一个 Filter 来启动Struts2。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">id</span>=<span class="string">"WebApp_ID"</span> <span class="attr">version</span>=<span class="string">"2.4"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们将Struts2 过滤器映射到 /* ，而不是 /*.action，这意味着所有的url都会被Struts过滤器解析。</p>
+<blockquote>
+<p>注意：**自2.1.3版本开始，ActionContextCleanUp和FilterDispatcher都由StrutsPrepareAndExecuteFilter代替。</p>
+</blockquote>
+<h2 id="struts-xml"><a href="#struts-xml" class="headerlink" title="struts.xml"></a>struts.xml</h2><p><strong>struts.xml</strong>文件包含有随着 Action 的开发你将要修改的配置信息。它可用于覆盖应用程序的默认设置，例如：<code>struts.devMode=false</code> 以及其他定义为属性文件的设置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></span><br><span class="line"><span class="meta">      "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"</span></span><br><span class="line"><span class="meta">      "http://struts.apache.org/dtds/struts-2.5.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"helloworld"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">result</span>&gt;</span>/index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"hello"</span> <span class="attr">class</span>=<span class="string">"org.apache.struts.helloworld.action.HelloWorldAction"</span> </span></span><br><span class="line"><span class="tag">      <span class="attr">method</span>=<span class="string">"execute"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/HelloWorld.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>所有的 Struts 配置文件都需要有正确的<code>doctype</code>。</p>
+<p>1、<code>&lt;struts&gt;</code> 是根标记元素，在其下，我们使用<code>&lt;package&gt;</code>标签声明不同的包。 这里的<code>&lt;package&gt;</code>标签允许配置的分离和模块化。这在你进行一个大的项目并且项目分为多个不同的模块时，是非常有用的。</p>
+<p>2、<strong><code>&lt;constant&gt;</code></strong>标签以及 name 和 value 属性将用于覆盖 <strong><code>default.properties</code></strong> 中定义的任一属性。</p>
+<p>3、 <code>&lt;package&gt;</code>标签具有以下属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="left">必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td align="left">是</td>
+<td>为 packag 的唯一标识，必须的。</td>
+</tr>
+<tr>
+<td>extends</td>
+<td align="left">否</td>
+<td>指定 package 继承另一 package 的所有配置。通常情况下，我们使用<code>struts-default</code> 作为package 的基础。</td>
+</tr>
+<tr>
+<td>abstract</td>
+<td align="left">否</td>
+<td>定义 package 为抽象的。如果标记为 true，则 package 不能被最终用户使用。</td>
+</tr>
+<tr>
+<td>namespace</td>
+<td align="left">否</td>
+<td>Action 的唯一命名空间。</td>
+</tr>
+<tr>
+<td>strict-method-invocation</td>
+<td align="left">否</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>4、<strong><code>&lt;action&gt;</code></strong> 标签对应于我们想要访问的每个 URL，并且使用 <code>execute()</code> 方法定义一个访问相应的 URL 时将要访问的类的方法。</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">name</td>
+<td align="left">是</td>
+<td>为 packag 的唯一标识，必须的。</td>
+</tr>
+<tr>
+<td align="left">extends</td>
+<td align="left">否</td>
+<td>Action完整类名。</td>
+</tr>
+<tr>
+<td align="left">abstract</td>
+<td align="left">否</td>
+<td>定义 package 为抽象的。如果标记为 true，则 package 不能被最终用户使用。</td>
+</tr>
+<tr>
+<td align="left">namespace</td>
+<td align="left">否</td>
+<td>Action类的类型转换器的完整类名。</td>
+</tr>
+</tbody></table>
+<p>说明：</p>
+<ul>
+<li>action的name属性一般不允许出现<code>.</code>或者<code>/</code>或者<code>-</code>的，但是下划线<code>_</code>是可以的。</li>
+<li>如果 class 没有配置，那么框架会调用ActionSupport类中execute方法，该方法的实现仅仅是返回一个SUCCESS，相当于是完成转发功能。</li>
+</ul>
+<p>5、<code>&lt;Result&gt;</code>  确定在执行操作后返回到浏览器的内容，而从操作返回的字符串应该是结果的名称。 </p>
+<p><strong>struts.xml</strong> 支持模块化开发，可以 引入多个xml文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></span><br><span class="line"><span class="meta">    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"</span></span><br><span class="line"><span class="meta">    "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"my-struts1.xml"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"my-struts2.xml"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="struts-config-xml"><a href="#struts-config-xml" class="headerlink" title="struts-config.xml"></a>struts-config.xml</h2><h2 id="struts-properties"><a href="#struts-properties" class="headerlink" title="struts.properties"></a>struts.properties</h2><p><strong>struts.properties</strong>配置文件中包含的所有属性也可以在<strong>web.xml</strong>中配置使用<strong>init-param</strong>，以及在<strong>struts.xml</strong>配置文件中使用<strong>constant</strong>标签。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">### When set to true, Struts will act much more friendly for developers</span><br><span class="line">struts.devMode = true</span><br><span class="line"></span><br><span class="line">### Enables reloading of internationalization files</span><br><span class="line">struts.i18n.reload = true</span><br><span class="line"></span><br><span class="line">### Enables reloading of XML configuration files</span><br><span class="line">struts.configuration.xml.reload = true</span><br><span class="line"></span><br><span class="line">### Sets the port that the server is run on</span><br><span class="line">struts.url.http.port = 8080</span><br></pre></td></tr></table></figure>
+
+<h2 id="default-properties"><a href="#default-properties" class="headerlink" title="default.properties"></a><strong>default.properties</strong></h2><p>​默认的配置，包含在struts2-core-x.y.z.ja中。</p>
+<h1 id="Struts2-Action"><a href="#Struts2-Action" class="headerlink" title="Struts2 Action"></a>Struts2 Action</h1><p>​Actions是Struts2框架的核心，因为它们适用于任何MVC框架。每个URL映射到特定的action，其提供处理来自用户的请求所需的处理逻辑。<br>​
+但action还有另外两个重要的功能。 首先，action在将数据从请求传递到视图方面起着重要作用。 第二，action必须协助框架确定哪个结果应该呈现在响应请求的视图中。</p>
+<h2 id="创建Action"><a href="#创建Action" class="headerlink" title="创建Action"></a>创建Action</h2><p>Struts2中 Action 的唯一要求是必须有一个无参数方法返回 String 或 Result 对象，并且必须是 POJO。如果没有指定 no-argument 方法，则默认是使用 execute() 方法。</p>
+<p>你还可以继承ActionSupport类，该类可实现六个接口：Action、Validateable、ValidationAware、TextProvider、LocaleProvider、Serializable。Action的接口如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Action</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SUCCESS = <span class="string">"success"</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NONE = <span class="string">"none"</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String ERROR = <span class="string">"error"</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String INPUT = <span class="string">"input"</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String LOGIN = <span class="string">"login"</span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Action中五种内置属性(com.opensymphony.xwork2.Action)：</p>
+<ul>
+<li>SUCCESS Action正确的执行完成，返回相应的视图，success是name属性的默认值。</li>
+<li>NONE 表示Action正确的执行完成，但并不返回任何事视图。</li>
+<li>ERROR 表示Action执行失效，返回错误处理视图。</li>
+<li>LOGIN Action因为用户没有登录的原因没有正确执行，将返回该登录视图，要求用户进行登录验证</li>
+<li>INPUT Action的执行，需要从前端界面获取参数，INPUT就是代表这个参数输入界面，一般在应用中，会对这些 参数进行验证，如果验证没有通过，将自动返回该视图。</li>
+</ul>
+<h2 id="多个Action方法"><a href="#多个Action方法" class="headerlink" title="多个Action方法"></a>多个Action方法</h2><p>一个Action中可以配置一个方法，也可以配置多个，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javachen.action;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionSupport;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">list</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> SUCCESS;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> SUCCESS;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">delete</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> SUCCESS;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> SUCCESS;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候 struts.xml文件如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">namespace</span>=<span class="string">"/user"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"list"</span> <span class="attr">class</span>=<span class="string">"com.javachen.action.UserAction"</span> <span class="attr">method</span>=<span class="string">"list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span>/list.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"add"</span> <span class="attr">class</span>=<span class="string">"com.javachen.action.UserAction"</span> <span class="attr">method</span>=<span class="string">"add"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span>/add.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"delete"</span> <span class="attr">class</span>=<span class="string">"com.javachen.action.UserAction"</span> <span class="attr">method</span>=<span class="string">"delete"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span>/delete.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"update"</span> <span class="attr">class</span>=<span class="string">"com.javachen.action.UserAction"</span> <span class="attr">method</span>=<span class="string">"update"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span>/update.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>访问方式：<a href="http://localhost:8080/helloworld/user/list.action" target="_blank" rel="noopener">http://localhost:8080/helloworld/user/list.action</a></p>
+<h2 id="动态方法调用"><a href="#动态方法调用" class="headerlink" title="动态方法调用"></a>动态方法调用</h2><p>所谓动态方法调用（Dynamic Method Invocation ，简称DMI）是指在action的名字中使用感叹号<code>!</code>标识需要调用的方法名，调用格式是<code>actionName!actionMethod.action</code>。</p>
+<p>struts.xml文件修改为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.enable.DynamicMethodInvocation"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">namespace</span>=<span class="string">"/user"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"userAction"</span> <span class="attr">class</span>=<span class="string">"com.javachen.action.UserAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/list.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"delete"</span>&gt;</span>/delete.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"add"</span>&gt;</span>/add.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"update"</span>&gt;</span>/update.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​访问方式：<a href="http://localhost:8080/helloworld/UserAction!add.action" target="_blank" rel="noopener">http://localhost:8080/helloworld/UserAction!add.action</a> (!后面的add表示方法,可以换成update)。</p>
+<p>​需要注意的是，尽管DMI给开发带来了诸多遍历，但是存在安全隐患，由于可以通过url直接放完action中任意方法，所以很容易受到恶意攻击。在这种情况下需要使用安全控制机制。</p>
+<p>关于method属性与DMI应该使用哪种方式的问题，可以简要总结如下：如果一个action中的不同方法使用相同的配置（相同的result和拦截器配置），那么可以使用DMI；否则使用method属性在struts.xml文件中进行配置。   </p>
+<h2 id="默认的Action"><a href="#默认的Action" class="headerlink" title="默认的Action"></a>默认的Action</h2><p> 默认的action是在访问一个不存在的action的时候访问的action，配置默认action，只需要在package中添加如下配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">default-action-ref</span> <span class="attr">name</span>=<span class="string">"hello"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"hello"</span> <span class="attr">class</span>=<span class="string">"example.HelloWorld"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span>&gt;</span>/index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​这里的action配置在package下面，需要注意的是：每个package可以有一个默认的action，但是每个namespace应该只有一个默认的action，因为使用多个的话，框架不知道访问默认的action。</p>
+<h2 id="通配符映射"><a href="#通配符映射" class="headerlink" title="通配符映射"></a>通配符映射</h2><p>​使用通配符映射的方式可以大大减少action的数量，所谓通配符就是使用<em>，用于匹配0个或多个字符。在action的配置中，可以为name属性使用</em>来匹配任意的字符。比如下面的配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"edit*"</span> <span class="attr">class</span>=<span class="string">"com.javachen.action.Edit&#123;1&#125;Action"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span>&gt;</span>/&#123;1&#125;.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​{1}会被name属性中的*的内容填充，比如在浏览器中访问/editUser，会映射到action.EditUserAction类，返回到User.jsp页面中。其中的{1}实际上就是作为占位符的，大括号的值可以是0-9，其中{0}代表整个请求URL。比如下面的配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"*_*"</span> <span class="attr">class</span>=<span class="string">"com.javachen.action.&#123;1&#125;Action"</span> <span class="attr">method</span>=<span class="string">"&#123;2&#125;"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span>&gt;</span>/&#123;1&#125;_&#123;2&#125;.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​访问方式：<a href="http://localhost:8080/hellowolrd/User_list.action" target="_blank" rel="noopener">http://localhost:8080/hellowolrd/User_list.action</a></p>
+<p>​当访问User_list的时候，会映射到UserAction类，访问UserAction中的list方法，返回的结果页面是User_list.jsp。</p>
+<h2 id="修改struts后缀"><a href="#修改struts后缀" class="headerlink" title="修改struts后缀"></a>修改struts后缀</h2><p>配置方式（三种）：</p>
+<p>1、在struts.xml中加上</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.action.extension"</span> <span class="attr">value</span>=<span class="string">"action,do,struts2"</span>&gt;</span><span class="tag">&lt;/<span class="name">constan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、在struts.properties中加上</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struts.action.extension=action,do,struts2</span><br></pre></td></tr></table></figure>
+
+<p>3、在web.xml中加上</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--添加内容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>struts.action.extension<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>do,action,strtus2<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Struts2-Result"><a href="#Struts2-Result" class="headerlink" title="Struts2 Result"></a>Struts2 Result</h1><p>1、介绍</p>
+<p>​用于做输出的组件，用于向页面输出一些内容，转发、重定向可以理解为特殊方式的输出。每一个Result实际上是一个类，这些类都实现了共同的接口Result。</p>
+<p>2、Result类型</p>
+<p>Struts2预置了10种类型的Result，定义在strtus-default.xml。</p>
+<table>
+<thead>
+<tr>
+<th>Type 类型值</th>
+<th>作用说明</th>
+<th>对应类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>chain</td>
+<td>用来处理Action 链</td>
+<td>com.opensymphony.xwork2.ActionChainResult</td>
+</tr>
+<tr>
+<td><strong>dispatcher（默认值）</strong></td>
+<td>用来转向页面，通常处理 JSP</td>
+<td>org.apache.struts2.dispatcher.ServletDispatcherResult</td>
+</tr>
+<tr>
+<td>redirect</td>
+<td>重定向到一个URL</td>
+<td>org.apache.struts2.dispatcher.ServletRedirectResult</td>
+</tr>
+<tr>
+<td>redirectAction</td>
+<td>重定向到一个 Action</td>
+<td>org.apache.struts2.dispatcher.ServletActionRedirectResult</td>
+</tr>
+<tr>
+<td>plainText</td>
+<td>显示源文件内容，如文件源码</td>
+<td>org.apache.struts2.dispatcher.PlainTextResult</td>
+</tr>
+<tr>
+<td>freemarker</td>
+<td>处理 FreeMarker 模板</td>
+<td>org.apache.struts2.views.freemarker.FreemarkerResult</td>
+</tr>
+<tr>
+<td>httpheader</td>
+<td>控制特殊 http 行为的结果类型</td>
+<td>org.apache.struts2.dispatcher.HttpHeaderResult</td>
+</tr>
+<tr>
+<td>stream</td>
+<td>向浏览器发送 InputSream 对象，通常用来处理文件下载，还可用于返回 AJAX 数据。</td>
+<td>org.apache.struts2.dispatcher.StreamResult</td>
+</tr>
+<tr>
+<td>velocity</td>
+<td>处理 Velocity 模板</td>
+<td>org.apache.struts2.dispatcher.VelocityResult</td>
+</tr>
+<tr>
+<td>Postback</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>JSON</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>a）<strong>dispatcher</strong>：用于转发的result，可以将请求转发给JSP，这种类型的Result对应的类为ServletDispacherResult，通过default=”true”指定该Result为Struts2默认的Result类型。</p>
+<p>b）<strong>stream</strong>：用于向页面输出二进制数据，此种类型的Result可以将二进制数据输出到请求发起端，对应类为StreamResult。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span> <span class="attr">type</span>=<span class="string">"stream"</span>&gt;</span></span><br><span class="line">　　<span class="comment">&lt;!--codeStream 为定义在Action的输入流InputStream --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"inputName"</span>&gt;</span>codeStream<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>c）<strong>redirect</strong>：用于将请求重定向给一个 URL，对应类为 ServletRedirectResult。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"login"</span> <span class="attr">type</span>=<span class="string">"redirect"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"sucess"</span>&gt;</span></span><br><span class="line">        /sucess.jsp</span><br><span class="line">    <span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>d）<strong>redirectAction</strong>：用于将请求重定向给另外一个 Action，对应类为 ServletActionRedirectResult。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"login"</span> <span class="attr">type</span>=<span class="string">"redirectAction"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--若重定向的Action与当前Action在同一个namespace下，可以省略namespace--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"namespace"</span>&gt;</span></span><br><span class="line">    /命名空间</span><br><span class="line">    <span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"actionName"</span>&gt;</span></span><br><span class="line">    action名</span><br><span class="line">    <span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>e）<strong>json</strong>：用于向页面输出json格式的数据，可以将json字符串输出到请求发起端，对应类为JSONResult。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span> <span class="attr">type</span>=<span class="string">"json"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--输出一个Action属性</span></span><br><span class="line"><span class="comment">    指定属性为基本类型，则直接返回该属性值</span></span><br><span class="line"><span class="comment">    如果指定属性为实体对象，则返回格式&#123;"code":"as1","name":"hk"&#125;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"root"</span>&gt;</span>属性名<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--输出多个Action属性--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"includeProperties"</span>&gt;</span>属性名1,属性名2...<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--输出所有属性，不需要param标签--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong>：json需要导包，修改package继承关系为json-default。</p>
+</blockquote>
+<h1 id="Struts2-拦截器"><a href="#Struts2-拦截器" class="headerlink" title="Struts2 拦截器"></a>Struts2 <strong>拦截器</strong></h1><p>拦截器适合封装一些通用处理，便于重复利用。例如请求参数传递给Action属性，日志的记录，权限检查，事务处理等。拦截器是通过配置方式调用，因此使用方法比较灵活，便于维护和扩展。</p>
+<p>Struts 2框架提供了一个良好的开箱即用的拦截器列表，这些拦截器预先配置好并可以使用。 下面列出了几个重要的拦截器：</p>
+<table>
+<thead>
+<tr>
+<th align="left">拦截器名称</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>alias</strong></td>
+<td align="left">允许参数在请求之间使用不同的别名。</td>
+</tr>
+<tr>
+<td align="left"><strong>checkbox</strong></td>
+<td align="left">通过为未检查的复选框添加参数值false，以辅助管理复选框。</td>
+</tr>
+<tr>
+<td align="left"><strong>conversionError</strong></td>
+<td align="left">将字符串转换为参数类型的错误信息放置到action的错误字段中。</td>
+</tr>
+<tr>
+<td align="left"><strong>createSession</strong></td>
+<td align="left">自动创建HTTP会话（如果尚不存在）。</td>
+</tr>
+<tr>
+<td align="left"><strong>debugging</strong></td>
+<td align="left">为开发人员提供一些不同的调试屏幕。</td>
+</tr>
+<tr>
+<td align="left"><strong>execAndWait</strong></td>
+<td align="left">当action在后台执行时，将用户发送到中间的等待页面。</td>
+</tr>
+<tr>
+<td align="left"><strong>exception</strong></td>
+<td align="left">映射从action到结果抛出的异常，允许通过重定向自动处理异常。</td>
+</tr>
+<tr>
+<td align="left"><strong>fileUpload</strong></td>
+<td align="left">便于文件上传。</td>
+</tr>
+<tr>
+<td align="left"><strong>i18n</strong></td>
+<td align="left">在用户会话期间跟踪选定的区域。</td>
+</tr>
+<tr>
+<td align="left"><strong>logger</strong></td>
+<td align="left">通过输出正在执行的action的名称提供简单的日志记录。</td>
+</tr>
+<tr>
+<td align="left"><strong>params</strong></td>
+<td align="left">设置action上的请求参数。</td>
+</tr>
+<tr>
+<td align="left"><strong>prepare</strong></td>
+<td align="left">这通常用于执行预处理工作，例如设置数据库连接。</td>
+</tr>
+<tr>
+<td align="left"><strong>profile</strong></td>
+<td align="left">允许记录action的简单分析信息。</td>
+</tr>
+<tr>
+<td align="left"><strong>scope</strong></td>
+<td align="left">在会话或应用程序范围内存储和检索action的状态。</td>
+</tr>
+<tr>
+<td align="left"><strong>ServletConfig</strong></td>
+<td align="left">提供可访问各种基于servlet信息的action。</td>
+</tr>
+<tr>
+<td align="left"><strong>timer</strong></td>
+<td align="left">以action执行时间的形式提供简单的分析信息。</td>
+</tr>
+<tr>
+<td align="left"><strong>token</strong></td>
+<td align="left">检查action的有效性，以防止重复提交表单。</td>
+</tr>
+<tr>
+<td align="left"><strong>validation</strong></td>
+<td align="left">提供action的验证支持。</td>
+</tr>
+</tbody></table>
+<h2 id="使用拦截器"><a href="#使用拦截器" class="headerlink" title="使用拦截器"></a>使用拦截器</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></span><br><span class="line"><span class="meta">      "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"</span></span><br><span class="line"><span class="meta">      "http://struts.apache.org/dtds/struts-2.5.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"helloworld"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">result</span>&gt;</span>/index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"hello"</span> <span class="attr">class</span>=<span class="string">"org.apache.struts.helloworld.action.HelloWorldAction"</span> <span class="attr">method</span>=<span class="string">"execute"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"params"</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"timer"</span> /&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/HelloWorld.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建自定义拦截器"><a href="#创建自定义拦截器" class="headerlink" title="创建自定义拦截器"></a>创建自定义拦截器</h2><p>创建自定义拦截器很容易，需要扩展的是以下<strong>Interceptor</strong>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Interceptor</span> <span class="keyword">extends</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function">String <span class="title">intercept</span><span class="params">(ActionInvocation invocation)</span></span></span><br><span class="line"><span class="function">   <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​init()方法提供了一种初始化拦截器的方法，而destroy()方法为拦截器清理提供了一个工具。与action不同，拦截器在请求之间重复使用，需要线程安全，特别是intercept()方法。</p>
+<p>​ActionInvocation对象可访问运行时的环境。它允许访问action本身以及方法来调用action，并确定action是否已被调用。</p>
+<p>​如果你不需要初始化或清理代码，可以扩展AbstractInterceptor类，以实现init()和destroy()的默认的无操作指令。</p>
+<p>创建以下<strong>MyInterceptor.java</strong>文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javachen.interceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionInvocation;</span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.interceptor.AbstractInterceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterceptor</span> <span class="keyword">extends</span> <span class="title">AbstractInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">intercept</span><span class="params">(ActionInvocation invocation)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* let us do some pre-processing */</span></span><br><span class="line">      String output = <span class="string">"Pre-Processing"</span>; </span><br><span class="line">      System.out.println(output);</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* let us call action or next interceptor */</span></span><br><span class="line">      String result = invocation.invoke();</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* let us do some post-processing */</span></span><br><span class="line">      output = <span class="string">"Post-Processing"</span>; </span><br><span class="line">      System.out.println(output);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可以发现，实际中action将通过拦截器使用 invocation.invoke() 调用执行，所以你可以根据你的需求做一些预处理和一些后处理。</p>
+<p>框架本身通过第一次调用ActionInvocation对象的invoke()来启动进程。每次调用 invoke() 时，ActionInvocation都会查询其状态，并执行下一个拦截器。当所有配置的拦截器都被调用时，invoke()将使得action本身被执行。以下图表通过请求流显示了所说的概念：</p>
+<p><img src="https://7n.w3cschool.cn/attachments/tuploads/struts_2/actioninvocation.jpg" alt="ActionInvocation"></p>
+<h2 id="注册拦截器"><a href="#注册拦截器" class="headerlink" title="注册拦截器"></a>注册拦截器</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">package</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">"MyInterceptor"</span> <span class="attr">class</span>=<span class="string">"com.javachen.interceptor.MyInterceptor"</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--其他拦截器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="引用拦截器"><a href="#引用拦截器" class="headerlink" title="引用拦截器"></a>引用拦截器</h2><p>哪个Action希望被拦截器扩展，需要在此action配置下，引用拦截器。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">action</span>&gt;</span></span><br><span class="line">　　 <span class="comment">&lt;!--手动的使用一次系统默认的拦截器--&gt;</span></span><br><span class="line">　　 <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"defaultStack"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"MyInterceptor"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--可以写多个--&gt;</span></span><br><span class="line">　　 <span class="comment">&lt;!--可以使用excludeMethods参数属性，设置不过滤的方法--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="拦截器栈"><a href="#拦截器栈" class="headerlink" title="拦截器栈"></a>拦截器栈</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">interceptor-stack</span> <span class="attr">name</span>=<span class="string">"myStack"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"exception"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"servlet-config"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"prepare"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"checkbox"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"params"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"conversionError"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">interceptor-stack</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上述的拦截器栈按照它们被配置的顺序执行。例如，在上面的例子中，exception将首先执行，第二个将是servlet-config等。</p>
+<h1 id="Struts2面试"><a href="#Struts2面试" class="headerlink" title="Struts2面试"></a>Struts2面试</h1><h2 id="拦截器和过滤器的区别"><a href="#拦截器和过滤器的区别" class="headerlink" title="拦截器和过滤器的区别"></a><strong>拦截器和过滤器的区别</strong></h2><p>1、拦截器是基于java反射机制的，而过滤器是基于函数回调的。<br>2、过滤器依赖于servlet容器，而拦截器不依赖于servlet容器。<br>3、拦截器只能对Action请求起作用，而过滤器则可以对几乎所有请求起作用。<br>4、拦截器可以访问Action上下文、值栈里的对象，而过滤器不能。<br>5、在Action的生命周期中，拦截器可以多次调用，而过滤器只能在容器初始化时被调用一次。</p>
+<h2 id="struts1于struts2的比较"><a href="#struts1于struts2的比较" class="headerlink" title="struts1于struts2的比较"></a><strong>struts1于struts2的比较</strong></h2><p><strong>1、Action   类:</strong> </p>
+<p>​Struts1要求Action类继承一个抽象基类而不是实现接口。</p>
+<p>​Struts2  Action类可以实现一个Action接口，也可实现其他接口，使可选和定制的服务成为可能。Struts2提供一个ActionSupport基类去实现常用的接口。Action接口不是必须的，任何有execute标识的POJO对象都可以用作Struts2的Action对象。</p>
+<p><strong>2、线程模式:</strong><br>Struts1  Action是单例模式并且必须是线程安全的，因为仅有Action的一个实例来处理所有的请求。<br>Struts2  Action对象为每一个请求产生一个实例，因此没有线程安全问题。</p>
+<p><strong>3、Servlet 依赖:</strong><br>Struts1 Action依赖于Servlet  API，因为当一个Action被调用时HttpServletRequest和  HttpServletResponse被传递给execute方法。<br>Struts2 Action不依赖于容器，如果需要，Struts2 Action仍然可以访问初始的request和response。</p>
+<p><strong>4、可测性:</strong><br>测试Struts1 Action的一个主要问题是execute方法暴露了servlet   API，这使得测试要依赖于容器。<br>Struts2 Action可以通过初始化、设置属性、调用方法来测试，依赖注入支持也使测试更容易。</p>
+<p><strong>5、捕获输入:</strong><br>Struts1 使用ActionForm对象捕获输入。所有的ActionForm必须继承一个基类。因为其他JavaBean不能用作ActionForm，开发者经常创建多余的类捕获输入。动态Bean（DynaBeans）可以作为创建传统ActionForm的选择，但是，开发者可能是在重新描述已经存在的JavaBean，仍然会导致有冗余的javabean。<br>Struts2直接使用Action属性作为输入属性，输入属性可能是有自己(子)属性的rich对象类型。Action属性能够通过 web页面上的taglibs访问。Struts2也支持ActionForm模式。rich对象类型，包括业务对象，能够用作输入/输出对象。这种ModelDriven 特性简化了taglib对POJO输入对象的引用。</p>
+<p><strong>6、表达式语言：</strong><br>Struts1 整合了JSTL，因此使用JSTL EL。这种EL有基本对象图遍历，但是对集合和索引属性的支持很弱。<br>Struts2可以使用JSTL，但是也支持一个更强大和灵活的表达式语言”Object   Graph   Notation   Language “   (OGNL)。</p>
+<p><strong>7、绑定值到页面（view）:</strong><br>Struts1使用标准JSP机制把对象绑定到页面中来访问。<br>Struts2 使用”ValueStack “技术，使taglib能够访问值而不需要把你的页面和对象绑定起来。ValueStack策略允许通过一系列名称相同但类型不同的属性重用页面。</p>
+<p><strong>8、类型转换：</strong><br>Struts 1 ActionForm属性通常都是String类型。Struts1使用Commons-Beanutils进行类型转换。每个类一个转换器，对每一个实例来说是不可配置的。<br>  Struts2   使用OGNL进行类型转换。提供基本和常用对象的转换器。</p>
+<p><strong>9、校验：</strong> </p>
+<p>Struts1支持在ActionForm的validate方法中手动校验，或者通过Commons   Validator的扩展来校验。同一个类可以有不同的校验内容，但不能校验子对象。<br>Struts2支持通过validate方法和XWork校验框架来进行校验。XWork校验框架使用为属性类类型定义的校验和内容校验，来支持chain校验子属性</p>
+<p><strong>10、Action执行的控制：</strong> </p>
+<p>Struts1支持每一个模块有单独的Request Processors（生命周期），但是模块中的所有Action必须共享相同的生命周期。<br>Struts2支持通过拦截器堆栈为每一个Action创建不同的生命周期。堆栈能够根据需要和不同的Action一起使用。</p>
+<h2 id="struts2如何访问HttpServletRequest、HttpSession、ServletContext三个域对象？"><a href="#struts2如何访问HttpServletRequest、HttpSession、ServletContext三个域对象？" class="headerlink" title="struts2如何访问HttpServletRequest、HttpSession、ServletContext三个域对象？"></a>struts2如何访问HttpServletRequest、HttpSession、ServletContext三个域对象？</h2><p><strong>方案一：</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HttpServletRequest request =ServletActionContext.getRequest(); </span><br><span class="line">HttpServletResponse response =ServletActionContext.getResponse(); </span><br><span class="line">HttpSession  session=request.getSession();</span><br><span class="line">ServletContext servletContext=ServletActionContext.getServletContext();</span><br></pre></td></tr></table></figure>
+
+<p><strong>方案二：</strong></p>
+<p>​Struts2操作类不提供对Servlet API组件的直接访问，例如Request，Response和Session。但是，有时我们需要在操作类中进行这些访问，例如检查HTTP方法或设置响应中的cookie。</p>
+<p>​这就是为什么Struts2 API提供了一堆Aware接口，我们可以实现这些接口来访问这些对象。Struts2 API使用依赖注入在操作类中注入Servlet API组件。一些重要的Aware接口是SessionAware，ApplicationAware，ServletRequestAware和ServletResponseAware。</p>
+<h2 id="struts2如何对指定的方法进行验证？"><a href="#struts2如何对指定的方法进行验证？" class="headerlink" title="struts2如何对指定的方法进行验证？"></a><strong>struts2如何对指定的方法进行验证？</strong></h2><ul>
+<li>1）<code>validate()</code>方法会校验action中所有与<code>execute方</code>法签名相同的方法； </li>
+<li>2）要校验指定的方法通过重写<code>validateXxx()</code>方法实现， <code>validateXxx()</code>只会校验action中方法名为<code>Xxx</code>的方法。其中<code>Xxx</code>的第一个字母要大写； </li>
+<li>3）当某个数据校验失败时，调用<code>addFieldError()</code>方法往系统的<code>fieldErrors</code>添加校验失败信息（为了<code>使用addFieldError()</code>方法，action可以继承ActionSupport）， 如果系统 的fieldErrors包含失败信息，struts2会将请求转发到名为input的result； </li>
+<li>4）在input视图中可以通过<code>&lt;s:fielderror/&gt;</code>显示失败信息。 </li>
+<li>5）先执行<code>validateXxxx()-&gt;validate()-&gt;</code>如果出错了，会转发<code>&lt;result name=&quot;input&quot;/&gt;</code>所指定的页面，如果不出错，会直接进行<code>Action::execute()</code>方法 </li>
+</ul>
+<h2 id="struts2默认能解决get和post提交方式的乱码问题吗？"><a href="#struts2默认能解决get和post提交方式的乱码问题吗？" class="headerlink" title="struts2默认能解决get和post提交方式的乱码问题吗？"></a><strong>struts2默认能解决get和post提交方式的乱码问题吗？</strong></h2><p>不能。<code>struts.i18n.encoding=UTF-8</code>属性值只能解析POST提交下的乱码问题。 </p>
+<h2 id="拦截器的生命周期与工作过程？"><a href="#拦截器的生命周期与工作过程？" class="headerlink" title="拦截器的生命周期与工作过程？"></a><strong>拦截器的生命周期与工作过程？</strong></h2><ul>
+<li>1、每个拦截器都是实现了Interceptor接口的 Java 类； </li>
+<li>2、init(): 该方法将在拦截器被创建后立即被调用, 它在拦截器的生命周期内只被调用一次. 可以在该方法中对相关资源进行必要的初始化； </li>
+<li>3、intercept(ActionInvocation invocation): 每拦截一个动作请求, 该方法就会被调用一次； </li>
+<li>4、destroy: 该方法将在拦截器被销毁之前被调用, 它在拦截器的生命周期内也只被调用一次； </li>
+<li>5、struts2中有内置了18个拦截器。</li>
+</ul>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li><a href="https://www.w3cschool.cn/struts_2/struts_result_types.html" target="_blank" rel="noopener">Struts2教程</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2019/07/01/struts2/" title="Struts2">Struts2</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/struts2/" rel="tag"><i class="fa fa-tag"></i> struts2</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/29/jsf/" rel="next" title="Java Server Faces">
+                <i class="fa fa-chevron-left"></i> Java Server Faces
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

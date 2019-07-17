@@ -15,10 +15,10 @@ published: true
 
 本文主要记录配置安全的Impala集群集成Sentry的过程。Impala集群上配置了Kerberos认证，并且需要提前配置好Hive与Kerberos和Sentry的集成：
 
-- [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum.html)
-- [Hive配置kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive.html)
-- [Impala配置kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala.html)
-- [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry.html)
+- [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum)
+- [Hive配置kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive)
+- [Impala配置kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala)
+- [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry)
 
 # 1. 环境说明
 
@@ -144,12 +144,12 @@ $ hdfs dfs -chmod 640 /user/hive/sentry/sentry-provider.ini
 
 # 7. 相关文章
 
- - [HDFS配置Kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs.html)
- - [YARN配置Kerberos认证](/2014/11/05/config-kerberos-in-cdh-yarn.html)
- - [Hive配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive.html)
- - [Impala配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala.html)
- - [Zookeeper配置Kerberos认证](/2014/11/18/config-kerberos-in-cdh-zookeeper.html)
- - [Hadoop配置LDAP集成Kerberos](/2014/11/12/config-ldap-with-kerberos-in-cdh-hadoop.html)
- - [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry.html)
- - [配置安全的Impala集群集成Sentry](/2014/11/14/config-secured-impala-with-sentry.html)
- - [Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop.html)
+ - [HDFS配置Kerberos认证](/2014/11/04/config-kerberos-in-cdh-hdfs)
+ - [YARN配置Kerberos认证](/2014/11/05/config-kerberos-in-cdh-yarn)
+ - [Hive配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-hive)
+ - [Impala配置Kerberos认证](/2014/11/06/config-kerberos-in-cdh-impala)
+ - [Zookeeper配置Kerberos认证](/2014/11/18/config-kerberos-in-cdh-zookeeper.)
+ - [Hadoop配置LDAP集成Kerberos](/2014/11/12/config-ldap-with-kerberos-in-cdh-hadoop)
+ - [配置安全的Hive集群集成Sentry](/2014/11/14/config-secured-hive-with-sentry)
+ - [配置安全的Impala集群集成Sentry](/2014/11/14/config-secured-impala-with-sentry)
+ - [Hadoop集群部署权限总结](/2014/11/25/quikstart-for-config-kerberos-ldap-and-sentry-in-hadoop)

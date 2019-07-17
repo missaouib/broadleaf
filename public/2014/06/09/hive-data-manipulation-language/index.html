@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,68 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="Hive中数据的导入和导出">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="记录 hive 的DML语法，并以实际的例子演示如何加载和导出数据">
-<meta name="keywords" content="Hive中数据的导入和导出">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hive中数据的加载和导出">
-<meta property="og:url" content="http://blog.javachen.com/2014/06/09/hive-data-manipulation-language/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="记录 hive 的DML语法，并以实际的例子演示如何加载和导出数据">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hive中数据的加载和导出">
-<meta name="twitter:description" content="记录 hive 的DML语法，并以实际的例子演示如何加载和导出数据">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -167,12 +135,41 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2014/06/09/hive-data-manipulation-language/">
-
+  
 
 
 
+
+  <meta name="description" content="记录 hive 的DML语法，并以实际的例子演示如何加载和导出数据">
+<meta name="keywords" content="Hive中数据的导入和导出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive中数据的加载和导出">
+<meta property="og:url" content="http://javachen.github.io/2014/06/09/hive-data-manipulation-language/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="记录 hive 的DML语法，并以实际的例子演示如何加载和导出数据">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hive中数据的加载和导出">
+<meta name="twitter:description" content="记录 hive 的DML语法，并以实际的例子演示如何加载和导出数据">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2014/06/09/hive-data-manipulation-language/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Hive中数据的加载和导出 | JavaChen Blog</title>
   
@@ -181,7 +178,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -194,9 +192,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -208,7 +234,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -218,13 +244,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -232,76 +261,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -330,12 +397,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -348,16 +423,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2014/06/09/hive-data-manipulation-language/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2014/06/09/hive-data-manipulation-language/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -370,11 +447,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Hive中数据的加载和导出</h2>
+          <h2 class="post-title" itemprop="name headline">Hive中数据的加载和导出<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2014/2014-06-09-hive-data-manipulation-language.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -382,13 +468,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-09T00:00:00+08:00">
-                2014-06-09
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2014-06-09 00:00:00" itemprop="dateCreated datePublished" datetime="2014-06-09T00:00:00+08:00">2014-06-09</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-26 16:41:24" itemprop="dateModified" datetime="2019-03-26T16:41:24+08:00">2019-03-26</time>
+              
             
           </span>
 
@@ -404,11 +507,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index">
-                    <span itemprop="name">hive</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a></span>
 
                 
                 
@@ -417,6 +516,7 @@
           
 
           
+            
             
           
 
@@ -434,6 +534,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -441,7 +542,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -489,30 +590,30 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; load data local inpath '/tmp/test.txt' into table test;                              </span><br><span class="line">Copying data from file:/tmp/test.txt</span><br><span class="line">Copying file: file:/tmp/test.txt</span><br><span class="line">Loading data to table default.test</span><br><span class="line">Table default.test stats: [num_partitions: 0, num_files: 1, num_rows: 0, total_size: 16, raw_data_size: 0]</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.572 seconds</span><br></pre></td></tr></table></figure>
 
 <p>查看hdfs上的数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop fs -ls /user/hive/warehouse/test</span><br><span class="line">Found 1 items</span><br><span class="line">-rwxrwxrwt   3 hive hadoop         16 2014-06-09 18:36 /user/hive/warehouse/test/test.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop fs -ls <span class="regexp">/user/</span>hive<span class="regexp">/warehouse/</span>test</span><br><span class="line">Found <span class="number">1</span> items</span><br><span class="line">-rwxrwxrwt   <span class="number">3</span> hive hadoop         <span class="number">16</span> <span class="number">2014</span>-<span class="number">06</span>-<span class="number">09</span> <span class="number">18</span>:<span class="number">36</span> <span class="regexp">/user/</span>hive<span class="regexp">/warehouse/</span>test<span class="regexp">/test.txt</span></span><br></pre></td></tr></table></figure>
 
 <p>查看表中数据：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from test;</span><br><span class="line">OK</span><br><span class="line">1	a</span><br><span class="line">2	b</span><br><span class="line">3	c</span><br><span class="line">4	d</span><br><span class="line">Time taken: 0.562 seconds, Fetched: 4 row(s)</span><br></pre></td></tr></table></figure>
 
 <p>b) 加载文件到分区表</p>
 <p>通常是直接使用 load 命令加载：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA LOCAL INPATH &quot;/tmp/test.txt&quot; INTO TABLE test_p PARTITION (date=20140722)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LOAD</span> <span class="keyword">DATA</span> <span class="keyword">LOCAL</span> INPATH <span class="string">"/tmp/test.txt"</span> <span class="keyword">INTO</span> <span class="keyword">TABLE</span> test_p <span class="keyword">PARTITION</span> (<span class="built_in">date</span>=<span class="number">20140722</span>)</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>注意：如果没有加上 <code>overwrite</code> 关键字，则加载相同文件最后会存在多个文件</p>
 </blockquote>
 <p>还有一种方法是：创建分区目录，手动上传文件，最后再添加新的分区，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir  /user/hive/warehouse/test/date=20140320</span><br><span class="line">ALTER TABLE test_p ADD IF NOT EXISTS PARTITION (date=20140320);</span><br><span class="line"></span><br><span class="line">hive hadoop fs -rm /user/hive/warehouse/test/date=20140320/test.txt</span><br><span class="line">hadoop fs -put /tmp/test.txt  /user/hive/warehouse/test/date=20140320</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir  /user/hive/warehouse/test/<span class="attribute">date</span>=20140320</span><br><span class="line">ALTER TABLE test_p <span class="builtin-name">ADD</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> EXISTS PARTITION (<span class="attribute">date</span>=20140320);</span><br><span class="line"></span><br><span class="line">hive hadoop fs -rm /user/hive/warehouse/test/<span class="attribute">date</span>=20140320/test.txt</span><br><span class="line">hadoop fs -put /tmp/test.txt  /user/hive/warehouse/test/<span class="attribute">date</span>=20140320</span><br></pre></td></tr></table></figure>
 
 <p>同样，你也可以查看 hdfs 和表中的数据。</p>
 <h3 id="2-1-2-加载hdfs上的文件"><a href="#2-1-2-加载hdfs上的文件" class="headerlink" title="2.1.2 加载hdfs上的文件"></a>2.1.2 加载hdfs上的文件</h3><p>拷贝 test.txt 为test_1.txt 并将其上传到 <code>/user/hive/warehouse</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp test.txt test_1.txt</span><br><span class="line">$ sudo -u hive hadoop fs -put test_1.txt /user/hive/warehouse</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp test<span class="selector-class">.txt</span> test_1.txt</span><br><span class="line">$ sudo -u hive hadoop fs -put test_1<span class="selector-class">.txt</span> /user/hive/warehouse</span><br></pre></td></tr></table></figure>
 
 <p>然后将 <code>/user/hive/warehouse/test_1.txt</code> 导入到test表中：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; load data inpath '/user/hive/warehouse/test_1.txt' into table test; </span><br><span class="line">Loading data to table default.test</span><br><span class="line">Table default.test stats: [num_partitions: 0, num_files: 1, num_rows: 0, total_size: 16, raw_data_size: 0]</span><br><span class="line">OK</span><br><span class="line">Time taken: 2.941 seconds</span><br></pre></td></tr></table></figure>
 
 <p>查看hdfs上的数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop fs -ls /user/hive/warehouse/test</span><br><span class="line">Found 2 items</span><br><span class="line">-rwxr-xr-x   3 hive hadoop         16 2014-06-09 18:48 /user/hive/warehouse/test/test.txt</span><br><span class="line">-rwxr-xr-x   3 hive hadoop         16 2014-06-09 18:45 /user/hive/warehouse/test/test_1.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop fs -ls <span class="meta-keyword">/user/</span>hive<span class="meta-keyword">/warehouse/</span>test</span><br><span class="line">Found <span class="number">2</span> items</span><br><span class="line">-rwxr-xr-x   <span class="number">3</span> hive hadoop         <span class="number">16</span> <span class="number">2014</span><span class="number">-06</span><span class="number">-09</span> <span class="number">18</span>:<span class="number">48</span> <span class="meta-keyword">/user/</span>hive<span class="meta-keyword">/warehouse/</span>test/test.txt</span><br><span class="line">-rwxr-xr-x   <span class="number">3</span> hive hadoop         <span class="number">16</span> <span class="number">2014</span><span class="number">-06</span><span class="number">-09</span> <span class="number">18</span>:<span class="number">45</span> <span class="meta-keyword">/user/</span>hive<span class="meta-keyword">/warehouse/</span>test/test_1.txt</span><br></pre></td></tr></table></figure>
 
 <p>查看表中数据：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from test;                                                 </span><br><span class="line">OK</span><br><span class="line">1	a</span><br><span class="line">2	b</span><br><span class="line">3	c</span><br><span class="line">4	d</span><br><span class="line">1	a</span><br><span class="line">2	b</span><br><span class="line">3	c</span><br><span class="line">4	d</span><br><span class="line">Time taken: 0.302 seconds, Fetched: 8 row(s)</span><br></pre></td></tr></table></figure>
@@ -534,13 +635,13 @@
 </ul>
 <p><strong>Dynamic Partition Inserts</strong></p>
 <p>dynamic partition inserts在hive 0.6.0中引入。相关的配置参数有：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hive.exec.dynamic.partition</span><br><span class="line">hive.exec.dynamic.partition.mode</span><br><span class="line">hive.exec.max.dynamic.partitions.pernode</span><br><span class="line">hive.exec.max.dynamic.partitions</span><br><span class="line">hive.exec.max.created.files</span><br><span class="line">hive.error.on.empty.partition</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.dynamic</span><span class="selector-class">.partition</span></span><br><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.dynamic</span><span class="selector-class">.partition</span><span class="selector-class">.mode</span></span><br><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.max</span><span class="selector-class">.dynamic</span><span class="selector-class">.partitions</span><span class="selector-class">.pernode</span></span><br><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.max</span><span class="selector-class">.dynamic</span><span class="selector-class">.partitions</span></span><br><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.max</span><span class="selector-class">.created</span><span class="selector-class">.files</span></span><br><span class="line">hive<span class="selector-class">.error</span><span class="selector-class">.on</span><span class="selector-class">.empty</span><span class="selector-class">.partition</span></span><br></pre></td></tr></table></figure>
 
 <p>一个示例：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM page_view_stg pvs</span><br><span class="line"><span class="keyword">INSERT</span> OVERWRITE <span class="keyword">TABLE</span> page_view <span class="keyword">PARTITION</span>(dt=<span class="string">'2008-06-08'</span>, country)</span><br><span class="line">       <span class="keyword">SELECT</span> pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, <span class="literal">null</span>, <span class="literal">null</span>, pvs.ip, pvs.cnt</span><br></pre></td></tr></table></figure>
 
 <h1 id="4-导出数据"><a href="#4-导出数据" class="headerlink" title="4. 导出数据"></a>4. 导出数据</h1><p>标准语法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT OVERWRITE [LOCAL] DIRECTORY directory1</span><br><span class="line">  [ROW FORMAT row_format] [STORED AS file_format] (Note: Only available starting with Hive 0.11.0)</span><br><span class="line">  SELECT ... FROM ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> OVERWRITE [<span class="keyword">LOCAL</span>] <span class="keyword">DIRECTORY</span> directory1</span><br><span class="line">  [<span class="keyword">ROW</span> <span class="keyword">FORMAT</span> row_format] [<span class="keyword">STORED</span> <span class="keyword">AS</span> file_format] (Note: <span class="keyword">Only</span> available <span class="keyword">starting</span> <span class="keyword">with</span> Hive <span class="number">0.11</span><span class="number">.0</span>)</span><br><span class="line">  <span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> ...</span><br></pre></td></tr></table></figure>
 
 <p>扩展语法（多个insert）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM from_statement</span><br><span class="line">INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select_statement1</span><br><span class="line">[INSERT OVERWRITE [LOCAL] DIRECTORY directory2 select_statement2] ...</span><br></pre></td></tr></table></figure>
@@ -555,56 +656,93 @@
 <li>输出的数据序列化为 text 格式，分隔符为 <code>^A</code>，行于行之间通过换行符连接。如果存在不是基本类型的列，则这些列将被序列化为 JSON 格式。</li>
 <li>在 Hive 0.11.0 可以输出字段的分隔符，之前版本的默认为 <code>^A</code>。</li>
 </ul>
-<h2 id="4-1-测试"><a href="#4-1-测试" class="headerlink" title="4.1 测试;"></a>4.1 测试;</h2><h3 id="4-1-1-导出到本地文件系统"><a href="#4-1-1-导出到本地文件系统" class="headerlink" title="4.1.1 导出到本地文件系统"></a>4.1.1 导出到本地文件系统</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; insert overwrite local directory &apos;/tmp/test&apos; select * from test;</span><br><span class="line">Total MapReduce jobs = 1</span><br><span class="line">Launching Job 1 out of 1</span><br><span class="line">Number of reduce tasks is set to 0 since there&apos;s no reduce operator</span><br><span class="line">Starting Job = job_1402248601715_0016, Tracking URL = http://cdh1:8088/proxy/application_1402248601715_0016/</span><br><span class="line">Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1402248601715_0016</span><br><span class="line">Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0</span><br><span class="line">2014-06-09 19:25:12,896 Stage-1 map = 0%,  reduce = 0%</span><br><span class="line">2014-06-09 19:25:20,380 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.99 sec</span><br><span class="line">2014-06-09 19:25:21,433 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.99 sec</span><br><span class="line">MapReduce Total cumulative CPU time: 990 msec</span><br><span class="line">Ended Job = job_1402248601715_0016</span><br><span class="line">Copying data to local directory /tmp/test</span><br><span class="line">Copying data to local directory /tmp/test</span><br><span class="line">MapReduce Jobs Launched: </span><br><span class="line">Job 0: Map: 1   Cumulative CPU: 0.99 sec   HDFS Read: 305 HDFS Write: 32 SUCCESS</span><br><span class="line">Total MapReduce CPU Time Spent: 990 msec</span><br><span class="line">OK</span><br><span class="line">Time taken: 18.438 seconds</span><br></pre></td></tr></table></figure>
+<h2 id="4-1-测试"><a href="#4-1-测试" class="headerlink" title="4.1 测试;"></a>4.1 测试;</h2><h3 id="4-1-1-导出到本地文件系统"><a href="#4-1-1-导出到本地文件系统" class="headerlink" title="4.1.1 导出到本地文件系统"></a>4.1.1 导出到本地文件系统</h3><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; insert overwrite local directory '/tmp/test' <span class="keyword">select</span> * from test;</span><br><span class="line">Total MapReduce jobs = <span class="number">1</span></span><br><span class="line">Launching Job <span class="number">1</span> <span class="keyword">out</span> <span class="keyword">of</span> <span class="number">1</span></span><br><span class="line">Number <span class="keyword">of</span> reduce tasks <span class="keyword">is</span> set <span class="keyword">to</span> <span class="number">0</span> since there<span class="symbol">'s</span> no reduce operator</span><br><span class="line">Starting Job = job_1402248601715_0016, Tracking URL = http://cdh1:<span class="number">8088</span>/proxy/application_1402248601715_0016/</span><br><span class="line">Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1402248601715_0016</span><br><span class="line">Hadoop job information <span class="keyword">for</span> Stage-<span class="number">1</span>: number <span class="keyword">of</span> mappers: <span class="number">1</span>; number <span class="keyword">of</span> reducers: <span class="number">0</span></span><br><span class="line"><span class="number">2014</span>-<span class="number">06</span>-<span class="number">09</span> <span class="number">19</span>:<span class="number">25</span>:<span class="number">12</span>,<span class="number">896</span> Stage-<span class="number">1</span> <span class="keyword">map</span> = <span class="number">0</span>%,  reduce = <span class="number">0</span>%</span><br><span class="line"><span class="number">2014</span>-<span class="number">06</span>-<span class="number">09</span> <span class="number">19</span>:<span class="number">25</span>:<span class="number">20</span>,<span class="number">380</span> Stage-<span class="number">1</span> <span class="keyword">map</span> = <span class="number">100</span>%,  reduce = <span class="number">0</span>%, Cumulative CPU <span class="number">0.99</span> sec</span><br><span class="line"><span class="number">2014</span>-<span class="number">06</span>-<span class="number">09</span> <span class="number">19</span>:<span class="number">25</span>:<span class="number">21</span>,<span class="number">433</span> Stage-<span class="number">1</span> <span class="keyword">map</span> = <span class="number">100</span>%,  reduce = <span class="number">0</span>%, Cumulative CPU <span class="number">0.99</span> sec</span><br><span class="line">MapReduce Total cumulative CPU <span class="built_in">time</span>: <span class="number">990</span> msec</span><br><span class="line">Ended Job = job_1402248601715_0016</span><br><span class="line">Copying data <span class="keyword">to</span> local directory /tmp/test</span><br><span class="line">Copying data <span class="keyword">to</span> local directory /tmp/test</span><br><span class="line">MapReduce Jobs Launched: </span><br><span class="line">Job <span class="number">0</span>: <span class="keyword">Map</span>: <span class="number">1</span>   Cumulative CPU: <span class="number">0.99</span> sec   HDFS Read: <span class="number">305</span> HDFS Write: <span class="number">32</span> SUCCESS</span><br><span class="line">Total MapReduce CPU <span class="built_in">Time</span> Spent: <span class="number">990</span> msec</span><br><span class="line">OK</span><br><span class="line"><span class="built_in">Time</span> taken: <span class="number">18.438</span> seconds</span><br></pre></td></tr></table></figure>
 
 <p>导出后的数据预览如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[/tmp]# vim test/000000_0 </span><br><span class="line">1^Aa</span><br><span class="line">2^Ab</span><br><span class="line">3^Ac</span><br><span class="line">4^Ad</span><br><span class="line">1^Aa</span><br><span class="line">2^Ab</span><br><span class="line">3^Ac</span><br><span class="line">4^Ad</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[/tmp]# vim test/<span class="number">000000</span>_0 </span><br><span class="line"><span class="number">1</span>^Aa</span><br><span class="line"><span class="number">2</span>^Ab</span><br><span class="line"><span class="number">3</span>^Ac</span><br><span class="line"><span class="number">4</span>^Ad</span><br><span class="line"><span class="number">1</span>^Aa</span><br><span class="line"><span class="number">2</span>^Ab</span><br><span class="line"><span class="number">3</span>^Ac</span><br><span class="line"><span class="number">4</span>^Ad</span><br></pre></td></tr></table></figure>
 
 <p>可以看到数据中的列与列之间的分隔符是<code>^A</code>(ascii码是<code>\00001</code>)，如果想修改分隔符，可以做如下修改：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; insert overwrite local directory '/tmp/test' row format delimited fields terminated by ',' select * from test;</span><br></pre></td></tr></table></figure>
 
 <p>再来查看数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vim test/000000_3 </span><br><span class="line">1,a</span><br><span class="line">2,b</span><br><span class="line">3,c</span><br><span class="line">4,d</span><br><span class="line">1,a</span><br><span class="line">2,b</span><br><span class="line">3,c</span><br><span class="line">4,d</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vim test/<span class="number">000000</span>_3 </span><br><span class="line"><span class="number">1</span>,a</span><br><span class="line"><span class="number">2</span>,b</span><br><span class="line"><span class="number">3</span>,c</span><br><span class="line"><span class="number">4</span>,d</span><br><span class="line"><span class="number">1</span>,a</span><br><span class="line"><span class="number">2</span>,b</span><br><span class="line"><span class="number">3</span>,c</span><br><span class="line"><span class="number">4</span>,d</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-1-2-导出到-HDFS-中"><a href="#4-1-2-导出到-HDFS-中" class="headerlink" title="4.1.2 导出到 HDFS 中"></a>4.1.2 导出到 HDFS 中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; insert overwrite  directory &apos;/user/hive/tmp&apos; select * from test;</span><br></pre></td></tr></table></figure>
+<h3 id="4-1-2-导出到-HDFS-中"><a href="#4-1-2-导出到-HDFS-中" class="headerlink" title="4.1.2 导出到 HDFS 中"></a>4.1.2 导出到 HDFS 中</h3><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="keyword">insert</span> overwrite  directory <span class="string">'/user/hive/tmp'</span> <span class="keyword">select</span> * <span class="keyword">from</span> test;</span><br></pre></td></tr></table></figure>
 
 <p>注意：</p>
 <p>和导出文件到本地文件系统的HQL少一个local，数据的存放路径不一样了。</p>
 <h3 id="4-1-3-导出到Hive的另一个表中"><a href="#4-1-3-导出到Hive的另一个表中" class="headerlink" title="4.1.3 导出到Hive的另一个表中"></a>4.1.3 导出到Hive的另一个表中</h3><p>在实际情况中，表的输出结果可能太多，不适于显示在控制台上，这时候，将Hive的查询输出结果直接存在一个新的表中是非常方便的，我们称这种情况为CTAS（ <code>create table .. as select</code>）如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table test2 as select * from test;</span><br></pre></td></tr></table></figure>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="keyword">create</span> table test2 <span class="keyword">as</span> <span class="keyword">select</span> * <span class="keyword">from</span> test;</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2014/06/09/hive-data-manipulation-language/" title="Hive中数据的加载和导出">Hive中数据的加载和导出</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -613,77 +751,37 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2014/06/09/hive-data-manipulation-language/" title="Hive中数据的加载和导出">http://blog.javachen.com/2014/06/09/hive-data-manipulation-language/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/hive/" rel="tag"># hive</a>
+            <a href="/tags/hive/" rel="tag"><i class="fa fa-tag"></i> hive</a>
           
-            <a href="/tags/mapreduce/" rel="tag"># mapreduce</a>
+            <a href="/tags/mapreduce/" rel="tag"><i class="fa fa-tag"></i> mapreduce</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2014/06/08/using-scrapy-to-cralw-zhihu/" rel="next" title="使用Scrapy爬取知乎网站">
-                <i class="fa fa-chevron-left"></i> 使用Scrapy爬取知乎网站
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/06/09/fetchtask-in-hive/" rel="prev" title="Hive中的FetchTask任务">
-                Hive中的FetchTask任务 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -720,15 +818,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/06/08/using-scrapy-to-cralw-zhihu/" rel="next" title="使用Scrapy爬取知乎网站">
+                <i class="fa fa-chevron-left"></i> 使用Scrapy爬取知乎网站
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/09/fetchtask-in-hive/" rel="prev" title="Hive中的FetchTask任务">
+                Hive中的FetchTask任务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -742,11 +875,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -767,6 +902,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -780,11 +916,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -798,96 +937,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -901,8 +955,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -951,6 +1056,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -984,8 +1091,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1154,9 +1262,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1230,9 +1338,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

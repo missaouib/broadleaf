@@ -182,7 +182,7 @@ name=JavaChen-prod
 ~~~xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
+    <!--<include resource="orgframework/boot/logging/logback/base.xml" />-->
 
     <springProfile name="dev">
         <logger name="com.javachen.example" level="TRACE" />
@@ -191,7 +191,7 @@ name=JavaChen-prod
                 <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
             </encoder>
         </appender>
-    </springProfile>
+    <Profile>
 
     <springProfile name="prod">
         <appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -204,7 +204,7 @@ name=JavaChen-prod
                 <pattern>%date [%thread] %-5level %logger{80} - %msg%n</pattern>
             </layout>
         </appender>
-    </springProfile>
+    <Profile>
 
     <root level="info">
         <appender-ref ref="LOGFILE" />
@@ -259,9 +259,9 @@ name=JavaChen-prod
 
 使用Spring Boot的Profile注解可以实现多场景下的配置切换，方便开发中进行测试和部署生产环境。
 
-本文中相关代码在[github](https://github.com/javachen/spring-examples/tree/master/spring-boot/spring-boot-example)上面。
+本文中相关代码在[github](https://github.com/javachen-examples/tree/master-boot-boot-example)上面。
 
 # 参考文章
 
-- [Spring 3.1 M1: Introducing @Profile](https://spring.io/blog/2011/02/14/spring-3-1-m1-introducing-profile/)
+- [Spring 3.1 M1: Introducing @Profile](https:/.io/blog/2011/02/14-3-1-m1-introducing-profile/)
 - [spring boot profile试用](https://coolex.info/blog/508.html)

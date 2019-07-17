@@ -126,4 +126,4 @@ tasktracker 执行任务大致步骤：
 
 # 8. 参考资料
 
-- [1] [Hadoop MapReduce 工作机制](http://kangfoo.u.qiniudn.com/article/2014/03/hadoop-mapreduce--gong-zuo-ji-zhi/)
+- [1] [Hadoop MapReduce 工作机制](http://kangfoo.u.qiniudn.com/article/images/03/hadoop-mapreduce--gong-zuo-ji-zhi/)

@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,68 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="hive,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="工作中遇到一个一场，是关于hive连接产生笛卡尔集">
-<meta name="keywords" content="hive">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hive连接产生笛卡尔集">
-<meta property="og:url" content="http://blog.javachen.com/2013/10/17/cartesian-product-in-hive-inner-join/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="工作中遇到一个一场，是关于hive连接产生笛卡尔集">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hive连接产生笛卡尔集">
-<meta name="twitter:description" content="工作中遇到一个一场，是关于hive连接产生笛卡尔集">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -167,12 +135,41 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2013/10/17/cartesian-product-in-hive-inner-join/">
-
+  
 
 
 
+
+  <meta name="description" content="工作中遇到一个一场，是关于hive连接产生笛卡尔集">
+<meta name="keywords" content="hive">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive连接产生笛卡尔集">
+<meta property="og:url" content="http://javachen.github.io/2013/10/17/cartesian-product-in-hive-inner-join/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="工作中遇到一个一场，是关于hive连接产生笛卡尔集">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hive连接产生笛卡尔集">
+<meta name="twitter:description" content="工作中遇到一个一场，是关于hive连接产生笛卡尔集">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2013/10/17/cartesian-product-in-hive-inner-join/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Hive连接产生笛卡尔集 | JavaChen Blog</title>
   
@@ -181,7 +178,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -194,9 +192,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -208,7 +234,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -218,13 +244,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -232,76 +261,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -330,12 +397,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -348,16 +423,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/10/17/cartesian-product-in-hive-inner-join/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2013/10/17/cartesian-product-in-hive-inner-join/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -370,11 +447,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Hive连接产生笛卡尔集</h2>
+          <h2 class="post-title" itemprop="name headline">Hive连接产生笛卡尔集<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2013/2013-10-17-cartesian-product-in-hive-inner-join.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -382,13 +468,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-10-17T00:00:00+08:00">
-                2013-10-17
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2013-10-17 00:00:00" itemprop="dateCreated datePublished" datetime="2013-10-17T00:00:00+08:00">2013-10-17</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-26 16:41:24" itemprop="dateModified" datetime="2019-03-26T16:41:24+08:00">2019-03-26</time>
+              
             
           </span>
 
@@ -404,11 +507,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index">
-                    <span itemprop="name">hive</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a></span>
 
                 
                 
@@ -417,6 +516,7 @@
           
 
           
+            
             
           
 
@@ -434,6 +534,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -441,26 +542,26 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
 
       
         <p>在使用hive过程中遇到这样的一个异常：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FAILED: ParseException line 1:18 Failed to recognize predicate &apos;a&apos;. Failed rule: &apos;kwInner&apos; in join type specifier</span><br></pre></td></tr></table></figure>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FAILED: ParseException line <span class="number">1</span>:<span class="number">18</span> Failed <span class="keyword">to</span> recognize predicate <span class="string">'a'</span>. Failed rule: <span class="string">'kwInner'</span> <span class="keyword">in</span> <span class="keyword">join</span> <span class="keyword">type</span> specifier</span><br></pre></td></tr></table></figure>
 
 <p>执行的hql语句如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@javachen.com ~]# hive -e &apos;select a.* from t a, t b where a.id=b.id&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@javachen.com ~]<span class="comment"># hive -e 'select a.* from t a, t b where a.id=b.id'</span></span><br></pre></td></tr></table></figure>
 
 <p>从异常信息中很难看出出错原因，hive.log中也没有打印出详细的异常对战信息。改用jdbc连接hive-server2，可以看到hive-server2中提示如下异常信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">13/10/17 09:57:48 ERROR ql.Driver: FAILED: ParseException line 1:18 Failed to recognize predicate &apos;a&apos;. Failed rule: &apos;kwInner&apos; in join type specifier</span><br><span class="line"></span><br><span class="line">org.apache.hadoop.hive.ql.parse.ParseException: line 1:18 Failed to recognize predicate &apos;a&apos;. Failed rule: &apos;kwInner&apos; in join type specifier</span><br><span class="line"></span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:446)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:441)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:349)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:355)</span><br><span class="line">	at org.apache.hive.service.cli.operation.SQLOperation.prepare(SQLOperation.java:95)</span><br><span class="line">	at org.apache.hive.service.cli.operation.SQLOperation.prepare(SQLOperation.java:76)</span><br><span class="line">	at org.apache.hive.service.cli.operation.SQLOperation.run(SQLOperation.java:114)</span><br><span class="line">	at org.apache.hive.service.cli.session.HiveSessionImpl.executeStatement(HiveSessionImpl.java:194)</span><br><span class="line">	at org.apache.hive.service.cli.CLIService.executeStatement(CLIService.java:155)</span><br><span class="line">	at org.apache.hive.service.cli.thrift.ThriftCLIService.ExecuteStatement(ThriftCLIService.java:191)</span><br><span class="line">	at org.apache.hive.service.cli.thrift.TCLIService$Processor$ExecuteStatement.getResult(TCLIService.java:1193)</span><br><span class="line">	at org.apache.hive.service.cli.thrift.TCLIService$Processor$ExecuteStatement.getResult(TCLIService.java:1)</span><br><span class="line">	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)</span><br><span class="line">	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)</span><br><span class="line">	at org.apache.hive.service.cli.thrift.TSetIpAddressProcessor.process(TSetIpAddressProcessor.java:38)</span><br><span class="line">	at org.apache.thrift.server.TThreadPoolServer$WorkerProcess.run(TThreadPoolServer.java:206)</span><br><span class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)</span><br><span class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)</span><br><span class="line">	at java.lang.Thread.run(Thread.java:662)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">13</span>/<span class="number">10</span>/<span class="number">17</span> <span class="number">09</span>:<span class="number">57</span>:<span class="number">48</span> ERROR ql<span class="selector-class">.Driver</span>: FAILED: ParseException line <span class="number">1</span>:<span class="number">18</span> Failed to recognize predicate <span class="string">'a'</span>. Failed rule: <span class="string">'kwInner'</span> <span class="keyword">in</span> join type specifier</span><br><span class="line"></span><br><span class="line">org<span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hive</span><span class="selector-class">.ql</span><span class="selector-class">.parse</span><span class="selector-class">.ParseException</span>: line <span class="number">1</span>:<span class="number">18</span> Failed to recognize predicate <span class="string">'a'</span>. Failed rule: <span class="string">'kwInner'</span> <span class="keyword">in</span> join type specifier</span><br><span class="line"></span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hive</span><span class="selector-class">.ql</span><span class="selector-class">.parse</span><span class="selector-class">.ParseDriver</span><span class="selector-class">.parse</span>(ParseDriver<span class="selector-class">.java</span>:<span class="number">446</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hive</span><span class="selector-class">.ql</span><span class="selector-class">.Driver</span><span class="selector-class">.compile</span>(Driver<span class="selector-class">.java</span>:<span class="number">441</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hive</span><span class="selector-class">.ql</span><span class="selector-class">.Driver</span><span class="selector-class">.compile</span>(Driver<span class="selector-class">.java</span>:<span class="number">349</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hive</span><span class="selector-class">.ql</span><span class="selector-class">.Driver</span><span class="selector-class">.compileAndRespond</span>(Driver<span class="selector-class">.java</span>:<span class="number">355</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hive</span><span class="selector-class">.service</span><span class="selector-class">.cli</span><span class="selector-class">.operation</span><span class="selector-class">.SQLOperation</span><span class="selector-class">.prepare</span>(SQLOperation<span class="selector-class">.java</span>:<span class="number">95</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hive</span><span class="selector-class">.service</span><span class="selector-class">.cli</span><span class="selector-class">.operation</span><span class="selector-class">.SQLOperation</span><span class="selector-class">.prepare</span>(SQLOperation<span class="selector-class">.java</span>:<span class="number">76</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hive</span><span class="selector-class">.service</span><span class="selector-class">.cli</span><span class="selector-class">.operation</span><span class="selector-class">.SQLOperation</span><span class="selector-class">.run</span>(SQLOperation<span class="selector-class">.java</span>:<span class="number">114</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hive</span><span class="selector-class">.service</span><span class="selector-class">.cli</span><span class="selector-class">.session</span><span class="selector-class">.HiveSessionImpl</span><span class="selector-class">.executeStatement</span>(HiveSessionImpl<span class="selector-class">.java</span>:<span class="number">194</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hive</span><span class="selector-class">.service</span><span class="selector-class">.cli</span><span class="selector-class">.CLIService</span><span class="selector-class">.executeStatement</span>(CLIService<span class="selector-class">.java</span>:<span class="number">155</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hive</span><span class="selector-class">.service</span><span class="selector-class">.cli</span><span class="selector-class">.thrift</span><span class="selector-class">.ThriftCLIService</span><span class="selector-class">.ExecuteStatement</span>(ThriftCLIService<span class="selector-class">.java</span>:<span class="number">191</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hive</span><span class="selector-class">.service</span><span class="selector-class">.cli</span><span class="selector-class">.thrift</span><span class="selector-class">.TCLIService</span><span class="variable">$Processor</span><span class="variable">$ExecuteStatement</span>.getResult(TCLIService<span class="selector-class">.java</span>:<span class="number">1193</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hive</span><span class="selector-class">.service</span><span class="selector-class">.cli</span><span class="selector-class">.thrift</span><span class="selector-class">.TCLIService</span><span class="variable">$Processor</span><span class="variable">$ExecuteStatement</span>.getResult(TCLIService<span class="selector-class">.java</span>:<span class="number">1</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.thrift</span><span class="selector-class">.ProcessFunction</span><span class="selector-class">.process</span>(ProcessFunction<span class="selector-class">.java</span>:<span class="number">39</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.thrift</span><span class="selector-class">.TBaseProcessor</span><span class="selector-class">.process</span>(TBaseProcessor<span class="selector-class">.java</span>:<span class="number">39</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.hive</span><span class="selector-class">.service</span><span class="selector-class">.cli</span><span class="selector-class">.thrift</span><span class="selector-class">.TSetIpAddressProcessor</span><span class="selector-class">.process</span>(TSetIpAddressProcessor<span class="selector-class">.java</span>:<span class="number">38</span>)</span><br><span class="line">	at org<span class="selector-class">.apache</span><span class="selector-class">.thrift</span><span class="selector-class">.server</span><span class="selector-class">.TThreadPoolServer</span><span class="variable">$WorkerProcess</span>.run(TThreadPoolServer<span class="selector-class">.java</span>:<span class="number">206</span>)</span><br><span class="line">	at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="variable">$Worker</span>.runTask(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">886</span>)</span><br><span class="line">	at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="variable">$Worker</span>.run(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">908</span>)</span><br><span class="line">	at java<span class="selector-class">.lang</span><span class="selector-class">.Thread</span><span class="selector-class">.run</span>(Thread<span class="selector-class">.java</span>:<span class="number">662</span>)</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 
 <p>从异常信息可以看到是在编译hql语句进行语法解析时出现了错误，到底为什么会出现<code>Failed rule: &#39;kwInner&#39; in join type specifier</code>这样的异常信息呢？</p>
 <p>在eclipse中查找关键字并没有找到相应代码，在<a href="http://svn.apache.org/repos/asf/hive/tags/release-0.10.0/ql/src/java/org/apache/hadoop/hive/ql/parse/Hive.g" target="_blank" rel="noopener">Hive.g</a> 中查找关键字“kwInner”，可以看到如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">joinToken</span><br><span class="line">@init &#123; msgs.push(&quot;join type specifier&quot;); &#125;</span><br><span class="line">@after &#123; msgs.pop(); &#125;</span><br><span class="line">    :</span><br><span class="line">      KW_JOIN                     -&gt; TOK_JOIN</span><br><span class="line">    | kwInner  KW_JOIN            -&gt; TOK_JOIN</span><br><span class="line">    | KW_CROSS KW_JOIN            -&gt; TOK_CROSSJOIN</span><br><span class="line">    | KW_LEFT  KW_OUTER KW_JOIN   -&gt; TOK_LEFTOUTERJOIN</span><br><span class="line">    | KW_RIGHT KW_OUTER KW_JOIN   -&gt; TOK_RIGHTOUTERJOIN</span><br><span class="line">    | KW_FULL  KW_OUTER KW_JOIN   -&gt; TOK_FULLOUTERJOIN</span><br><span class="line">    | KW_LEFT  KW_SEMI  KW_JOIN   -&gt; TOK_LEFTSEMIJOIN</span><br><span class="line">    ;</span><br></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">joinToken</span><br><span class="line">@init &#123; msgs.push(<span class="string">"join type specifier"</span>); &#125;</span><br><span class="line">@<span class="built_in">after</span> &#123; msgs.pop(); &#125;</span><br><span class="line">    :</span><br><span class="line">      KW_JOIN                     -&gt; TOK_JOIN</span><br><span class="line">    | <span class="type">kwInner</span>  KW_JOIN            -&gt; TOK_JOIN</span><br><span class="line">    | <span class="type">KW_CROSS</span> KW_JOIN            -&gt; TOK_CROSSJOIN</span><br><span class="line">    | <span class="type">KW_LEFT</span>  KW_OUTER KW_JOIN   -&gt; TOK_LEFTOUTERJOIN</span><br><span class="line">    | <span class="type">KW_RIGHT</span> KW_OUTER KW_JOIN   -&gt; TOK_RIGHTOUTERJOIN</span><br><span class="line">    | <span class="type">KW_FULL</span>  KW_OUTER KW_JOIN   -&gt; TOK_FULLOUTERJOIN</span><br><span class="line">    | <span class="type">KW_LEFT</span>  KW_SEMI  KW_JOIN   -&gt; TOK_LEFTSEMIJOIN</span><br><span class="line">    ;</span><br></pre></td></tr></table></figure>
 
 <p>从上面可以看出hive支持的连接包括：</p>
 <ul>
@@ -473,17 +574,17 @@
 <li>left semi join</li>
 </ul>
 <p>kwInner为什么是小写呢，其含义是什么呢？搜索关键字，找到如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kwInner</span><br><span class="line">:</span><br><span class="line">&#123;input.LT(1).getText().equalsIgnoreCase(&quot;inner&quot;)&#125;? Identifier;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kwInner</span><br><span class="line">:</span><br><span class="line">&#123;input.LT(<span class="number">1</span>).getText().equalsIgnoreCase(<span class="string">"inner"</span>)&#125;? Identifier;</span><br></pre></td></tr></table></figure>
 
 <p>上面的大概意思是找到输入左边的内容并判断其值在忽略大小写情况下是否等于inner，大概意思是hql语句中缺少inner关键字吧？修改下hql语句如下，然后执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@javachen.com ~]#  hive -e &apos;select a.* from t a inner join t b where a.id=b.id&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@javachen.com ~]<span class="comment">#  hive -e 'select a.* from t a inner join t b where a.id=b.id'</span></span><br></pre></td></tr></table></figure>
 
 <p>修改后的hql语句能够正常运行，并且变成了内连接。<code>在JION接连查询中没有ON连接key而通过WHERE条件语句会产生笛卡尔集。</code></p>
 <p>Hive本身是不支持笛卡尔集的，不能用<code>select T1.*, T2.* from table1, table2</code>这种语法。但有时候确实需要用到笛卡尔集的时候，可以用下面的语法来实现同样的效果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select T1.*, T2.* from table1 T1 join table2 T2 where 1=1;</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select <span class="built_in">T1</span>.*, <span class="built_in">T2</span>.* from table1 <span class="built_in">T1</span> <span class="keyword">join </span>table2 <span class="built_in">T2</span> where <span class="number">1</span>=<span class="number">1</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
 
 <p>注意在Hive的Strict模式下不能用这种语法，因为这样会产生笛卡尔集，而这种模式禁止产生笛卡尔集。需要先用<code>set hive.mapred.mode=nonstrict;</code>设为非strict模式就可以用了，或者将where改为on连接。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select T1.*, T2.* from table1 T1 join table2 T2 on  T1.id=T2.id;</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select <span class="built_in">T1</span>.*, <span class="built_in">T2</span>.* from table1 <span class="built_in">T1</span> <span class="keyword">join </span>table2 <span class="built_in">T2</span> on  <span class="built_in">T1</span>.id=<span class="built_in">T2</span>.id<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="关于Strict-Mode"><a href="#关于Strict-Mode" class="headerlink" title="关于Strict Mode"></a>关于Strict Mode</h1><p>Hive中的严格模式可以防止用户发出（可以有问题）的查询无意中造成不良的影响。 将<code>hive.mapred.mode</code>设置成strict可以禁止三种类型的查询： </p>
 <p>1）、在一个分区表上，如果没有在WHERE条件中指明具体的分区，那么这是不允许的，换句话说，不允许在分区表上全表扫描。这种限制的原因是分区表通常会持非常大的数据集并且可能数据增长迅速，对这样的一个大表做全表扫描会消耗大量资源，必须要再WHERE过滤条件中具体指明分区才可以执行成功的查询。</p>
@@ -496,35 +597,72 @@
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2013/10/17/cartesian-product-in-hive-inner-join/" title="Hive连接产生笛卡尔集">Hive连接产生笛卡尔集</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -533,75 +671,35 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2013/10/17/cartesian-product-in-hive-inner-join/" title="Hive连接产生笛卡尔集">http://blog.javachen.com/2013/10/17/cartesian-product-in-hive-inner-join/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/hive/" rel="tag"># hive</a>
+            <a href="/tags/hive/" rel="tag"><i class="fa fa-tag"></i> hive</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2013/10/17/run-mapreduce-with-client-user-in-hive-server2/" rel="next" title="HiveServer2中使用jdbc客户端用户运行mapreduce">
-                <i class="fa fa-chevron-left"></i> HiveServer2中使用jdbc客户端用户运行mapreduce
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2013/10/28/compile-hbase-source-code-and-apply-patches/" rel="prev" title="编译CDH HBase源代码并打补丁">
-                编译CDH HBase源代码并打补丁 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -638,15 +736,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/10/17/run-mapreduce-with-client-user-in-hive-server2/" rel="next" title="HiveServer2中使用jdbc客户端用户运行mapreduce">
+                <i class="fa fa-chevron-left"></i> HiveServer2中使用jdbc客户端用户运行mapreduce
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/10/28/compile-hbase-source-code-and-apply-patches/" rel="prev" title="编译CDH HBase源代码并打补丁">
+                编译CDH HBase源代码并打补丁 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -660,11 +793,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -685,6 +820,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -698,11 +834,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -716,96 +855,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -819,8 +873,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -869,6 +974,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -902,8 +1009,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1072,9 +1180,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1148,9 +1256,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

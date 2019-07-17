@@ -27,7 +27,7 @@ $ hadoop fs -text /hdfs_path/compressed_file.gz | hadoop fs -put - /tmp/uncompre
 $ gunzip -c filename.txt.gz | hadoop fs -put - /tmp/filename.txt
 ~~~
 
-使用 awk 处理 csv 文件，参考 [Using awk and friends with Hadoop](http://grepalex.com/2013/01/17/awk-with-hadoop-streaming/):
+使用 awk 处理 csv 文件，参考 [Using awk and friends with Hadoop](http://grepalex.com/images/01/17/awk-with-hadoop-streaming/):
 
 ~~~bash
 $ hadoop fs -cat people.txt | awk -F"," '{ print $1","$2","$3$4$5 }' | hadoop fs -put - people-coalesed.txt

@@ -69,7 +69,7 @@ HiveInputFormat
 
 HiveInputFormat 的子类有：
 
-![HiveInputFormat的子类](http://7xnrdo.com1.z0.glb.clouddn.com/2013/implement-of-hiveinputformat.png)
+![HiveInputFormat的子类](/images/implement-of-hiveinputformat.png)
 
 # HiveInputFormat
 

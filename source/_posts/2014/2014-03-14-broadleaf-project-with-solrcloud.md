@@ -6,7 +6,7 @@ category: search-engine
 tags: [solr, solrcloud, broadleaf] 
 ---
 
-《[BroadLeaf项目搜索功能改进](/2014/03/13/improve-the-search-function-in-broadleaf-project.html)》一文中介绍了 BroadLeaf 项目中如何改进搜索引擎这一块的代码，其中使用的是单节点的 solr 服务器，这篇文章主要介绍 BroadLeaf 项目如何集成 SolrCloud 集群。
+这篇文章主要介绍 BroadLeaf 项目如何集成 SolrCloud 集群。
 
 # 1、SolrCloud环境搭建
 

@@ -13,7 +13,7 @@ published: true
 
 ---
 
-[Spring Boot](http://projects.spring.io/spring-boot) 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 Spring 应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。
+[Spring Boot](http://projects.spring.io-boot) 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 Spring 应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。
 
 本文主要是记录使用 Spring Boot 和 Gradle 创建项目的过程，其中会包括 Spring Boot 的安装及使用方法，希望通过这篇文章能够快速搭建一个项目。
 
@@ -29,7 +29,7 @@ published: true
 
 你可以通过 [Spring Initializr](http://start.spring.io/) 来创建一个空的项目，也可以手动创建，这里我使用的是手动创建 gradle 项目。
 
-参考 [使用Gradle构建项目](/2014/09/15/build-project-with-gradle.html) 创建一个 ng-spring-boot 项目，执行的命令如下：
+参考 [使用Gradle构建项目](/images/build-project-with-gradle.html) 创建一个 ng-spring-boot 项目，执行的命令如下：
 
 ~~~bash
 $ mkdir ng-spring-boot && cd ng-spring-boot
@@ -402,7 +402,7 @@ viewControllerHandlerMapping
 $ ./gradlew build 
 
 $ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \
-       -jar build/libs/spring-boot-examples-1.0.0-SNAPSHOT.jar
+       -jar build/libs-boot-examples-1.0.0-SNAPSHOT.jar
 ~~~
 
 接下来，打开浏览器访问 <http://localhost:8080/items>，你会看到页面输出一个空的数组。然后，你可以使用浏览器的 Restfull 插件来添加、删除、修改数据。
@@ -601,7 +601,7 @@ src/main/resources/static/bower_components
 
 再一次打开浏览器，访问 <http://localhost:8080/> 进行测试。
 
-![](/static/images/2015/checklist-first-run.png)
+![](/images/checklist-first-run.png)
 
 # 11. 前后端分离部署
 
@@ -679,14 +679,14 @@ public class SimpleCORSFilter implements Filter {
 
 本文主要是记录快速使用 Spring Boot 和 Gradle 创建 AngularJS 项目的过程，并介绍了如何将前后端进行分离和解决跨域访问的问题，希望能对你有所帮助。
 
-文中相关的源码在 [ng-spring-boot](https://github.com/javachen/spring-boot-examples/tree/master/ng-spring-boot)，你可以下载该项目，然后编译、运行代码。
+文中相关的源码在 [ng-spring-boot](https://github.com/javachen-boot-examples/tree/master/ng-spring-boot)，你可以下载该项目，然后编译、运行代码。
 
 # 13. 参考文章
 
 - [Rapid prototyping with Spring Boot and AngularJS](http://g00glen00b.be/prototyping-spring-boot-angularjs/)
-- [Building an Application with Spring Boot](http://spring.io/guides/gs/spring-boot/)
-- [Building a RESTful Web Service](http://spring.io/guides/gs/rest-service/)
-- [Enabling Cross Origin Requests for a RESTful Web Service](http://spring.io/guides/gs/rest-service-cors)
+- [Building an Application with Spring Boot](http:/.io/guides/gs-boot/)
+- [Building a RESTful Web Service](http:/.io/guides/gs/rest-service/)
+- [Enabling Cross Origin Requests for a RESTful Web Service](http:/.io/guides/gs/rest-service-cors)
 
 
 

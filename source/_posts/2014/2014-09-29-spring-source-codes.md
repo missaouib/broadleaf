@@ -22,7 +22,7 @@ Spring 是一个开源框架，是为了解决企业应用程序开发复杂性�
 
 从这篇文章开始，我讲开始阅读并介绍 Spring 源码的设计思想，希望能改对 Spring 框架有一个初步的全面的认识，并且学习其架构设计方面的一些理念和方法。
 
-Spring 源码地址：<https://github.com/spring-projects/spring-framework>
+Spring 源码地址：<https://github.com-projects-framework>
 
 # 概述
 
@@ -30,7 +30,7 @@ Spring 源码地址：<https://github.com/spring-projects/spring-framework>
 
 Spring 总共有十几个组件，其中核心组件只有三个：Core、Context 和 Beans。以下是 Spring3的总体架构图。
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/spring/spring3-modules.png)
+![](/images/3-modules.png)
 
 组成 Spring 框架的每个模块（或组件）都可以单独存在，或者与其他一个或多个模块联合实现。每个模块的功能如下：
 
@@ -44,7 +44,7 @@ Spring 总共有十几个组件，其中核心组件只有三个：Core、Contex
 
 从下图（该图来自[SPRING 3.2.X 源代码分析之二: SPRING源码的包结构](http://www.javastar.org/?p=847)）可以看出 Spring 各个模块之间的依赖关系。
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/spring/spring-packages.jpg)
+![](/images/spring-packages.jpg)
 
 从图中可以看出，IOC 的实现包 spring-beans 和 AOP 的实现包 spring-aop 也是整个框架的基础，而 spring-core 是整个框架的核心，基础的功能都在这里。
 
@@ -81,7 +81,7 @@ bean 工厂的概念是 Spring 作为 IOC 容器的基础。IOC 将处理事情�
 
 ## Spring4 的系统架构图
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/spring/spring4-modules.png)
+![](/images/4-modules.png)
 
 Spring 4.0.x对比Spring3.2.x的系统架构变化（以下文字摘抄于[SPRING 3.2.X 源代码分析之三: SPRING源码的整体架构分析](http://www.javastar.org/?p=872)）:
 
@@ -95,7 +95,7 @@ Spring 4.0.x对比Spring3.2.x的系统架构变化（以下文字摘抄于[SPRIN
 
 还有一些：
 
-- 删除过时的包和方法。具体API变动可以参考[变动报告](http://docs.spring.io/spring-framework/docs/3.2.4.RELEASE_to_4.0.0.RELEASE/)，第三方类库至少使用2010/2011年发布的版本，尤其是Hibernate 3.6+, EhCache 2.1+, Quartz 1.8+, Groovy 1.8+, and Joda-Time 2.0+。Hibernate Validator要求使用4.3+，Jackson 2.0+。
+- 删除过时的包和方法。具体API变动可以参考[变动报告](http://docs.spring.io-framework/docs/3.2.4.RELEASE_to_4.0.0.RELEASE/)，第三方类库至少使用2010/2011年发布的版本，尤其是Hibernate 3.6+, EhCache 2.1+, Quartz 1.8+, Groovy 1.8+, and Joda-Time 2.0+。Hibernate Validator要求使用4.3+，Jackson 2.0+。
 - Java 8支持。当然也支持Java6和Java7，但最好在使用Spring框架3.X或4.X时，将JDK升级到Java7，因为有些版本至少需要Java7。
 - Java EE 6和7。使用Spring4.x时Java EE版本至少要6或以上，且需要JPA 2.0和Servlet 3.0 的支持，所以服务器，web容器需要做相应的升级。一个更具前瞻性的注意是，Spring4.0支持J2EE 7的适用级规范，比如JMS 2.0， JTA 1.2， JPA 2.1， Bean Validation 1.1和JSR-236并发工具包，在选择这些jar包时需要注意版本。
 - 使用Groovy DSL定义外部Bean。
@@ -131,7 +131,7 @@ Spring 4.0.x对比Spring3.2.x的系统架构变化（以下文字摘抄于[SPRIN
 - spring-tx
 - spring-web
 
-注意：这里使用的Spring 版本是 3.2.11，下载地址在：<https://github.com/spring-projects/spring-framework/releases>
+注意：这里使用的Spring 版本是 3.2.11，下载地址在：<https://github.com-projects-framework/releases>
 
 # 搭建测试环境
 
@@ -172,7 +172,7 @@ mvn idea:idea
 	<url>http://maven.apache.org</url>
  
 	<properties>
-		<spring.version>3.2.11.RELEASE</spring.version>
+		<spring.version>3.2.11.RELEASE<.version>
 	</properties>
  
 	<dependencies>
@@ -198,10 +198,10 @@ mvn idea:idea
 
 # Spring 的一些教程
 
-- <http://www.mkyong.com/tutorials/spring-tutorials/>
+- <http://www.mkyong.com/tutorials-tutorials/>
 - <http://www.springbyexample.org/examples/index.html>
-- <http://www.dzone.com/tutorials/java/spring/spring-tutorial/spring-tutorial.html>
-- <http://viralpatel.net/blogs/category/spring/>
+- <http://www.dzone.com/tutorials/java-tutorial-tutorial.html>
+- <http://viralpatel.net/blogs/category/>
 
 # 参考文章
 

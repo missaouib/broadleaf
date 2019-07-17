@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,72 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="Java内容模型">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="关于Java内存模型和垃圾回收的过程">
-<meta name="keywords" content="Java内容模型">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Java笔记：Java内存模型">
-<meta property="og:url" content="http://blog.javachen.com/2014/04/09/note-about-jvm-memery-model/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="关于Java内存模型和垃圾回收的过程">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/Java-Memory.png">
-<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/jvm-heap.png">
-<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/jvm-heap.png">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java笔记：Java内存模型">
-<meta name="twitter:description" content="关于Java内存模型和垃圾回收的过程">
-<meta name="twitter:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/Java-Memory.png">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -171,12 +135,45 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2014/04/09/note-about-jvm-memery-model/">
-
+  
 
 
 
+
+  <meta name="description" content="关于Java内存模型和垃圾回收的过程">
+<meta name="keywords" content="Java内容模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java笔记：Java内存模型">
+<meta property="og:url" content="http://javachen.github.io/2014/04/09/note-about-jvm-memery-model/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="关于Java内存模型和垃圾回收的过程">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://javachen.github.io/images/Java-Memory.png">
+<meta property="og:image" content="http://javachen.github.io/images/jvm-heap.png">
+<meta property="og:image" content="http://javachen.github.io/images/jvm-heap.png">
+<meta property="og:updated_time" content="2019-06-29T12:24:11.033Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java笔记：Java内存模型">
+<meta name="twitter:description" content="关于Java内存模型和垃圾回收的过程">
+<meta name="twitter:image" content="http://javachen.github.io/images/Java-Memory.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2014/04/09/note-about-jvm-memery-model/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Java笔记：Java内存模型 | JavaChen Blog</title>
   
@@ -185,7 +182,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -198,9 +196,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -212,7 +238,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -222,13 +248,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -236,76 +265,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -334,12 +401,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -352,16 +427,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2014/04/09/note-about-jvm-memery-model/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2014/04/09/note-about-jvm-memery-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -374,11 +451,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Java笔记：Java内存模型</h2>
+          <h2 class="post-title" itemprop="name headline">Java笔记：Java内存模型<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2014/2014-04-09-note-about-jvm-memery-model.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -386,13 +472,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-09T00:00:00+08:00">
-                2014-04-09
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2014-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2014-04-09T00:00:00+08:00">2014-04-09</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:24:11" itemprop="dateModified" datetime="2019-06-29T20:24:11+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -408,11 +511,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
 
                 
                 
@@ -421,6 +520,7 @@
           
 
           
+            
             
           
 
@@ -438,6 +538,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -445,7 +546,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -485,7 +586,7 @@
 <h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>是指一个操作是按原子的方式执行的。要么该操作不被执行；要么以原子方式执行，即执行过程中不会被其它线程中断。</p>
 <h1 id="2-JVM内存模型"><a href="#2-JVM内存模型" class="headerlink" title="2. JVM内存模型"></a>2. JVM内存模型</h1><p>虽然平时我们用的大多是 Sun JDK 提供的 JVM，但是 JVM 本身是一个 <a href="http://java.sun.com/docs/books/jvms/second_edition/html/VMSpecTOC.doc.html" target="_blank" rel="noopener">规范</a>，所以可以有多种实现，除了 <a href="http://www.oracle.com/technetwork/java/javase/tech/index-jsp-136373.html" target="_blank" rel="noopener">Hotspot</a> 外，还有诸如 Oracle 的 <a href="http://www.oracle.com/technetwork/middleware/jrockit/overview/index.html" target="_blank" rel="noopener">JRockit</a>、IBM 的 <a href="http://en.wikipedia.org/wiki/IBM_J9" target="_blank" rel="noopener">J9</a>也都是非常有名的 JVM。</p>
 <p>Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域，这些区域都有各自的用途，以及创建和销毁的时间。有的区域随着虚拟机进程的启动就存在了， 有的区域则是依赖用户线程。根据《Java虚拟机规范（第二版）》，Java 虚拟机所管理的内存包含如下图的几个区域。</p>
-<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/Java-Memory.png" alt="Java-Memory.png"></p>
+<p><img src="/images/Java-Memory.png" alt="Java-Memory.png"></p>
 <p> 由上图可以看出 JVM 组成如下：</p>
 <ul>
 <li>运行时数据区（内存空间）<ul>
@@ -532,7 +633,7 @@
 </blockquote>
 <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例及数组内容，几乎所有的对象实例都在这里分配内存。堆中有指向类数据的指针，该指针指向了方法区中对应的类型信息，堆中还可能存放了指向方法表的指针。堆是所有线程共享的，所以在进行实例化对象等操作时，需要解决同步问题。此外，堆中的实例数据中还包含了对象锁，并且针对不同的垃圾收集策略，可能存放了引用计数或清扫标记等数据。</p>
 <p>在 Java 中，堆被划分成两个不同的区域：新生代 ( Young )、老年代 ( Old )。新生代 ( Young ) 又被划分为三个区域：Eden、From Survivor、To Survivor。</p>
-<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/jvm-heap.png" alt="jvm-heap.png"></p>
+<p><img src="/images/jvm-heap.png" alt="jvm-heap.png"></p>
 <p>​从图中可以看出： <code>堆大小 = 新生代 + 老年代</code>，其中，堆的大小可以通过参数 <code>-Xms</code>、<code>-Xmx</code> 来指定。本人使用的是 JDK1.6，以下涉及的 JVM 默认值均以该版本为准。</p>
 <ul>
 <li><p>默认的，<code>Young : Old = 1 : m</code> ，该比例值 m 可以通过参数 <code>-XX:NewRatio</code> 来指定，默认值为2，即新生代 ( Young ) = 1/3 的堆空间大小，老年代 ( Old ) = 2/3 的堆空间大小。</p>
@@ -588,7 +689,7 @@
 <h2 id="2-3-直接内存"><a href="#2-3-直接内存" class="headerlink" title="2.3 直接内存"></a>2.3 直接内存</h2><p>直接内存并不是虚拟机运行时数据区的一部分，也不是 Java 虚拟机规范中定义的内存区域。</p>
 <p>JDK1.4 中出现了 NIO，其引入了一种基于通道与缓冲区的 I/O 方式，它可以使用 Native 函数库直接分配堆外内存，然后通过一个存储在 Java 堆中得 DirectoryByteBuffer 对象作为这块内存的引用进行操作。这样可以避免 Java 堆和 Native 堆之间的来回复制数据。</p>
 <p>当机器直接内存去除 JVM 内存之后的内存不能满足直接内存大小要求其，将会抛出 OutOfMemoryError 异常。</p>
-<h1 id="3-垃圾回收过程"><a href="#3-垃圾回收过程" class="headerlink" title="3. 垃圾回收过程"></a>3. 垃圾回收过程</h1><p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/jvm-heap.png" alt="jvm-heap.png"></p>
+<h1 id="3-垃圾回收过程"><a href="#3-垃圾回收过程" class="headerlink" title="3. 垃圾回收过程"></a>3. 垃圾回收过程</h1><p><img src="/images/jvm-heap.png" alt="jvm-heap.png"></p>
 <p>JVM 采用一种<code>分代回收</code> (generational collection) 的策略，用较高的频率对年轻的对象进行扫描和回收，这种叫做 <code>minor collection</code> ，而对老对象的检查回收频率要低很多，称为 <code>major collection</code>。这样就不需要每次 GC 都将内存中所有对象都检查一遍。</p>
 <ul>
 <li><p>新生代被划分为三部分，Eden 区和两个大小严格相同的 Survivor 区，其中 Survivor 区间，<code>某一时刻只有其中一个是被使用的，另外一个留做垃圾收集时复制对象用</code>，在 Young 区间变满的时候，minor GC 就会将存活的对象移到空闲的 Survivor 区间中，根据 JVM 的策略，<code>在经过几次垃圾收集后，仍然存活于 Survivor 的对象将被移动到老年代</code>。</p>
@@ -742,22 +843,22 @@
 <h2 id="6-1-吞吐量优先"><a href="#6-1-吞吐量优先" class="headerlink" title="6.1 吞吐量优先"></a>6.1 吞吐量优先</h2><p>吞吐量是指 GC 的时间与运行总时间的比值，比如系统运行了100 分钟，而 GC 占用了一分钟，那么吞吐量就是 99%，吞吐量优先一般运用于对响应性要求不高的场合，比如 web 应用，因为网络传输本来就有延迟的问题，GC 造成的短暂的暂停使得用户以为是网络阻塞所致。</p>
 <p>吞吐量优先可以通过 <code>-XX:GCTimeRatio</code> 来指定。当通过 <code>-XX:GCTimeRatio</code> 不能满足系统的要求以后，我们可以更加细致的来对 JVM 进行调优。</p>
 <p>首先因为要求高吞吐量，这样就需要一个较大的 Young generation，此时就需要引入 <code>Parallel scavenging Collector</code> ，可以通过参数：<code>-XX:UseParallelGC</code>来配置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms3072m -Xmx3072m -XX:NewSize=2560m -XX:MaxNewSize=2560 -XX:SurvivorRatio=2 -XX:+UseParallelGC</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms3072m -Xmx3072m -XX:<span class="attribute">NewSize</span>=2560m -XX:<span class="attribute">MaxNewSize</span>=2560 -XX:<span class="attribute">SurvivorRatio</span>=2 -XX:+UseParallelGC</span><br></pre></td></tr></table></figure>
 
 <p>当年轻代使用了 <code>Parallel scavenge collector</code> 后，老生代就不能使用 <code>CMS GC</code> 了，在 JDK1.6 之前，此时老生代只能采用串行收集，而 JDK1.6 引入了并行版本的老生代收集器，可以用参数 <code>-XX:UseParallelOldGC</code> 来配置。</p>
 <p>1.控制并行的线程数 </p>
 <p>缺省情况下，<code>Parallel scavenging Collector</code> 会开启与 cpu 数量相同的线程进行并行的收集，但是也可以调节并行的线程数。假如你想用4个并行的线程去收集 Young generation 的话，那么就可以配置 <code>-XX:ParallelGCThreads=4</code>，此时JVM的配置参数如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms3072m -Xmx3072m -XX:NewSize=2560m -XX:MaxNewSize=2560 -XX:SurvivorRatio=2 -XX:+UseParallelGC -XX:ParallelGCThreads=4</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms3072m -Xmx3072m -XX:<span class="attribute">NewSize</span>=2560m -XX:<span class="attribute">MaxNewSize</span>=2560 -XX:<span class="attribute">SurvivorRatio</span>=2 -XX:+UseParallelGC -XX:<span class="attribute">ParallelGCThreads</span>=4</span><br></pre></td></tr></table></figure>
 
 <p>2.自动调节新生代 </p>
 <p>在采用了 <code>Parallel scavenge collector</code> 后，此 GC 会根据运行时的情况自动调节 survivor ratio 来使得性能最优，因此 <code>Parallel scavenge collector</code> 应该总是开启 <code>-XX:+UseAdaptiveSizePolicy</code> 参数。此时JVM的参数配置如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms3072m -Xmx3072m -XX:+UseParallelGC -XX:ParallelGCThreads=4 -XX:+UseAdaptiveSizePolicy</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms3072m -Xmx3072m -<span class="string">XX:</span>+UseParallelGC -<span class="string">XX:</span>ParallelGCThreads=<span class="number">4</span> -<span class="string">XX:</span>+UseAdaptiveSizePolicy</span><br></pre></td></tr></table></figure>
 
 <h2 id="6-2-响应时间优先"><a href="#6-2-响应时间优先" class="headerlink" title="6.2 响应时间优先"></a>6.2 响应时间优先</h2><p>响应时间优先是指 GC 每次运行的时间不能太久，这种情况一般使用与对及时性要求很高的系统，比如股票系统等。</p>
 <p>响应时间优先可以通过参数 <code>-XX:MaxGCPauseMillis</code>来配置，配置以后 JVM 将会自动调节年轻代，老生代的内存分配来满足参数设置。</p>
 <p>在一般情况下，JVM 的默认配置就可以满足要求，只有默认配置不能满足系统的要求时候，才会根据具体的情况来对 JVM 进行性能调优。如果采用默认的配置不能满足系统的要求，那么此时就可以自己动手来调节。此时 Young generation 可以采用 <code>Parallel copying collector</code>，而 Old generation 则可以采用 <code>Concurrent Collector</code>。</p>
 <p>举个例子来说，以下参数设置了新生代用 Parallel Copying Collector，老生代采用 CMS 收集器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms512m -Xmx512m -XX:NewSize=64m -XX:MaxNewSize=64m -XX:SurvivorRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms512m -Xmx512m -XX:<span class="attribute">NewSize</span>=64m -XX:<span class="attribute">MaxNewSize</span>=64m -XX:<span class="attribute">SurvivorRatio</span>=2 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC</span><br></pre></td></tr></table></figure>
 
 <p>此时需要注意两个问题：</p>
 <ul>
@@ -766,15 +867,15 @@
 </ul>
 <p>1.控制并行的线程数</p>
 <p>默认情况下，Parallel copy collector 启动和 CPU 数量一样的线程，也可以通过参数 <code>-XX:ParallelGCThreads</code> 来指定，比如你想用 4 个线程去进行并发的复制收集，那么可以改变上述参数如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms512m -Xmx512m -XX:NewSize=64m -XX:MaxNewSize=64m -XX:SurvivorRatio=2 -XX:ParallelGCThreads=4 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms512m -Xmx512m -XX:<span class="attribute">NewSize</span>=64m -XX:<span class="attribute">MaxNewSize</span>=64m -XX:<span class="attribute">SurvivorRatio</span>=2 -XX:<span class="attribute">ParallelGCThreads</span>=4 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC</span><br></pre></td></tr></table></figure>
 
 <p>2.控制并发收集的临界值 </p>
 <p>默认情况下，CMS GC在 old generation 空间占用率高于 68% 的时候，就会进行垃圾收集，而如果想控制收集的临界值，可以通过参数：<code>-XX:CMSInitiatingOccupancyFraction</code> 来控制，比如改变上述的JVM配置如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms512m -Xmx512m -XX:NewSize=64m -XX:MaxNewSize=64m -XX:SurvivorRatio=2 -XX:ParallelGCThreads=4 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:CMSInitiatingOccupancyFraction=35</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -server -Xms512m -Xmx512m -XX:<span class="attribute">NewSize</span>=64m -XX:<span class="attribute">MaxNewSize</span>=64m -XX:<span class="attribute">SurvivorRatio</span>=2 -XX:<span class="attribute">ParallelGCThreads</span>=4 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:<span class="attribute">CMSInitiatingOccupancyFraction</span>=35</span><br></pre></td></tr></table></figure>
 
 <p>此外顺便说一个参数：<code>-XX:+PrintCommandLineFlags</code> 通过此参数可以知道在没有显示指定内存配置和垃圾收集算法的情况下，JVM 采用的默认配置。</p>
 <p>比如我在自己的机器上面通过如下命令 <code>java -XX:+PrintCommandLineFlags -version</code> 得到的结果如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-XX:InitialHeapSize=1055308032 -XX:MaxHeapSize=16884928512 -XX:ParallelGCThreads=8 -XX:+PrintCommandLineFlags -XX:+UseCompressedOops -XX:+UseParallelGC</span><br><span class="line">java version &quot;1.6.0_45&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.6.0_45-b06)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 20.45-b01, mixed mode)</span><br><span class="line">You have new mail in /var/spool/mail/root</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-XX:<span class="attribute">InitialHeapSize</span>=1055308032 -XX:<span class="attribute">MaxHeapSize</span>=16884928512 -XX:<span class="attribute">ParallelGCThreads</span>=8 -XX:+PrintCommandLineFlags -XX:+UseCompressedOops -XX:+UseParallelGC</span><br><span class="line">java version <span class="string">"1.6.0_45"</span></span><br><span class="line">Java(TM) SE Runtime Environment (build 1.6.0_45-b06)</span><br><span class="line">Java HotSpot(TM) 64-Bit<span class="built_in"> Server </span>VM (build 20.45-b01, mixed mode)</span><br><span class="line">You have new mail <span class="keyword">in</span> /var/spool/mail/root</span><br></pre></td></tr></table></figure>
 
 <p>从输出可以清楚的看到JVM通过自己检测硬件配置而给出的缺省配置。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
@@ -788,35 +889,72 @@
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2014/04/09/note-about-jvm-memery-model/" title="Java笔记：Java内存模型">Java笔记：Java内存模型</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -825,77 +963,37 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2014/04/09/note-about-jvm-memery-model/" title="Java笔记：Java内存模型">http://blog.javachen.com/2014/04/09/note-about-jvm-memery-model/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
           
-            <a href="/tags/jvm/" rel="tag"># jvm</a>
+            <a href="/tags/jvm/" rel="tag"><i class="fa fa-tag"></i> jvm</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2014/04/08/a-benchmark-tool-on-postgresql/" rel="next" title="PostgreSQL测试工具PGbench">
-                <i class="fa fa-chevron-left"></i> PostgreSQL测试工具PGbench
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/04/09/install-jira5-on-rhel-system/" rel="prev" title="RHEL系统下安装atlassian-jira-5">
-                RHEL系统下安装atlassian-jira-5 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -932,15 +1030,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/04/08/a-benchmark-tool-on-postgresql/" rel="next" title="PostgreSQL测试工具PGbench">
+                <i class="fa fa-chevron-left"></i> PostgreSQL测试工具PGbench
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/04/09/install-jira5-on-rhel-system/" rel="prev" title="RHEL系统下安装atlassian-jira-5">
+                RHEL系统下安装atlassian-jira-5 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -954,11 +1087,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -979,6 +1114,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -992,11 +1128,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1010,96 +1149,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -1113,8 +1167,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -1163,6 +1268,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1196,8 +1303,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1366,9 +1474,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1442,9 +1550,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

@@ -7,7 +7,7 @@ tags: [hbase, cdh]
 keywords: hbase, cdh, cloudera manager
 ---
 
-本文主要记录手动安装Cloudera HBase集群过程，环境设置及Hadoop安装过程见[手动安装Cloudera Hadoop CDH](/2013/03/24/manual-install-Cloudera-Hadoop-CDH.html),参考这篇文章，hadoop各个组件和jdk版本如下：
+本文主要记录手动安装Cloudera HBase集群过程，环境设置及Hadoop安装过程见[手动安装Cloudera Hadoop CDH](/images/03/24/manual-install-Cloudera-Hadoop-CDH.html),参考这篇文章，hadoop各个组件和jdk版本如下：
 
 ~~~
 	hadoop-2.0.0-cdh4.6.0
@@ -72,7 +72,7 @@ regionservers内容修改如下：
 
 # 环境变量
 
-参考[手动安装Cloudera Hadoop CDH](/hadoop/2013/03/24/manual-install-Cloudera-Hadoop-CDH.html)中环境变量的设置。
+参考[手动安装Cloudera Hadoop CDH](/hadoop/images/03/24/manual-install-Cloudera-Hadoop-CDH.html)中环境变量的设置。
 
 # 启动脚本
 
@@ -84,6 +84,6 @@ regionservers内容修改如下：
 
 # 相关文章
 
-- [手动安装Hadoop集群](/2013/03/24/manual-install-Cloudera-hadoop-CDH.html)
-- [手动安装HBase集群](/2013/03/24/manual-install-Cloudera-hbase-CDH.html)
-- [手动安装Hive群](/2013/03/24/manual-install-Cloudera-hive-CDH.html)
+- [手动安装Hadoop集群](/2019/03/24/manual-install-Cloudera-hadoop-CDH.html)
+- [手动安装HBase集群](/2019/03/24/manual-install-Cloudera-hbase-CDH.html)
+- [手动安装Hive群](/2019/03/24/manual-install-Cloudera-hive-CDH.html)

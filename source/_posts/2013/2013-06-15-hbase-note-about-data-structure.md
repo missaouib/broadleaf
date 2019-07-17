@@ -19,7 +19,7 @@ published: true
 
 以下是网络上流传的HBase存储架构图:
 
-![hbase-structure](http://7xnrdo.com1.z0.glb.clouddn.com/2013/hbase-structure.jpg)
+![hbase-structure](/images/hbase-structure.jpg)
 
 HBase中的每张表都通过行键按照一定的范围被分割成多个子表（HRegion），默认一个HRegion超过256M就要被分割成两个，这个过程由HRegionServer管理，而HRegion的分配由HMaster管理。
 
@@ -89,11 +89,11 @@ HBase中KeyValue数据的存储格式，是hadoop的二进制格式文件。
 
 Data Block是hbase io的基本单元，为了提高效率，HRegionServer中又基于LRU的block cache机制。每个Data块的大小可以在创建一个Table的时候通过参数指定（默认块大小64KB），大号的Block有利于顺序Scan，小号的Block利于随机查询。每个Data块除了开头的Magic以外就是一个个KeyValue对拼接而成，Magic内容就是一些随机数字，目的是烦着数据损坏，结构如下。
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2014/hfile-keyvalue-structure.jpg)
+![](/images/hfile-keyvalue-structure.jpg)
 
 HFile结构图如下：
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2014/hfile-structure.jpg)
+![](/images/hfile-structure.jpg)
 
 Data Block段用来保存表中的数据，这部分可以被压缩。
 
@@ -107,7 +107,7 @@ Trailer这一段是定长的。保存了每一段的偏移量，读取一个HFil
 
 HFile的Data Block，Meta Block通常采用压缩方式存储，压缩之后可以大大减少网络IO和磁盘IO，随之而来的开销当然是需要花费cpu进行压缩和解压缩。目标HFile的压缩支持两种方式：gzip、lzo。
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2014/hfile-data-storeage.jpg)
+![](/images/hfile-data-storeage.jpg)
 
 另外，针对目前针对现有HFile的两个主要缺陷：
 
@@ -124,11 +124,11 @@ Sequence File的value是key时HLogKey对象，其中记录了写入数据的归�
 
 Sequence File的value是HBase的KeyValue对象，即对应HFile中的KeyValue。
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2014/hlog-structure.jpg)
+![](/images/hlog-structure.jpg)
 
 HLog(WAL log)：WAL意为write ahead log，用来做灾难恢复使用，HLog记录数据的所有变更，一旦region server 宕机，就可以从log中进行恢复。
 
-![](http://7xnrdo.com1.z0.glb.clouddn.com/2013/hbase-write-hlog-process.jpg)
+![](/images/hbase-write-hlog-process.jpg)
 
 LogFlusher
 

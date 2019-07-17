@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,72 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="solr,solrcloud,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="本文基于Solr最新的4.4.0版本进行安装配置SolrCloud集群。SolrCloud通过ZooKeeper集群来进行协调，使一个索引进行分片，各个分片可以分布在不同的物理节点上，多个物理分片组成一个完成的索引Collection。SolrCloud自动支持Solr Replication，可以同时对分片进行复制，冗余存储。">
-<meta name="keywords" content="solr,solrcloud">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Apache SolrCloud安装">
-<meta property="og:url" content="http://blog.javachen.com/2014/03/10/how-to-install-solrcloud/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="本文基于Solr最新的4.4.0版本进行安装配置SolrCloud集群。SolrCloud通过ZooKeeper集群来进行协调，使一个索引进行分片，各个分片可以分布在不同的物理节点上，多个物理分片组成一个完成的索引Collection。SolrCloud自动支持Solr Replication，可以同时对分片进行复制，冗余存储。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/solr-no-solrcores.png">
-<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/solrcloud-collection-shard.png">
-<meta property="og:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/solrcloud-collection-shard-replica.png">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Apache SolrCloud安装">
-<meta name="twitter:description" content="本文基于Solr最新的4.4.0版本进行安装配置SolrCloud集群。SolrCloud通过ZooKeeper集群来进行协调，使一个索引进行分片，各个分片可以分布在不同的物理节点上，多个物理分片组成一个完成的索引Collection。SolrCloud自动支持Solr Replication，可以同时对分片进行复制，冗余存储。">
-<meta name="twitter:image" content="http://7xnrdo.com1.z0.glb.clouddn.com/2014/solr-no-solrcores.png">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -171,12 +135,45 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2014/03/10/how-to-install-solrcloud/">
-
+  
 
 
 
+
+  <meta name="description" content="本文基于Solr最新的4.4.0版本进行安装配置SolrCloud集群。SolrCloud通过ZooKeeper集群来进行协调，使一个索引进行分片，各个分片可以分布在不同的物理节点上，多个物理分片组成一个完成的索引Collection。SolrCloud自动支持Solr Replication，可以同时对分片进行复制，冗余存储。">
+<meta name="keywords" content="solr,solrcloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache SolrCloud安装">
+<meta property="og:url" content="http://javachen.github.io/2014/03/10/how-to-install-solrcloud/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="本文基于Solr最新的4.4.0版本进行安装配置SolrCloud集群。SolrCloud通过ZooKeeper集群来进行协调，使一个索引进行分片，各个分片可以分布在不同的物理节点上，多个物理分片组成一个完成的索引Collection。SolrCloud自动支持Solr Replication，可以同时对分片进行复制，冗余存储。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://javachen.github.io/images/solr-no-solrcores.png">
+<meta property="og:image" content="http://javachen.github.io/images/solrcloud-collection-shard.png">
+<meta property="og:image" content="http://javachen.github.io/images/solrcloud-collection-shard-replica.png">
+<meta property="og:updated_time" content="2019-06-29T12:24:11.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache SolrCloud安装">
+<meta name="twitter:description" content="本文基于Solr最新的4.4.0版本进行安装配置SolrCloud集群。SolrCloud通过ZooKeeper集群来进行协调，使一个索引进行分片，各个分片可以分布在不同的物理节点上，多个物理分片组成一个完成的索引Collection。SolrCloud自动支持Solr Replication，可以同时对分片进行复制，冗余存储。">
+<meta name="twitter:image" content="http://javachen.github.io/images/solr-no-solrcores.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2014/03/10/how-to-install-solrcloud/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Apache SolrCloud安装 | JavaChen Blog</title>
   
@@ -185,7 +182,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -198,9 +196,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -212,7 +238,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -222,13 +248,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -236,76 +265,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -334,12 +401,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -352,16 +427,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2014/03/10/how-to-install-solrcloud/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2014/03/10/how-to-install-solrcloud/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -374,11 +451,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Apache SolrCloud安装</h2>
+          <h2 class="post-title" itemprop="name headline">Apache SolrCloud安装<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2014/2014-03-10-how-to-install-solrcloud.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -386,13 +472,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-10T00:00:00+08:00">
-                2014-03-10
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2014-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2014-03-10T00:00:00+08:00">2014-03-10</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:24:11" itemprop="dateModified" datetime="2019-06-29T20:24:11+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -408,11 +511,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/search-engine/" itemprop="url" rel="index">
-                    <span itemprop="name">search-engine</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/search-engine/" itemprop="url" rel="index"><span itemprop="name">search-engine</span></a></span>
 
                 
                 
@@ -421,6 +520,7 @@
           
 
           
+            
             
           
 
@@ -438,6 +538,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -445,7 +546,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -481,7 +582,7 @@
 <h1 id="3-安装ZooKeeper集群"><a href="#3-安装ZooKeeper集群" class="headerlink" title="3. 安装ZooKeeper集群"></a>3. 安装ZooKeeper集群</h1><p>由于需要用到 ZooKeeper，故我们先安装好 ZooKeeper 集群。</p>
 <p>安装 ZooKeeper 集群之前，请确保每台机器上配置 <code>/etc/hosts</code>文件，使每个节点都能通过机器名访问。</p>
 <p>首先，在第一个节点上将 zookeeper-3.4.5.tar.gz 解压到 <code>/opt</code> 目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxvf zookeeper-3.4.5.tar.gz -C /opt/</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxvf zookeeper-<span class="number">3.4</span>.<span class="number">5</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span> -C /opt/</span><br></pre></td></tr></table></figure>
 
 <p>创建 ZooKeeper 配置文件 zookeeper-3.4.5/conf/zoo.cfg，内容如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">initLimit=10</span><br><span class="line">syncLimit=5</span><br><span class="line">dataDir=/data/zookeeper/data</span><br><span class="line">clientPort=2181</span><br><span class="line">server.1=192.168.56.121:2888:3888</span><br><span class="line">server.2=192.168.56.122:2888:3888</span><br><span class="line">server.3=192.168.56.123:2888:3888</span><br></pre></td></tr></table></figure>
@@ -499,7 +600,7 @@
 <p>可以查看 ZooKeeper 集群的状态，保证集群启动没有问题：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@192.168.56.121 opt]<span class="comment"># sh zookeeper-3.4.5/bin/zkServer.sh status</span></span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: /opt/zookeeper-3.4.5/bin/../conf/zoo.cfg</span><br><span class="line">Mode: follower</span><br></pre></td></tr></table></figure>
 
-<h1 id="4-安装Solr"><a href="#4-安装Solr" class="headerlink" title="4. 安装Solr"></a>4. 安装Solr</h1><p>你可以参考<a href="/2014/02/26/how-to-install-solr.html">《Apache Solr介绍及安装》</a></p>
+<h1 id="4-安装Solr"><a href="#4-安装Solr" class="headerlink" title="4. 安装Solr"></a>4. 安装Solr</h1><p>你可以参考<a href="/images/02/26/how-to-install-solr.html">《Apache Solr介绍及安装》</a></p>
 <p>简单来说，执行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ unzip apache-tomcat-6.0.36.zip  -d /opt</span><br><span class="line">$ unzip solr-4.4.0.zip  -d /opt</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> /opt</span><br><span class="line">$ chmod +x apache-tomcat-6.0.36/bin/*.sh</span><br><span class="line"></span><br><span class="line">$ cp solr-4.4.0/example/webapps/solr.war apache-tomcat-6.0.36/webapps/</span><br><span class="line">$ cp solr-4.4.0/example/lib/ext/* apache-tomcat-6.0.36/webapps/solr/WEB-INF/lib/</span><br><span class="line">$ cp solr-4.4.0/example/resources/log4j.properties apache-tomcat-6.0.36/lib/</span><br></pre></td></tr></table></figure>
 
@@ -562,7 +663,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh apache-tomcat-6.0.36/bin/startup.sh</span><br></pre></td></tr></table></figure>
 
 <p>通过 <a href="http://192.168.56.121:8080/solr/" target="_blank" rel="noopener">http://192.168.56.121:8080/solr/</a> 进行访问，界面如图提示 <code>There are no SolrCores running.</code>，这是因为配置文件尚未配置 solrcore。</p>
-<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/solr-no-solrcores.png" alt="There are no SolrCores running"></p>
+<p><img src="/images/solr-no-solrcores.png" alt="There are no SolrCores running"></p>
 <h1 id="7-创建-Collection、Shard-和-Replication"><a href="#7-创建-Collection、Shard-和-Replication" class="headerlink" title="7. 创建 Collection、Shard 和 Replication"></a>7. 创建 Collection、Shard 和 Replication</h1><h2 id="手动创建-Collection-及初始-Shard"><a href="#手动创建-Collection-及初始-Shard" class="headerlink" title="手动创建 Collection 及初始 Shard"></a>手动创建 Collection 及初始 Shard</h2><p>直接通过 REST 接口来创建 Collection，你也可以通过浏览器访问下面地址，如下所示：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl <span class="string">'http://192.168.56.121:8080/solr/admin/collections?action=CREATE&amp;name=primary&amp;numShards=3&amp;replicationFactor=1'</span></span><br></pre></td></tr></table></figure>
 
@@ -576,7 +677,7 @@
 <li><code>replicationFactor</code>：   复制副本的数量</li>
 </ul>
 <p>可以通过 Web 管理页面，访问 <code>http://192.168.56.121:8080/solr/#/~cloud</code>，查看 SolrCloud 集群的分片信息，如图所示:</p>
-<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/solrcloud-collection-shard.png" alt="SolrCloud-collection-shard"></p>
+<p><img src="/images/solrcloud-collection-shard.png" alt="SolrCloud-collection-shard"></p>
 <p>实际上，我们从192.168.56.121节点可以看到，SOLR 的配置文件内容，已经发生了变化，如下所示：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">solr</span> <span class="attr">persistent</span>=<span class="string">"true"</span> <span class="attr">sharedLib</span>=<span class="string">"lib"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cores</span> <span class="attr">adminPath</span>=<span class="string">"/admin/cores"</span> <span class="attr">zkClientTimeout</span>=<span class="string">"20000"</span> <span class="attr">hostPort</span>=<span class="string">"$&#123;jetty.port:8080&#125;"</span> <span class="attr">hostContext</span>=<span class="string">"$&#123;hostContext:solr&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">core</span> <span class="attr">shard</span>=<span class="string">"shard2"</span> <span class="attr">instanceDir</span>=<span class="string">"primary_shard2_replica1/"</span> <span class="attr">name</span>=<span class="string">"primary_shard2_replica1"</span> <span class="attr">collection</span>=<span class="string">"primary"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">cores</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">solr</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -597,7 +698,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">solr</span> <span class="attr">persistent</span>=<span class="string">"true"</span> <span class="attr">sharedLib</span>=<span class="string">"lib"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cores</span> <span class="attr">adminPath</span>=<span class="string">"/admin/cores"</span> <span class="attr">zkClientTimeout</span>=<span class="string">"20000"</span> <span class="attr">hostPort</span>=<span class="string">"$&#123;jetty.port:8080&#125;"</span> <span class="attr">hostContext</span>=<span class="string">"$&#123;hostContext:solr&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">core</span> <span class="attr">shard</span>=<span class="string">"shard1"</span> <span class="attr">instanceDir</span>=<span class="string">"primary_shard1_replica2/"</span> <span class="attr">name</span>=<span class="string">"primary_shard1_replica_2"</span> <span class="attr">collection</span>=<span class="string">"primary"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">core</span> <span class="attr">shard</span>=<span class="string">"shard2"</span> <span class="attr">instanceDir</span>=<span class="string">"primary_shard2_replica1/"</span> <span class="attr">name</span>=<span class="string">"primary_shard2_replica_1"</span> <span class="attr">collection</span>=<span class="string">"primary"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">core</span> <span class="attr">shard</span>=<span class="string">"shard3"</span> <span class="attr">instanceDir</span>=<span class="string">"primary_shard2_replica2/"</span> <span class="attr">name</span>=<span class="string">"primary_shard2_replica_2"</span> <span class="attr">collection</span>=<span class="string">"primary"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">cores</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">solr</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>到此为止，我们已经基于3个节点，配置完成了 SolrCloud 集群。最后效果如下：</p>
-<p><img src="http://7xnrdo.com1.z0.glb.clouddn.com/2014/solrcloud-collection-shard-replica.png" alt="solrcloud-collection-shard-replica"></p>
+<p><img src="/images/solrcloud-collection-shard-replica.png" alt="solrcloud-collection-shard-replica"></p>
 <h1 id="8-其他说明"><a href="#8-其他说明" class="headerlink" title="8. 其他说明"></a>8. 其他说明</h1><h2 id="8-1-SolrCloud-的一些必要配置"><a href="#8-1-SolrCloud-的一些必要配置" class="headerlink" title="8.1 SolrCloud 的一些必要配置"></a>8.1 SolrCloud 的一些必要配置</h2><h3 id="schema-xml"><a href="#schema-xml" class="headerlink" title="schema.xml"></a>schema.xml</h3><p>必须定义 <code>_version_</code> 字段：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"_version_"</span> <span class="attr">type</span>=<span class="string">"long"</span> <span class="attr">indexed</span>=<span class="string">"true"</span> <span class="attr">stored</span>=<span class="string">"true"</span> <span class="attr">multiValued</span>=<span class="string">"false"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -611,7 +712,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">requestHandler</span> <span class="attr">name</span>=<span class="string">"/get"</span> <span class="attr">class</span>=<span class="string">"solr.RealTimeGetHandler"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">lst</span> <span class="attr">name</span>=<span class="string">"defaults"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">"omitHeader"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">lst</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">requestHandler</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>需要定义 <code>admin handlers</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;requestHandler name=&quot;/admin/&quot; class=&quot;solr.admin.AdminHandlers&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;requestHandler <span class="built_in">name</span>=<span class="string">"/admin/"</span> <span class="built_in">class</span>=<span class="string">"solr.admin.AdminHandlers"</span> /&gt;</span><br></pre></td></tr></table></figure>
 
 <p>需要定义 <code>updateRequestProcessorChain</code>：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">updateRequestProcessorChain</span> <span class="attr">name</span>=<span class="string">"sample"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">processor</span> <span class="attr">class</span>=<span class="string">"solr.LogUpdateProcessorFactory"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">processor</span> <span class="attr">class</span>=<span class="string">"solr.DistributedUpdateProcessorFactory"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">processor</span> <span class="attr">class</span>=<span class="string">"solr.RunUpdateProcessorFactory"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">updateRequestProcessorChain</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -626,15 +727,15 @@
 
 <p>如：<code>http://192.168.56.121:8080/solr/primary_shard2_replica1/select?q=*%3A*&amp;wt=xml&amp;indent=true&amp;shards.tolerant=true</code></p>
 <p>没有打此参数，如果集群内有挂掉的 shard，将显示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no servers hosting shard</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">no</span> <span class="string">servers</span> <span class="string">hosting</span> <span class="string">shard</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="8-3-自动创建-Collection-及初始-Shard"><a href="#8-3-自动创建-Collection-及初始-Shard" class="headerlink" title="8.3 自动创建 Collection 及初始 Shard"></a>8.3 自动创建 Collection 及初始 Shard</h2><p>自动创建 Collection 及初始 Shard，不需要通过 zookeeper 手动上传配置文件并关联 collection。</p>
 <p>1、在第一个节点修改 tomcat 启动参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=&apos;-Djetty.port=8080 -Dsolr.solr.home=/usr/local/solrhome -DzkHost=192.168.56.122:2181,192.168.56.122:2181,192.168.56.123:2181 -DnumShards=3 -Dbootstrap_confdir=/usr/local/solrhome/primary/conf -Dcollection.configName=primaryconf &apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">JAVA_OPTS='-Djetty.port=8080</span> -Dsolr.solr.<span class="attr">home=/usr/local/solrhome</span> <span class="attr">-DzkHost=192.168.56.122:2181,192.168.56.122:2181,192.168.56.123:2181</span> <span class="attr">-DnumShards=3</span> <span class="attr">-Dbootstrap_confdir=/usr/local/solrhome/primary/conf</span> -Dcollection.<span class="attr">configName=primaryconf</span> '</span><br></pre></td></tr></table></figure>
 
 <p>然后启动 tomcat。这个步骤上传了集群的相关配置信息(<code>/usr/local/solrhome/primary/conf</code>)到 ZooKeeper 中去，所以启动下一个节点时不用再指定配置文件了。</p>
 <p>2、在第二个和第三个节点修改 tomcat 启动参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=&apos;-Djetty.port=8080 -Dsolr.solr.home=/usr/local/solrhome -DzkHost=192.168.56.122:2181,192.168.56.122:2181,192.168.56.123:2181 -DnumShards=3&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS='-Djetty.port=<span class="number">8080</span> -Dsolr.solr.home=/usr/local/solrhome -DzkHost=192.168.56.122:<span class="number">2181</span>,192.168.56.122:<span class="number">2181</span>,192.168.56.123:<span class="number">2181</span> -DnumShards=3'</span><br></pre></td></tr></table></figure>
 
 <p>然后启动 tomcat。</p>
 <p>这样就会创建3个 shard 分别分布在三个节点上，如果你在增加一个节点，这节点会附加到一个 shard 上成为一个 replica，而不会创建新的 shard。</p>
@@ -647,35 +748,72 @@
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2014/03/10/how-to-install-solrcloud/" title="Apache SolrCloud安装">Apache SolrCloud安装</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -684,77 +822,37 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2014/03/10/how-to-install-solrcloud/" title="Apache SolrCloud安装">http://blog.javachen.com/2014/03/10/how-to-install-solrcloud/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/solr/" rel="tag"># solr</a>
+            <a href="/tags/solr/" rel="tag"><i class="fa fa-tag"></i> solr</a>
           
-            <a href="/tags/solrcloud/" rel="tag"># solrcloud</a>
+            <a href="/tags/solrcloud/" rel="tag"><i class="fa fa-tag"></i> solrcloud</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2014/03/09/hbase-note-about-hmaster-startup/" rel="next" title="HBase源码：HMaster启动过程">
-                <i class="fa fa-chevron-left"></i> HBase源码：HMaster启动过程
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/03/14/split-chinese-in-solr/" rel="prev" title="在Solr中使用中文分词">
-                在Solr中使用中文分词 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -791,15 +889,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/03/09/hbase-note-about-hmaster-startup/" rel="next" title="HBase源码：HMaster启动过程">
+                <i class="fa fa-chevron-left"></i> HBase源码：HMaster启动过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/03/14/broadleaf-project-with-solrcloud/" rel="prev" title="BroadLeaf项目集成SolrCloud">
+                BroadLeaf项目集成SolrCloud <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -813,11 +946,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -838,6 +973,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -851,11 +987,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -869,96 +1008,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -972,8 +1026,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -1022,6 +1127,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1055,8 +1162,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1225,9 +1333,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1301,9 +1409,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

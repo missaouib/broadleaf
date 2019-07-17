@@ -12,7 +12,7 @@ SaltStack是一个具备puppet与func功能为一身的集中化管理平台，�
 
 # 安装saltstack
 
-安装过程请参考：[安装saltstack和halite](/linux/2013/11/11/install-saltstack-and-halite/)
+安装过程请参考：[安装saltstack和halite](/linux/images/11/11/install-saltstack-and-halite/)
 
 # 添加pillar
 

@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,67 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="Rumblings by a coder on Java、Hadoop and so on">
-<meta name="keywords" content="java,spring,mybatis,hadoop,hive,hbase">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JavaChen Blog">
-<meta property="og:url" content="http://blog.javachen.com/tags/hbase/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="Rumblings by a coder on Java、Hadoop and so on">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaChen Blog">
-<meta name="twitter:description" content="Rumblings by a coder on Java、Hadoop and so on">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -166,12 +135,40 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/tags/hbase/">
-
+  
 
 
 
+
+  <meta name="description" content="Rumblings by a coder on Java、Hadoop and so on">
+<meta name="keywords" content="java,spring,mybatis,hadoop,hive,hbase">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JavaChen Blog">
+<meta property="og:url" content="http://javachen.github.io/tags/hbase/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="Rumblings by a coder on Java、Hadoop and so on">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaChen Blog">
+<meta name="twitter:description" content="Rumblings by a coder on Java、Hadoop and so on">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/tags/hbase/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>标签: hbase | JavaChen Blog</title>
   
@@ -180,7 +177,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -193,9 +191,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -207,7 +233,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -217,13 +243,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -231,76 +260,136 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
   
 
   
@@ -329,12 +418,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -357,17 +454,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/07/28/phoenix-quick-start/" itemprop="url">
-              
-                <span itemprop="name">Phoenix Quick Start</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/07/28/phoenix-quick-start/" itemprop="url">
+            
+              <span itemprop="name">Phoenix Quick Start</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-07-28T00:00:00+08:00" content="2014-07-28">
-          07-28
+          2014-07-28
         </time>
       </div>
 
@@ -383,17 +480,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/26/some-tips-about-hbase/" itemprop="url">
-              
-                <span itemprop="name">HBase中的一些注意事项</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/26/some-tips-about-hbase/" itemprop="url">
+            
+              <span itemprop="name">HBase中的一些注意事项</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-06-26T00:00:00+08:00" content="2014-06-26">
-          06-26
+          2014-06-26
         </time>
       </div>
 
@@ -409,17 +506,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/24/hbase-vs-cassandra/" itemprop="url">
-              
-                <span itemprop="name">HBase和Cassandra比较</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/24/hbase-vs-cassandra/" itemprop="url">
+            
+              <span itemprop="name">HBase和Cassandra比较</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-06-24T00:00:00+08:00" content="2014-06-24">
-          06-24
+          2014-06-24
         </time>
       </div>
 
@@ -435,17 +532,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/13/hbase-code-about-htable-put/" itemprop="url">
-              
-                <span itemprop="name">HBase源码分析：HTable put过程</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/13/hbase-code-about-htable-put/" itemprop="url">
+            
+              <span itemprop="name">HBase源码分析：HTable put过程</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-06-13T00:00:00+08:00" content="2014-06-13">
-          06-13
+          2014-06-13
         </time>
       </div>
 
@@ -461,17 +558,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/12/hbase-aggregate-client/" itemprop="url">
-              
-                <span itemprop="name">HBase实现简单聚合计算</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/12/hbase-aggregate-client/" itemprop="url">
+            
+              <span itemprop="name">HBase实现简单聚合计算</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-06-12T00:00:00+08:00" content="2014-06-12">
-          06-12
+          2014-06-12
         </time>
       </div>
 
@@ -487,17 +584,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/12/intro-of-hive-over-hbase/" itemprop="url">
-              
-                <span itemprop="name">Hive Over HBase的介绍</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/12/hbase-parallel-client-scanner/" itemprop="url">
+            
+              <span itemprop="name">HBase客户端实现并行扫描</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-06-12T00:00:00+08:00" content="2014-06-12">
-          06-12
+          2014-06-12
         </time>
       </div>
 
@@ -513,17 +610,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/12/hbase-parallel-client-scanner/" itemprop="url">
-              
-                <span itemprop="name">HBase客户端实现并行扫描</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/12/intro-of-hive-over-hbase/" itemprop="url">
+            
+              <span itemprop="name">Hive Over HBase的介绍</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-06-12T00:00:00+08:00" content="2014-06-12">
-          06-12
+          2014-06-12
         </time>
       </div>
 
@@ -539,17 +636,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/03/15/new-features-in-idh-hbase/" itemprop="url">
-              
-                <span itemprop="name">IDH HBase中实现的一些特性</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/03/15/new-features-in-idh-hbase/" itemprop="url">
+            
+              <span itemprop="name">IDH HBase中实现的一些特性</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-03-15T00:00:00+08:00" content="2014-03-15">
-          03-15
+          2014-03-15
         </time>
       </div>
 
@@ -565,17 +662,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/03/09/hbase-note-about-hmaster-startup/" itemprop="url">
-              
-                <span itemprop="name">HBase源码：HMaster启动过程</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/03/09/hbase-note-about-hmaster-startup/" itemprop="url">
+            
+              <span itemprop="name">HBase源码：HMaster启动过程</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-03-09T00:00:00+08:00" content="2014-03-09">
-          03-09
+          2014-03-09
         </time>
       </div>
 
@@ -591,17 +688,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/03/09/hbase-note-about-hregionserver-startup/" itemprop="url">
-              
-                <span itemprop="name">HBase源码：HRegionServer启动过程</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/03/09/hbase-note-about-hregionserver-startup/" itemprop="url">
+            
+              <span itemprop="name">HBase源码：HRegionServer启动过程</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-03-09T00:00:00+08:00" content="2014-03-09">
-          03-09
+          2014-03-09
         </time>
       </div>
 
@@ -617,17 +714,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/01/22/all-things-opentsdb/" itemprop="url">
-              
-                <span itemprop="name">All Things OpenTSDB</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/01/22/all-things-opentsdb/" itemprop="url">
+            
+              <span itemprop="name">All Things OpenTSDB</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-01-22T00:00:00+08:00" content="2014-01-22">
-          01-22
+          2014-01-22
         </time>
       </div>
 
@@ -643,17 +740,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2014/01/16/hbase-region-split-policy/" itemprop="url">
-              
-                <span itemprop="name">HBase笔记：Region拆分策略</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/01/16/hbase-region-split-policy/" itemprop="url">
+            
+              <span itemprop="name">HBase笔记：Region拆分策略</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2014-01-16T00:00:00+08:00" content="2014-01-16">
-          01-16
+          2014-01-16
         </time>
       </div>
 
@@ -669,17 +766,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2013/11/01/debug-hbase-in-eclipse/" itemprop="url">
-              
-                <span itemprop="name">在Eclipse中调试运行HBase</span>
-              
-            </a>
+          <a class="post-title-link" href="/2013/11/01/debug-hbase-in-eclipse/" itemprop="url">
+            
+              <span itemprop="name">在Eclipse中调试运行HBase</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2013-11-01T00:00:00+08:00" content="2013-11-01">
-          11-01
+          2013-11-01
         </time>
       </div>
 
@@ -695,17 +792,17 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2013/10/28/compile-hbase-source-code-and-apply-patches/" itemprop="url">
-              
-                <span itemprop="name">编译CDH HBase源代码并打补丁</span>
-              
-            </a>
+          <a class="post-title-link" href="/2013/10/28/compile-hbase-source-code-and-apply-patches/" itemprop="url">
+            
+              <span itemprop="name">编译CDH HBase源代码并打补丁</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2013-10-28T00:00:00+08:00" content="2013-10-28">
-          10-28
+          2013-10-28
         </time>
       </div>
 
@@ -721,17 +818,95 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2013/08/01/remote-debug-hadoop/" itemprop="url">
-              
-                <span itemprop="name">远程调试Hadoop各组件</span>
-              
-            </a>
+          <a class="post-title-link" href="/2013/08/01/remote-debug-hadoop/" itemprop="url">
+            
+              <span itemprop="name">远程调试Hadoop各组件</span>
+            
+          </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2013-08-01T00:00:00+08:00" content="2013-08-01">
-          08-01
+          2013-08-01
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+          <a class="post-title-link" href="/2013/06/15/hbase-note-about-data-structure/" itemprop="url">
+            
+              <span itemprop="name">HBase笔记：存储结构</span>
+            
+          </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2013-06-15T00:00:00+08:00" content="2013-06-15">
+          2013-06-15
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+          <a class="post-title-link" href="/2013/04/06/install-cloudera-cdh-by-yum/" itemprop="url">
+            
+              <span itemprop="name">使用yum源安装CDH集群</span>
+            
+          </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2013-04-06T00:00:00+08:00" content="2013-04-06">
+          2013-04-06
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+          <a class="post-title-link" href="/2013/03/24/manual-install-Cloudera-hbase-CDH/" itemprop="url">
+            
+              <span itemprop="name">手动安装Cloudera HBase CDH</span>
+            
+          </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2013-03-24T00:00:00+08:00" content="2013-03-24">
+          2013-03-24
         </time>
       </div>
 
@@ -748,16 +923,10 @@
   
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/tags/hbase/page/2/">2</a><a class="extend next" rel="next" href="/tags/hbase/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -767,11 +936,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -792,6 +963,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -805,11 +977,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -823,92 +998,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -922,8 +1016,53 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -972,6 +1111,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1005,8 +1146,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1175,9 +1317,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1251,9 +1393,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

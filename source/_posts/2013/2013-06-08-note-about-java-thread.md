@@ -45,7 +45,7 @@ Java 中，每个线程都有一个调用栈，即使不在程序中创建任何
 
 # 线程状态图
 
- ![](http://7xnrdo.com1.z0.glb.clouddn.com/2014/thread-state.jpg)
+ ![](/images/thread-state.jpg)
 
  说明：
 线程共包括以下5种状态。

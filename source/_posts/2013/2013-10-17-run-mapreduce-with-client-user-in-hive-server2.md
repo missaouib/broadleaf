@@ -138,7 +138,7 @@ UserGroupInformation.getCurrentUser()代码如下：
 
 下图是从hive-server2启动到执行HadoopLoginModule的commit()方法的调用图：
 
-![hive-server2启动过程](http://7xnrdo.com1.z0.glb.clouddn.com/2013/hive-server2-invoke.png)
+![hive-server2启动过程](/images/hive-server2-invoke.png)
 
 获取登陆用户的关键代码就在commit()，逻辑如下：
 
@@ -186,7 +186,7 @@ public static void test() {
 
 查看yarn监控地址`http://192.168.56.101:8088/cluster`，可以看到提交的mapreduce任务由june用户来运行。
 
-![yarn cluster monitor page](http://7xnrdo.com1.z0.glb.clouddn.com/2013/20131017-01.png)
+![yarn cluster monitor page](/images/images1017-01.png)
 
 如何修改mapreduce任务的运行用户呢？如果了解hive提交mapreduce任务的过程的话，就应该知道hive任务会通过`org.apache.hadoop.mapred.JobClient`来提交。在JobClient的init方法中有如下代码：
 
@@ -255,7 +255,7 @@ Job job = clientUgi.doAs(new PrivilegedExceptionAction<Job> () {
 
 编译代码、替换class文件，然后重新运行HiveServer2以及jdbc测试类，查看yarn监控地址`http://192.168.56.101:8088/cluster`，截图如下：
 
-![yarn cluster monitor page](http://7xnrdo.com1.z0.glb.clouddn.com/2013/20131017-02.png)
+![yarn cluster monitor page](/images/images1017-02.png)
 
 这时候mapreduce的运行用户变为NoName，这是因为从JobConf环境变量中找不到myExecuteName变量而使用默认值NoName的原因。
 
@@ -379,7 +379,7 @@ drwxrwxrwt   - yarn         mapred          0 2013-10-16 07:30 /tmp/logs
 
 监控页面截图：
 
-![yarn cluster monitor page](http://7xnrdo.com1.z0.glb.clouddn.com/2013/20131017-03.png)
+![yarn cluster monitor page](/images/images1017-03.png)
 
 除了简单测试之外，还需要测试修改后的代码是否影响源代码的运行以及hive cli的运行。
 

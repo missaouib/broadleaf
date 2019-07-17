@@ -23,7 +23,7 @@ Java集合主要可以划分为4个部分：List列表、Set集合、Map映射�
 
 Java集合工具包框架图(如下)：
 
-<a href="http://images.cnitblog.com/blog/497634/201309/08171028-a5e372741b18431591bb577b1e1c95e6.jpg"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://images.cnitblog.com/blog/497634/201309/08171028-a5e372741b18431591bb577b1e1c95e6.jpg" alt="" width="900" height="360"></a>
+<a href="http://images.cnitblog.com/blog/497634/images09/08171028-a5e372741b18431591bb577b1e1c95e6.jpg"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://images.cnitblog.com/blog/497634/images09/08171028-a5e372741b18431591bb577b1e1c95e6.jpg" alt="" width="900" height="360"></a>
 
 Collection是一个接口，是以对象为单位来管理元素的。有两个子接口：List接口和Set接口：
 

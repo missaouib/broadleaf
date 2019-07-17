@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,68 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="spark,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="本文主要整理Spark的相关配置参数，便于查询和方便调优。">
-<meta name="keywords" content="spark">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spark配置参数">
-<meta property="og:url" content="http://blog.javachen.com/2015/06/07/spark-configuration/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="本文主要整理Spark的相关配置参数，便于查询和方便调优。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark配置参数">
-<meta name="twitter:description" content="本文主要整理Spark的相关配置参数，便于查询和方便调优。">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -167,12 +135,41 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2015/06/07/spark-configuration/">
-
+  
 
 
 
+
+  <meta name="description" content="本文主要整理Spark的相关配置参数，便于查询和方便调优。">
+<meta name="keywords" content="spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark配置参数">
+<meta property="og:url" content="http://javachen.github.io/2015/06/07/spark-configuration/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="本文主要整理Spark的相关配置参数，便于查询和方便调优。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-29T12:23:34.046Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark配置参数">
+<meta name="twitter:description" content="本文主要整理Spark的相关配置参数，便于查询和方便调优。">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2015/06/07/spark-configuration/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Spark配置参数 | JavaChen Blog</title>
   
@@ -181,7 +178,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -194,9 +192,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -208,7 +234,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -218,13 +244,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -232,76 +261,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -330,12 +397,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -348,16 +423,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2015/06/07/spark-configuration/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2015/06/07/spark-configuration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -370,11 +447,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Spark配置参数</h2>
+          <h2 class="post-title" itemprop="name headline">Spark配置参数<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2015/2015-06-07-spark-configuration.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -382,13 +468,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-07T00:00:00+08:00">
-                2015-06-07
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2015-06-07 00:00:00" itemprop="dateCreated datePublished" datetime="2015-06-07T00:00:00+08:00">2015-06-07</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 20:23:34" itemprop="dateModified" datetime="2019-06-29T20:23:34+08:00">2019-06-29</time>
+              
             
           </span>
 
@@ -404,11 +507,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
 
                 
                 
@@ -417,6 +516,7 @@
           
 
           
+            
             
           
 
@@ -434,6 +534,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -441,35 +542,35 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
 
       
-        <p>以下是整理的Spark中的一些配置参数，官方文档请参考<a href="https://spark.apache.org/docs/latest/configuration.html" target="_blank" rel="noopener">Spark Configuration</a>。</p>
+        <p>以下是整理的Spark中的一些配置参数，官方文档请参考<a href="https:/.apache.org/docs/latest/configuration.html" target="_blank" rel="noopener">Spark Configuration</a>。</p>
 <p>Spark提供三个位置用来配置系统：</p>
 <ul>
 <li>Spark属性：控制大部分的应用程序参数，可以用SparkConf对象或者Java系统属性设置</li>
-<li>环境变量：可以通过每个节点的<code>conf/spark-env.sh</code>脚本设置。例如IP地址、端口等信息</li>
+<li>环境变量：可以通过每个节点的<code>conf-env.sh</code>脚本设置。例如IP地址、端口等信息</li>
 <li>日志配置：可以通过log4j.properties配置</li>
 </ul>
-<h1 id="Spark属性"><a href="#Spark属性" class="headerlink" title="Spark属性"></a>Spark属性</h1><p>Spark属性控制大部分的应用程序设置，并且为每个应用程序分别配置它。这些属性可以直接在<a href="http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkConf" target="_blank" rel="noopener">SparkConf</a>上配置，然后传递给<code>SparkContext</code>。<code>SparkConf</code><br>允许你配置一些通用的属性（如master URL、应用程序名称等等）以及通过<code>set()</code>方法设置的任意键值对。例如，我们可以用如下方式创建一个拥有两个线程的应用程序。</p>
+<h1 id="Spark属性"><a href="#Spark属性" class="headerlink" title="Spark属性"></a>Spark属性</h1><p>Spark属性控制大部分的应用程序设置，并且为每个应用程序分别配置它。这些属性可以直接在<a href="http:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkConf" target="_blank" rel="noopener">SparkConf</a>上配置，然后传递给<code>SparkContext</code>。<code>SparkConf</code><br>允许你配置一些通用的属性（如master URL、应用程序名称等等）以及通过<code>set()</code>方法设置的任意键值对。例如，我们可以用如下方式创建一个拥有两个线程的应用程序。</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>()</span><br><span class="line">             .setMaster(<span class="string">"local[2]"</span>)</span><br><span class="line">             .setAppName(<span class="string">"CountingSheep"</span>)</span><br><span class="line">             .set(<span class="string">"spark.executor.memory"</span>, <span class="string">"1g"</span>)</span><br><span class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)</span><br></pre></td></tr></table></figure>
 
 <h2 id="动态加载Spark属性"><a href="#动态加载Spark属性" class="headerlink" title="动态加载Spark属性"></a>动态加载Spark属性</h2><p>在一些情况下，你可能想在<code>SparkConf</code>中避免硬编码确定的配置。例如，你想用不同的master或者不同的内存数运行相同的应用程序。Spark允许你简单地创建一个空conf。</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(<span class="keyword">new</span> <span class="type">SparkConf</span>())</span><br></pre></td></tr></table></figure>
 
 <p>然后你在运行时设置变量：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./bin/spark-submit --name <span class="string">"My app"</span> --master <span class="built_in">local</span>[4] --conf spark.shuffle.spill=<span class="literal">false</span></span><br><span class="line">  --conf <span class="string">"spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"</span> myApp.jar</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./bin-submit --name <span class="string">"My app"</span> --master <span class="built_in">local</span>[4] --conf spark.shuffle.spill=<span class="literal">false</span></span><br><span class="line">  --conf <span class="string">"spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"</span> myApp.jar</span><br></pre></td></tr></table></figure>
 
-<p>Spark shell和<code>spark-submit</code>工具支持两种方式动态加载配置。第一种方式是命令行选项，例如<code>--master</code>，如上面shell显示的那样。<code>spark-submit</code>可以接受任何Spark属性，用<code>--conf</code>参数表示。但是那些参与Spark应用程序启动的属性要用特定的参数表示。运行<code>./bin/spark-submit --help</code>将会显示选项的整个列表。</p>
-<p><code>bin/spark-submit</code>也会从<code>conf/spark-defaults.conf</code>中读取配置选项，这个配置文件中，每一行都包含一对以<code>空格</code>或者<code>等号</code>分开的键和值。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spark.master            spark://5.6.7.8:7077</span><br><span class="line">spark.executor.memory   512m</span><br><span class="line">spark.eventLog.enabled  true</span><br><span class="line">spark.serializer        org.apache.spark.serializer.KryoSerializer</span><br></pre></td></tr></table></figure>
+<p>Spark shell和<code>spark-submit</code>工具支持两种方式动态加载配置。第一种方式是命令行选项，例如<code>--master</code>，如上面shell显示的那样。<code>spark-submit</code>可以接受任何Spark属性，用<code>--conf</code>参数表示。但是那些参与Spark应用程序启动的属性要用特定的参数表示。运行<code>./bin-submit --help</code>将会显示选项的整个列表。</p>
+<p><code>bin-submit</code>也会从<code>conf-defaults.conf</code>中读取配置选项，这个配置文件中，每一行都包含一对以<code>空格</code>或者<code>等号</code>分开的键和值。例如：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spark<span class="selector-class">.master</span>            spark:<span class="comment">//5.6.7.8:7077</span></span><br><span class="line">spark<span class="selector-class">.executor</span><span class="selector-class">.memory</span>   <span class="number">512</span>m</span><br><span class="line">spark<span class="selector-class">.eventLog</span><span class="selector-class">.enabled</span>  true</span><br><span class="line">spark<span class="selector-class">.serializer</span>        org<span class="selector-class">.apache</span><span class="selector-class">.spark</span><span class="selector-class">.serializer</span><span class="selector-class">.KryoSerializer</span></span><br></pre></td></tr></table></figure>
 
 <p>任何标签指定的值或者在配置文件中的值将会传递给应用程序，并且通过<code>SparkConf</code>合并这些值。在<code>SparkConf</code>上设置的属性具有最高的优先级，其次是传递给<code>spark-submit</code>或者<code>spark-shell</code>的属性值，最后是<code>spark-defaults.conf</code>文件中的属性值。</p>
 <p>优先级顺序：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SparkConf &gt; CLI &gt; spark-defaults.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SparkConf &gt; <span class="keyword">CLI</span> &gt; spark-defaults.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="查看Spark属性"><a href="#查看Spark属性" class="headerlink" title="查看Spark属性"></a>查看Spark属性</h2><p>在<code>http://&lt;driver&gt;:4040</code>上的应用程序Web UI在<code>Environment</code>标签中列出了所有的Spark属性。这对你确保设置的属性的正确性是很有用的。</p>
 <p>注意：<code>只有通过spark-defaults.conf, SparkConf以及命令行直接指定的值才会显示</code>。对于其它的配置属性，你可以认为程序用到了默认的值。</p>
@@ -726,7 +827,7 @@
 </tr>
 <tr>
 <td>spark.eventLog.dir</td>
-<td>file:///tmp/spark-events</td>
+<td>file:///tmp-events</td>
 <td>Spark事件日志记录的基本目录。在这个基本目录下，Spark为每个应用程序创建一个子目录。各个应用程序记录日志到直到的目录。用户可能想设置这为统一的地点，像HDFS一样，所以历史文件可以通过历史服务器读取</td>
 </tr>
 <tr>
@@ -806,7 +907,7 @@
 <tr>
 <td>spark.kryo.registrator</td>
 <td>(none)</td>
-<td>如果你用Kryo序列化，设置这个类去注册你的自定义类。如果你需要用自定义的方式注册你的类，那么这个属性是有用的。否则<code>spark.kryo.classesToRegister</code>会更简单。它应该设置一个继承自<a href="http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.serializer.KryoRegistrator" target="_blank" rel="noopener">KryoRegistrator</a>的类</td>
+<td>如果你用Kryo序列化，设置这个类去注册你的自定义类。如果你需要用自定义的方式注册你的类，那么这个属性是有用的。否则<code>spark.kryo.classesToRegister</code>会更简单。它应该设置一个继承自<a href="http:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.serializer.KryoRegistrator" target="_blank" rel="noopener">KryoRegistrator</a>的类</td>
 </tr>
 <tr>
 <td>spark.kryoserializer.buffer.max.mb</td>
@@ -826,7 +927,7 @@
 <tr>
 <td>spark.serializer</td>
 <td>org.apache.spark.serializer.JavaSerializer</td>
-<td>序列化对象使用的类。默认的Java序列化类可以序列化任何可序列化的java对象但是它很慢。所有我们建议用<a href="http://spark.apache.org/docs/latest/tuning.html" target="_blank" rel="noopener">org.apache.spark.serializer.KryoSerializer</a></td>
+<td>序列化对象使用的类。默认的Java序列化类可以序列化任何可序列化的java对象但是它很慢。所有我们建议用<a href="http:/.apache.org/docs/latest/tuning.html" target="_blank" rel="noopener">org.apache.spark.serializer.KryoSerializer</a></td>
 </tr>
 <tr>
 <td>spark.serializer.objectStreamReset</td>
@@ -1376,8 +1477,8 @@
 <td>am重试次数</td>
 </tr>
 </tbody></table>
-<h3 id="Spark-on-Mesos"><a href="#Spark-on-Mesos" class="headerlink" title="Spark on Mesos"></a>Spark on Mesos</h3><p>使用较少，参考<a href="https://spark.apache.org/docs/latest/running-on-mesos.html#configuration" target="_blank" rel="noopener">Running Spark on Mesos</a>。</p>
-<h3 id="Spark-Standalone-Mode"><a href="#Spark-Standalone-Mode" class="headerlink" title="Spark Standalone Mode"></a>Spark Standalone Mode</h3><p>参考<a href="https://spark.apache.org/docs/latest/spark-standalone.html#cluster-launch-scripts" target="_blank" rel="noopener">Spark Standalone Mode</a>。</p>
+<h3 id="Spark-on-Mesos"><a href="#Spark-on-Mesos" class="headerlink" title="Spark on Mesos"></a>Spark on Mesos</h3><p>使用较少，参考<a href="https:/.apache.org/docs/latest/running-on-mesos.html#configuration" target="_blank" rel="noopener">Running Spark on Mesos</a>。</p>
+<h3 id="Spark-Standalone-Mode"><a href="#Spark-Standalone-Mode" class="headerlink" title="Spark Standalone Mode"></a>Spark Standalone Mode</h3><p>参考<a href="https:/.apache.org/docs/latest-standalone.html#cluster-launch-scripts" target="_blank" rel="noopener">Spark Standalone Mode</a>。</p>
 <h3 id="Spark-History-Server"><a href="#Spark-History-Server" class="headerlink" title="Spark History Server"></a>Spark History Server</h3><p>当你运行Spark Standalone Mode或者Spark on Mesos模式时，你可以通过Spark History Server来查看job运行情况。</p>
 <p>Spark History Server的环境变量：</p>
 <table>
@@ -1420,7 +1521,7 @@
 </tr>
 <tr>
 <td align="left">spark.history.fs.logDirectory</td>
-<td align="left">file:/tmp/spark-events</td>
+<td align="left">file:/tmp-events</td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -1459,8 +1560,8 @@
 <td align="left">授权用户查看应用程序信息的时候是否检查acl。如果启用，只有应用程序所有者和<code>spark.ui.view.acls</code>指定的用户可以查看应用程序信息;如果禁用，不做任何检查。</td>
 </tr>
 </tbody></table>
-<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>通过环境变量配置确定的Spark设置。环境变量从Spark安装目录下的<code>conf/spark-env.sh</code>脚本读取（或者windows的<code>conf/spark-env.cmd</code>）。在独立的或者Mesos模式下，这个文件可以给机器确定的信息，如主机名。当运行本地应用程序或者提交脚本时，它也起作用。</p>
-<p>注意，当Spark安装时，<code>conf/spark-env.sh</code>默认是不存在的。你可以复制<code>conf/spark-env.sh.template</code>创建它。</p>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>通过环境变量配置确定的Spark设置。环境变量从Spark安装目录下的<code>conf-env.sh</code>脚本读取（或者windows的<code>conf-env.cmd</code>）。在独立的或者Mesos模式下，这个文件可以给机器确定的信息，如主机名。当运行本地应用程序或者提交脚本时，它也起作用。</p>
+<p>注意，当Spark安装时，<code>conf-env.sh</code>默认是不存在的。你可以复制<code>conf-env.sh.template</code>创建它。</p>
 <p>可以在<code>spark-env.sh</code>中设置如下变量：</p>
 <table>
 <thead>
@@ -1486,41 +1587,78 @@
 <td>你Spark应用程序通知给其他机器的主机名</td>
 </tr>
 </tbody></table>
-<p>除了以上这些，Spark <a href="http://spark.apache.org/docs/latest/spark-standalone.html#cluster-launch-scripts" target="_blank" rel="noopener">standalone cluster scripts</a>也可以设置一些选项。例如每台机器使用的核数以及最大内存。</p>
+<p>除了以上这些，Spark <a href="http:/.apache.org/docs/latest-standalone.html#cluster-launch-scripts" target="_blank" rel="noopener">standalone cluster scripts</a>也可以设置一些选项。例如每台机器使用的核数以及最大内存。</p>
 <p>因为<code>spark-env.sh</code>是shell脚本，其中的一些可以以编程方式设置。例如，你可以通过特定的网络接口计算<code>SPARK_LOCAL_IP</code>。</p>
 <h2 id="配置日志"><a href="#配置日志" class="headerlink" title="配置日志"></a>配置日志</h2><p>Spark用<a href="http://logging.apache.org/log4j/" target="_blank" rel="noopener">log4j</a> logging。你可以通过在conf目录下添加<code>log4j.properties</code>文件来配置。一种方法是复制<code>log4j.properties.template</code>文件。</p>
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2015/06/07/spark-configuration/" title="Spark配置参数">Spark配置参数</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -1529,75 +1667,35 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2015/06/07/spark-configuration/" title="Spark配置参数">http://blog.javachen.com/2015/06/07/spark-configuration/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/spark/" rel="tag"># spark</a>
+            <a href="/tags/spark/" rel="tag"><i class="fa fa-tag"></i> spark</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/06/05/yarn-memory-and-cpu-configuration/" rel="next" title="YARN的内存和CPU配置">
-                <i class="fa fa-chevron-left"></i> YARN的内存和CPU配置
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/06/09/memory-in-spark-on-yarn/" rel="prev" title="Spark On YARN内存分配">
-                Spark On YARN内存分配 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -1634,15 +1732,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/05/yarn-memory-and-cpu-configuration/" rel="next" title="YARN的内存和CPU配置">
+                <i class="fa fa-chevron-left"></i> YARN的内存和CPU配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/09/memory-in-spark-on-yarn/" rel="prev" title="Spark On YARN内存分配">
+                Spark On YARN内存分配 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -1656,11 +1789,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -1681,6 +1816,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -1694,11 +1830,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1712,96 +1851,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -1815,8 +1869,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -1865,6 +1970,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1898,8 +2005,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -2068,9 +2176,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -2144,9 +2252,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

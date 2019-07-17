@@ -13,7 +13,7 @@ published: true
 
 ---
 
-本文主要记录最近一段时间学习和实现[Spark MLlib中的协同过滤](/2015/04/17/spark-mllib-collaborative-filtering.html)的一些总结，希望对大家熟悉Spark ALS算法有所帮助。
+本文主要记录最近一段时间学习和实现[Spark MLlib中的协同过滤](/2015/04/17-mllib-collaborative-filtering)的一些总结，希望对大家熟悉Spark ALS算法有所帮助。
 
 >更新：
 >
@@ -21,14 +21,14 @@ published: true
 
 # 测试环境
 
-为了测试简单，在本地以local方式运行Spark，你需要做的是下载编译好的压缩包解压即可，可以参考[Spark本地模式运行](/2015/03/30/spark-test-in-local-mode.html)。
+为了测试简单，在本地以local方式运行Spark，你需要做的是下载编译好的压缩包解压即可，可以参考[Spark本地模式运行](/2015/03/30-test-in-local-mode)。
 
 测试数据使用[MovieLens](http://grouplens.org/datasets/movielens/)的[MovieLens 10M数据集](http://files.grouplens.org/datasets/movielens/ml-10m.zip)，下载之后解压到data目录。数据的格式请参考README中的说明，需要注意的是ratings.dat中的数据被处理过，`每个用户至少访问了20个商品`。
 
 下面的代码均在spark-shell中运行，启动时候可以根据你的机器内存设置JVM参数，例如：
 
 ~~~bash
-bin/spark-shell --executor-memory 3g --driver-memory 3g --driver-java-options '-Xms2g -Xmx2g -XX:+UseCompressedOops'
+bin-shell --executor-memory 3g --driver-memory 3g --driver-java-options '-Xms2g -Xmx2g -XX:+UseCompressedOops'
 ~~~
 
 # 预测评分
@@ -572,12 +572,12 @@ model.productFeatures.map{ case (id, vec) => id + "\t" + vec.mkString(",") }.sav
 
 # 总结
 
-本文主要记录如何使用ALS算法实现协同过滤并给用户推荐商品，以上代码在[Github](https://github.com/javachen/learning-spark/tree/master/src/main/scala/com/javachen/spark/examples/mllib)仓库中的ScalaLocalALS.scala文件。
+本文主要记录如何使用ALS算法实现协同过滤并给用户推荐商品，以上代码在[Github](https://github.com/javachen/learning-spark/tree/master/src/main/scala/com/javachen/examples/mllib)仓库中的ScalaLocalALS.scala文件。
 
 如果你想更加深入了解Spark MLlib算法的使用，可以看看[Packt.Machine Learning with Spark.2015.pdf](http://f.dataguru.cn/thread-495493-1-1.html)这本电子书并下载书中的源码，本文大部分代码参考自该电子书。
 
 # 参考资料
 
-- [Spark MLlib中的协同过滤](/2015/04/17/spark-mllib-collaborative-filtering.html)
+- [Spark MLlib中的协同过滤](/2015/04/17-mllib-collaborative-filtering)
 - [Packt.Machine Learning with Spark.2015.pdf](http://f.dataguru.cn/thread-495493-1-1.html)
 - [SPARK-3066](https://issues.apache.org/jira/browse/SPARK-3066)

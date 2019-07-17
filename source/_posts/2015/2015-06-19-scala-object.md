@@ -195,4 +195,4 @@ TrafficLight(1)
 
 # 参考文章
 
-- [Scala学习——对象](http://nerd-is.in/2013-08/scala-learning-objects/)
+- [Scala学习——对象](http://nerd-is.in/images-08/scala-learning-objects/)

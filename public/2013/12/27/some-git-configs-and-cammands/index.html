@@ -3,11 +3,20 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -15,32 +24,23 @@
 
 
 
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   
     
   
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,12 +66,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -84,7 +78,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Arial:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -94,68 +88,42 @@
 
   
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.2">
 
 
-
-
-
-  <meta name="keywords" content="git,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
 
 
 
-<meta name="description" content="Git是一个分布式版本控制／软件配置管理软件，原来是linux内核开发者林纳斯·托瓦兹（Linus Torvalds）为了更好地管理linux内核开发而创立的。本文主要记录我的一些git配置和一些常用命令。">
-<meta name="keywords" content="git">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Git配置和一些常用命令">
-<meta property="og:url" content="http://blog.javachen.com/2013/12/27/some-git-configs-and-cammands/index.html">
-<meta property="og:site_name" content="JavaChen Blog">
-<meta property="og:description" content="Git是一个分布式版本控制／软件配置管理软件，原来是linux内核开发者林纳斯·托瓦兹（Linus Torvalds）为了更好地管理linux内核开发而创立的。本文主要记录我的一些git配置和一些常用命令。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git配置和一些常用命令">
-<meta name="twitter:description" content="Git是一个分布式版本控制／软件配置管理软件，原来是linux内核开发者林纳斯·托瓦兹（Linus Torvalds）为了更好地管理linux内核开发而创立的。本文主要记录我的一些git配置和一些常用命令。">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -167,12 +135,41 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://blog.javachen.com/2013/12/27/some-git-configs-and-cammands/">
-
+  
 
 
 
+
+  <meta name="description" content="Git是一个分布式版本控制／软件配置管理软件，原来是linux内核开发者林纳斯·托瓦兹（Linus Torvalds）为了更好地管理linux内核开发而创立的。本文主要记录我的一些git配置和一些常用命令。">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git配置和一些常用命令">
+<meta property="og:url" content="http://javachen.github.io/2013/12/27/some-git-configs-and-cammands/index.html">
+<meta property="og:site_name" content="JavaChen Blog">
+<meta property="og:description" content="Git是一个分布式版本控制／软件配置管理软件，原来是linux内核开发者林纳斯·托瓦兹（Linus Torvalds）为了更好地管理linux内核开发而创立的。本文主要记录我的一些git配置和一些常用命令。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-26T08:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git配置和一些常用命令">
+<meta name="twitter:description" content="Git是一个分布式版本控制／软件配置管理软件，原来是linux内核开发者林纳斯·托瓦兹（Linus Torvalds）为了更好地管理linux内核开发而创立的。本文主要记录我的一些git配置和一些常用命令。">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="JavaChen Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://javachen.github.io/2013/12/27/some-git-configs-and-cammands/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Git配置和一些常用命令 | JavaChen Blog</title>
   
@@ -181,7 +178,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -194,9 +192,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -208,7 +234,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -218,13 +244,16 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <h1 class="site-subtitle" itemprop="description">Ramblings of a coder</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -232,76 +261,114 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -330,12 +397,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -348,16 +423,18 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.javachen.com/2013/12/27/some-git-configs-and-cammands/">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2013/12/27/some-git-configs-and-cammands/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -370,11 +447,20 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Git配置和一些常用命令</h2>
+          <h2 class="post-title" itemprop="name headline">Git配置和一些常用命令<a href="https://github.com/javachen/javachen-blog-theme/tree/master/source/_posts/2013/2013-12-27-some-git-configs-and-cammands.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -382,13 +468,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-27T00:00:00+08:00">
-                2013-12-27
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2013-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2013-12-27T00:00:00+08:00">2013-12-27</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-26 16:41:24" itemprop="dateModified" datetime="2019-03-26T16:41:24+08:00">2019-03-26</time>
+              
             
           </span>
 
@@ -404,11 +507,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/devops/" itemprop="url" rel="index">
-                    <span itemprop="name">devops</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/devops/" itemprop="url" rel="index"><span itemprop="name">devops</span></a></span>
 
                 
                 
@@ -417,6 +516,7 @@
           
 
           
+            
             
           
 
@@ -434,6 +534,7 @@
               </div>
           
           -->
+
         </div>
       </header>
     
@@ -441,57 +542,57 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
 
       
         <p>Git是一个分布式版本控制／软件配置管理软件，原来是linux内核开发者林纳斯·托瓦兹（Linus Torvalds）为了更好地管理linux内核开发而创立的。</p>
-<h1 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;javachen&quot;</span><br><span class="line">git config --global user.email &quot;june.chan@foxmail.com&quot;</span><br><span class="line">git config --global color.ui true</span><br><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.ci commit</span><br><span class="line">git config --global alias.st status</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config -l  # 列举所有配置</span><br></pre></td></tr></table></figure>
+<h1 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global user.name <span class="string">"javachen"</span></span><br><span class="line">git<span class="built_in"> config </span>--global user.email <span class="string">"june.chan@foxmail.com"</span></span><br><span class="line">git<span class="built_in"> config </span>--global color.ui <span class="literal">true</span></span><br><span class="line">git<span class="built_in"> config </span>--global alias.co checkout</span><br><span class="line">git<span class="built_in"> config </span>--global alias.ci commit</span><br><span class="line">git<span class="built_in"> config </span>--global alias.st status</span><br><span class="line">git<span class="built_in"> config </span>--global alias.br branch</span><br><span class="line">git<span class="built_in"> config </span>-l  # 列举所有配置</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 
 <p>用户的git配置文件在<code>~/.gitconfig</code>，我的配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">june@june-mint ~/workspace/snippets/dotfiles $ cat .gitconfig </span><br><span class="line">[user]</span><br><span class="line">	email = june.chan@foxmail.com</span><br><span class="line">	name = javachen</span><br><span class="line">[color]</span><br><span class="line">    ui = auto</span><br><span class="line">[color &quot;branch&quot;]</span><br><span class="line">    current = yellow reverse</span><br><span class="line">    local = yellow</span><br><span class="line">    remote = green</span><br><span class="line">[color &quot;diff&quot;]</span><br><span class="line">    meta = yellow bold</span><br><span class="line">    frag = magenta bold</span><br><span class="line">    old = red bold</span><br><span class="line">    new = green bold</span><br><span class="line">[color &quot;status&quot;]</span><br><span class="line">    added = yellow</span><br><span class="line">    changed = green</span><br><span class="line">    untracked = cyan</span><br><span class="line">[alias]</span><br><span class="line">    st = &quot;status&quot;</span><br><span class="line">    co = checkout</span><br><span class="line">    ls = &quot;ls-files&quot;</span><br><span class="line">    ci = commit</span><br><span class="line">    br = branch</span><br><span class="line">    rt = reset --hard</span><br><span class="line">    unstage = reset HEAD</span><br><span class="line">    uncommit = reset --soft HEAD^</span><br><span class="line">    l = log --pretty=oneline --abbrev-commit --graph --decorate</span><br><span class="line">    amend = commit --amend </span><br><span class="line">    who = shortlog -n -s --no-merges </span><br><span class="line">    g = grep -n --color -E </span><br><span class="line">    cp = cherry-pick -x </span><br><span class="line">    cb = checkout -b </span><br><span class="line">[core]</span><br><span class="line">    filemode = true</span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">june@june-mint ~/workspace/snippets/dotfiles $ cat .gitconfig </span><br><span class="line">[user]</span><br><span class="line">	<span class="attr">email</span> = june.chan@foxmail.com</span><br><span class="line">	<span class="attr">name</span> = javachen</span><br><span class="line">[color]</span><br><span class="line">    <span class="attr">ui</span> = auto</span><br><span class="line">[color <span class="string">"branch"</span>]</span><br><span class="line">    <span class="attr">current</span> = yellow reverse</span><br><span class="line">    <span class="attr">local</span> = yellow</span><br><span class="line">    <span class="attr">remote</span> = green</span><br><span class="line">[color <span class="string">"diff"</span>]</span><br><span class="line">    <span class="attr">meta</span> = yellow bold</span><br><span class="line">    <span class="attr">frag</span> = magenta bold</span><br><span class="line">    <span class="attr">old</span> = red bold</span><br><span class="line">    <span class="attr">new</span> = green bold</span><br><span class="line">[color <span class="string">"status"</span>]</span><br><span class="line">    <span class="attr">added</span> = yellow</span><br><span class="line">    <span class="attr">changed</span> = green</span><br><span class="line">    <span class="attr">untracked</span> = cyan</span><br><span class="line">[alias]</span><br><span class="line">    <span class="attr">st</span> = <span class="string">"status"</span></span><br><span class="line">    <span class="attr">co</span> = checkout</span><br><span class="line">    <span class="attr">ls</span> = <span class="string">"ls-files"</span></span><br><span class="line">    <span class="attr">ci</span> = commit</span><br><span class="line">    <span class="attr">br</span> = branch</span><br><span class="line">    <span class="attr">rt</span> = reset --hard</span><br><span class="line">    <span class="attr">unstage</span> = reset HEAD</span><br><span class="line">    <span class="attr">uncommit</span> = reset --soft HEAD^</span><br><span class="line">    <span class="attr">l</span> = log <span class="attr">--pretty=oneline</span> --abbrev-commit --graph --decorate</span><br><span class="line">    <span class="attr">amend</span> = commit --amend </span><br><span class="line">    <span class="attr">who</span> = shortlog -n -s --no-merges </span><br><span class="line">    <span class="attr">g</span> = grep -n --color -E </span><br><span class="line">    <span class="attr">cp</span> = cherry-pick -x </span><br><span class="line">    <span class="attr">cb</span> = checkout -b </span><br><span class="line">[core]</span><br><span class="line">    <span class="attr">filemode</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><h2 id="查看、帮助命令"><a href="#查看、帮助命令" class="headerlink" title="查看、帮助命令"></a>查看、帮助命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git help &lt;command&gt;  # 显示command的help</span><br><span class="line">git show            # 显示某次提交的内容</span><br><span class="line">git show $id</span><br></pre></td></tr></table></figure>
+<h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><h2 id="查看、帮助命令"><a href="#查看、帮助命令" class="headerlink" title="查看、帮助命令"></a>查看、帮助命令</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">help</span> &lt;command&gt;  <span class="comment"># 显示command的help</span></span><br><span class="line">git <span class="keyword">show</span>            <span class="comment"># 显示某次提交的内容</span></span><br><span class="line">git <span class="keyword">show</span> $<span class="keyword">id</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="查看提交记录"><a href="#查看提交记录" class="headerlink" title="查看提交记录"></a>查看提交记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log &lt;file&gt;      # 查看该文件每次提交记录</span><br><span class="line">git log -p &lt;file&gt;   # 显示版本历史，以及版本间的内容差异</span><br><span class="line">git log -p -2       # 查看最近两次详细修改内容的diff</span><br><span class="line">git log --stat      # 查看提交统计信息</span><br><span class="line">git log --since=&quot;6 hours&quot;  # 显示最近6小时提交</span><br><span class="line">git log --before=&quot;2 days&quot;  # 显示2天前提交</span><br><span class="line">git log -1 HEAD~3          # 显示比HEAD早3个提交的那个提交</span><br><span class="line">git log -1 HEAD^^^</span><br><span class="line">git reflog				   # 查看操作记录</span><br></pre></td></tr></table></figure>
+<h2 id="查看提交记录"><a href="#查看提交记录" class="headerlink" title="查看提交记录"></a>查看提交记录</h2><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">log</span></span><br><span class="line">git <span class="keyword">log</span> <span class="variable">&lt;file&gt;</span>      <span class="comment"># 查看该文件每次提交记录</span></span><br><span class="line">git <span class="keyword">log</span> -p <span class="variable">&lt;file&gt;</span>   <span class="comment"># 显示版本历史，以及版本间的内容差异</span></span><br><span class="line">git <span class="keyword">log</span> -p -<span class="number">2</span>       <span class="comment"># 查看最近两次详细修改内容的diff</span></span><br><span class="line">git <span class="keyword">log</span> --stat      <span class="comment"># 查看提交统计信息</span></span><br><span class="line">git <span class="keyword">log</span> --since=<span class="string">"6 hours"</span>  <span class="comment"># 显示最近6小时提交</span></span><br><span class="line">git <span class="keyword">log</span> --before=<span class="string">"2 days"</span>  <span class="comment"># 显示2天前提交</span></span><br><span class="line">git <span class="keyword">log</span> -<span class="number">1</span> HEAD~<span class="number">3</span>          <span class="comment"># 显示比HEAD早3个提交的那个提交</span></span><br><span class="line">git <span class="keyword">log</span> -<span class="number">1</span> HEAD^^^</span><br><span class="line">git reflog				   <span class="comment"># 查看操作记录</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="添加、提交、删除、找回，重置修改文件"><a href="#添加、提交、删除、找回，重置修改文件" class="headerlink" title="添加、提交、删除、找回，重置修改文件"></a>添加、提交、删除、找回，重置修改文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;file&gt;      # 将工作文件修改提交到本地暂存区</span><br><span class="line">git add .           # 将所有修改过的工作文件提交暂存区</span><br></pre></td></tr></table></figure>
+<h1 id="添加、提交、删除、找回，重置修改文件"><a href="#添加、提交、删除、找回，重置修改文件" class="headerlink" title="添加、提交、删除、找回，重置修改文件"></a>添加、提交、删除、找回，重置修改文件</h1><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span><span class="bash"> &lt;file&gt;      <span class="comment"># 将工作文件修改提交到本地暂存区</span></span></span><br><span class="line">git <span class="keyword">add</span><span class="bash"> .           <span class="comment"># 将所有修改过的工作文件提交暂存区</span></span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git co  -- &lt;file&gt;    # 抛弃工作区修改</span><br><span class="line">git co  .               # 抛弃工作区修改</span><br><span class="line">git co HEAD &lt;file&gt;  # 抛弃工作目录区中文件的修改</span><br><span class="line">git co HEAD~3       # 回退三个版本</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git co  -- &lt;<span class="keyword">file</span>&gt;    <span class="comment"># 抛弃工作区修改</span></span><br><span class="line">git co  .               <span class="comment"># 抛弃工作区修改</span></span><br><span class="line">git co HEAD &lt;<span class="keyword">file</span>&gt;  <span class="comment"># 抛弃工作目录区中文件的修改</span></span><br><span class="line">git co HEAD~<span class="number">3</span>       <span class="comment"># 回退三个版本</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git ci &lt;file&gt;</span><br><span class="line">git ci .</span><br><span class="line">git ci -a           # 将git add, git rm和git ci等操作都合并在一起做</span><br><span class="line">git ci -am &quot;some comments&quot;</span><br><span class="line">git ci --amend      # 修改最后一次提交记录</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">ci</span> &lt;<span class="keyword">file</span>&gt;</span><br><span class="line">git <span class="keyword">ci</span> .</span><br><span class="line">git <span class="keyword">ci</span> -a           # 将git add, git <span class="keyword">rm</span>和git <span class="keyword">ci</span>等操作都合并在一起做</span><br><span class="line">git <span class="keyword">ci</span> -am <span class="string">"some comments"</span></span><br><span class="line">git <span class="keyword">ci</span> --amend      # 修改最后一次提交记录</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm &lt;file&gt;       # 从版本库中删除文件</span><br><span class="line">git rm &lt;file&gt; --cached  # 从版本库中删除文件，但不删除文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm &lt;<span class="built_in">file</span>&gt;       <span class="comment"># 从版本库中删除文件</span></span><br><span class="line">git rm &lt;<span class="built_in">file</span>&gt; <span class="comment">--cached  # 从版本库中删除文件，但不删除文件</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mv &lt;file1&gt;  &lt;file2&gt;    # 重命名文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mv <span class="params">&lt;file1&gt;</span>  <span class="params">&lt;file2&gt;</span>    <span class="meta"># 重命名文件</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard  HEAD^ # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改</span><br><span class="line">git reset --hard &lt;commit id&gt;  # 恢复到某一次提交的状态</span><br><span class="line">git reset HEAD &lt;file&gt; # 抛弃暂存区中文件的修改</span><br><span class="line">git reset &lt;file&gt;    # 从暂存区恢复到工作文件</span><br><span class="line">git reset -- .      # 从暂存区恢复到工作文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard  HEAD^ # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改</span></span><br><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard &lt;commit id&gt;  # 恢复到某一次提交的状态</span></span><br><span class="line">git <span class="keyword">reset</span> <span class="keyword">HEAD</span> &lt;<span class="keyword">file</span>&gt; <span class="comment"># 抛弃暂存区中文件的修改</span></span><br><span class="line">git <span class="keyword">reset</span> &lt;<span class="keyword">file</span>&gt;    <span class="comment"># 从暂存区恢复到工作文件</span></span><br><span class="line">git <span class="keyword">reset</span> <span class="comment">-- .      # 从暂存区恢复到工作文件</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git revert &lt;$id&gt;    # 恢复某次提交的状态，恢复动作本身也创建了一次提交对象</span><br><span class="line">git revert HEAD     # 恢复最后一次提交的状态</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> revert &lt;<span class="variable">$id</span>&gt;    <span class="comment"># 恢复某次提交的状态，恢复动作本身也创建了一次提交对象</span></span><br><span class="line">git revert HEAD     <span class="comment"># 恢复最后一次提交的状态</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="查看文件diff"><a href="#查看文件diff" class="headerlink" title="查看文件diff"></a>查看文件diff</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git diff &lt;file&gt;     # 比较当前文件和暂存区文件差异</span><br><span class="line">git diff</span><br><span class="line">git diff &lt;$id1&gt; &lt;$id2&gt;   	# 比较两次提交之间的差异</span><br><span class="line">git diff &lt;branch1&gt; &lt;branch2&gt;   # 在两个分支之间比较 </span><br><span class="line">git diff --staged   # 比较暂存区和版本库差异</span><br><span class="line">git diff --cached   # 比较暂存区和版本库差异</span><br><span class="line">git diff --stat     # 仅仅比较统计信息</span><br><span class="line"></span><br><span class="line">git diff &quot;@&#123;yesterday&#125;&quot;     # 查看昨天的改变</span><br><span class="line">git diff 1b6d &quot;master~2&quot;    # 查看一个特定版本与倒数第二个变更之间的改变</span><br></pre></td></tr></table></figure>
+<h2 id="查看文件diff"><a href="#查看文件diff" class="headerlink" title="查看文件diff"></a>查看文件diff</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">diff </span>&lt;file&gt;     <span class="comment"># 比较当前文件和暂存区文件差异</span></span><br><span class="line">git <span class="keyword">diff</span></span><br><span class="line"><span class="keyword">git </span><span class="keyword">diff </span>&lt;$id1&gt; &lt;$id2&gt;   	<span class="comment"># 比较两次提交之间的差异</span></span><br><span class="line">git <span class="keyword">diff </span>&lt;<span class="keyword">branch1&gt; </span>&lt;<span class="keyword">branch2&gt; </span>  <span class="comment"># 在两个分支之间比较 </span></span><br><span class="line">git <span class="keyword">diff </span>--staged   <span class="comment"># 比较暂存区和版本库差异</span></span><br><span class="line">git <span class="keyword">diff </span>--<span class="keyword">cached </span>  <span class="comment"># 比较暂存区和版本库差异</span></span><br><span class="line">git <span class="keyword">diff </span>--stat     <span class="comment"># 仅仅比较统计信息</span></span><br><span class="line"></span><br><span class="line">git <span class="keyword">diff </span><span class="string">"@&#123;yesterday&#125;"</span>     <span class="comment"># 查看昨天的改变</span></span><br><span class="line">git <span class="keyword">diff </span><span class="number">1</span>b6d <span class="string">"master~2"</span>    <span class="comment"># 查看一个特定版本与倒数第二个变更之间的改变</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="Git-本地分支管理"><a href="#Git-本地分支管理" class="headerlink" title="Git 本地分支管理"></a>Git 本地分支管理</h1><h2 id="查看、切换、创建和删除分支"><a href="#查看、切换、创建和删除分支" class="headerlink" title="查看、切换、创建和删除分支"></a>查看、切换、创建和删除分支</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git br -r           # 查看远程分支</span><br><span class="line">git br -v           # 查看各个分支最后提交信息</span><br><span class="line">git br -a           # 列出所有分支</span><br><span class="line">git br --merged     # 查看已经被合并到当前分支的分支</span><br><span class="line">git br --no-merged  # 查看尚未被合并到当前分支的分支</span><br><span class="line">git br &lt;new_branch&gt; # 基于当前分支创建新的分支</span><br><span class="line">git br &lt;new_branch&gt;  &lt;start_point&gt;		# 基于另一个起点（分支名称，提交名称或则标签名称），创建新的分支</span><br><span class="line">git br -f &lt;existing_branch&gt;  &lt;start_point&gt;	# 创建同名新分支，覆盖已有分支</span><br><span class="line">git br -d &lt;branch&gt;  # 删除某个分支</span><br><span class="line">git br -D &lt;branch&gt;  # 强制删除某个分支 (未被合并的分支被删除的时候需要强制)</span><br></pre></td></tr></table></figure>
+<h1 id="Git-本地分支管理"><a href="#Git-本地分支管理" class="headerlink" title="Git 本地分支管理"></a>Git 本地分支管理</h1><h2 id="查看、切换、创建和删除分支"><a href="#查看、切换、创建和删除分支" class="headerlink" title="查看、切换、创建和删除分支"></a>查看、切换、创建和删除分支</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">br </span>-r           <span class="comment"># 查看远程分支</span></span><br><span class="line">git <span class="keyword">br </span>-v           <span class="comment"># 查看各个分支最后提交信息</span></span><br><span class="line">git <span class="keyword">br </span>-a           <span class="comment"># 列出所有分支</span></span><br><span class="line">git <span class="keyword">br </span>--merged     <span class="comment"># 查看已经被合并到当前分支的分支</span></span><br><span class="line">git <span class="keyword">br </span>--no-merged  <span class="comment"># 查看尚未被合并到当前分支的分支</span></span><br><span class="line">git <span class="keyword">br </span>&lt;new_branch&gt; <span class="comment"># 基于当前分支创建新的分支</span></span><br><span class="line">git <span class="keyword">br </span>&lt;new_branch&gt;  &lt;start_point&gt;		<span class="comment"># 基于另一个起点（分支名称，提交名称或则标签名称），创建新的分支</span></span><br><span class="line">git <span class="keyword">br </span>-f &lt;existing_branch&gt;  &lt;start_point&gt;	<span class="comment"># 创建同名新分支，覆盖已有分支</span></span><br><span class="line">git <span class="keyword">br </span>-d &lt;<span class="keyword">branch&gt; </span> <span class="comment"># 删除某个分支</span></span><br><span class="line">git <span class="keyword">br </span>-D &lt;<span class="keyword">branch&gt; </span> <span class="comment"># 强制删除某个分支 (未被合并的分支被删除的时候需要强制)</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git co &lt;branch&gt;     	# 切换到某个分支</span><br><span class="line">git co -b &lt;new_branch&gt; 	# 创建新的分支，并且切换过去</span><br><span class="line">git co -b &lt;new_branch&gt; &lt;branch&gt;  	  # 基于branch创建新的new_branch</span><br><span class="line">git co -m &lt;existing_branch&gt; &lt;new_branch&gt;  # 移动或重命名分支，当新分支不存在时</span><br><span class="line">git co -M &lt;existing_branch&gt; &lt;new_branch&gt;  # 移动或重命名分支，当新分支存在时就覆盖</span><br><span class="line"></span><br><span class="line">git co $id         		 # 把某次历史提交记录checkout出来，但无分支信息，切换到其他分支会自动删除</span><br><span class="line">git co $id -b &lt;new_branch&gt;       # 把某次历史提交记录checkout出来，创建成一个分支</span><br></pre></td></tr></table></figure>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git co <span class="variable">&lt;branch&gt;</span>     	<span class="comment"># 切换到某个分支</span></span><br><span class="line">git co -b <span class="variable">&lt;new_branch&gt;</span> 	<span class="comment"># 创建新的分支，并且切换过去</span></span><br><span class="line">git co -b <span class="variable">&lt;new_branch&gt;</span> <span class="variable">&lt;branch&gt;</span>  	  <span class="comment"># 基于branch创建新的new_branch</span></span><br><span class="line">git co -m <span class="variable">&lt;existing_branch&gt;</span> <span class="variable">&lt;new_branch&gt;</span>  <span class="comment"># 移动或重命名分支，当新分支不存在时</span></span><br><span class="line">git co -M <span class="variable">&lt;existing_branch&gt;</span> <span class="variable">&lt;new_branch&gt;</span>  <span class="comment"># 移动或重命名分支，当新分支存在时就覆盖</span></span><br><span class="line"></span><br><span class="line">git co <span class="variable">$id</span>         		 <span class="comment"># 把某次历史提交记录checkout出来，但无分支信息，切换到其他分支会自动删除</span></span><br><span class="line">git co <span class="variable">$id</span> -b <span class="variable">&lt;new_branch&gt;</span>       <span class="comment"># 把某次历史提交记录checkout出来，创建成一个分支</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="分支合并和rebase"><a href="#分支合并和rebase" class="headerlink" title="分支合并和rebase"></a>分支合并和rebase</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git merge &lt;branch&gt;                  # 将branch分支合并到当前分支</span><br><span class="line">git merge origin/master --no-ff     # 不要Fast-Foward合并，这样可以生成merge提交</span><br><span class="line">git merge --no-commit &lt;branch&gt;      # 合并但不提交</span><br><span class="line">git merge --squash &lt;branch&gt;         # 把一条分支上的内容合并到另一个分支上的一个提交</span><br><span class="line"></span><br><span class="line">git rebase master &lt;branch&gt;          # 将master rebase到branch，相当于：</span><br><span class="line">git co &lt;branch&gt; &amp;&amp; git rebase master &amp;&amp; git co master &amp;&amp; git merge &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="分支合并和rebase"><a href="#分支合并和rebase" class="headerlink" title="分支合并和rebase"></a>分支合并和rebase</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git merge <span class="tag">&lt;branch&gt;</span>                  <span class="comment"># 将branch分支合并到当前分支</span></span><br><span class="line">git merge origin/<span class="keyword">master</span> <span class="title">--no-ff</span>     <span class="comment"># 不要Fast-Foward合并，这样可以生成merge提交</span></span><br><span class="line">git merge --no-commit <span class="tag">&lt;branch&gt;</span>      <span class="comment"># 合并但不提交</span></span><br><span class="line">git merge --squash <span class="tag">&lt;branch&gt;</span>         <span class="comment"># 把一条分支上的内容合并到另一个分支上的一个提交</span></span><br><span class="line"></span><br><span class="line">git rebase <span class="keyword">master</span> <span class="title">&lt;branch</span>&gt;          <span class="comment"># 将master rebase到branch，相当于：</span></span><br><span class="line">git co <span class="tag">&lt;branch&gt;</span> &amp;&amp; git rebase <span class="keyword">master</span> <span class="title">&amp;&amp; git</span> co <span class="keyword">master</span> <span class="title">&amp;&amp; git</span> merge <span class="tag">&lt;branch&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Git补丁管理"><a href="#Git补丁管理" class="headerlink" title="Git补丁管理"></a>Git补丁管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git diff &gt; ../sync.patch         # 生成补丁</span><br><span class="line">git apply ../sync.patch          # 打补丁</span><br><span class="line">git apply --check ../sync.patch  # 测试补丁能否成功</span><br><span class="line">git format-patch -X              # 根据提交的log生成patch，X为数字，表示最近的几个日志</span><br></pre></td></tr></table></figure>
+<h2 id="Git补丁管理"><a href="#Git补丁管理" class="headerlink" title="Git补丁管理"></a>Git补丁管理</h2><figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git diff &gt; ../sync.<span class="keyword">patch</span>         <span class="meta"># 生成补丁</span></span><br><span class="line">git apply ../sync.<span class="keyword">patch</span>          <span class="meta"># 打补丁</span></span><br><span class="line">git apply --check ../sync.<span class="keyword">patch</span>  <span class="meta"># 测试补丁能否成功</span></span><br><span class="line">git format-<span class="keyword">patch</span> -X              <span class="meta"># 根据提交的log生成patch，X为数字，表示最近的几个日志</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Git暂存管理"><a href="#Git暂存管理" class="headerlink" title="Git暂存管理"></a>Git暂存管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git stash                        # 暂存</span><br><span class="line">git stash list                   # 列所有stash</span><br><span class="line">git stash apply                  # 恢复暂存的内容</span><br><span class="line">git stash drop                   # 删除暂存区</span><br></pre></td></tr></table></figure>
+<h2 id="Git暂存管理"><a href="#Git暂存管理" class="headerlink" title="Git暂存管理"></a>Git暂存管理</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git stash                        <span class="comment"># 暂存</span></span><br><span class="line">git stash <span class="built_in">list</span>                   <span class="comment"># 列所有stash</span></span><br><span class="line">git stash apply                  <span class="comment"># 恢复暂存的内容</span></span><br><span class="line">git stash drop                   <span class="comment"># 删除暂存区</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Git远程分支管理"><a href="#Git远程分支管理" class="headerlink" title="Git远程分支管理"></a>Git远程分支管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git pull                         # 抓取远程仓库所有分支更新并合并到本地</span><br><span class="line">git pull --no-ff                 # 抓取远程仓库所有分支更新并合并到本地，不要快进合并</span><br><span class="line">git fetch origin                 # 抓取远程仓库所有更新</span><br><span class="line">git fetch origin remote-branch:local-branch #抓取remote-branch分支的更新</span><br><span class="line">git fetch origin --tags 		 # 抓取远程上的所有分支</span><br><span class="line">git checkout -b &lt;new-branch&gt; &lt;remote_tag&gt; # 抓取远程上的分支</span><br><span class="line">git merge origin/master          # 将远程主分支合并到本地当前分支</span><br><span class="line">git co --track origin/branch     # 跟踪某个远程分支创建相应的本地分支</span><br><span class="line">git co -b &lt;local_branch&gt; origin/&lt;remote_branch&gt;  # 基于远程分支创建本地分支，功能同上</span><br></pre></td></tr></table></figure>
+<h2 id="Git远程分支管理"><a href="#Git远程分支管理" class="headerlink" title="Git远程分支管理"></a>Git远程分支管理</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git pull                         <span class="comment"># 抓取远程仓库所有分支更新并合并到本地</span></span><br><span class="line">git pull --no-ff                 <span class="comment"># 抓取远程仓库所有分支更新并合并到本地，不要快进合并</span></span><br><span class="line">git fetch <span class="keyword">origin </span>                <span class="comment"># 抓取远程仓库所有更新</span></span><br><span class="line">git fetch <span class="keyword">origin </span>remote-<span class="keyword">branch:local-branch </span><span class="comment">#抓取remote-branch分支的更新</span></span><br><span class="line">git fetch <span class="keyword">origin </span>--tags 		 <span class="comment"># 抓取远程上的所有分支</span></span><br><span class="line">git checkout -<span class="keyword">b </span>&lt;new-<span class="keyword">branch&gt; </span>&lt;remote_tag&gt; <span class="comment"># 抓取远程上的分支</span></span><br><span class="line">git merge <span class="keyword">origin/master </span>         <span class="comment"># 将远程主分支合并到本地当前分支</span></span><br><span class="line">git co --track <span class="keyword">origin/branch </span>    <span class="comment"># 跟踪某个远程分支创建相应的本地分支</span></span><br><span class="line">git co -<span class="keyword">b </span>&lt;local_branch&gt; <span class="keyword">origin/&lt;remote_branch&gt; </span> <span class="comment"># 基于远程分支创建本地分支，功能同上</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git push                         # push所有分支</span><br><span class="line">git push origin master           # 将本地主分支推到远程主分支</span><br><span class="line">git push -u origin master        # 将本地主分支推到远程(如无远程主分支则创建，用于初始化远程仓库)</span><br><span class="line">git push origin &lt;local_branch&gt;   # 创建远程分支， origin是远程仓库名</span><br><span class="line">git push origin &lt;local_branch&gt;:&lt;remote_branch&gt;  # 创建远程分支</span><br><span class="line">git push origin :&lt;remote_branch&gt;  #先删除本地分支(git br -d &lt;branch&gt;)，然后再push删除远程分支</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">push</span>                         # <span class="built_in">push</span>所有分支</span><br><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> master           # 将本地主分支推到远程主分支</span><br><span class="line">git <span class="built_in">push</span> -u <span class="built_in">origin</span> master        # 将本地主分支推到远程(如无远程主分支则创建，用于初始化远程仓库)</span><br><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> &lt;local_branch&gt;   # 创建远程分支， <span class="built_in">origin</span>是远程仓库名</span><br><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> &lt;local_branch&gt;:&lt;remote_branch&gt;  # 创建远程分支</span><br><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> :&lt;remote_branch&gt;  #先删除本地分支(git br -d &lt;branch&gt;)，然后再<span class="built_in">push</span>删除远程分支</span><br></pre></td></tr></table></figure>
 
-<h2 id="Git远程仓库管理"><a href="#Git远程仓库管理" class="headerlink" title="Git远程仓库管理"></a>Git远程仓库管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git remote -v                    # 查看远程服务器地址和仓库名称</span><br><span class="line">git remote show origin           # 查看远程服务器仓库状态</span><br><span class="line">git remote add origin git@github:XXX/test.git         # 添加远程仓库地址</span><br><span class="line">git remote set-url origin git@github.com:XXX/test.git # 设置远程仓库地址(用于修改远程仓库地址)</span><br><span class="line">git remote rm &lt;repository&gt;       # 删除远程仓库</span><br><span class="line">git remote set-head origin master   # 设置远程仓库的HEAD指向master分支</span><br><span class="line"></span><br><span class="line">git branch --set-upstream master origin/master</span><br><span class="line">git branch --set-upstream develop origin/develop</span><br></pre></td></tr></table></figure>
+<h2 id="Git远程仓库管理"><a href="#Git远程仓库管理" class="headerlink" title="Git远程仓库管理"></a>Git远程仓库管理</h2><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">git </span><span class="string">remote </span>-v                    <span class="comment"># 查看远程服务器地址和仓库名称</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="string">show </span><span class="string">origin </span>          <span class="comment"># 查看远程服务器仓库状态</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="string">add </span><span class="string">origin </span><span class="string">git@</span><span class="string">github:XXX/</span><span class="string">test.</span><span class="string">git </span>        <span class="comment"># 添加远程仓库地址</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="string">origin </span><span class="string">git@</span><span class="string">github.</span><span class="string">com:XXX/</span><span class="string">test.</span><span class="string">git </span><span class="comment"># 设置远程仓库地址(用于修改远程仓库地址)</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="string">rm </span>&lt;<span class="string">repository&gt;</span>       <span class="comment"># 删除远程仓库</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-head</span> <span class="string">origin </span><span class="string">master </span>  <span class="comment"># 设置远程仓库的HEAD指向master分支</span></span><br><span class="line"></span><br><span class="line"><span class="string">git </span><span class="string">branch </span><span class="built_in">--set-upstream</span> <span class="string">master </span><span class="string">origin/</span><span class="string">master</span></span><br><span class="line"><span class="string">git </span><span class="string">branch </span><span class="built_in">--set-upstream</span> <span class="string">develop </span><span class="string">origin/</span><span class="string">develop</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="打patch过程"><a href="#打patch过程" class="headerlink" title="打patch过程"></a>打patch过程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git status</span><br><span class="line">git diff --cached &gt;XXX.patch</span><br><span class="line">git ci -m &apos;add patch&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="打patch过程"><a href="#打patch过程" class="headerlink" title="打patch过程"></a>打patch过程</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span><span class="bash"> .</span></span><br><span class="line">git status</span><br><span class="line">git diff --cached &gt;XXX.patch</span><br><span class="line">git ci -m <span class="string">'add patch'</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="分支策略"><a href="#分支策略" class="headerlink" title="分支策略"></a>分支策略</h1><p>在实际开发中，我们应该按照几个基本原则进行分支管理：</p>
 <p>首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
@@ -500,35 +601,72 @@
 
       
     </div>
+
+    
+
     
     
     
 
-    
 
     
       <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JavaChen</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://javachen.github.io/2013/12/27/some-git-configs-and-cammands/" title="Git配置和一些常用命令">Git配置和一些常用命令</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="JavaChen 微信支付">
         <p>微信支付</p>
       </div>
     
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="JavaChen 支付宝">
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="JavaChen 支付宝">
         <p>支付宝</p>
       </div>
-    
-
     
 
   </div>
@@ -537,75 +675,35 @@
       </div>
     
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    JavaChen
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://blog.javachen.com/2013/12/27/some-git-configs-and-cammands/" title="Git配置和一些常用命令">http://blog.javachen.com/2013/12/27/some-git-configs-and-cammands/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
 
-      </div>
-    
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag"># git</a>
+            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
           
         </div>
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2013/11/18/study-note-of-saltstack/" rel="next" title="SaltStack学习笔记">
-                <i class="fa fa-chevron-left"></i> SaltStack学习笔记
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/01/08/hive-ha-by-haproxy/" rel="prev" title="Hive使用HAProxy配置HA">
-                Hive使用HAProxy配置HA <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
+        <div class="post-widgets">
         
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
   <div class="bdsharebuttonbox">
     <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
@@ -642,15 +740,50 @@
   with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+              </div>
+            
+          </div>
+        
+        </div>
       
-    </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/11/18/study-note-of-saltstack/" rel="next" title="SaltStack学习笔记">
+                <i class="fa fa-chevron-left"></i> SaltStack学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/01/08/hive-ha-by-haproxy/" rel="prev" title="Hive使用HAProxy配置HA">
+                Hive使用HAProxy配置HA <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -664,11 +797,13 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2009 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-post-description"></i>
+        <div class="copyright">&copy; 2009 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">JavaChen</span>
+
+  
 
   
 </div>
@@ -689,6 +824,7 @@
 
 
 
+
         
       </div>
     </footer>
@@ -702,11 +838,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -720,96 +859,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -823,8 +877,59 @@
 
 
   
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <script type="text/javascript">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -873,6 +978,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -906,8 +1013,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1076,9 +1184,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1152,9 +1260,60 @@
   
 
   
+
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

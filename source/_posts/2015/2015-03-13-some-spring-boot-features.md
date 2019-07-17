@@ -204,7 +204,7 @@ $ java -jar myapp.jar --spring.application.json='{"foo":"bar"}'
 或者使用JNDI变量：
 
 ~~~bash
-java:comp/env/spring.application.json
+java:comp/env.application.json
 ~~~
 
 ## 2.1 随机变量
@@ -431,7 +431,7 @@ class ClientResourcesConfig extends WebMvcConfigurerAdapter {
 
 注：如果你的应用将被打包成jar，那就不要使用`src/main/webapp`文件夹。尽管该文件夹是一个共同的标准，但它仅在打包成war的情况下起作用，并且如果产生一个jar，多数构建工具都会静悄悄的忽略它。
 
-如果你想刷新静态资源的缓存，你可以定义一个使用HASH结尾的URL，例如：`<link href="/css/spring-2a2d595e6ed9a0b24f027f2b63b134d6.css"/>`。
+如果你想刷新静态资源的缓存，你可以定义一个使用HASH结尾的URL，例如：`<link href="/css-2a2d595e6ed9a0b24f027f2b63b134d6.css"/>`。
 
 为此，需要使用以下配置：
 
@@ -452,9 +452,9 @@ spring.resources.chain.strategy.fixed.paths=/js/lib/
 spring.resources.chain.strategy.fixed.version=v12
 ~~~
 
-使用了上面的配置之后，当javascript加载`"/js/lib/"`目录下的文件时，将会使用一个固定的版本`"/v12/js/lib/mymodule.js"`，而其他的静态资源仍然使用`<link href="/css/spring-2a2d595e6ed9a0b24f027f2b63b134d6.css"/>`。
+使用了上面的配置之后，当javascript加载`"/js/lib/"`目录下的文件时，将会使用一个固定的版本`"/v12/js/lib/mymodule.js"`，而其他的静态资源仍然使用`<link href="/css-2a2d595e6ed9a0b24f027f2b63b134d6.css"/>`。
 
-更多说明，参考[ResourceProperties](http://github.com/spring-projects/spring-boot/tree/v1.3.2.RELEASE/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ResourceProperties.java)，或者阅读该偏[文章](https://spring.io/blog/2014/07/24/spring-framework-4-1-handling-static-web-resources)。
+更多说明，参考[ResourceProperties](http://github.com-projects-boot/tree/v1.3.2.RELEASE-boot-autoconfigure/src/main/java/orgframework/boot/autoconfigure/web/ResourceProperties.java)，或者阅读该偏[文章](https:/.io/blog/2014/07/24-framework-4-1-handling-static-web-resources)。
 
 ### 5.1.5 ConfigurableWebBindingInitializer
 
@@ -577,7 +577,7 @@ public class Endpoint {
 
 默认情况下，Jersey将在一个ServletRegistrationBean类型的@Bean中被设置成名称为jerseyServletRegistration的Servlet。通过创建自己的相同名称的bean，你可以禁止或覆盖这个bean。你也可以通过设置`spring.jersey.type=filter`来使用一个Filter代替Servlet（在这种情况下，被覆盖或替换的@Bean是jerseyFilterRegistration）。该servlet有@Order属性，你可以通过`spring.jersey.filter.order`进行设置。不管是Servlet还是Filter注册都可以使用`spring.jersey.init.*`定义一个属性集合作为初始化参数传递过去。
 
-这里有一个[Jersey](http://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/spring-boot-sample-jersey)示例，你可以查看如何设置相关事项。
+这里有一个[Jersey](http://github.com-projects-boot/tree/master-boot-samples-boot-sample-jersey)示例，你可以查看如何设置相关事项。
 
 ## 5.3 内嵌的容器支持
 
@@ -601,7 +601,7 @@ Spring Boot底层使用了一个新的ApplicationContext类型，用于对内嵌
 - server.address - 绑定的接口地址
 - server.sessionTimeout - session超时时间
 
-具体参考[ServerProperties](http://github.com/spring-projects/spring-boot/tree/master/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java)。
+具体参考[ServerProperties](http://github.com-projects-boot/tree/master-boot-autoconfigure/src/main/java/orgframework/boot/autoconfigure/web/ServerProperties.java)。
 
 #### 编程方式的自定义
 
@@ -645,8 +645,8 @@ public EmbeddedServletContainerFactory servletContainer() {
 - 内嵌的Jetty目前不支持JSPs。
 - Undertow不支持JSPs。
 
-这里有个[JSP示例](http://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/spring-boot-sample-web-jsp)，你可以查看如何设置相关事项。
+这里有个[JSP示例](http://github.com-projects-boot/tree/master-boot-samples-boot-sample-web-jsp)，你可以查看如何设置相关事项。
 
 # 参考文章
 
-- [Spring Boot Reference Guide](http://docs.spring.io/spring-boot/docs/1.2.2.RELEASE/reference/htmlsingle)
+- [Spring Boot Reference Guide](http://docs.spring.io-boot/docs/1.2.2.RELEASE/reference/htmlsingle)

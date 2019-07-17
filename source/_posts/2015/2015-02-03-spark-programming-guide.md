@@ -257,7 +257,7 @@ int totalLength = lineLengths.reduce(new Sum());
 
 Spark 也支持键值对的操作，这在分组和聚合操作时候用得到。定义一个键值对对象时，需要自定义该对象的 equals() 和 hashCode() 方法。
 
-在 Scala 中有一个 [Tuple2](http://www.scala-lang.org/api/2.10.4/index.html#scala.Tuple2) 对象表示键值对，这是一个内置的对象，通过 `(a,b)` 就可以创建一个 Tuple2 对象。在你的程序中，通过导入 `org.apache.spark.SparkContext._` 就可以对 Tuple2 进行操作。对键值对的操作方法，可以查看 [PairRDDFunctions](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.PairRDDFunctions)
+在 Scala 中有一个 [Tuple2](http://www.scala-lang.org/api/2.10.4/index.html#scala.Tuple2) 对象表示键值对，这是一个内置的对象，通过 `(a,b)` 就可以创建一个 Tuple2 对象。在你的程序中，通过导入 `org.apache.spark.SparkContext._` 就可以对 Tuple2 进行操作。对键值对的操作方法，可以查看 [PairRDDFunctions](http:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.PairRDDFunctions)
 
 下面是一个用 scala 统计单词出现次数的例子：
 
@@ -337,7 +337,7 @@ $ spark-submit  --master local[4]   SimpleApp.py
 416: 1
 ~~~
 
-并且，在hdfs 上 /user/spark/spark_results/part-00000 内容如下：
+并且，在hdfs 上 /user_results/part-00000 内容如下：
 
 ~~~python
 (u'200', 6827)
@@ -349,7 +349,7 @@ $ spark-submit  --master local[4]   SimpleApp.py
 (u'416', 1)
 ~~~
 
-其实，这个例子和官方提供的例子很相像，具体请看 [wordcount.py](https://github.com/apache/spark/blob/master/examples/src/main/python/wordcount.py)。
+其实，这个例子和官方提供的例子很相像，具体请看 [wordcount.py](https://github.com/apache/blob/master/examples/src/main/python/wordcount.py)。
 
 如果用 scala 来实现，代码如下：
 
@@ -521,7 +521,7 @@ data.map(lambda x => acc.add(x); f(x))
 
 # 6. 参考文章
 
-- <http://spark.apache.org/docs/latest/programming-guide.html>
+- <http:/.apache.org/docs/latest/programming-guide.html>
 - <http://rdc.taobao.org/?p=2024>
 - <http://blog.csdn.net/u011391905/article/details/37929731>
 - <http://segmentfault.com/blog/whuwb/1190000000723037>

@@ -182,7 +182,7 @@ $ gradle build
 
 ## 安装 Spring Boot CLI
 
-你可以手动安装：[https://github.com/spring-projects/spring-boot/releases]
+你可以手动安装：[https://github.com-projects-boot/releases]
 
 或者使用 GVM 安装：
 
@@ -383,15 +383,15 @@ public class App {
 [INFO]
 [INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ spring-boot-hello ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /Users/june/workspace/project/spring-boot-hello/src/main/resources
-[INFO] skip non existing resourceDirectory /Users/june/workspace/project/spring-boot-hello/src/main/resources
+[INFO] skip non existing resourceDirectory /Users/june/workspace/project-boot-hello/src/main/resources
+[INFO] skip non existing resourceDirectory /Users/june/workspace/project-boot-hello/src/main/resources
 [INFO]
 [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ spring-boot-hello ---
 [INFO] Nothing to compile - all classes are up to date
 [INFO]
 [INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ spring-boot-hello ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /Users/june/workspace/project/spring-boot-hello/src/test/resources
+[INFO] skip non existing resourceDirectory /Users/june/workspace/project-boot-hello/src/test/resources
 [INFO]
 [INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ spring-boot-hello ---
 [INFO] No sources to compile
@@ -399,7 +399,7 @@ public class App {
 [INFO] --- maven-surefire-plugin:2.18.1:test (default-test) @ spring-boot-hello ---
 [INFO]
 [INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ spring-boot-hello ---
-[INFO] Building jar: /Users/june/workspace/project/spring-boot-hello/target/spring-boot-hello-1.0-SNAPSHOT.jar
+[INFO] Building jar: /Users/june/workspace/project-boot-hello/target-boot-hello-1.0-SNAPSHOT.jar
 [INFO]
 [INFO] --- spring-boot-maven-plugin:1.5.20.RELEASE:repackage (default) @ spring-boot-hello ---
 [INFO] ------------------------------------------------------------------------
@@ -414,7 +414,7 @@ public class App {
 然后，你可以运行项目命令执行生成的 jar 文件：
 
 ~~~bash
-$ java -jar target/spring-boot-hello-1.0-SNAPSHOT.jar
+$ java -jar target-boot-hello-1.0-SNAPSHOT.jar
 ~~~
 
 如果 Maven 运行过程出现内存溢出，则可以添加下面参数：
@@ -438,7 +438,7 @@ $ gradle bootRun
 也可以先 build 生成一个 jar 文件，然后执行该 jar 文件：
 
 ~~~bash
-$ gradle build && java -jar build/libs/spring-boot-hello-1.0-SNAPSHOT.jar
+$ gradle build && java -jar build/libs-boot-hello-1.0-SNAPSHOT.jar
 ~~~
 
 你也可以启动远程调试：
@@ -447,9 +447,9 @@ $ gradle build && java -jar build/libs/spring-boot-hello-1.0-SNAPSHOT.jar
 $ gradle build 
 
 $ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \
-       -jar build/libs/spring-boot-hello-1.0-SNAPSHOT.jar
+       -jar build/libs-boot-hello-1.0-SNAPSHOT.jar
 ~~~
 
 # 参考文章
 
-- [Spring Boot Reference Guide](http://docs.spring.io/spring-boot/docs/1.5.20.RELEASE/reference/htmlsingle)
+- [Spring Boot Reference Guide](http://docs.spring.io-boot/docs/1.5.20.RELEASE/reference/htmlsingle)

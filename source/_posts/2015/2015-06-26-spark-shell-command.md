@@ -17,7 +17,7 @@ published: true
 
 # spark-shell
 
-使用yum安装spark之后，你可以直接在终端运行spark-shell命令，或者在spark的home目录/usr/lib/spark下运行bin/spark-shell命令，这样就可以进入到spark命令行交互模式。
+使用yum安装spark之后，你可以直接在终端运行spark-shell命令，或者在spark的home目录/usr/lib下运行bin-shell命令，这样就可以进入到spark命令行交互模式。
 
 **spark-shell 脚本是如何运行的呢**？该脚本代码如下：
 
@@ -37,8 +37,8 @@ set -o posix
 FWDIR="$(cd "`dirname "$0"`"/..; pwd)"
 
 function usage() {
-  echo "Usage: ./bin/spark-shell [options]"
-  "$FWDIR"/bin/spark-submit --help 2>&1 | grep -v Usage 1>&2
+  echo "Usage: ./bin-shell [options]"
+  "$FWDIR"/bin-submit --help 2>&1 | grep -v Usage 1>&2
   exit 0
 }
 
@@ -66,11 +66,11 @@ function main() {
     # (see https://github.com/sbt/sbt/issues/562).
     stty -icanon min 1 -echo > /dev/null 2>&1
     export SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Djline.terminal=unix"
-    "$FWDIR"/bin/spark-submit --class org.apache.spark.repl.Main "${SUBMISSION_OPTS[@]}" spark-shell "${APPLICATION_OPTS[@]}"
+    "$FWDIR"/bin-submit --class org.apache.spark.repl.Main "${SUBMISSION_OPTS[@]}" spark-shell "${APPLICATION_OPTS[@]}"
     stty icanon echo > /dev/null 2>&1
   else
     export SPARK_SUBMIT_OPTS
-    "$FWDIR"/bin/spark-submit --class org.apache.spark.repl.Main "${SUBMISSION_OPTS[@]}" spark-shell "${APPLICATION_OPTS[@]}"
+    "$FWDIR"/bin-submit --class org.apache.spark.repl.Main "${SUBMISSION_OPTS[@]}" spark-shell "${APPLICATION_OPTS[@]}"
   fi
 }
 
@@ -135,12 +135,12 @@ FWDIR="$(cd "`dirname "$0"`"/..; pwd)"
 
 > 提示：bash 中，$0 是获取脚本名称
 
-判断输入参数中是否有`--help`或者`-h`，如果有，则打印使用说明，实际上运行的是`/bin/spark-submit --help`命令：
+判断输入参数中是否有`--help`或者`-h`，如果有，则打印使用说明，实际上运行的是`/bin-submit --help`命令：
 
 ~~~bash
 function usage() {
-  echo "Usage: ./bin/spark-shell [options]"
-  "$FWDIR"/bin/spark-submit --help 2>&1 | grep -v Usage 1>&2
+  echo "Usage: ./bin-shell [options]"
+  "$FWDIR"/bin-submit --help 2>&1 | grep -v Usage 1>&2
   exit 0
 }
 
@@ -161,7 +161,7 @@ SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Dscala.usejavacp=true"
 
 
 export SPARK_SUBMIT_OPTS
-"$FWDIR"/bin/spark-submit --class org.apache.spark.repl.Main "${SUBMISSION_OPTS[@]}" spark-shell "${APPLICATION_OPTS[@]}"
+"$FWDIR"/bin-submit --class org.apache.spark.repl.Main "${SUBMISSION_OPTS[@]}" spark-shell "${APPLICATION_OPTS[@]}"
 ~~~
 
 > 提示："${SUBMISSION_OPTS[@]}" 这是什么意思？
@@ -184,13 +184,13 @@ onExit
 + case "`uname`" in
 ++ uname
 + set -o posix
-+++ dirname /usr/lib/spark/bin/spark-shell
-++ cd /usr/lib/spark/bin/..
++++ dirname /usr/lib/bin-shell
+++ cd /usr/lib/bin/..
 ++ pwd
-+ FWDIR=/usr/lib/spark
++ FWDIR=/usr/lib
 + [[ '' = *--help ]]
 + [[ '' = *-h ]]
-+ source /usr/lib/spark/bin/utils.sh
++ source /usr/lib/bin/utils.sh
 + SUBMIT_USAGE_FUNCTION=usage
 + gatherSparkSubmitOpts
 + '[' -z usage ']'
@@ -209,7 +209,7 @@ onExit
 + main
 + false
 + export SPARK_SUBMIT_OPTS
-+ /usr/lib/spark/bin/spark-submit --class org.apache.spark.repl.Main spark-shell
++ /usr/lib/bin-submit --class org.apache.spark.repl.Main spark-shell
 ~~~
 
 >提示：通过运行`set -x`可以开启bash调试代码的特性。
@@ -251,7 +251,7 @@ done
 if [ -z "$SPARK_CONF_DIR" ]; then
   export SPARK_CONF_DIR="$SPARK_HOME/conf"
 fi
-DEFAULT_PROPERTIES_FILE="$SPARK_CONF_DIR/spark-defaults.conf"
+DEFAULT_PROPERTIES_FILE="$SPARK_CONF_DIR-defaults.conf"
 if [ "$MASTER" == "yarn-cluster" ]; then
   SPARK_SUBMIT_DEPLOY_MODE=cluster
 fi
@@ -274,7 +274,7 @@ if [[ "$SPARK_SUBMIT_DEPLOY_MODE" == "client" && -f "$SPARK_SUBMIT_PROPERTIES_FI
   fi
 fi
 
-exec "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.SparkSubmit "${ORIG_ARGS[@]}"
+exec "$SPARK_HOME"/bin-class org.apache.spark.deploy.SparkSubmit "${ORIG_ARGS[@]}"
 ~~~
 
 首先是设置`SPARK_HOME`，并保留原始输入参数：
@@ -290,7 +290,7 @@ ORIG_ARGS=("$@")
 
 设置`SPARK_CONF_DIR`变量，并判断spark-submit部署模式。
 
-如果`$SPARK_CONF_DIR/spark-defaults.conf`文件存在，则检查是否设置`spark.driver.extra`开头的和`spark.driver.memory`变量，如果设置了，则`SPARK_SUBMIT_BOOTSTRAP_DRIVER`设为1。
+如果`$SPARK_CONF_DIR-defaults.conf`文件存在，则检查是否设置`spark.driver.extra`开头的和`spark.driver.memory`变量，如果设置了，则`SPARK_SUBMIT_BOOTSTRAP_DRIVER`设为1。
 
 最后，执行的是spark-class命令，输入参数为`org.apache.spark.deploy.SparkSubmit`类名和原始参数。
 

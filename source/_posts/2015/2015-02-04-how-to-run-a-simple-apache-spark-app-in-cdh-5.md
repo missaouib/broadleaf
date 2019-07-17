@@ -26,7 +26,7 @@ $ mvn archetype:generate -DgroupId=com.cloudera.sparkwordcount -DartifactId=spar
 在 sparkwordcount 目录下添加 scala 源文件目录和相应的包目录：
 
 ~~~bash
-$ mkdir -p sparkwordcount/src/main/scala/com/cloudera/sparkwordcount
+$ mkdir -p sparkwordcount/src/main/scala/com/clouderawordcount
 ~~~
 
 修改 pom.xml 添加 scala 和 spark 依赖：

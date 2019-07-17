@@ -254,11 +254,11 @@ Splits: 2 total, 2 done (100.00%)
 
 在 执行 show tables 命令之前，你可以查看 <http://cdh1:8080/> 页面：
 
-![](/static/images/presto/presto-web-01.jpg)
+![](/images/presto-web-01.jpg)
 
 然后在执行该命令之后再观察页面变化。单击第一行记录，会跳转到明细页面：
 
-![](/static/images/presto/presto-web-02.jpg)
+![](/images/presto-web-02.jpg)
 
 可以运行 `--help` 命令查看更多参数，例如你可以在命令行直接运行下面命令：
 

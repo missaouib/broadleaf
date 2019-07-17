@@ -41,7 +41,7 @@ dependencies {
 
 现在，devtools会自动帮你做到这些，禁用所有模板的缓存，包括Thymeleaf, Freemarker, Groovy Templates, Velocity, Mustache等。
 
-更多的属性，请参考[DevToolsPropertyDefaultsPostProcessor](http://github.com/spring-projects/spring-boot/tree/v1.3.2.RELEASE/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/env/DevToolsPropertyDefaultsPostProcessor.java)。
+更多的属性，请参考[DevToolsPropertyDefaultsPostProcessor](http://github.com-projects-boot/tree/v1.3.2.RELEASE-boot-devtools/src/main/java/orgframework/boot/devtools/env/DevToolsPropertyDefaultsPostProcessor.java)。
 
 # 2、自动重启
 
@@ -102,7 +102,7 @@ public static void main(String[] args) {
 
 Spring Boot自动重启使用的是两个类加载器，大多数情况下工作良好，有时候会出现问题。
 
-默认的，IDE中打开的项目会使用 restart 类加载器进行加载，而任何其他的 .jar 文件会使用 base 类加载器进行加载。如果你使用的是多模块的项目，并且有些模块没有被导入到IDE，你需要创建并编辑`META-INF/spring-devtools.properties`文件来自定义一些配置。
+默认的，IDE中打开的项目会使用 restart 类加载器进行加载，而任何其他的 .jar 文件会使用 base 类加载器进行加载。如果你使用的是多模块的项目，并且有些模块没有被导入到IDE，你需要创建并编辑`META-INF-devtools.properties`文件来自定义一些配置。
 
 `spring-devtools.properties`文件包含有 `restart.exclude.` 和 `restart.include.` 前缀的属性。include属性文件的都会被加入到restart类加载器，exclude属性文件的都会被加入到base类加载器，他们的值是正则表达式，所有的属性值必须是唯一的。
 
@@ -113,7 +113,7 @@ restart.include.companycommonlibs=/mycorp-common-[\\w-]+\.jar
 restart.include.projectcommon=/mycorp-myproj-[\\w-]+\.jar
 ~~~
 
->classpath中的所有META-INF/spring-devtools.properties文件都会被加载。
+>classpath中的所有META-INF-devtools.properties文件都会被加载。
 
 ## 已知的限制
 
@@ -164,7 +164,7 @@ DevTools不仅可以用于本地应用，也可以用于远程应用。通过设
  =========|_|==============|___/===================================/_/_/_/
  :: Spring Boot Remote :: 1.3.2.RELEASE
 
-2015-06-10 18:25:06.632  INFO 14938 --- [           main] o.s.b.devtools.RemoteSpringApplication   : Starting RemoteSpringApplication on pwmbp with PID 14938 (/Users/pwebb/projects/spring-boot/code/spring-boot-devtools/target/classes started by pwebb in /Users/pwebb/projects/spring-boot/code/spring-boot-samples/spring-boot-sample-devtools)
+2015-06-10 18:25:06.632  INFO 14938 --- [           main] o.s.b.devtools.RemoteSpringApplication   : Starting RemoteSpringApplication on pwmbp with PID 14938 (/Users/pwebb/projects-boot/code-boot-devtools/target/classes started by pwebb in /Users/pwebb/projects-boot/code-boot-samples-boot-sample-devtools)
 2015-06-10 18:25:06.671  INFO 14938 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@2a17b7b6: startup date [Wed Jun 10 18:25:06 PDT 2015]; root of context hierarchy
 2015-06-10 18:25:07.043  WARN 14938 --- [           main] o.s.b.d.r.c.RemoteClientConfiguration    : The connection to http://localhost:8080 is insecure. You should use a URL starting with 'https://'.
 2015-06-10 18:25:07.074  INFO 14938 --- [           main] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
@@ -191,7 +191,7 @@ DevTools不仅可以用于本地应用，也可以用于远程应用。通过设
 
 # 参考文章
 
-- [Spring Boot Developer tools](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-devtools)
+- [Spring Boot Developer tools](http://docs.spring.io-boot/docs/current/reference/htmlsingle/#using-boot-devtools)
 - [Spring Boot新模块devtools](http://www.huangyunkun.com/2015/06/28/devtools-in-spring-boot/)
 - [maven工程使用spring-boot-devtools进行热部署，更改代码避免重启web容器](http://blog.csdn.net/zhoujinyu0713/article/details/46843115)
 - [spring-boot下热部署热启动方案测试汇总](http://webinno.cn/blog/article/view/138)

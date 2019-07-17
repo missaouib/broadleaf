@@ -28,7 +28,7 @@ Bower 运行在 Git 之上，它将所有包都视作一个黑盒子。任何类
 - `上传下载`：这是工具的主要功能，能提高包使用的便利性。比如想用 jquery 只需要 install 一下就可以了，不用到处找下载。上传并不是必备的，根据文件存储的位置而定，但需要有一定的机制保障。
 - `依赖分析`：这也是包管理工具主要解决的问题之一，既然包之间是有联系的，那么下载的时候就需要处理他们之间的依赖。下载一个包的时候也需要下载依赖的包。
 
-功能介绍，摘自文章：<http://chuo.me/2013/02/twitter-bower.html>
+功能介绍，摘自文章：<http://chuo.me/images/02/twitter-bower.html>
 
 # 2. 安装
 
@@ -448,5 +448,5 @@ Bower 类似 maven 用于管理 javascript 的版本及其依赖，使用非常�
 # 5. 参考文章
 
 - [用于web前端开发的包管理器](http://bower.jsbin.cn/)
-- [twitter 的包管理工具 - bower](http://chuo.me/2013/02/twitter-bower.html)
+- [twitter 的包管理工具 - bower](http://chuo.me/images/02/twitter-bower.html)
 - [Day 1: Bower —— 管理你的客户端依赖关系](http://segmentfault.com/a/1190000000349555)

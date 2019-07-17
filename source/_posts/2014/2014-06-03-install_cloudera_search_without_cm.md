@@ -34,7 +34,7 @@ Cloudera Search 核心部件包括 Hadoop 和 Solr，后者建立在 Lucene 之�
 
 # 安装 Hadoop集群
 
-这里使用参考 [通过Cloudera Manager安装CDH](/2013/06/24/install-cdh-by-cloudera-manager.html)一文搭建的集群，其中也包括了一个三节点的 ZooKeeper 集群。该集群包括三个节点：
+这里使用参考 [通过Cloudera Manager安装CDH](/images/06/24/install-cdh-by-cloudera-manager.html)一文搭建的集群，其中也包括了一个三节点的 ZooKeeper 集群。该集群包括三个节点：
 
 ~~~
 	192.168.56.121        cdh1     NameNode、Hive、ResourceManager、HBase
@@ -44,7 +44,7 @@ Cloudera Search 核心部件包括 Hadoop 和 Solr，后者建立在 Lucene 之�
 
 # 安装 ZooKeeper
 
-Zookeeper 的安装过程，请参考 [使用yum安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum.html)。
+Zookeeper 的安装过程，请参考 [使用yum安装CDH Hadoop集群](/images/04/06/install-cloudera-cdh-by-yum.html)。
 
 # 安装 Solr
 
