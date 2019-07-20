@@ -22,7 +22,7 @@ tags: [mac]
 设置主机名：
 
 ~~~bash
-$ sudo scutil --set HostName june－mac
+$ sudo scutil --set HostName june
 ~~~
 
 设置鼠标滚轮滑动的方向：系统偏好设置－－>鼠标－－>"滚动方向：自然"前面的勾去掉
@@ -52,14 +52,8 @@ defaults write com.apple.finder AppleShowAllFiles -bool false #隐藏Mac隐藏�
 - Vagrant
 - Unarchiver: 支持多种格式（包括 windows下的格式）的压缩/解压缩工具
 - OminiFocus ：时间管理工具
-- Mou：Markdown 编辑器，国人出品
-- Dash
 - Xmind
-- Shadowsocks
-- WizNote：为知笔记
-- yEd：画时序图
 - Iterm2
-- [Moco](https://github.com/dreamhead/moco)，一个用来模拟服务器的工具。在服务器端没有开发完成时，可以通过配置来搭建一个模拟服务， 这样可以方便客户端的开发。
 
 # Homebrew
 
@@ -146,62 +140,6 @@ $ brew update && brew upgrade brew-cask && brew cleanup # 更新
 
 > 相对于 brew cask 的安装方式，本人更倾向于到 App Store 或官方下载 OS X 图形界面程序。主要因为名字不好记忆、偶尔需要手动更新，另外当你使用 Alfred 或 Spotlight ，你将发现将程序安装在 ~/Application 会很方便。
 
-# oh-my-zsh
-
-使用 Homebrew 完成 zsh 和 zsh completions 的安装
-
-~~~bash
-brew install zsh zsh-completions
-~~~
-
-把默认 Shell 换为 zsh。
-
-~~~bash
-$ chsh -s /bin/zsh
-~~~
-
-然后用下面的两句（任选其一）可以自动安装 oh-my-zsh：
-
-~~~bash
-$ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-~~~
-
-~~~bash
-$ wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh
-~~~
-
-编辑 ~/.zshrc：
-
-~~~
-echo 'source ~/.bashrc' >>~/.zshrc
-echo 'source ~/.bash_profile' >>~/.zshrc
-~~~
-
-用文本编辑器或 vi 打开 .zshrc 进行以下编辑:
-
-~~~bash
-ZSH_THEME=pygmalion
-plugins=(git colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting)
-~~~
-
-使用 `ctrl+r` 查找历史命令，在 `~/.zshrc` 中添加：
-
-~~~
-bindkey "^R" history-incremental-search-backward
-~~~
-
-## 使用
-
-使用上默认加了很多快捷映射，如：
-
-- `~`: 进入用户根目录，可以少打cd三个字符了
-- `l`: 相当于ls -lah
-- `..`: 返回上层目录
-- `...`: 返回上上层目录
-- `-`: 打开上次所在目录
-
-具体的可以查看其[配置文件](https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/aliases.zsh)。
-
 # Git 
 
 安装：
@@ -277,6 +215,269 @@ node_modules
 .sass-cache
 ~~~
 
+
+# oh-my-zsh
+
+使用 Homebrew 完成 zsh 和 zsh completions 的安装
+
+~~~bash
+brew install zsh zsh-completions
+~~~
+
+把默认 Shell 换为 zsh。
+
+~~~bash
+$ chsh -s /bin/zsh
+~~~
+
+然后用下面的两句（任选其一）可以自动安装 oh-my-zsh：
+
+~~~bash
+$ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+~~~
+
+~~~bash
+$ wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh
+~~~
+
+编辑 ~/.zshrc：
+
+~~~
+echo 'source ~/.bashrc' >>~/.zshrc
+echo 'source ~/.bash_profile' >>~/.zshrc
+~~~
+
+用文本编辑器或 vi 打开 .zshrc 添加插件:
+
+~~~bash
+ZSH_THEME=pygmalion
+plugins=(git mvn colorize encode64 urltools wd last-working-dir sublime vagrant Z zsh-syntax-highlighting git-open)
+~~~
+
+
+## Git插件
+
+Git插件的所有配置：
+
+参考： https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
+
+```bash
+alias g='git'
+
+alias ga='git add'
+alias gaa='git add --all'
+alias gapa='git add --patch'
+alias gau='git add --update'
+
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbda='git branch --no-color --merged | command grep -vE "^(\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d'
+alias gbl='git blame -b -w'
+alias gbnm='git branch --no-merged'
+alias gbr='git branch --remote'
+alias gbs='git bisect'
+alias gbsb='git bisect bad'
+alias gbsg='git bisect good'
+alias gbsr='git bisect reset'
+alias gbss='git bisect start'
+
+alias gc='git commit -v'
+alias gc!='git commit -v --amend'
+alias gcn!='git commit -v --no-edit --amend'
+alias gca='git commit -v -a'
+alias gca!='git commit -v -a --amend'
+alias gcan!='git commit -v -a --no-edit --amend'
+alias gcans!='git commit -v -a -s --no-edit --amend'
+alias gcam='git commit -a -m'
+alias gcsm='git commit -s -m'
+alias gcb='git checkout -b'
+alias gcf='git config --list'
+alias gcl='git clone --recursive'
+alias gclean='git clean -fd'
+alias gpristine='git reset --hard && git clean -dfx'
+alias gcm='git checkout master'
+alias gcd='git checkout develop'
+alias gcmsg='git commit -m'
+alias gco='git checkout'
+alias gcount='git shortlog -sn'
+compdef _git gcount
+alias gcp='git cherry-pick'
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
+alias gcs='git commit -S'
+
+alias gd='git diff'
+alias gdca='git diff --cached'
+alias gdct='git describe --tags `git rev-list --tags --max-count=1`'
+alias gdt='git diff-tree --no-commit-id --name-only -r'
+alias gdw='git diff --word-diff'
+
+gdv() { git diff -w "$@" | view - }
+compdef _git gdv=git-diff
+
+alias gf='git fetch'
+alias gfa='git fetch --all --prune'
+alias gfo='git fetch origin'
+
+function gfg() { git ls-files | grep $@ }
+compdef _grep gfg
+
+alias gg='git gui citool'
+alias gga='git gui citool --amend'
+
+ggf() {
+  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
+  git push --force origin "${b:=$1}"
+}
+compdef _git ggf=git-checkout
+
+ggl() {
+  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+    git pull origin "${*}"
+  else
+    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+    git pull origin "${b:=$1}"
+  fi
+}
+compdef _git ggl=git-checkout
+
+ggp() {
+  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+    git push origin "${*}"
+  else
+    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+    git push origin "${b:=$1}"
+  fi
+}
+compdef _git ggp=git-checkout
+
+ggpnp() {
+  if [[ "$#" == 0 ]]; then
+    ggl && ggp
+  else
+    ggl "${*}" && ggp "${*}"
+  fi
+}
+compdef _git ggpnp=git-checkout
+
+ggu() {
+  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
+  git pull --rebase origin "${b:=$1}"
+}
+compdef _git ggu=git-checkout
+
+alias ggpur='ggu'
+compdef _git ggpur=git-checkout
+
+alias ggpull='git pull origin $(git_current_branch)'
+compdef _git ggpull=git-checkout
+
+alias ggpush='git push origin $(git_current_branch)'
+compdef _git ggpush=git-checkout
+
+alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+
+alias ghh='git help'
+
+alias gignore='git update-index --assume-unchanged'
+alias gignored='git ls-files -v | grep "^[[:lower:]]"'
+alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
+compdef _git git-svn-dcommit-push=git
+
+alias gk='\gitk --all --branches'
+compdef _git gk='gitk'
+alias gke='\gitk --all $(git log -g --pretty=%h)'
+compdef _git gke='gitk'
+
+alias gl='git pull'
+alias glg='git log --stat'
+alias glgp='git log --stat -p'
+alias glgg='git log --graph'
+alias glgga='git log --graph --decorate --all'
+alias glgm='git log --graph --max-count=10'
+alias glo='git log --oneline --decorate'
+alias glol="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glola="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
+alias glog='git log --oneline --decorate --graph'
+alias gloga='git log --oneline --decorate --graph --all'
+alias glp="_git_log_prettily"
+compdef _git glp=git-log
+
+alias gm='git merge'
+alias gmom='git merge origin/master'
+alias gmt='git mergetool --no-prompt'
+alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
+alias gmum='git merge upstream/master'
+
+alias gp='git push'
+alias gpd='git push --dry-run'
+alias gpoat='git push origin --all && git push origin --tags'
+compdef _git gpoat=git-push
+alias gpu='git push upstream'
+alias gpv='git push -v'
+
+alias gr='git remote'
+alias gra='git remote add'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbi='git rebase -i'
+alias grbm='git rebase master'
+alias grbs='git rebase --skip'
+alias grh='git reset HEAD'
+alias grhh='git reset HEAD --hard'
+alias grmv='git remote rename'
+alias grrm='git remote remove'
+alias grset='git remote set-url'
+alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
+alias gru='git reset --'
+alias grup='git remote update'
+alias grv='git remote -v'
+
+alias gsb='git status -sb'
+alias gsd='git svn dcommit'
+alias gsi='git submodule init'
+alias gsps='git show --pretty=short --show-signature'
+alias gsr='git svn rebase'
+alias gss='git status -s'
+alias gst='git status'
+alias gsta='git stash save'
+alias gstaa='git stash apply'
+alias gstc='git stash clear'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash show --text'
+alias gsu='git submodule update'
+
+alias gts='git tag -s'
+alias gtv='git tag | sort -V'
+
+alias gunignore='git update-index --no-assume-unchanged'
+alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
+alias gup='git pull --rebase'
+alias gupv='git pull --rebase -v'
+alias glum='git pull upstream master'
+
+alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
+alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip-- [skip ci]"'
+```
+
+## aliases插件
+
+使用上默认加了很多快捷映射，如：
+
+- `~`: 进入用户根目录，可以少打cd三个字符了
+- `l`: 相当于ls -lah
+- `..`: 返回上层目录
+- `...`: 返回上上层目录
+- `-`: 打开上次所在目录
+
+具体的可以查看其[配置文件](https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/aliases.zsh)。
+
+
 # 安装Vim插件
 
 安装 pathogen：
@@ -316,19 +517,6 @@ $ rvm install 2.2.1
 $ rvm --default 2.2.1
 ~~~
 
-# 安装Jekyll
-
-~~~bash
-$ sudo gem install jekyll jekyll-paginate  
-~~~
-
-设置环境变量：
-
-~~~bash
-$ echo 'export PATH=$PATH:$HOME/.rvm/bin' >> ~/.bash_profile
-$ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bash_profile
-~~~
-
 # Java开发环境
 
 下载 jdk：
@@ -336,32 +524,11 @@ $ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.b
 - jdk6：<http://support.apple.com/downloads/DL1572/en_US/JavaForOSX2013-05.dmg>
 - jdk7：<http://download.oracle.com/otn-pub/java/jdk/7u60-b19/jdk-7u60-macosx-x64.dmg?AuthParam=1403450902_0b8ed262d4128ca82031dcbdc2627aaf>
 
-设置 java_home 为 1.7:
+设置 java_home 为 1.8:
 
 ~~~bash
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 ~~~
-
-使用 brew 来安装 ant、maven、ivy、forrest、springboot 等：
-
-~~~bash
-$ brew install https://raw.github.com/Homebrew/homebrew-versions/master/maven30.rb ant ivy apache-forrest  springboot
-~~~
-
-配置 ant、maven 和 ivy 仓库：
-
-~~~bash
-$ rm -rf ~/.ivy2/cache ~/.m2/repository
-$ mkdir -p ~/.ivy2 ~/.m2
-$ ln -s ~/app/repository/cache/  ~/.ivy2/cache
-$ ln -s ~/app/repository/m2/  ~/.m2/repository
-~~~
-
-注意，这里我在 `~/app/repository` 有两个目录，cache 用于存放 ivy 下载的文件，m2 用于存放 maven 的仓库。
-
-# Python开发环境
-
-TODO
 
 # 参考文章
 
