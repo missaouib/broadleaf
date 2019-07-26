@@ -593,7 +593,6 @@
 <h2 id="Policy-Provider"><a href="#Policy-Provider" class="headerlink" title="Policy Provider"></a>Policy Provider</h2><p>Policy Provider负责从文件或者数据库中读取出原先设定的访问权限。Policy Engine以及Policy Provider其实对于任何授权体系来说都是必须的，因此是公共模块，后续还可服务于别的查询引擎。</p>
 <p>基于文件的提供者使用的是ini格式的文件保存元数据信息，这个文件可以是一个本地文件或者HDFS文件。下面是一个例子：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[groups]</span></span><br><span class="line"><span class="comment"># Assigns each Hadoop group to its set of roles</span></span><br><span class="line"><span class="attr">manager</span> = analyst_role, junior_analyst_role</span><br><span class="line"><span class="attr">analyst</span> = analyst_role</span><br><span class="line"></span><br><span class="line"><span class="attr">admin</span> = admin_role</span><br><span class="line"><span class="section">[roles]</span></span><br><span class="line"><span class="attr">analyst_role</span> = server=server1-&gt;db=analyst1, \</span><br><span class="line">   server=server1-&gt;db=jranalyst1-&gt;table=*-&gt;action=select, \</span><br><span class="line">   server=server1-&gt;uri=hdfs://ha-nn-uri/landing/analyst1, \</span><br><span class="line">   server=server1-&gt;db=default-&gt;table=tab2</span><br><span class="line"><span class="comment"># Implies everything on server1.</span></span><br><span class="line"><span class="attr">admin_role</span> = server=server1</span><br></pre></td></tr></table></figure>
-
 <p>基于文件的方式不易于使用程序修改，在修改过程中会存在资源竞争，不利于维护。Hive和Impala需要提供工业标准的SQL接口来管理授权策略，要求能够使用编程的方式进行管理。</p>
 <p>Sentry策略存储和服务将角色和权限以及组合角色的映射持久化到一个关系数据库并提供编程的API接口方便创建、查询、更新和删除。这允许Sentry的客户端并行和安全地获取和修改权限。</p>
 <p><img src="https://blogs.apache.org/sentry/mediaresource/d9cc7fbc-dbf0-4dcb-a065-3f4d95878c00" alt></p>
@@ -787,8 +786,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/04/30/install-and-config-sentry/" rel="prev" title="安装和配置Sentry">
-                安装和配置Sentry <i class="fa fa-chevron-right"></i>
+              <a href="/2015/04/30/test-hive-with-sentry/" rel="prev" title="测试Hive集成Sentry">
+                测试Hive集成Sentry <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

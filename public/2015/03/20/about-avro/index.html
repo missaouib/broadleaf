@@ -570,43 +570,45 @@
 <table>
 <thead>
 <tr>
-<th align="left">类型</th>
-<th align="left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">null</td>
-<td align="left">no value</td>
+<tbody>
+<tr>
+<td style="text-align:left">null</td>
+<td style="text-align:left">no value</td>
 </tr>
 <tr>
-<td align="left">boolean</td>
-<td align="left">a binary value</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">a binary value</td>
 </tr>
 <tr>
-<td align="left">int</td>
-<td align="left">32-bit signed integer</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">32-bit signed integer</td>
 </tr>
 <tr>
-<td align="left">long</td>
-<td align="left">64-bit signed integer</td>
+<td style="text-align:left">long</td>
+<td style="text-align:left">64-bit signed integer</td>
 </tr>
 <tr>
-<td align="left">float</td>
-<td align="left">single precision (32-bit) IEEE 754 floating-point number</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">single precision (32-bit) IEEE 754 floating-point number</td>
 </tr>
 <tr>
-<td align="left">double</td>
-<td align="left">double precision (64-bit) IEEE 754 floating-point number</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">double precision (64-bit) IEEE 754 floating-point number</td>
 </tr>
 <tr>
-<td align="left">bytes</td>
-<td align="left">sequence of 8-bit unsigned bytes</td>
+<td style="text-align:left">bytes</td>
+<td style="text-align:left">sequence of 8-bit unsigned bytes</td>
 </tr>
 <tr>
-<td align="left">string</td>
-<td align="left">unicode character sequence</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">unicode character sequence</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>Avro定义了六种复杂数据类型：</p>
 <ul>
 <li>Record：record 类型，任意类型的一个命名字段集合，JSON对象表示。支持以下属性：<ul>
@@ -653,107 +655,97 @@
 <p>每一种复杂数据类型都含有各自的一些属性，其中部分属性是必需的，部分是可选的。</p>
 <p>举例，一个 linked-list of 64-bit 的值：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"type"</span>: <span class="string">"record"</span>, </span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"LongList"</span>,</span><br><span class="line">  "aliases": ["LinkedLongs"],                      // old name for this</span><br><span class="line">  "fields" : [</span><br><span class="line">    &#123;"name": "value", "type": "long"&#125;,             // each element has a long</span><br><span class="line">    &#123;"name": "next", "type": ["null", "LongList"]&#125; // optional next element</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>一个 enum 类型的：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">"type"</span>: <span class="string">"enum"</span>,</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"Suit"</span>,</span><br><span class="line">  <span class="attr">"symbols"</span> : [<span class="string">"SPADES"</span>, <span class="string">"HEARTS"</span>, <span class="string">"DIAMONDS"</span>, <span class="string">"CLUBS"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>array 类型：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"type"</span>: <span class="string">"array"</span>, <span class="attr">"items"</span>: <span class="string">"string"</span>&#125;</span><br></pre></td></tr></table></figure>
-
 <p>map 类型：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"type"</span>: <span class="string">"map"</span>, <span class="attr">"values"</span>: <span class="string">"long"</span>&#125;</span><br></pre></td></tr></table></figure>
-
 <p>fixed 类型：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"type"</span>: <span class="string">"fixed"</span>, <span class="attr">"size"</span>: <span class="number">16</span>, <span class="attr">"name"</span>: <span class="string">"md5"</span>&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这里需要说明Record类型中field属性的默认值，当Record Schema实例数据中某个field属性没有提供实例数据时，则由默认值提供，具体值见下表。Union的field默认值由Union定义中的第一个Schema决定。</p>
 <table>
 <thead>
 <tr>
-<th align="left">avro type</th>
-<th align="left">json type</th>
-<th align="left">example</th>
+<th style="text-align:left">avro type</th>
+<th style="text-align:left">json type</th>
+<th style="text-align:left">example</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">null</td>
-<td align="left">null</td>
-<td align="left">null</td>
+<tbody>
+<tr>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
 </tr>
 <tr>
-<td align="left">boolean</td>
-<td align="left">boolean</td>
-<td align="left">true</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">true</td>
 </tr>
 <tr>
-<td align="left">int,long</td>
-<td align="left">integer</td>
-<td align="left">1</td>
+<td style="text-align:left">int,long</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">1</td>
 </tr>
 <tr>
-<td align="left">float,double</td>
-<td align="left">number</td>
-<td align="left">1.1</td>
+<td style="text-align:left">float,double</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">1.1</td>
 </tr>
 <tr>
-<td align="left">bytes</td>
-<td align="left">string</td>
-<td align="left">“\u00FF”</td>
+<td style="text-align:left">bytes</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">“\u00FF”</td>
 </tr>
 <tr>
-<td align="left">string</td>
-<td align="left">string</td>
-<td align="left">“foo”</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">“foo”</td>
 </tr>
 <tr>
-<td align="left">record</td>
-<td align="left">object</td>
-<td align="left">{“a”: 1}</td>
+<td style="text-align:left">record</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">{“a”: 1}</td>
 </tr>
 <tr>
-<td align="left">enum</td>
-<td align="left">string</td>
-<td align="left">“FOO”</td>
+<td style="text-align:left">enum</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">“FOO”</td>
 </tr>
 <tr>
-<td align="left">array</td>
-<td align="left">array</td>
-<td align="left">[1]</td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">[1]</td>
 </tr>
 <tr>
-<td align="left">map</td>
-<td align="left">object</td>
-<td align="left">{“a”: 1}</td>
+<td style="text-align:left">map</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">{“a”: 1}</td>
 </tr>
 <tr>
-<td align="left">fixed</td>
-<td align="left">string</td>
-<td align="left">“\u00ff”</td>
+<td style="text-align:left">fixed</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">“\u00ff”</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <h1 id="3-序列化-反序列化"><a href="#3-序列化-反序列化" class="headerlink" title="3.  序列化/反序列化"></a>3.  序列化/反序列化</h1><p>Avro 指定两种数据序列化编码方式：binary encoding 和 Json encoding。使用二进制编码会高效序列化，并且序列化后得到的结果会比较小；而 JSON 一般用于调试系统或是基于 WEB 的应用。</p>
 <p>TODO</p>
 <h1 id="4-Avro-Tools"><a href="#4-Avro-Tools" class="headerlink" title="4. Avro Tools"></a>4. Avro Tools</h1><p>Avro Tools 不加参数时:</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar /usr/lib/avro/avro-tools.jar</span><br><span class="line"><span class="keyword">Version</span> 1.7.6-cdh5.2.0 of Apache Avro</span><br><span class="line"><span class="keyword">Copyright</span> 2010 The Apache Software Foundation</span><br><span class="line"></span><br><span class="line">This product includes software developed at</span><br><span class="line">The Apache Software Foundation (http:<span class="comment">//www.apache.org/).</span></span><br><span class="line"></span><br><span class="line">C JSON parsing provided <span class="keyword">by</span> Jansson and</span><br><span class="line">written <span class="keyword">by</span> Petri Lehtinen. The original software is</span><br><span class="line">available from http:<span class="comment">//www.digip.org/jansson/.</span></span><br><span class="line">----------------</span><br><span class="line">Available tools:</span><br><span class="line">          <span class="keyword">cat</span>  extracts samples from files</span><br><span class="line">      compile  Generates Java code <span class="keyword">for</span> the given schema.</span><br><span class="line">       concat  Concatenates avro files without re-compressing.</span><br><span class="line">   fragtojson  Renders a binary-encoded Avro datum <span class="keyword">as</span> JSON.</span><br><span class="line">     fromjson  Reads JSON records and writes <span class="keyword">an</span> Avro data <span class="keyword">file</span>.</span><br><span class="line">     fromtext  Imports a text <span class="keyword">file</span> into <span class="keyword">an</span> avro data <span class="keyword">file</span>.</span><br><span class="line">      getmeta  Prints <span class="keyword">out</span> the metadata of <span class="keyword">an</span> Avro data <span class="keyword">file</span>.</span><br><span class="line">    getschema  Prints <span class="keyword">out</span> schema of <span class="keyword">an</span> Avro data <span class="keyword">file</span>.</span><br><span class="line">          idl  Generates a JSON schema from <span class="keyword">an</span> Avro IDL <span class="keyword">file</span></span><br><span class="line"> idl2schemata  Extract JSON schemata of the types from <span class="keyword">an</span> Avro IDL <span class="keyword">file</span></span><br><span class="line">       induce  Induce schema/protocol from Java <span class="keyword">class</span>/interface via reflection.</span><br><span class="line">   jsontofrag  Renders a JSON-encoded Avro datum <span class="keyword">as</span> binary.</span><br><span class="line">       random  Creates a <span class="keyword">file</span> with randomly generated instances of a schema.</span><br><span class="line">      recodec  Alters the codec of a data <span class="keyword">file</span>.</span><br><span class="line">  rpcprotocol  Output the protocol of a RPC service</span><br><span class="line">   rpcreceive  Opens <span class="keyword">an</span> RPC Server and listens <span class="keyword">for</span> <span class="keyword">one</span> message.</span><br><span class="line">      rpcsend  Sends a single RPC message.</span><br><span class="line">       tether  <span class="keyword">Run</span> a tethered mapreduce job.</span><br><span class="line">       tojson  Dumps <span class="keyword">an</span> Avro data <span class="keyword">file</span> <span class="keyword">as</span> JSON, record per <span class="keyword">line</span> or pretty.</span><br><span class="line">       totext  Converts <span class="keyword">an</span> Avro data <span class="keyword">file</span> to a text <span class="keyword">file</span>.</span><br><span class="line">     totrevni  Converts <span class="keyword">an</span> Avro data <span class="keyword">file</span> to a Trevni <span class="keyword">file</span>.</span><br><span class="line">  trevni_meta  Dumps a Trevni <span class="keyword">file</span>'s metadata <span class="keyword">as</span> JSON.</span><br><span class="line">trevni_random  Create a Trevni <span class="keyword">file</span> filled with random instances of a schema.</span><br><span class="line">trevni_tojson  Dumps a Trevni <span class="keyword">file</span> <span class="keyword">as</span> JSON.</span><br></pre></td></tr></table></figure>
-
 <p>fromjson 命令语法如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar /usr/lib/avro/avro-tools.jar fromjson</span><br><span class="line">Expected 1 arg: input_file</span><br><span class="line">Option                                  Description</span><br><span class="line">------                                  -----------</span><br><span class="line">--codec                                 Compression codec (default: null)</span><br><span class="line">--level &lt;Integer&gt;                       Compression level (only applies to</span><br><span class="line">                                          deflate and xz) (default: -1)</span><br><span class="line">--schema                                Schema</span><br><span class="line">--schema-file                           Schema File</span><br></pre></td></tr></table></figure>
-
 <p>以 <a href="/2015/03/24/how-to-load-some-avro-data-into-spark.html">将Avro数据加载到Spark</a> 为例，将 json 数据转换为 avro 数据：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar /usr/lib/avro/avro-tools.jar fromjson --schema-file twitter.avsc twitter.json &gt; twitter.avro</span><br></pre></td></tr></table></figure>
-
 <p>设置压缩格式：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar /usr/lib/avro/avro-tools.jar fromjson --codec snappy --schema-file twitter.avsc twitter.json &gt; twitter.snappy.avro</span><br></pre></td></tr></table></figure>
-
 <p>将 avro 转换为 json：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar /usr/lib/avro/avro-tools.jar tojson twitter.avro &gt; twitter.json</span><br><span class="line">$ java -jar /usr/lib/avro/avro-tools.jar tojson twitter.snappy.avro &gt; twitter.json</span><br></pre></td></tr></table></figure>
-
 <p>获取 avro 文件的 schema：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar /usr/lib/avro/avro-tools.jar getschema twitter.avro &gt; twitter.avsc</span><br><span class="line">$ java -jar /usr/lib/avro/avro-tools.jar getschema twitter.snappy.avro &gt; twitter.avsc</span><br></pre></td></tr></table></figure>
-
 <p>将 Avro 数据编译为 Java：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar /usr/lib/avro/avro-tools.jar compile schema twitter.avsc .</span><br></pre></td></tr></table></figure>
-
 <h1 id="5-文件结构"><a href="#5-文件结构" class="headerlink" title="5. 文件结构"></a>5. 文件结构</h1><p>TODO</p>
 <h1 id="6-参考文章"><a href="#6-参考文章" class="headerlink" title="6. 参考文章"></a>6. 参考文章</h1><ul>
 <li><a href="http://blog.csdn.net/xyw_blog/article/details/8967362" target="_blank" rel="noopener">Avro简介</a></li>

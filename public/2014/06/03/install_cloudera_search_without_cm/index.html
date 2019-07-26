@@ -559,69 +559,50 @@
 </ul>
 <h1 id="安装-Hadoop集群"><a href="#安装-Hadoop集群" class="headerlink" title="安装 Hadoop集群"></a>安装 Hadoop集群</h1><p>这里使用参考 <a href="/images/06/24/install-cdh-by-cloudera-manager.html">通过Cloudera Manager安装CDH</a>一文搭建的集群，其中也包括了一个三节点的 ZooKeeper 集群。该集群包括三个节点：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.56</span><span class="selector-class">.121</span>        <span class="selector-tag">cdh1</span>     <span class="selector-tag">NameNode</span>、<span class="selector-tag">Hive</span>、<span class="selector-tag">ResourceManager</span>、<span class="selector-tag">HBase</span></span><br><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.56</span><span class="selector-class">.122</span>        <span class="selector-tag">cdh2</span>     <span class="selector-tag">DataNode</span>、<span class="selector-tag">SSNameNode</span>、<span class="selector-tag">NodeManager</span>、<span class="selector-tag">HBase</span></span><br><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.56</span><span class="selector-class">.123</span>        <span class="selector-tag">cdh3</span>     <span class="selector-tag">DataNode</span>、<span class="selector-tag">HBase</span>、<span class="selector-tag">NodeManager</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="安装-ZooKeeper"><a href="#安装-ZooKeeper" class="headerlink" title="安装 ZooKeeper"></a>安装 ZooKeeper</h1><p>Zookeeper 的安装过程，请参考 <a href="/images/04/06/install-cloudera-cdh-by-yum.html">使用yum安装CDH Hadoop集群</a>。</p>
 <h1 id="安装-Solr"><a href="#安装-Solr" class="headerlink" title="安装 Solr"></a>安装 Solr</h1><p>Zookeeper 启动之后，需要安装 Solr，关于 Solr 的安装，可以参考 <a href="/2014/03/10/how-to-install-solrcloud.html">Apache SolrCloud安装</a>。</p>
 <p>在三个节点上安装 solr-server：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum <span class="keyword">install</span> solr-<span class="keyword">server</span> solr solr-doc -y</span><br></pre></td></tr></table></figure>
-
 <p>安装 Spark Indexer：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install solr-crunch</span><br></pre></td></tr></table></figure>
-
 <p>安装 MapReduce Tools：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install solr-mapreduce</span><br></pre></td></tr></table></figure>
-
 <p>安装 Lily HBase Indexer：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install hbase-solr-indexer hbase-solr-doc</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意：Lily HBase Indexer和 cdh5 工作的时候，你需要在运行 MapReduce 任务之前运行下面命令：<br><code>export HADOOP_CLASSPATH=&lt;Path to hbase-protocol-**.jar&gt;</code></p>
 </blockquote>
 <h1 id="配置-Solr"><a href="#配置-Solr" class="headerlink" title="配置 Solr"></a>配置 Solr</h1><p>修改 solr 配置文件 <code>/etc/default/solr</code> 中 ZooKeeper 连接地址：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOLR_ZK_ENSEMBLE=<span class="string">cdh1:</span><span class="number">2181</span>,<span class="string">cdh2:</span><span class="number">2181</span>,<span class="string">cdh3:</span><span class="number">2181</span>/solr</span><br></pre></td></tr></table></figure>
-
 <p>修改 solr 配置文件 <code>/etc/default/solr</code> 中 HDFS 连接地址：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOLR_HDFS_HOME=<span class="string">hdfs:</span><span class="comment">//cdh1:8020/solr</span></span><br></pre></td></tr></table></figure>
-
 <p>设置 HDFS 配置文件目录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOLR_HDFS_CONFIG=/etc/hadoop/conf</span><br></pre></td></tr></table></figure>
-
 <p>如果你配置了 Kerberos，则在 kerberos 服务器上为每个安装 solr 的节点先生成 solr 的凭证：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kadmin:  addprinc -randkey solr/cdh1@JAVACHEN.COM</span><br><span class="line">kadmin:  xst -norandkey -k solr.keytab solr/cdh1</span><br><span class="line"></span><br><span class="line">kadmin:  addprinc -randkey solr/cdh2@JAVACHEN.COM</span><br><span class="line">kadmin:  xst -norandkey -k solr.keytab solr/cdh2</span><br><span class="line"></span><br><span class="line">kadmin:  addprinc -randkey solr/cdh3@JAVACHEN.COM</span><br><span class="line">kadmin:  xst -norandkey -k solr.keytab solr/cdh3</span><br></pre></td></tr></table></figure>
-
 <p>然后，将 solr.keytab 拷贝到 /etc/solr/conf：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mv solr.keytab /etc/solr/conf/</span><br><span class="line"></span><br><span class="line">$ sudo chown solr:hadoop /etc/solr/conf/solr.keytab</span><br><span class="line">$ sudo chmod 400 /etc/solr/conf/solr.keytab</span><br></pre></td></tr></table></figure>
-
 <p>最后，修改每个安装了 solr 节点的 /etc/default/solr，例如在 cdh1节点上修改为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SOLR_KERBEROS_ENABLED=true</span><br><span class="line">SOLR_KERBEROS_KEYTAB=/etc/solr/conf/solr.keytab</span><br><span class="line">SOLR_KERBEROS_PRINCIPAL=solr/cdh1@JAVACHEN.COM</span><br></pre></td></tr></table></figure>
-
 <p>在 HDFS 中创建 <code>/solr</code> 目录：</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u hdfs hadoop <span class="built_in">fs</span> -<span class="built_in">mkdir</span> /solr</span><br><span class="line">$ sudo -u hdfs hadoop <span class="built_in">fs</span> -chown solr /solr</span><br></pre></td></tr></table></figure>
-
 <p>如果开启了 kerberos，则先获取 hdfs 服务的凭证在运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ kinit -k -t /etc/hadoop/conf/hdfs.keytab hdfs/cdh1@JAVACHEN.com</span><br><span class="line"></span><br><span class="line">$ hadoop fs -mkdir /solr</span><br><span class="line">$ hadoop fs -chown solr /solr</span><br></pre></td></tr></table></figure>
-
 <p>集成 Sentry，取消 /etc/default/solr 下面注释：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># SOLR_AUTHORIZATION_SENTRY_SITE=/etc/solr/conf/sentry-site.xml</span><br><span class="line"># SOLR_AUTHORIZATION_SUPERUSER=solr</span><br></pre></td></tr></table></figure>
-
 <p>集成 Hue，取消 /etc/default/solr 下面注释：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># SOLR_SECURITY_ALLOWED_PROXYUSERS=hue</span><br><span class="line"># SOLR_SECURITY_PROXYUSER_hue_HOSTS=*</span><br><span class="line"># SOLR_SECURITY_PROXYUSER_hue_GROUPS=*</span><br></pre></td></tr></table></figure>
-
 <p>初始化 ZooKeeper Namespace：</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>solrctl init</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意：你可以添加 <code>--force</code> 参数强制清空 ZooKeeper 数据，清空之前，请先停止 ZooKeeper 集群。</p>
 </blockquote>
 <h1 id="启动-Solr"><a href="#启动-Solr" class="headerlink" title="启动 Solr"></a>启动 Solr</h1><p>在每一个安装了 Solr server 的节点上运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service solr-server restart</span><br></pre></td></tr></table></figure>
-
 <p>通过下面命令查看 Solr 是否启动成功：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ jps -lm</span><br><span class="line"><span class="number">28053</span> org<span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.mapreduce</span><span class="selector-class">.v2</span><span class="selector-class">.hs</span><span class="selector-class">.JobHistoryServer</span></span><br><span class="line"><span class="number">31710</span> org<span class="selector-class">.apache</span><span class="selector-class">.zookeeper</span><span class="selector-class">.server</span><span class="selector-class">.quorum</span><span class="selector-class">.QuorumPeerMain</span> /etc/zookeeper/conf/zoo.cfg</span><br><span class="line"><span class="number">14479</span> org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.Bootstrap</span> start</span><br><span class="line"><span class="number">29994</span> org<span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hdfs</span><span class="selector-class">.server</span><span class="selector-class">.namenode</span><span class="selector-class">.SecondaryNameNode</span></span><br><span class="line"><span class="number">29739</span> org<span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.yarn</span><span class="selector-class">.server</span><span class="selector-class">.resourcemanager</span><span class="selector-class">.ResourceManager</span></span><br><span class="line"><span class="number">27298</span> org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.Bootstrap</span> httpfs start</span><br><span class="line"><span class="number">30123</span> org<span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hdfs</span><span class="selector-class">.server</span><span class="selector-class">.namenode</span><span class="selector-class">.NameNode</span></span><br><span class="line"><span class="number">21761</span> sun<span class="selector-class">.tools</span><span class="selector-class">.jps</span><span class="selector-class">.Jps</span> -lm</span><br></pre></td></tr></table></figure>
-
 <p>上面用到了 solrctl 命令，该命令用来管理 SolrCloud 的部署和配置，其语法如下：</p>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solrctl [options] command [command-arg] [command [command-arg]] ...</span><br></pre></td></tr></table></figure>
-
 <p>可选参数有：</p>
 <ul>
 <li><code>--solr</code>：指定 SolrCloud 的 web API，如果在 SolrCloud 集群之外的节点运行命令，就需要指定该参数。</li>
@@ -646,7 +627,7 @@
 <li><code>--delete name</code>: Deletes a collection.</li>
 <li><code>--reload name</code>: Reloads a collection.</li>
 <li><code>--stat name</code>: Outputs SolrCloud specific run-time information for a collection.</li>
-<li>``–list`: Lists all collections registered in SolrCloud.</li>
+<li><code></code>–list`: Lists all collections registered in SolrCloud.</li>
 <li><code>--deletedocs name</code>: Purges all indexed documents from a collection.</li>
 </ul>
 </li>
@@ -665,33 +646,26 @@
 </ul>
 <h1 id="创建-Solr-运行时配置"><a href="#创建-Solr-运行时配置" class="headerlink" title="创建 Solr 运行时配置"></a>创建 Solr 运行时配置</h1><p>在一个节点上（例如 cdh1）生成配置文件：</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ solrctl instancedir --<span class="keyword">generate</span> $HOME/solr_configs</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意：你可以在 <code>/var/lib/solr</code> 创建目录，维护配置文件。</p>
 </blockquote>
 <p>执行完之后，你可以修改 $HOME/solr_configs/conf 目录下的配置文件，其目录下文件如下。</p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ ll ~/solr_configs/conf/</span><br><span class="line">total 348</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root <span class="number"> 1092 </span>Jun <span class="number"> 2 </span>23:10 admin-extra.html</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root  <span class="number"> 953 </span>Jun <span class="number"> 2 </span>23:10 admin-extra.menu-bottom.html</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root  <span class="number"> 951 </span>Jun <span class="number"> 2 </span>23:10 admin-extra.menu-top.html</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root <span class="number"> 4041 </span>Jun <span class="number"> 2 </span>23:10 currency.xml</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root <span class="number"> 1386 </span>Jun <span class="number"> 2 </span>23:10 elevate.xml</span><br><span class="line">drwxr-xr-x<span class="number"> 2 </span>root root <span class="number"> 4096 </span>Jun <span class="number"> 2 </span>23:10 lang</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root<span class="number"> 82327 </span>Jun <span class="number"> 2 </span>23:10 mapping-FoldToASCII.txt</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root <span class="number"> 3114 </span>Jun <span class="number"> 2 </span>23:10 mapping-ISOLatin1Accent.txt</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root  <span class="number"> 894 </span>Jun <span class="number"> 2 </span>23:10 protwords.txt</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root<span class="number"> 59635 </span>Jun <span class="number"> 2 </span>23:10 schema.xml</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root  <span class="number"> 921 </span>Jun <span class="number"> 2 </span>23:10 scripts.conf</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root<span class="number"> 72219 </span>Jun <span class="number"> 2 </span>23:10 solrconfig.xml</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root<span class="number"> 73608 </span>Jun <span class="number"> 2 </span>23:10 solrconfig.xml.secure</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root   <span class="number"> 16 </span>Jun <span class="number"> 2 </span>23:10 spellings.txt</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root  <span class="number"> 795 </span>Jun <span class="number"> 2 </span>23:10 stopwords.txt</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root <span class="number"> 1148 </span>Jun <span class="number"> 2 </span>23:10 synonyms.txt</span><br><span class="line">-rw-r--r--<span class="number"> 1 </span>root root <span class="number"> 1469 </span>Jun <span class="number"> 2 </span>23:10 update-script.js</span><br><span class="line">drwxr-xr-x<span class="number"> 2 </span>root root <span class="number"> 4096 </span>Jun <span class="number"> 2 </span>23:10 velocity</span><br><span class="line">drwxr-xr-x<span class="number"> 2 </span>root root <span class="number"> 4096 </span>Jun <span class="number"> 2 </span>23:10 xslt</span><br></pre></td></tr></table></figure>
-
 <p>创建 collection1 实例并将配置文件上传到 zookeeper：</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>solrctl instancedir --create collection1 <span class="variable">$HOME</span>/solr_configs</span><br></pre></td></tr></table></figure>
-
 <p>你可以通过下面命令查看上传的 instance：</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ solrctl instancedir <span class="comment">--list</span></span><br></pre></td></tr></table></figure>
-
 <p>上传到 zookeeper 之后，其他节点就可以从上面下载配置文件。</p>
 <p>接下来，还是在 cdh1 节点上创建 collection，因为我的 SolrCloud 集群有三个节点，故这里分片数设为3，并设置副本为1，如果有更多节点，可以将副本设置为更大的一个数：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ solrctl collection --create collection1 -s <span class="number">3</span> -r <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p>运行成功之后，你可以通过 <a href="http://cdh1:8983/solr/#/~cloud" target="_blank" rel="noopener">http://cdh1:8983/solr/#/~cloud</a>、<a href="http://cdh2:8983/solr/#/~cloud" target="_blank" rel="noopener">http://cdh2:8983/solr/#/~cloud</a>、<a href="http://cdh3:8983/solr/#/~cloud" target="_blank" rel="noopener">http://cdh3:8983/solr/#/~cloud</a> 查看创建的分片。从网页上可以看到，已经自动创建了三个分片，并且三个分片分布在3个节点之上。</p>
 <h1 id="配置-hbase-solr-indexer"><a href="#配置-hbase-solr-indexer" class="headerlink" title="配置 hbase-solr-indexer"></a>配置 hbase-solr-indexer</h1><p>1）开启 HBase replication</p>
 <p>Lily HBase Indexer 的实现依赖于 HBase的replication，故需要开启复制。将 <code>/usr/share/doc/hbase-solr-doc*/demo/hbase-site.xml</code>文件的内容拷贝到 <code>hbase-site.xml</code>，<strong>注意</strong>：删除掉 <code>replication.replicationsource.implementation</code> 参数配置。</p>
 <p>2）将 hbase-solr-indexer 服务指向 hbase 集群</p>
 <p>修改 <code>/etc/hbase-solr/conf/hbase-indexer-site.xml</code>，添加如下参数，其值和 <code>hbase-site.xml</code> 中的 <code>hbase.zookeeper.quorum</code> 属性值保持一致（注意添加上端口）：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbaseindexer.zookeeper.connectstring<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">value</span>&gt;</span>cdh1:2181,cdh2:2181,cdh3:2181<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>最后再重启服务：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo<span class="built_in"> service </span>hbase-solr-indexer restart</span><br></pre></td></tr></table></figure>
-
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文内容主要介绍了如何不使用 Cloudera Manager 来安装 Cloudera Search，下篇文章将介绍如何使用 Cloudera Search。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>[1] <a href="http://blog.sina.com.cn/s/blog_9bf980ad010182ph.html" target="_blank" rel="noopener">Cloudera Search: 轻松实现Hadoop全文检索 </a></li>

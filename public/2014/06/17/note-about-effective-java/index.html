@@ -557,7 +557,6 @@
 </ul>
 <p>例如：</p>
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> static <span class="built_in">Boolean</span> valueOf(<span class="built_in">boolean</span> f)&#123;</span><br><span class="line">	<span class="keyword">return</span> b ? <span class="built_in">Boolean</span>.<span class="literal">TRUE</span> : Booleab.<span class="literal">FALSE</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;&gt; m=HashMap.newInstance();</span><br></pre></td></tr></table></figure>
-
 <p>静态工厂方法坏处：</p>
 <ul>
 <li>1、如果一个类是通过静态工厂方法来取得实例的，并且该类的构造函数都不是公有的或者保护的，那该类就不可能有子类（被继承），子类的构造函数需要首先调用父类的构造函数，因为父类的构造函数是private的，所以即使我们假设继承成功的话，那么子类也根本没有权限去调用父类的私有构造函数，所以是无法被继承的。</li>
@@ -570,13 +569,11 @@
 <p>其实我们可以这样做，把该类的构造函数定义为私有的（private），而类的内部又不调用该构造函数的话，就成功了。这样带来的后果就是该类成了 final的，不可能再被任何类继承了，要被继承，得提供一个公有（public）的或者保护（protect）的构造函数，这样才能被子类调用。</p>
 <h2 id="NO-5-避免创建重复的对象"><a href="#NO-5-避免创建重复的对象" class="headerlink" title="NO.5 避免创建重复的对象"></a>NO.5 避免创建重复的对象</h2><p>如果一个对象是不可变的，那么他总是可以被重用的，如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不推荐，"test"本来就是一个String实例，如果此方法在一个循环中或者被频繁的调用，将会严重影响性能</span></span><br><span class="line">String s = <span class="keyword">new</span> String(<span class="string">"test"</span>);</span><br><span class="line"><span class="comment">//推荐方式</span></span><br><span class="line">String s = <span class="string">"test"</span>;</span><br></pre></td></tr></table></figure>
-
 <p>对于提供静态方法和构造函数的非可变类，推荐使用静态方法，这样可以避免重复创建对象，如：Boolean.vauleOf(String)方法优于构造函数Boolean(String)</p>
 <p>类初始化的顺序：</p>
 <p>先初始化父类的静态代码 —&gt; 初始化子类的静态代码 —&gt; 初始化父类的非静态代码 —&gt; 初始化父类构造函数 —&gt; 初始化子类非静态代码 —&gt;初始化子类构造函数。</p>
 <h2 id="NO-6-消除过期的对象引用"><a href="#NO-6-消除过期的对象引用" class="headerlink" title="NO.6 消除过期的对象引用"></a>NO.6 消除过期的对象引用</h2><p>内存泄漏问题：如果一个对象的引用被无意识的保留起来，那么垃圾回收机制是不会去处理这个对象，而且也不会去处理被这个对象引用的其它对象。<br>比如堆栈的弹出栈元素方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span>(size == <span class="number">0</span>)&#123;</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> EmptyStackException();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">	Object result = elements[--size];</span><br><span class="line">	<span class="comment">//自减后把原来的引用置为null</span></span><br><span class="line">	elements[size] = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>内存泄露常出现在：</p>
 <ul>
 <li>过期对象</li>

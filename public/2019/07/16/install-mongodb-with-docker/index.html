@@ -538,31 +538,23 @@
       
         <h1 id="使用Docker安装"><a href="#使用Docker安装" class="headerlink" title="使用Docker安装"></a>使用Docker安装</h1><p>下载镜像：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mongo</span><br></pre></td></tr></table></figure>
-
 <p>创建目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/docker/mongodb/data/</span><br><span class="line"></span><br><span class="line">mkdir -p /data/docker/mongo/configdb</span><br></pre></td></tr></table></figure>
-
 <p>开启端口：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd <span class="attribute">--zone</span>=public <span class="attribute">--add-port</span>=27017/tcp --permanent</span><br></pre></td></tr></table></figure>
-
 <p>运行容器：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d  -p 27017:27017 \</span><br><span class="line">  -v /data/docker/mongodb/data/:/data/db/ \</span><br><span class="line">  -v /data/docker/mongo/configdb:/data/configdb \</span><br><span class="line">  --auth --name=mongo mongo</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><code>--auth</code>：开启权限验证模式。默认情况下，mongo 数据库没有添加认证约束，为了增强数据库的安全性，我们需要对数据库添加授权认证。当我不加这个认证约束时，一个数据库的账号可以操作另一个数据库的数据，只有加了这个参数，我们针对某些数据库设置的角色，才仅在这个数据库上生效。</li>
 </ul>
 <p>进入容器：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mongo bash</span><br></pre></td></tr></table></figure>
-
 <p>进入mongo:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongo</span><br></pre></td></tr></table></figure>
-
 <p>也可以直接用下面命令一步到位，并使用admin数据库：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mongo mongo admin</span><br></pre></td></tr></table></figure>
-
 <p>创建一个拥有最高权限的 root 账号，然后退出。</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">use</span> <span class="selector-tag">admin</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">db</span><span class="selector-class">.createUser</span>(</span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">user</span>: <span class="string">"admin"</span>,</span><br><span class="line"><span class="attribute">pwd</span>: <span class="string">"admin"</span>,</span><br><span class="line"><span class="attribute">roles</span>: [ &#123; <span class="attribute">role</span>: <span class="string">"root"</span>, <span class="attribute">db</span>: <span class="string">"admin"</span> &#125; ]</span><br><span class="line">&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
 <p>role 角色参数：</p>
 <ul>
 <li><code>Read</code>：允许用户读取指定数据库</li>
@@ -578,20 +570,14 @@
 </ul>
 <p>管理员已经创建成功后，我们需要重新连接 mongo 数据库，用管理员进行登录，并为目标数据库创建目标用户：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入容器，并切换到 admin 数据库</span></span><br><span class="line">docker <span class="built_in">exec</span> -it mongo mongo admin</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 授权 <span class="selector-tag">admin</span></span><br><span class="line"><span class="selector-tag">db</span><span class="selector-class">.auth</span>(<span class="string">"admin"</span>, <span class="string">"123456"</span>);</span><br><span class="line"># 创建访问指定数据库的用户</span><br><span class="line"><span class="selector-tag">use</span> <span class="selector-tag">beta</span>;</span><br><span class="line"><span class="selector-tag">db</span><span class="selector-class">.createUser</span>(&#123; <span class="attribute">user</span>: <span class="string">'test'</span>, <span class="attribute">pwd</span>:<span class="string">'test'</span>, <span class="attribute">roles</span>: [ &#123;<span class="attribute">role</span>:<span class="string">"readWrite"</span>,<span class="attribute">db</span>:<span class="string">"beta"</span>&#125;]&#125;);</span><br><span class="line"><span class="selector-tag">db</span><span class="selector-class">.auth</span>(<span class="string">"test"</span>,<span class="string">"test"</span>);</span><br><span class="line"># 尝试插入一条数据</span><br><span class="line"><span class="selector-tag">use</span> <span class="selector-tag">beta</span></span><br><span class="line"><span class="selector-tag">db</span><span class="selector-class">.test</span><span class="selector-class">.insertOne</span>(&#123;<span class="attribute">name</span>:<span class="string">"michael"</span>,<span class="attribute">age</span>:<span class="string">"28"</span>&#125;)</span><br><span class="line"># 搜索 <span class="selector-tag">test</span> <span class="selector-tag">collection</span> 全部记录</span><br><span class="line"><span class="selector-tag">db</span><span class="selector-class">.test</span><span class="selector-class">.find</span>()</span><br></pre></td></tr></table></figure>
-
 <p>也可以这样访问：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongo --port 27017 -u admin -p admin --host 192.168.56.100</span><br></pre></td></tr></table></figure>
-
 <h1 id="docker-compose安装："><a href="#docker-compose安装：" class="headerlink" title="docker-compose安装："></a>docker-compose安装：</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">    mongodb:</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">mongo</span></span><br><span class="line"><span class="attr">        container_name:</span> <span class="string">mongo</span> <span class="comment"># 容器名</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"27017:27017"</span></span><br><span class="line"><span class="attr">        volumes:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"/data/docker/mongo/configdb:/data/configdb"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"/data/docker/mongo/data/db:/data/db"</span></span><br><span class="line"><span class="attr">        command:</span> <span class="bullet">--auth</span> <span class="comment"># 开启授权验证</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="安装-mongoclient-镜像"><a href="#安装-mongoclient-镜像" class="headerlink" title="安装 mongoclient 镜像"></a>安装 mongoclient 镜像</h1><p>下载镜像：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull mongoclient/mongoclient</span><br></pre></td></tr></table></figure>
-
 <p>运行容器：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mongoclient -d -p 3001:3000 -e MONGO_URL=mongodb://192.168.56.100:27017/admin --restart=always mongoclient/mongoclient</span><br></pre></td></tr></table></figure>
-
 <p>访问 <a href="http://192.168.56.100:3001" target="_blank" rel="noopener">http://192.168.56.100:3001</a></p>
 
       
@@ -749,8 +735,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/15/apollo/" rel="next" title="安装阿波罗配置中心">
-                <i class="fa fa-chevron-left"></i> 安装阿波罗配置中心
+              <a href="/2019/07/16/install-mysql-with-docker/" rel="next" title="使用Docker安装MySql">
+                <i class="fa fa-chevron-left"></i> 使用Docker安装MySql
               </a>
             
           </div>
@@ -758,10 +744,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/16/install-mysql-with-docker/" rel="prev" title="使用Docker安装MySql">
-                使用Docker安装MySql <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

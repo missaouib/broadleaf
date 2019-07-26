@@ -598,10 +598,8 @@
 <p>Struts2 以 WebWork 为核心，采用拦截器的机制来处理用户的请求，这样的设计也使得业务逻辑控制器能够与 Servlet API 完全脱离开。</p>
 <p><img src="/images/java-web-5.png" alt="img"></p>
 <h2 id="Struts2与Struts1的对比"><a href="#Struts2与Struts1的对比" class="headerlink" title="Struts2与Struts1的对比"></a>Struts2与Struts1的对比</h2><p>​1，在Action实现类方面：</p>
-<p>​Struts1要求Action类继承一个抽象基类，Struts2 Action类可以实现一个Action接口，也可以实现其他接口，使可选和定制服务成为可能。<br>​
-Struts2 提供一个ActionSupport基类去实现常用的接口。即使Action接口不是必须实现的，只有一个包含execute方法的POJO类都可以用作Struts2的Action。</p>
-<p>​2，线程模式方面：<br>​
-Struts1 Action是单例模式并且必须是线程安全的，因为仅有Action的一个实例来处理所有的请求。单例策略限制了Struts1 Action能做的事，并且要在开发时特别小心。Action资源必须是线程安全的或同步的；Struts2 Action对象为每一个请求产生一个实例，因此没有线程安全问题。</p>
+<p>​Struts1要求Action类继承一个抽象基类，Struts2 Action类可以实现一个Action接口，也可以实现其他接口，使可选和定制服务成为可能。<br>​<br>Struts2 提供一个ActionSupport基类去实现常用的接口。即使Action接口不是必须实现的，只有一个包含execute方法的POJO类都可以用作Struts2的Action。</p>
+<p>​2，线程模式方面：<br>​<br>Struts1 Action是单例模式并且必须是线程安全的，因为仅有Action的一个实例来处理所有的请求。单例策略限制了Struts1 Action能做的事，并且要在开发时特别小心。Action资源必须是线程安全的或同步的；Struts2 Action对象为每一个请求产生一个实例，因此没有线程安全问题。</p>
 <p>​3，Servlet依赖方面：</p>
 <p>​Struts1 Action依赖于Servlet API，因为Struts1 Action的execute方法中有HttpServletRequest和HttpServletResponse方法。<br>​Struts2 Action 不再依赖于ServletAPI，从而允许Action脱离Web容器运行，从而降低了测试Action的难度。当然，如果Action 需要直接访问HttpServletRequest和HttpServletResponse参数，Struts2 Action仍然可以访问它们。但是，大部分时候，Action都无需直接访问。</p>
 <h1 id="JSF"><a href="#JSF" class="headerlink" title="JSF"></a>JSF</h1><p>​Java Server Faces 简称 JSF，是一种面向组件和事件驱动模型的WEB开发技术，是实现传统的 Model-View-Controller (MVC) 架构的一种 Web 框架。不同之处在于，它采用该模式的一种特别丰富的实现。与 Model 2 或者 Struts、WebWork 和 Spring MVC 之类的框架中使用的 “push-MVC” 方法相比，JSF 中的 MVC 实现更接近于传统的 GUI 应用程序。前面那些框架被归类为<em>基于动作的（action-based）</em>，而 JSF 则属于基于<em>组件模型</em> 的新的框架家族中的一员。</p>
@@ -618,8 +616,7 @@ Struts1 Action是单例模式并且必须是线程安全的，因为仅有Action
 </li>
 <li><p><a href="https://www.jdon.com/idea/jsf-struts.htm" target="_blank" rel="noopener">JSF与Struts的异同</a></p>
 </li>
-<li><p><a href="https://www.cnblogs.com/duanxz/p/5441342.html" target="_blank" rel="noopener">struts2请求过程源码分析</a></p>
-</li>
+<li><a href="https://www.cnblogs.com/duanxz/p/5441342.html" target="_blank" rel="noopener">struts2请求过程源码分析</a></li>
 </ul>
 
       

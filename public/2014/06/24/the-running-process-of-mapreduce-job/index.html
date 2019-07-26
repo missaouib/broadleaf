@@ -571,7 +571,6 @@
 </ul>
 <h1 id="1-提交作业"><a href="#1-提交作业" class="headerlink" title="1. 提交作业"></a>1. 提交作业</h1><h2 id="运行Shell命令"><a href="#运行Shell命令" class="headerlink" title="运行Shell命令"></a>运行Shell命令</h2><p>使用hadoop提供的命令行或者通过编程接口提交任务，命令行方式如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ HADOOP_HOME/bin/hadoop jar job.jar \  </span><br><span class="line">    -D mapred.job.name=<span class="string">"task-job"</span> \  </span><br><span class="line">    -D mapred.reduce.tasks=3 \  </span><br><span class="line">    -files=blacklist.txt,whitelist.xml \  </span><br><span class="line">    -libjars=aaa.jar \  </span><br><span class="line">    -archives=bbb.zip \  </span><br><span class="line">    -input /<span class="built_in">test</span>/input \  </span><br><span class="line">    -output /<span class="built_in">test</span>/output</span><br></pre></td></tr></table></figure>
-
 <p>当用户按上述命令格式提交作业后，命令行脚本会调用JobClient.runJob()方法提交作业</p>
 <h2 id="作业文件上传"><a href="#作业文件上传" class="headerlink" title="作业文件上传"></a>作业文件上传</h2><p>JobClient将作业提交到JobTracker节点上之前，需要作业写初始化工作。初始化工作由 <code>JobClient.submitJobInternal(job)</code> 实现，这些初始化包括获取作业的jobId、创建HDFS目录、上传作业以及生成所有的InputSplit分片的相关信息等。</p>
 <p>MapReduce的作业文件的上传和下载都是由DistributedCache透明完成的，它是Hadoop专门开发的数据分发工具。</p>

@@ -569,27 +569,19 @@
 <h1 id="1-安装JDK"><a href="#1-安装JDK" class="headerlink" title="1. 安装JDK"></a>1. 安装JDK</h1><p>安装jdk有很多方法，可以参考文博客<a href="/images/04/06/install-cloudera-cdh-by-yum.html">使用yum安装CDH Hadoop集群</a>中的jdk安装步骤，需要说明的是下面的zookeeper集群安装方法也可以参考此文。</p>
 <p>不管你用什么方法，最后需要配置JAVA_HOME并检测当前jdk版本：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ java -version</span><br><span class="line">java version <span class="string">"1.6.0_31"</span></span><br><span class="line">Java(TM) SE Runtime Environment (build 1.6.0_31-b04)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 20.6-b01, mixed mode)</span><br></pre></td></tr></table></figure>
-
 <h1 id="2-安装Zookeeper集群"><a href="#2-安装Zookeeper集群" class="headerlink" title="2. 安装Zookeeper集群"></a>2. 安装Zookeeper集群</h1><p>可以参考文博客<a href="/images/04/06/install-cloudera-cdh-by-yum.html">使用yum安装CDH Hadoop集群</a>中的Zookeeper集群安装步骤。</p>
 <h1 id="3-安装Python及依赖"><a href="#3-安装Python及依赖" class="headerlink" title="3. 安装Python及依赖"></a>3. 安装Python及依赖</h1><p>一般操作系统上都安装了Python，查看当前Python版本：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python -V</span><br><span class="line">Python 2.6.6</span><br></pre></td></tr></table></figure>
-
 <h2 id="3-1-下载Zeromq"><a href="#3-1-下载Zeromq" class="headerlink" title="3.1 下载Zeromq"></a>3.1 下载Zeromq</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://download.zeromq.org/zeromq-4.0.4.tar.gz</span><br><span class="line">$ tar zxvf zeromq-4.0.4.tar.gz</span><br><span class="line">$ ./configure</span><br><span class="line">$ make &amp; make install</span><br></pre></td></tr></table></figure>
-
 <h2 id="3-2-安装Jzmq"><a href="#3-2-安装Jzmq" class="headerlink" title="3.2 安装Jzmq"></a>3.2 安装Jzmq</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git://github.com/nathanmarz/jzmq.git</span><br><span class="line">$ <span class="built_in">cd</span> jzmq</span><br><span class="line">$ ./autogen.sh</span><br><span class="line">$ ./configure</span><br><span class="line">$ make &amp; make install</span><br></pre></td></tr></table></figure>
-
 <h1 id="4-安装Storm"><a href="#4-安装Storm" class="headerlink" title="4. 安装Storm"></a>4. 安装Storm</h1><p>下载稳定版本的storm，然后解压将其拷贝到/usr/lib/storm目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/downloads/nathanmarz/storm/storm-0.8.1.zip</span><br><span class="line">$ unzip storm-0.8.1.zip </span><br><span class="line">$ mv storm-0.8.1 /usr/lib/storm</span><br></pre></td></tr></table></figure>
-
 <p>接下来，配置环境变量：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">STORM_HOME</span>=/usr/lib/storm</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$STORM_HOME/bin</span><br></pre></td></tr></table></figure>
-
 <p>建立storm存储目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir /tmp/storm</span><br></pre></td></tr></table></figure>
-
 <p>修改配置文件/usr/lib/storm/conf/storm.yaml，修改为如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">storm.zookeeper.servers:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"cdh1"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"cdh2"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"cdh3"</span></span><br><span class="line"><span class="string">ui.port:</span> <span class="number">8081</span></span><br><span class="line"><span class="string">nimbus.host:</span> <span class="string">"cdh2"</span></span><br><span class="line"><span class="string">storm.local.dir:</span> <span class="string">"/tmp/storm"</span></span><br><span class="line"><span class="string">supervisor.slots.ports:</span></span><br><span class="line"><span class="bullet">   -</span> <span class="number">6700</span></span><br><span class="line"><span class="bullet">   -</span> <span class="number">6701</span></span><br><span class="line"><span class="bullet">   -</span> <span class="number">6702</span></span><br><span class="line"><span class="bullet">   -</span> <span class="number">6703</span></span><br></pre></td></tr></table></figure>
-
 <p>其中，配置参数说明：</p>
 <ul>
 <li><code>storm.zookeeper.servers</code>：Storm集群使用的Zookeeper集群地址，如果Zookeeper集群使用的不是默认端口，那么还需要<code>storm.zookeeper.port</code>选项</li>
@@ -603,13 +595,10 @@
 <p>最后，启动Storm各个后台进程：</p>
 <p>主控节点上启动nimbus：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ storm nimbus &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-
 <p>在Storm各个工作节点上运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ storm supervisor &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-
 <p>在Storm主控节点上启动ui：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ storm ui &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-
 <p>然后，你可以访问<a href="http://cdh2:8081/" target="_blank" rel="noopener">http://cdh2:8081/</a>查看集群的worker资源使用情况、Topologies的运行状态等信息。</p>
 
       

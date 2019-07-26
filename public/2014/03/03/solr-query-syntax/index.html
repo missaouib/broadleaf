@@ -574,7 +574,7 @@
 <li><code>:</code> 指定字段查指定值，如返回所有值<em>:</em></li>
 <li><code>?</code> 表示单个任意字符的通配</li>
 <li><code>*</code> 表示多个任意字符的通配（不能在检索的项开始使用*或者?符号）</li>
-<li><code>~</code> 表示模糊检索，如检索拼写类似于”roam”的项这样写：roam<del>将找到形如foam和roams的单词；roam</del>0.8，检索返回相似度在0.8以上的记录。<br>  邻近检索，如检索相隔10个单词的”apache”和”jakarta”，”jakarta apache”~10</li>
+<li><code>~</code> 表示模糊检索，如检索拼写类似于”roam”的项这样写：roam~将找到形如foam和roams的单词；roam~0.8，检索返回相似度在0.8以上的记录。<br>  邻近检索，如检索相隔10个单词的”apache”和”jakarta”，”jakarta apache”~10</li>
 <li><code>^</code> 控制相关度检索，如检索jakarta apache，同时希望去让”jakarta”的相关度更加好，那么在其后加上”^”符号和增量值，即jakarta^4 apache</li>
 <li>布尔操作符<code>AND、||</code></li>
 <li>布尔操作符<code>OR、&amp;&amp;</code></li>
@@ -592,7 +592,6 @@
 </li>
 </ul>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><ol start="2">
 <li>限定返回字段</li>
@@ -600,7 +599,6 @@
 </li>
 </ul>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId</span></span><br></pre></td></tr></table></figure>
-
 <p>表示：查询所有记录，只返回productId字段</p>
 <ul>
 <li><ol start="3">
@@ -609,7 +607,6 @@
 </li>
 </ul>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;rows=</span><span class="number">6</span>&amp;start=<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
 <p>表示：查询前六条记录，只返回productId字段</p>
 <ul>
 <li><ol start="4">
@@ -618,7 +615,6 @@
 </li>
 </ul>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;rows=</span><span class="number">6</span>&amp;start=<span class="number">0</span>&amp;fq=<span class="symbol">category:</span><span class="number">2002</span>&amp;fq=<span class="symbol">namespace:</span>d&amp;fl=productId+category&amp;fq=<span class="symbol">en_US_city_i:</span><span class="number">1101</span></span><br></pre></td></tr></table></figure>
-
 <p>表示：查询category=2002、<code>en_US_city_i=110</code>以及namespace=d的前六条记录，只返回productId和category字段</p>
 <ul>
 <li><ol start="5">
@@ -627,7 +623,6 @@
 </li>
 </ul>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;rows=</span><span class="number">6</span>&amp;start=<span class="number">0</span>&amp;fq=<span class="symbol">category:</span><span class="number">2002</span>&amp;fq=<span class="symbol">namespace:</span>d&amp;sort=category_2002_sort_i+asc</span><br></pre></td></tr></table></figure>
-
 <p>表示：查询category=2002以及namespace=d并按<code>category_2002_sort_i</code>升序排序的前六条记录，只返回productId字段</p>
 <ul>
 <li><ol start="6">
@@ -637,27 +632,19 @@
 </ul>
 <p>现实分组统计结果</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;fq=category</span><span class="symbol">:</span><span class="number">2002</span>&amp;facet=<span class="keyword">true</span>&amp;facet.field=en_US_county_i&amp;facet.field=en_US_hotelType_s&amp;facet.field=price_p&amp;facet.field=heatRange_i</span><br><span class="line"></span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;fq=category</span><span class="symbol">:</span><span class="number">2002</span>&amp;facet=<span class="keyword">true</span>&amp;facet.field=en_US_county_i&amp;facet.field=en_US_hotelType_s&amp;facet.field=price_p&amp;facet.field=heatRange_i&amp;facet.query=<span class="symbol">price_p:</span>[<span class="number">300.00000</span>+TO+*]</span><br></pre></td></tr></table></figure>
-
 <h1 id="高亮"><a href="#高亮" class="headerlink" title="高亮"></a>高亮</h1><p><code>hl-highlight</code>，<code>h1=true</code>，表示采用高亮。可以用<code>h1.fl=field1,field2</code> 来设定高亮显示的字段。</p>
 <ul>
 <li><code>hl.fl</code>:用空格或逗号隔开的字段列表。要启用某个字段的highlight功能，就得保证该字段在schema中是stored。如果该参数未被给出，那么就会高 亮默认字段 standard handler会用df参数，dismax字段用qf参数。你可以使用星号去方便的高亮所有字段。如果你使用了通配符，那么要考虑启用 。</li>
 <li><code>hl.requireFieldMatch</code>:如果置为true，除非该字段的查询结果不为空才会被高亮。它的默认值是false，意味 着它可能匹配某个字段却高亮一个不同的字段。如果hl.fl使用了通配符，那么就要启用该参数。尽管如此，如果你的查询是all字段（可能是使用 copy-field 指令），那么还是把它设为false，这样搜索结果能表明哪个字段的查询文本未被找到</li>
 <li>h<code>l.usePhraseHighlighter</code>:如果一个查询中含有短语（引号框起来的）那么会保证一定要完全匹配短语的才会被高亮。</li>
 <li><code>hl.highlightMultiTerm</code><br>如果使用通配符和模糊搜索，那么会确保与通配符匹配的term会高亮。默认为false，同时<code>hl.usePhraseHighlighter</code>要为true。</li>
-<li><code>hl.snippets</code>：
-这是highlighted片段的最大数。默认值为1，也几乎不会修改。如果某个特定的字段的该值被置为0（如<code>f.allText.hl.snippets=0</code>），这就表明该字段被禁用高亮了。你可能在hl.fl=*时会这么用。</li>
-<li><code>hl.fragsize</code>:
-每个snippet返回的最大字符数。默认是100.如果为0，那么该字段不会被fragmented且整个字段的值会被返回。大字段时不会这么做。</li>
-<li><code>hl.mergeContiguous</code>:
-如果被置为true，当snippet重叠时会merge起来。</li>
-<li><code>hl.maxAnalyzedChars</code>:
-会搜索高亮的最大字符，默认值为51200，如果你想禁用，设为-1</li>
-<li><code>hl.alternateField</code>:
-如果没有生成snippet（没有terms 匹配），那么使用另一个字段值作为返回。</li>
-<li><code>hl.maxAlternateFieldLength</code>:
-如果<code>hl.alternateField</code>启用，则有时需要制定alternateField的最大字符长度，默认0是即没有限制。所以合理的值是应该为<code>hl.snippets * hl.fragsize</code>这样返回结果的大小就能保持一致。</li>
-<li><code>hl.formatter</code>:一个提供可替换的formatting算法的扩展点。默认值是simple，这是目前仅有的选项。显然这不够用，你可以看看<code>org.apache.solr.highlight.HtmlFormatter.java</code> 和 solrconfig.xml 中highlighting元素是如何配置的。<br>注意在不论原文中被高亮了什么值的情况下，如预先已存在的em tags，也不会被转义，所以在有时会导致假的高亮。</li>
-<li><code>hl.fragmenter</code>:这个是solr制定fragment算法的扩展点。gap是默认值。regex是另一种选项，这种选项指明highlight的边界由一个正则表达式确定。这是一种非典型 的高级选项。为了知道默认设置和fragmenters (and formatters)是如何配置的，可以看看 solrconfig.xml 中的highlight段。</li>
+<li><code>hl.snippets</code>：<br>这是highlighted片段的最大数。默认值为1，也几乎不会修改。如果某个特定的字段的该值被置为0（如<code>f.allText.hl.snippets=0</code>），这就表明该字段被禁用高亮了。你可能在hl.fl=*时会这么用。</li>
+<li><code>hl.fragsize</code>:<br>每个snippet返回的最大字符数。默认是100.如果为0，那么该字段不会被fragmented且整个字段的值会被返回。大字段时不会这么做。</li>
+<li><code>hl.mergeContiguous</code>:<br>如果被置为true，当snippet重叠时会merge起来。</li>
+<li><code>hl.maxAnalyzedChars</code>:<br>会搜索高亮的最大字符，默认值为51200，如果你想禁用，设为-1</li>
+<li><code>hl.alternateField</code>:<br>如果没有生成snippet（没有terms 匹配），那么使用另一个字段值作为返回。</li>
+<li><code>hl.maxAlternateFieldLength</code>:<br>如果<code>hl.alternateField</code>启用，则有时需要制定alternateField的最大字符长度，默认0是即没有限制。所以合理的值是应该为<code>hl.snippets * hl.fragsize</code>这样返回结果的大小就能保持一致。</li>
+<li><code>hl.formatter</code>:一个提供可替换的formatting算法的扩展点。默认值是simple，这是目前仅有的选项。显然这不够用，你可以看看<code>org.apache.solr.highlight.HtmlFormatter.java</code> 和 solrconfig.xml 中highlighting元素是如何配置的。<br>注意在不论原文中被高亮了什么值的情况下，如预先已存在的em tags，也不会被转义，所以在有时会导致假的高亮。<br>-<code>hl.fragmenter</code>:这个是solr制定fragment算法的扩展点。gap是默认值。regex是另一种选项，这种选项指明highlight的边界由一个正则表达式确定。这是一种非典型 的高级选项。为了知道默认设置和fragmenters (and formatters)是如何配置的，可以看看 solrconfig.xml 中的highlight段。</li>
 <li><code>hl.regex.pattern</code>:正则表达式的pattern</li>
 <li><code>hl.regex.slop</code>:这是hl.fragsize能变化以适应正则表达式的因子。默认值是0.6，意思是如果 <code>hlfragsize=100</code> 那么fragment的大小会从40-160.</li>
 </ul>

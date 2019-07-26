@@ -550,34 +550,24 @@
       
         <h2 id="hadoop"><a href="#hadoop" class="headerlink" title="hadoop"></a>hadoop</h2><p>解压 gz 文件到文本文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop fs -text /hdfs_path/compressed_file.gz | hadoop fs -put - /tmp/uncompressed-file.txt</span><br></pre></td></tr></table></figure>
-
 <p>解压本地文件 gz 文件并上传到 hdfs</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gunzip -c filename.txt.gz | hadoop fs -put - /tmp/filename.txt</span><br></pre></td></tr></table></figure>
-
 <p>使用 awk 处理 csv 文件，参考 <a href="http://grepalex.com/images/01/17/awk-with-hadoop-streaming/" target="_blank" rel="noopener">Using awk and friends with Hadoop</a>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop fs -cat people.txt | awk -F<span class="string">","</span> <span class="string">'&#123; print $1","$2","$3$4$5 &#125;'</span> | hadoop fs -put - people-coalesed.txt</span><br></pre></td></tr></table></figure>
-
 <p>创建 lzo 文件、上传到 hdfs 并添加索引：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ lzop -Uf data.txt</span><br><span class="line">$ hadoop fs -moveFromLocal data.txt.lzo /tmp/</span><br><span class="line"><span class="comment"># 1. 单机</span></span><br><span class="line">$ hadoop jar /usr/lib/hadoop/lib/hadoop-lzo.jar com.hadoop.compression.lzo.LzoIndexer /tmp/data.txt.lzo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 运行 mr</span></span><br><span class="line">$ hadoop jar /usr/lib/hadoop/lib/hadoop-lzo.jar com.hadoop.compression.lzo.DistributedLzoIndexer /tmp/data.txt.lzo</span><br></pre></td></tr></table></figure>
-
 <p>如果 people.txt 通过 lzo 压缩了，则可以使用下面命令解压缩、处理数据、压缩文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop fs -cat people.txt.lzo | lzop -dc | awk -F<span class="string">","</span> <span class="string">'&#123; print $1","$2","$3$4$5 &#125;'</span> | lzop -c | hadoop fs -put - people-coalesed.txt.lzo</span><br></pre></td></tr></table></figure>
-
 <h2 id="hive"><a href="#hive" class="headerlink" title="hive"></a>hive</h2><p>后台运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ nohup hive -f sample.hql &gt; output.out 2&gt;&amp;1 &amp; </span><br><span class="line"></span><br><span class="line">$ nohup hive --database <span class="string">"default"</span> -e <span class="string">"select * from tablename;"</span> &gt; output.out 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-
 <p>替换分隔符：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hive --database <span class="string">"default"</span> -f query.hql  2&gt; err.txt | sed <span class="string">'s/[\t]/,/g'</span> 1&gt; output.txt</span><br></pre></td></tr></table></figure>
-
 <p>打印表头：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hive --database <span class="string">"default"</span> -e <span class="string">"SHOW COLUMNS FROM table_name;"</span> | tr <span class="string">'[:lower:]'</span> <span class="string">'[:upper:]'</span> | tr <span class="string">'\n'</span> <span class="string">','</span> 1&gt; headers.txt</span><br><span class="line"></span><br><span class="line">$ hive --database <span class="string">"default"</span> -e <span class="string">"SET hive.cli.print.header=true; select * from table_name limit 0;"</span> | tr <span class="string">'[:lower:]'</span> <span class="string">'[:upper:]'</span> | sed <span class="string">'s/[\t]/,/g'</span>  1&gt; headers.txt</span><br></pre></td></tr></table></figure>
-
 <p>查看执行时间：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hive -e <span class="string">"select * from tablename;"</span>  2&gt; err.txt  1&gt; out.txt </span><br><span class="line">$ cat err.txt | grep <span class="string">"Time taken:"</span> | awk <span class="string">'&#123;print $3,$6&#125;'</span></span><br></pre></td></tr></table></figure>
-
 <p>hive 中如何避免用科学计数法表示浮点数？参考 <a href="http://www.zhihu.com/question/28887115" target="_blank" rel="noopener">http://www.zhihu.com/question/28887115</a> ：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> java_method(<span class="string">"String"</span>, <span class="string">"format"</span>, <span class="string">"%f"</span>, my_column) <span class="keyword">FROM</span> mytable <span class="keyword">LIMIT</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>

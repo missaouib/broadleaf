@@ -12,7 +12,7 @@ description:  使用Docker安装MySql
 下载镜像：
 
 ```
-docker pull mysql:5.7
+docker pull mysql
 ```
 
 运行容器：
@@ -23,7 +23,7 @@ docker run -d -p 3306:3306  \
   -v /data/docker/mysql/logs:/var/log/mysql \
   -v /data/docker/mysql/data:/var/lib/mysql \
   -e MYSQL_ROOT_PASSWORD=123456 \
-  --name mysql mysql:5.7
+  --name mysql mysql
 ```
 
 命令参数：
@@ -98,23 +98,26 @@ flush privileges;
 docker-compose.yml配置文件如下：
 
 ```yml
-version: "3"
+version: '3.1'
 services:
-    mysql:
-        image: mysql:5.7
-        container_name: mysqldb 
-        ports:
-            - "3306:3306"
-        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-        restart: always
-        environment:
-          MYSQL_ROOT_PASSWORD: 123456 #root管理员用户密码
-          MYSQL_USER: test   #创建test用户
-          MYSQL_PASSWORD: test  #设置test用户的密码
-        volumes:
-            - /data/docker/mysql/conf:/etc/mysql
-            - /data/docker/mysql/logs:/var/log/mysql 
-            - /data/docker/mysql/data:/var/lib/mysql
+  db:
+    image: mysql
+    container_name: mysql 
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+    ports:
+      - 3306:3306
+    volumes:
+      - /data/docker/mysql/conf:/etc/mysql
+      - /data/docker/mysql/logs:/var/log/mysql 
+      - /data/docker/mysql/data:/var/lib/mysql
 ```
 
 进入到上面编写的docker-compose.yml文件的目录，运行命令：

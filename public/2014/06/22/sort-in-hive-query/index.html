@@ -551,10 +551,8 @@
         <h1 id="ORDER-BY"><a href="#ORDER-BY" class="headerlink" title="ORDER BY"></a>ORDER BY</h1><p>hive中的ORDER BY语句和关系数据库中的sql语法相似。他会对查询结果做全局排序，这意味着所有的数据会传送到一个Reduce任务上，这样会导致在大数量的情况下，花费大量时间。</p>
 <p>与数据库中 ORDER BY 的区别在于在<code>hive.mapred.mode = strict</code>模式下，必须指定 limit 否则执行会报错。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; set hive.mapred.mode=strict;</span><br><span class="line">hive&gt; select * from test order by id;</span><br><span class="line">FAILED: SemanticException 1:28 In strict mode, if ORDER BY is specified, LIMIT must also be specified. Error encountered near token 'id'</span><br></pre></td></tr></table></figure>
-
 <p>例子：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; set hive.mapred.mode=unstrict;</span><br><span class="line">hive&gt; select * from test order BY id ;</span><br><span class="line">MapReduce Jobs <span class="string">Launched:</span> </span><br><span class="line">Job <span class="number">0</span>: <span class="string">Map:</span> <span class="number">1</span>  <span class="string">Reduce:</span> <span class="number">1</span>   Cumulative <span class="string">CPU:</span> <span class="number">1.88</span> sec   HDFS <span class="string">Read:</span> <span class="number">305</span> HDFS <span class="string">Write:</span> <span class="number">32</span> SUCCESS</span><br><span class="line">Total MapReduce CPU Time <span class="string">Spent:</span> <span class="number">1</span> seconds <span class="number">880</span> msec</span><br><span class="line">OK</span><br><span class="line"><span class="number">1</span>	a</span><br><span class="line"><span class="number">1</span>	a</span><br><span class="line"><span class="number">2</span>	b</span><br><span class="line"><span class="number">2</span>	b</span><br><span class="line"><span class="number">3</span>	c</span><br><span class="line"><span class="number">3</span>	c</span><br><span class="line"><span class="number">4</span>	d</span><br><span class="line"><span class="number">4</span>	d</span><br><span class="line">Time <span class="string">taken:</span> <span class="number">24.609</span> seconds, <span class="string">Fetched:</span> <span class="number">8</span> row(s)</span><br></pre></td></tr></table></figure>
-
 <p>从上面的日志可以看到：启动了一个reduce进行全局排序。</p>
 <h1 id="SORT-BY"><a href="#SORT-BY" class="headerlink" title="SORT BY"></a>SORT BY</h1><p>SORT BY不是全局排序，其在数据进入reducer前完成排序，因此在有多个reduce任务情况下，SORT BY只能保证每个reduce的输出有序，而不能保证全局有序。</p>
 <blockquote>
@@ -563,7 +561,6 @@
 <p>你可以通过设置<code>mapred.reduce.tasks</code>的值来控制reduce的数，然后对reduce输出的结果做二次排序。</p>
 <p>例子：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; set mapred.reduce.tasks=3;</span><br><span class="line">hive&gt; select * from test sort BY id ; </span><br><span class="line">MapReduce Jobs Launched: </span><br><span class="line">Job 0: Map: 1  Reduce: 3   Cumulative CPU: 4.48 sec   HDFS Read: 305 HDFS Write: 32 SUCCESS</span><br><span class="line">Total MapReduce CPU Time Spent: 4 seconds 480 msec</span><br><span class="line">OK</span><br><span class="line">1	a</span><br><span class="line">2	b</span><br><span class="line">3	c</span><br><span class="line">4	d</span><br><span class="line">2	b</span><br><span class="line">3	c</span><br><span class="line">4	d</span><br><span class="line">1	a</span><br><span class="line">Time taken: 29.574 seconds, Fetched: 8 row(s)</span><br></pre></td></tr></table></figure>
-
 <p>从上面的日志可以看到：启动了三个reduce分别排序，最后的结果不是有序的。</p>
 <h1 id="DISTRIBUTE-BY-with-SORT-BY"><a href="#DISTRIBUTE-BY-with-SORT-BY" class="headerlink" title="DISTRIBUTE BY with SORT BY"></a>DISTRIBUTE BY with SORT BY</h1><p>DISTRIBUTE BY能够控制map的输出在reduce中如何划分。其可以按照指定的字段对数据进行划分到不同的输出reduce/文件中。</p>
 <p>DISTRIBUTE BY和GROUP BY有点类似，DISTRIBUTE BY控制reduce如何处理数据，而SORT BY控制reduce中的数据如何排序。</p>
@@ -572,7 +569,6 @@
 </blockquote>
 <p>例子：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from test distribute BY id sort by id asc;  </span><br><span class="line">Job 0: Map: 1  Reduce: 3   Cumulative CPU: 4.24 sec   HDFS Read: 305 HDFS Write: 32 SUCCESS</span><br><span class="line">Total MapReduce CPU Time Spent: 4 seconds 240 msec</span><br><span class="line">OK</span><br><span class="line">3	c</span><br><span class="line">3	c</span><br><span class="line">1	a</span><br><span class="line">1	a</span><br><span class="line">4	d</span><br><span class="line">4	d</span><br><span class="line">2	b</span><br><span class="line">2	b</span><br><span class="line">Time taken: 29.89 seconds, Fetched: 8 row(s)</span><br></pre></td></tr></table></figure>
-
 <p>从上面的日志可以看到：启动了三个reduce分别排序，最后的结果不是有序的。</p>
 <h1 id="CLUSTER-BY来代替"><a href="#CLUSTER-BY来代替" class="headerlink" title="CLUSTER BY来代替"></a>CLUSTER BY来代替</h1><p>当DISTRIBUTE BY的字段和SORT BY的字段相同时，可以用CLUSTER BY来代替 DISTRIBUTE BY with SORT BY。</p>
 <blockquote>
@@ -580,7 +576,6 @@
 </blockquote>
 <p>例子：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from test cluster by id asc;              </span><br><span class="line">FAILED: ParseException line 1:33 extraneous input 'asc' expecting EOF near '&lt;EOF&gt;'</span><br></pre></td></tr></table></figure>
-
 <pre><code class="sql">hive&gt; select * from test cluster by id ;
 MapReduce Jobs Launched: 
 Job 0: Map: 1  Reduce: 3   Cumulative CPU: 4.58 sec   HDFS Read: 305 HDFS Write: 32 SUCCESS
@@ -594,7 +589,8 @@ OK
 4    d
 2    b
 2    b
-Time taken: 30.646 seconds, Fetched: 8 row(s)</code></pre>
+Time taken: 30.646 seconds, Fetched: 8 row(s)
+</code></pre>
 <p>从上面的日志可以看到：启动了三个reduce分别排序，最后的结果不是有序的。</p>
 <p><strong>怎样让最后的结果是有序的呢？</strong></p>
 <p>可以这样做：</p>
@@ -612,7 +608,8 @@ OK
 3    c
 4    d
 4    d
-Time taken: 118.261 seconds, Fetched: 8 row(s)</code></pre>
+Time taken: 118.261 seconds, Fetched: 8 row(s)
+</code></pre>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
 <li>ORDER BY是全局排序，但在数据量大的情况下，花费时间会很长</li>
 <li>SORT BY是将reduce的单个输出进行排序，不能保证全局有序</li>

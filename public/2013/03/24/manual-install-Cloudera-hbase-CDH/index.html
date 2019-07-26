@@ -550,26 +550,20 @@
       
         <p>本文主要记录手动安装Cloudera HBase集群过程，环境设置及Hadoop安装过程见<a href="/images/03/24/manual-install-Cloudera-Hadoop-CDH.html">手动安装Cloudera Hadoop CDH</a>,参考这篇文章，hadoop各个组件和jdk版本如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hadoop-2</span><span class="selector-class">.0</span><span class="selector-class">.0-cdh4</span><span class="selector-class">.6</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">hbase-0</span><span class="selector-class">.94</span><span class="selector-class">.15-cdh4</span><span class="selector-class">.6</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">hive-0</span><span class="selector-class">.10</span><span class="selector-class">.0-cdh4</span><span class="selector-class">.6</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">jdk1</span><span class="selector-class">.6</span><span class="selector-class">.0_38</span></span><br></pre></td></tr></table></figure>
-
 <p>hadoop各组件可以在<a href="http://archive.cloudera.com/cdh4/cdh/4/" target="_blank" rel="noopener">这里</a>下载。</p>
 <p>集群规划为7个节点，每个节点的ip、主机名和部署的组件分配如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.0</span><span class="selector-class">.1</span>        <span class="selector-tag">desktop1</span>     <span class="selector-tag">NameNode</span>、<span class="selector-tag">Hive</span>、<span class="selector-tag">ResourceManager</span>、<span class="selector-tag">impala</span></span><br><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.0</span><span class="selector-class">.2</span>        <span class="selector-tag">desktop2</span>     <span class="selector-tag">SSNameNode</span></span><br><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.0</span><span class="selector-class">.3</span>        <span class="selector-tag">desktop3</span>     <span class="selector-tag">DataNode</span>、<span class="selector-tag">HBase</span>、<span class="selector-tag">NodeManager</span>、<span class="selector-tag">impala</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="安装HBase"><a href="#安装HBase" class="headerlink" title="安装HBase"></a>安装HBase</h1><p>HBase安装在desktop3、desktop1、desktop2节点上。</p>
 <p>上传hbase压缩包(hbase-0.94.15-cdh4.6.0.tar.gz)到desktop3上的/opt目录，先在desktop3上修改好配置文件，在同步到其他机器上。</p>
 <p><code>hbase-site.xml</code>内容修改如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://desktop1/hbase-$&#123;user.name&#125;<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>/opt/data/hbase-$&#123;user.name&#125;<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>desktop3,desktop4,desktop6,desktop7,desktop8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>regionservers内容修改如下：</p>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">desktop1</span><br><span class="line">desktop2</span><br><span class="line">desktop3</span><br></pre></td></tr></table></figure>
-
 <p>接下来将上面几个文件同步到其他各个节点：</p>
 <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@desktop3 ~]# scp /opt/hbase-<span class="number">0.94</span><span class="meta">.15</span>-cdh4<span class="meta">.6</span><span class="meta">.0</span>/conf/ desktop1:/opt/hbase-<span class="number">0.94</span><span class="meta">.15</span>-cdh4<span class="meta">.6</span><span class="meta">.0</span>/conf/</span><br><span class="line">[root@desktop3 ~]# scp /opt/hbase-<span class="number">0.94</span><span class="meta">.15</span>-cdh4<span class="meta">.6</span><span class="meta">.0</span>/conf/ desktop2:/opt/hbase-<span class="number">0.94</span><span class="meta">.15</span>-cdh4<span class="meta">.6</span><span class="meta">.0</span>/conf/</span><br></pre></td></tr></table></figure>
-
 <h1 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h1><p>参考<a href="/hadoop/images/03/24/manual-install-Cloudera-Hadoop-CDH.html">手动安装Cloudera Hadoop CDH</a>中环境变量的设置。</p>
 <h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><p>在desktop1、desktop2、desktop3节点上分别启动hbase：</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">start</span>-hbase.sh</span><br></pre></td></tr></table></figure>
-
 <h1 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h1><ul>
 <li><a href="/2019/03/24/manual-install-Cloudera-hadoop-CDH.html">手动安装Hadoop集群</a></li>
 <li><a href="/2019/03/24/manual-install-Cloudera-hbase-CDH.html">手动安装HBase集群</a></li>
@@ -731,8 +725,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2012/03/26/hash-and-hash-functions/" rel="next" title="哈希表">
-                <i class="fa fa-chevron-left"></i> 哈希表
+              <a href="/2013/03/24/manual-install-Cloudera-hive-CDH/" rel="next" title="手动安装Cloudera Hive CDH">
+                <i class="fa fa-chevron-left"></i> 手动安装Cloudera Hive CDH
               </a>
             
           </div>
@@ -741,8 +735,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/03/24/manual-install-Cloudera-hive-CDH/" rel="prev" title="手动安装Cloudera Hive CDH">
-                手动安装Cloudera Hive CDH <i class="fa fa-chevron-right"></i>
+              <a href="/2013/03/24/manual-install-Cloudera-Hadoop-CDH/" rel="prev" title="手动安装Hadoop集群">
+                手动安装Hadoop集群 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

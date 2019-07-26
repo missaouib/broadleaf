@@ -557,7 +557,6 @@
 </ul>
 <p>继承关系：</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Throwable</span><br><span class="line"><span class="string">|--Error </span></span><br><span class="line"><span class="string">|--Exception </span></span><br><span class="line"><span class="string">|--RuntimeException</span></span><br></pre></td></tr></table></figure>
-
 <p>从 RuntimeException 衍生出来的异常包括下面的问题：</p>
 <ul>
 <li>错误的类型转换</li>
@@ -621,14 +620,10 @@
 </ul>
 <p>Jav a通过面向对象的方式对异常进行处理，Java 把异常按照不同的类型进行分类，并提供了良好的接口。在 Java 中，每个异常都是一个对象，它都是 Throwable 或其子类的实例。当一个方法出现异常后就会抛出一个异常对象，该对象中包含有异常信息，调用这个对象的方法可以捕获到这个异常并对异常进行处理。Java 的异常处理是通过5个 关键词来实现的：try、catch、throw、throws、finally。</p>
 <ul>
-<li><p><code>try</code>：用来指定一块预防所有异常的程序</p>
-</li>
-<li><p><code>catch</code>：紧跟在try后面，用来捕获异常</p>
-</li>
-<li><p><code>throw</code>：用来明确的抛出一个异常</p>
-</li>
-<li><p><code>throws</code>：用来标明一个成员函数可能抛出的各种异常</p>
-</li>
+<li><code>try</code>：用来指定一块预防所有异常的程序</li>
+<li><code>catch</code>：紧跟在try后面，用来捕获异常</li>
+<li><code>throw</code>：用来明确的抛出一个异常</li>
+<li><code>throws</code>：用来标明一个成员函数可能抛出的各种异常</li>
 <li><p><code>finally</code>：确保一段代码无论发生什么异常都会被执行的一段代码。</p>
 </li>
 <li><p>4、你平时在项目中是怎样对异常进行处理的。</p>

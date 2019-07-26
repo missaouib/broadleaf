@@ -550,20 +550,30 @@
       
         <p>在开始之前，请参考我博客中的关于如何安装cdh集群的文章，这里只做简单说明。因为只是为了测试，所以是在vagrant虚拟机中创建三个虚拟机搭建一个集群来安装cdh6。</p>
 <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>参考<a href="/images/04/06/install-cloudera-cdh-by-yum.html">使用yum源安装CDH Hadoop集群</a>文章中的第一部分。</p>
-<h1 id="安装CM"><a href="#安装CM" class="headerlink" title="安装CM"></a>安装CM</h1><pre><code>sudo yum install cloudera-manager-server</code></pre><h1 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h1><p>这里使用的是postgresql</p>
-<pre><code>yum install postgresql-server</code></pre><p>初始化数据：</p>
+<h1 id="安装CM"><a href="#安装CM" class="headerlink" title="安装CM"></a>安装CM</h1><pre><code>sudo yum install cloudera-manager-server
+</code></pre><h1 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h1><p>这里使用的是postgresql</p>
+<pre><code>yum install postgresql-server
+</code></pre><p>初始化数据：</p>
 <pre><code>echo &apos;LC_ALL=&quot;zh_CN.UTF-8&quot;&apos; &gt;&gt; /etc/locale.conf
-sudo su -l postgres -c &quot;postgresql-setup initdb&quot;</code></pre><p>修改 pg_hba.conf 文件，在<code>/var/lib/pgsql/data</code>或者<code>/etc/postgresql/&lt;version&gt;/main</code>目录：</p>
-<pre><code>host all all 127.0.0.1/32 md5</code></pre><p>修改postgresql.conf优化参数，参考<a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cm_ig_extrnl_pstgrs.html#cmig_topic_5_6" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cm_ig_extrnl_pstgrs.html#cmig_topic_5_6</a>。</p>
-<pre><code>listen_addresses = &apos;*&apos;</code></pre><p>启动posgresql：</p>
-<pre><code>sudo systemctl restart postgresql</code></pre><p>创建数据库：</p>
+sudo su -l postgres -c &quot;postgresql-setup initdb&quot;
+</code></pre><p>修改 pg_hba.conf 文件，在<code>/var/lib/pgsql/data</code>或者<code>/etc/postgresql/&lt;version&gt;/main</code>目录：</p>
+<pre><code>host all all 127.0.0.1/32 md5
+</code></pre><p>修改postgresql.conf优化参数，参考<a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cm_ig_extrnl_pstgrs.html#cmig_topic_5_6" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cm_ig_extrnl_pstgrs.html#cmig_topic_5_6</a>。</p>
+<pre><code>listen_addresses = &apos;*&apos;
+</code></pre><p>启动posgresql：</p>
+<pre><code>sudo systemctl restart postgresql
+</code></pre><p>创建数据库：</p>
 <pre><code>sudo -u postgres psql
 CREATE ROLE scm LOGIN PASSWORD &apos;scm&apos;;
 CREATE DATABASE scm OWNER scm ENCODING &apos;UTF8&apos;;
-ALTER DATABASE scm SET standard_conforming_strings=off;  #for the Hive Metastore and Oozie databases:</code></pre><p>使用cm自带脚本创建数据库：</p>
-<pre><code>sudo /opt/cloudera/cm/schema/scm_prepare_database.sh postgresql scm scm</code></pre><h1 id="安装cdh和其他模块"><a href="#安装cdh和其他模块" class="headerlink" title="安装cdh和其他模块"></a>安装cdh和其他模块</h1><p>启动cm：</p>
-<pre><code>sudo systemctl start cloudera-scm-server</code></pre><p>查看日志：</p>
-<pre><code>sudo tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log</code></pre><p>待启动成功之后，访问<code>http://&lt;server_host&gt;:7180</code>。</p>
+ALTER DATABASE scm SET standard_conforming_strings=off;  #for the Hive Metastore and Oozie databases:
+</code></pre><p>使用cm自带脚本创建数据库：</p>
+<pre><code>sudo /opt/cloudera/cm/schema/scm_prepare_database.sh postgresql scm scm
+</code></pre><h1 id="安装cdh和其他模块"><a href="#安装cdh和其他模块" class="headerlink" title="安装cdh和其他模块"></a>安装cdh和其他模块</h1><p>启动cm：</p>
+<pre><code>sudo systemctl start cloudera-scm-server
+</code></pre><p>查看日志：</p>
+<pre><code>sudo tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log
+</code></pre><p>待启动成功之后，访问<code>http://&lt;server_host&gt;:7180</code>。</p>
 <p>如果你配置了<code>auto-TLS</code>，可以通过https登录<code>https://&lt;server_host&gt;:7183</code></p>
 <p>用户名admin，密码admin。</p>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>

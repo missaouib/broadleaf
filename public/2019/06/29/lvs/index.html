@@ -560,7 +560,7 @@
 <h1 id="3、工作原理"><a href="#3、工作原理" class="headerlink" title="3、工作原理"></a>3、<strong>工作原理</strong></h1><p>​       负载均衡技术有很多实现方案，有基于DNS域名轮流解析的方法、有基于客户端调度访问的方法、有基于应用层系统负载的调度方法，还有基于IP地址的调度方法，在这些负载调度算法中，执行效率最高的是IP负载均衡技术。</p>
 <p>​       LVS 的IP负载均衡技术是通过IPVS模块来实现的，IPVS是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。</p>
 <p>​       调用过程如下：</p>
-<p><img src="https://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUbnjtA3Z67ZHXHLUUibz8QevDr4m31hzxJK8sceZ6zSj4icdOruibPVj4w/?wx_fmt=png&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p><img src="https://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUbnjtA3Z67ZHXHLUUibz8QevDr4m31hzxJK8sceZ6zSj4icdOruibPVj4w/?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
 <ul>
 <li><ol>
 <li>当用户向负载均衡调度器（Director Server）发起请求，调度器将请求发往至内核空。</li>
@@ -648,10 +648,8 @@
 <p>S_NAT模式：虚拟机上的NAT模式，修改源地址。</p>
 <p>例如：在两个虚拟机访问百度网站</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.56</span><span class="selector-class">.121</span>、192<span class="selector-class">.168</span><span class="selector-class">.56</span><span class="selector-class">.122</span>———&gt;（192<span class="selector-class">.168</span><span class="selector-class">.56</span><span class="selector-class">.1</span>）<span class="selector-tag">NAT</span>路由器（18<span class="selector-class">.18</span><span class="selector-class">.18</span><span class="selector-class">.8</span>）———&gt;百度 123<span class="selector-class">.123</span><span class="selector-class">.123</span><span class="selector-class">.88</span></span><br></pre></td></tr></table></figure>
-
 <p>过程：在NAT路由器，修改源地址为对外的网卡地址。</p>
 <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CIP-<span class="built_in">RIP</span>  -&gt; CIP-VIP -&gt; VIP:DIP -&gt; DIP:<span class="built_in">RIP</span> </span><br><span class="line"></span><br><span class="line"><span class="number">192.168</span><span class="meta">.56</span><span class="meta">.121</span>:<span class="number">1212</span> -&gt; <span class="number">123.123</span><span class="meta">.123</span><span class="meta">.88</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="number">192.168</span><span class="meta">.56</span><span class="meta">.122</span>:<span class="number">1313</span> -&gt; <span class="number">123.123</span><span class="meta">.123</span><span class="meta">.88</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line">            |</span><br><span class="line"></span><br><span class="line"><span class="number">192.168</span><span class="meta">.56</span><span class="meta">.121</span>:<span class="number">1212</span> -&gt; <span class="number">192.168</span><span class="meta">.56</span><span class="meta">.1</span>:<span class="number">2345</span></span><br><span class="line"></span><br><span class="line"><span class="number">192.168</span><span class="meta">.56</span><span class="meta">.121</span>:<span class="number">1313</span> -&gt; <span class="number">192.168</span><span class="meta">.56</span><span class="meta">.1</span>:<span class="number">3456</span></span><br><span class="line"></span><br><span class="line">      |</span><br><span class="line"></span><br><span class="line"><span class="number">18.18</span><span class="meta">.18</span><span class="meta">.8</span>:<span class="number">2345</span> -&gt; <span class="number">123.123</span><span class="meta">.123</span><span class="meta">.88</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="number">18.18</span><span class="meta">.18</span><span class="meta">.8</span>:<span class="number">3456</span> -&gt; <span class="number">123.123</span><span class="meta">.123</span><span class="meta">.88</span>:<span class="number">80</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="3-3、DR模式"><a href="#3-3、DR模式" class="headerlink" title="3.3、DR模式"></a>3.3、DR模式</h2><p>​       VS/DR： 即（Virtual Server via Direct Routing），也就是用直接路由技术实现虚拟服务器。它的连接调度和管理与VS/NAT一样，但它的报文转发方法有不同，<strong>VS/DR通过改写请求报文的MAC地址为挑选出的RS的MAC地址</strong>（MAC地址欺骗），将请求发送到Real Server，而Real Server将响应直接返回给客户。</p>
 <p>​       参考架构图来说明：</p>
 <p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/9aPYe0E1fb31UibvdoplmjjVPM87UZ7xUUpQ7OCz2x1iaV4ibGF1ic5anU6iaRguk6YMIr6Pq63Mu7HvVe2Sn7YcIDQ/?wx_fmt=png" alt="img"></p>
@@ -789,45 +787,32 @@
 <p>2、<strong>安装</strong></p>
 <p>两个RS上都安装 httpd 服务</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y httpd</span><br></pre></td></tr></table></figure>
-
 <p>DS上安装 ipvsadm</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y ipvsadm</span><br></pre></td></tr></table></figure>
-
 <p><strong>3、配置DS</strong></p>
 <p>查看VIP地址：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ifconfig eth1</span><br><span class="line">eth2: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 172.20.10.8  netmask 255.255.255.0  broadcast 172.20.10.255</span><br><span class="line">        inet6 fe80::a00:27ff:feb2:822e  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 08:00:27:b2:82:2e  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 623  bytes 51088 (49.8 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 239  bytes 23144 (22.6 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br></pre></td></tr></table></figure>
-
 <p>开启路由转发功能:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br></pre></td></tr></table></figure>
-
 <p>关闭 icmp 的重定向：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="number">0</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>ipv4<span class="regexp">/conf/</span>all/send_redirects</span><br><span class="line">echo <span class="number">0</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>ipv4<span class="regexp">/conf/</span><span class="keyword">default</span>/send_redirects</span><br><span class="line">echo <span class="number">0</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>ipv4<span class="regexp">/conf/</span>eth1/send_redirects</span><br><span class="line">echo <span class="number">0</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>ipv4<span class="regexp">/conf/</span>eth2/send_redirects</span><br></pre></td></tr></table></figure>
-
 <p>设置 nat 防火墙</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iptables -t<span class="built_in"> nat </span>-F</span><br><span class="line"></span><br><span class="line">iptables -t<span class="built_in"> nat </span>-X</span><br><span class="line"></span><br><span class="line">iptables -t<span class="built_in"> nat </span>-A POSTROUTING -s 192.168.56.0/24 -j MASQUERADE</span><br></pre></td></tr></table></figure>
-
 <p><strong>4、启动RS上的httpd</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig httpd on</span><br><span class="line">service httpd start</span><br></pre></td></tr></table></figure>
-
 <p>在每个RS节点上的httpd服务的默认路径 /var/www/html/ 下新建一个入口访问页index.html。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr show eth0 |grep <span class="string">'192.168.56.'</span> |awk <span class="string">'&#123;print $2&#125;'</span> &gt;/var/www/html/index.html</span><br></pre></td></tr></table></figure>
-
 <p>检查node2和node3节点的路由表：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ route -n</span><br><span class="line">Kernel IP routing table</span><br><span class="line">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</span><br><span class="line">0.0.0.0         10.0.2.2        0.0.0.0         UG    100    0        0 eth0</span><br><span class="line">0.0.0.0         192.168.56.11   0.0.0.0         UG    101    0        0 eth1</span><br><span class="line">10.0.2.0        0.0.0.0         255.255.255.0   U     100    0        0 eth0</span><br><span class="line">192.168.56.0    0.0.0.0         255.255.255.0   U     101    0        0 eth1</span><br></pre></td></tr></table></figure>
-
 <p>在客户端节点，测试两台RS能访问index.html，但是VIP（172.20.10.8）不能访问。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://192.168.56.12/</span><br><span class="line">192.168.56.12/24</span><br><span class="line"></span><br><span class="line">$ curl http://192.168.56.13/</span><br><span class="line">192.168.56.13/24</span><br><span class="line"></span><br><span class="line">$ curl http://172.20.10.8</span><br><span class="line">curl: (7) Failed to connect to 172.20.10.8 port 80: Connection refused</span><br></pre></td></tr></table></figure>
-
 <p><strong>5、启动DS的ipvsadm并配置</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先清除规则</span></span><br><span class="line">ipvsadm -C</span><br><span class="line"></span><br><span class="line">ipvsadm -A -t 172.20.10.8:80 -s rr </span><br><span class="line">ipvsadm -a -t 172.20.10.8:80 -r 192.168.56.12:80 -m -w 1 <span class="comment">#NAT模式</span></span><br><span class="line">ipvsadm -a -t 172.20.10.8:80 -r 192.168.56.13:80 -m -w 1 <span class="comment">#NAT模式</span></span><br><span class="line"></span><br><span class="line">ipvsadm -ln</span><br></pre></td></tr></table></figure>
-
 <p><strong>6、再测试</strong></p>
 <p>在客户端节点上，访问<a href="http://172.20.10.8，可以看到内容。或者在终端访问：" target="_blank" rel="noopener">http://172.20.10.8，可以看到内容。或者在终端访问：</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ curl 172.20.10.8</span><br><span class="line">192.168.56.13/24</span><br><span class="line">$ curl 172.20.10.8</span><br><span class="line">192.168.56.12/24</span><br></pre></td></tr></table></figure>
-
 <p>在DS上运行下面命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ ipvsadm -ln</span><br><span class="line">IP Virtual Server version 1.2.1 (size=4096)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">TCP  172.20.10.8:80 rr</span><br><span class="line">  -&gt; 192.168.56.12:80             Masq    1      0          3</span><br><span class="line">  -&gt; 192.168.56.13:80             Masq    1      0          4</span><br><span class="line"></span><br><span class="line">$ ipvsadm -lnc</span><br><span class="line">IPVS connection entries</span><br><span class="line">pro expire state       <span class="built_in">source</span>             virtual            destination</span><br><span class="line">TCP 15:01  ESTABLISHED 172.20.10.2:60449  172.20.10.8:80     192.168.56.12:80</span><br><span class="line">TCP 14:56  ESTABLISHED 172.20.10.2:60450  172.20.10.8:80     192.168.56.13:80</span><br><span class="line"></span><br><span class="line"><span class="comment">#没有监听80端口</span></span><br><span class="line">$ netstat -natp</span><br><span class="line">Active Internet connections (servers and established)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</span><br><span class="line">tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd</span><br><span class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2385/sshd</span><br><span class="line">tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      2580/master</span><br><span class="line">tcp        0      0 10.0.2.15:22            10.0.2.2:58944          ESTABLISHED 2783/sshd: vagrant</span><br><span class="line">tcp        0      0 10.0.2.15:22            10.0.2.2:59157          ESTABLISHED 3114/sshd: vagrant</span><br><span class="line">tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd</span><br><span class="line">tcp6       0      0 :::22                   :::*                    LISTEN      2385/sshd</span><br></pre></td></tr></table></figure>
-
 <h2 id="5-2、DR模型实验"><a href="#5-2、DR模型实验" class="headerlink" title="5.2、DR模型实验"></a>5.2、DR模型实验</h2><p><strong>1、实验环境</strong></p>
 <p>准备3台虚拟机，使eth0在同一个网段上,使DIP和RIP在统一网段</p>
 <p>lvs   VIP=192.168.56.120，DIP=192.168.56.121</p>
@@ -835,30 +820,22 @@
 <p><strong>2、安装</strong></p>
 <p>两个RS上都安装 httpd 服务</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y httpd</span><br></pre></td></tr></table></figure>
-
 <p>DS上安装 ipvsadm</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y ipvsadm</span><br></pre></td></tr></table></figure>
-
 <p><strong>3、配置DS</strong></p>
 <p>添加VIP：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig enp0s8:0 192.168.56.120/24</span><br></pre></td></tr></table></figure>
-
 <p>开启路由转发功能:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br></pre></td></tr></table></figure>
-
 <p><strong>4、配置RS</strong></p>
 <p>调整RS的通过响应级别：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 1  &gt; /proc/sys/net/ipv4/conf/enp0s8/arp_ignore </span><br><span class="line"><span class="built_in">echo</span> 2  &gt; /proc/sys/net/ipv4/conf/enp0s8/arp_announce </span><br><span class="line"><span class="built_in">echo</span> 1  &gt; /proc/sys/net/ipv4/conf/all/arp_ignore </span><br><span class="line"><span class="built_in">echo</span> 2  &gt; /proc/sys/net/ipv4/conf/all/arp_announce</span><br></pre></td></tr></table></figure>
-
 <p>配置RS的VIP：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifconfig lo:8 192.168.56.120 netmask 255.255.255.255</span><br><span class="line"></span><br><span class="line">route <span class="builtin-name">add</span> -host 192.168.56.120 lo:8</span><br></pre></td></tr></table></figure>
-
 <p><strong>5、启动RS上的httpd</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd</span><br><span class="line">service httpd start</span><br></pre></td></tr></table></figure>
-
 <p>在httpd服务的默认路径 /var/www/html/ 下新建一个入口访问页index.html。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr show enp0s8 |grep <span class="string">'192.168.56.'</span> |awk <span class="string">'&#123;print $2&#125;'</span> &gt;/var/www/html/index.html</span><br></pre></td></tr></table></figure>
-
 <p>测试两台RS能否访问index.html，但是VIP不能访问。</p>
 <p><strong>6、启动DS的ipvsadm并配置</strong></p>
 <p>ipvsadm：管理集群服务</p>
@@ -913,7 +890,6 @@
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ipvsadm -A -t 192.168.56.120:80 -s rr </span><br><span class="line">ipvsadm -a -t 192.168.56.120:80 -r 192.168.56.122 -g </span><br><span class="line">ipvsadm -a -t 192.168.56.120:80 -r 192.168.56.123 -g</span><br><span class="line"></span><br><span class="line">ipvsadm -ln</span><br><span class="line"></span><br><span class="line"><span class="comment">#浏览器访问vip</span></span><br><span class="line">ipvsadm -lnc</span><br><span class="line">netstat -natp</span><br></pre></td></tr></table></figure>
-
 <h1 id="6、参考文章"><a href="#6、参考文章" class="headerlink" title="6、参考文章"></a>6、参考文章</h1><ul>
 <li><a href="http://blog.sina.com.cn/s/blog_17698e9160102xecx.html" target="_blank" rel="noopener">LVS服务原理以及搭建（理论+干货）</a></li>
 <li><a href="https://blog.csdn.net/Ki8Qzvka6Gz4n450m/article/details/79119665" target="_blank" rel="noopener">超详细！使用 LVS 实现负载均衡原理及安装配置详解</a></li>
@@ -1074,8 +1050,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/29/nginx/" rel="next" title="Nginx服务器">
-                <i class="fa fa-chevron-left"></i> Nginx服务器
+              <a href="/2019/06/29/osi/" rel="next" title="OSI参考模型">
+                <i class="fa fa-chevron-left"></i> OSI参考模型
               </a>
             
           </div>
@@ -1084,8 +1060,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/29/jsf/" rel="prev" title="Java Server Faces">
-                Java Server Faces <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/29/nginx/" rel="prev" title="Nginx服务器">
+                Nginx服务器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

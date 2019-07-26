@@ -148,7 +148,7 @@
 <meta property="og:site_name" content="JavaChen Blog">
 <meta property="og:description" content="使用Docker安装MySql">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-16T14:09:56.526Z">
+<meta property="og:updated_time" content="2019-07-20T06:25:40.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Docker安装MySql">
 <meta name="twitter:description" content="使用Docker安装MySql">
@@ -473,12 +473,24 @@
                 
               
 
-              <time title="创建时间：2019-07-16 00:00:00 / 修改时间：22:09:56" itemprop="dateCreated datePublished" datetime="2019-07-16T00:00:00+08:00">2019-07-16</time>
+              <time title="创建时间：2019-07-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-16T00:00:00+08:00">2019-07-16</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-20 14:25:40" itemprop="dateModified" datetime="2019-07-20T14:25:40+08:00">2019-07-20</time>
               
             
           </span>
@@ -537,11 +549,9 @@
 
       
         <h1 id="使用Docker安装"><a href="#使用Docker安装" class="headerlink" title="使用Docker安装"></a>使用Docker安装</h1><p>下载镜像：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">docker</span> <span class="selector-tag">pull</span> <span class="selector-tag">mysql</span><span class="selector-pseudo">:5.7</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker pull mysql</span></span><br></pre></td></tr></table></figure>
 <p>运行容器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306  \</span><br><span class="line">  -v /data/docker/mysql/conf:/etc/mysql \</span><br><span class="line">  -v /data/docker/mysql/logs:/var/<span class="built_in">log</span>/mysql \</span><br><span class="line">  -v /data/docker/mysql/data:/var/lib/mysql \</span><br><span class="line">  -e MYSQL_ROOT_PASSWORD=123456 \</span><br><span class="line">  --name mysql mysql:5.7</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306  \</span><br><span class="line">  -v /data/docker/mysql/conf:/etc/mysql \</span><br><span class="line">  -v /data/docker/mysql/logs:/var/<span class="built_in">log</span>/mysql \</span><br><span class="line">  -v /data/docker/mysql/data:/var/lib/mysql \</span><br><span class="line">  -e MYSQL_ROOT_PASSWORD=123456 \</span><br><span class="line">  --name mysql mysql</span><br></pre></td></tr></table></figure>
 <p>命令参数：</p>
 <ul>
 <li><code>-p 3306:3306</code>：将容器的3306端口映射到主机的3306端口</li>
@@ -552,25 +562,18 @@
 </ul>
 <p>查看容器启动情况：</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker ps</span></span><br></pre></td></tr></table></figure>
-
 <p>防火墙开启3306端口</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd <span class="attribute">--add-port</span>=3306/tcp</span><br><span class="line"></span><br><span class="line">firewall-cmd <span class="attribute">--zone</span>=public <span class="attribute">--add-port</span>=3306/tcp --permanent</span><br></pre></td></tr></table></figure>
-
 <p>/data/docker/mysql/conf下创建my.cnf</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8mb4</span><br><span class="line"></span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">character-set-client-handshake</span> = <span class="literal">FALSE</span></span><br><span class="line"><span class="attr">character-set-server</span> = utf8mb4</span><br><span class="line"><span class="attr">collation-server</span> = utf8mb4_unicode_ci</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8mb4</span><br></pre></td></tr></table></figure>
-
 <p>重新启动容器</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker restart mysql</span></span><br></pre></td></tr></table></figure>
-
 <p>进入容器：</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -<span class="keyword">it</span> mysql bash</span><br></pre></td></tr></table></figure>
-
 <p>在宿主机上登陆mysql：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#登录mysql</span></span><br><span class="line">mysql -h192.168.56.100 -p3306 -uroot -p123456</span><br><span class="line">ALTER USER <span class="string">'root'</span>@<span class="string">'localhost'</span> IDENTIFIED BY <span class="string">'123456'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加远程登录用户</span></span><br><span class="line">CREATE USER <span class="string">'test'</span>@<span class="string">'%'</span> IDENTIFIED WITH mysql_native_password BY <span class="string">'123456'</span>;</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">'test'</span>@<span class="string">'%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看编码</span></span><br><span class="line">showvariables like <span class="string">"%char%"</span>;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
 <h1 id="使用docker-compose安装"><a href="#使用docker-compose安装" class="headerlink" title="使用docker-compose安装"></a>使用docker-compose安装</h1><p>docker-compose.yml配置文件如下：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">    mysql:</span></span><br><span class="line"><span class="attr">        image:</span> <span class="attr">mysql:5.7</span></span><br><span class="line"><span class="attr">        container_name:</span> <span class="string">mysqldb</span> </span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"3306:3306"</span></span><br><span class="line"><span class="attr">        command:</span> <span class="string">mysqld</span> <span class="bullet">--character-set-server=utf8mb4</span> <span class="bullet">--collation-server=utf8mb4_unicode_ci</span></span><br><span class="line"><span class="attr">        restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">        environment:</span></span><br><span class="line"><span class="attr">          MYSQL_ROOT_PASSWORD:</span> <span class="number">123456</span> <span class="comment">#root管理员用户密码</span></span><br><span class="line"><span class="attr">          MYSQL_USER:</span> <span class="string">test</span>   <span class="comment">#创建test用户</span></span><br><span class="line"><span class="attr">          MYSQL_PASSWORD:</span> <span class="string">test</span>  <span class="comment">#设置test用户的密码</span></span><br><span class="line"><span class="attr">        volumes:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">/data/docker/mysql/conf:/etc/mysql</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">/data/docker/mysql/logs:/var/log/mysql</span> </span><br><span class="line"><span class="bullet">            -</span> <span class="string">/data/docker/mysql/data:/var/lib/mysql</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  db:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">mysql</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">mysql</span> </span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="attr">      MYSQL_ROOT_PASSWORD:</span> <span class="number">123456</span></span><br><span class="line"><span class="attr">    command:</span></span><br><span class="line"><span class="bullet">      -</span><span class="bullet">-default-authentication-plugin=mysql_native_password</span></span><br><span class="line"><span class="bullet">      -</span><span class="bullet">-character-set-server=utf8mb4</span></span><br><span class="line"><span class="bullet">      -</span><span class="bullet">-collation-server=utf8mb4_general_ci</span></span><br><span class="line"><span class="bullet">      -</span><span class="bullet">-explicit_defaults_for_timestamp=true</span></span><br><span class="line"><span class="bullet">      -</span><span class="bullet">-lower_case_table_names=1</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="number">3306</span><span class="string">:3306</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/data/docker/mysql/conf:/etc/mysql</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/data/docker/mysql/logs:/var/log/mysql</span> </span><br><span class="line"><span class="bullet">      -</span> <span class="string">/data/docker/mysql/data:/var/lib/mysql</span></span><br></pre></td></tr></table></figure>
 <p>进入到上面编写的docker-compose.yml文件的目录，运行命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动所有服务</span></span><br><span class="line">docker-compose up -d</span><br><span class="line"><span class="comment"># 单启动 mysql</span></span><br><span class="line">docker-compose up -d mysql</span><br><span class="line"><span class="comment"># 暂停 mysql</span></span><br><span class="line">docker-compose stop mysql</span><br><span class="line"><span class="comment"># 重新启动容器</span></span><br><span class="line">docker-compose restart mysql</span><br><span class="line"><span class="comment"># 登录到容器中</span></span><br><span class="line">docker-compose <span class="built_in">exec</span> mysql bash</span><br><span class="line"><span class="comment"># 删除所有容器和镜像</span></span><br><span class="line">docker-compose down</span><br><span class="line"><span class="comment"># 显示所有容器</span></span><br><span class="line">docker-compose ps</span><br><span class="line"><span class="comment"># 查看mysql的日志</span></span><br><span class="line">docker-compose logs mysql</span><br><span class="line"><span class="comment"># 查看mysql的实时日志</span></span><br><span class="line">docker-compose logs -f mysql</span><br></pre></td></tr></table></figure>
       
@@ -728,8 +731,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/16/install-mongodb-with-docker/" rel="next" title="使用Docker安装MongoDB">
-                <i class="fa fa-chevron-left"></i> 使用Docker安装MongoDB
+              <a href="/2019/07/15/apollo/" rel="next" title="安装阿波罗配置中心">
+                <i class="fa fa-chevron-left"></i> 安装阿波罗配置中心
               </a>
             
           </div>
@@ -737,6 +740,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/16/install-mongodb-with-docker/" rel="prev" title="使用Docker安装MongoDB">
+                使用Docker安装MongoDB <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>

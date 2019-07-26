@@ -571,12 +571,10 @@
 <h1 id="MongoDB的安装"><a href="#MongoDB的安装" class="headerlink" title="MongoDB的安装"></a>MongoDB的安装</h1><p>mongodb的官网就有下载，根据系统windows还是linux还是别的下载32位还是64位的，然后解压安装。</p>
 <p>如果你使用的时mac系统，你可以通过 brewhome 来安装：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span><span class="keyword">install </span>mongodb</span><br></pre></td></tr></table></figure>
-
 <h1 id="MongoDB的管理"><a href="#MongoDB的管理" class="headerlink" title="MongoDB的管理"></a>MongoDB的管理</h1><p>解压完之后进入bin目录，里面都是一些可执行文件，mongo，mongod，mongodump，mongoexport等。</p>
 <p>1).启动和停止MongoDB</p>
 <p>通过执行mongod来启动MongoDB服务器:</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>mongod</span><br></pre></td></tr></table></figure>
-
 <p>mongod有很多的配置启动选项的，可以通过<code>mongod --help</code>来查看，其中有一些主要的选项：</p>
 <ul>
 <li><code>--dbpath</code>：指定数据目录，默认是<code>/data/db/</code>。每个mongod进程都需要独立的目录，启动mongod时就会在数据目录中创建mongod.lock文件，防止其他mongod进程使用该数据目录。</li>
@@ -591,20 +589,16 @@
 <p>b. mongodump和mongorestore</p>
 <p>bin 中还有 mongodump 和 mongorestore 两个可执行文件，这个是对MongoDB的某个数据库进行备份，可以在MongoDB正在运行时进行备份，比如备份test数据库，然后将备份的数据库文件再倒入别的MongoDB服务器上。这种备份的方式备份的不是最新数据，只是已经写入MongoDB中的数据，可能还有的数据在缓存中没有写入，那么这部分数据就是备份不到的。mongodump和mongorestore也可以通过<code>--help</code>查询所有选项。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mongodump -d text -o test_db</span><br><span class="line">connected to: 127.0.0.1</span><br><span class="line">2014-06-06T12:54:59.741+0800 DATABASE: text	 to 	test_db/text</span><br></pre></td></tr></table></figure>
-
 <p><code>-d</code>是指定数据库，<code>-o</code>是输出备份文件，上面将 test 数据库备份为 test_db 文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mongorestore --port 27017 -d temple --drop test_db/<span class="built_in">test</span>/</span><br></pre></td></tr></table></figure>
-
 <p>这里将上面备份出来的 test 数据库现在重新导入到 temple 数据库，<code>--drop</code>代表如果有了 temple 数据库则将其中的所有集合删除，不指定就会和原来 temple 中的集合合并。</p>
 <p>c. mongoexport和mongoimport</p>
 <p>备份某个数据库中的某个表，同样可以通过<code>--help</code>来查看所有的选项，当然mongoexport也是可以不统计的备份，但是却不一定是最新数据。</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mongoexport --port 27017 -d zhihu -c zh_user -o zh_user </span><br><span class="line">$ mongoimport --port 9352 -d temple -c<span class="built_in"> user </span>zh_user</span><br></pre></td></tr></table></figure>
-
 <p><code>-c</code>表示 collection 集合，上面将 zhihu 库中的 zh_user 集合备份出来为 zh_user 文件，然后再导入到 temple 库中的user集合。</p>
 <p>d. sync和锁</p>
 <p>mongodump和mongoexport对都可以不停MongoDB服务器来进行备份，但是却失去了获取实时数据的能力，而fsync命令也能在不停MongoDB的情况下备份实时数据，它的实现其实就是上锁，阻止对数据库的写入操作，然后将缓冲区的数据写入磁盘，备份后再解锁。在这个期间，任何对数据库的写入操作都会阻塞，直到锁被释放。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">db</span>.runCommand(&#123;<span class="string">"fsync"</span> : 1, <span class="string">"lock"</span> : 1&#125;)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"info"</span> : <span class="string">"now locked against writes, use db.fsyncUnlock() to unlock"</span>,</span><br><span class="line">        <span class="string">"seeAlso"</span> : <span class="string">"http://dochub.mongodb.org/core/fsynccommand"</span>,</span><br><span class="line">        <span class="string">"ok"</span> : 1</span><br><span class="line">&#125;</span><br><span class="line">&gt;</span><br><span class="line">&gt;在这之间进行备份，执行任何insert操作都会阻塞</span><br><span class="line">&gt;</span><br><span class="line">&gt; <span class="keyword">db</span>.fsyncUnlock()</span><br><span class="line">&#123; <span class="string">"ok"</span> : 1, <span class="string">"info"</span> : <span class="string">"unlock completed"</span> &#125;</span><br></pre></td></tr></table></figure>
-
 <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>MongoDB的文件存储格式为BSON,同JSON一样支持往其它文档对象和数组中再插入文档对象和数组，同时扩展了JSON的数据类型.与数据库打交道的那些应用。例如，JSON没有日期类型，这会使得处理本来简单的日期问题变得非常繁琐。只有一种数字类型，没法区分浮点数和整数，更不能区分32位和64位数字。也没有办法表示其他常用类型，如正则表达式或函数。</p>
 <p>下面是MongoDB的支持的数据类型：</p>
 <ul>
@@ -629,7 +623,6 @@
 <p>JavaScript中只有一种“数字”类型。因为MongoDB中有3种数字类型（32位整数、64位整数和64位浮点数），shell必须绕过JavaScript的限制。默认情况下，shell中的数字都被MongoDB当做是双精度数。这意味着如果你从数据库中获得的是一个32位整数，修改文档后，将文档存回数据库的时候，这个整数也被转换成了浮点数，即便保持这个整数原封不动也会这样的。所以明智的做法是尽量不要在shell下覆盖整个文档。</p>
 <p>由于MongoDB中不同文档的同一个key的value数据类型可以不同，当我们根据某个key查询的时候会发生不同数据类型之间的比较。所以MongoDB内部设定了数据类型间的大小，顺序如下：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最小值&lt;null&lt;数字(<span class="number">32</span>位整数、<span class="number">63</span>位整形、<span class="number">64</span>位浮点数)&lt;字符串&lt;对象/文档&lt;数组&lt;二进制数据&lt;对象ID&lt;布尔型&lt;日期型&lt;时间戳&lt;正则&lt;最大值</span><br></pre></td></tr></table></figure>
-
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>[1] <a href="http://segmentfault.com/a/1190000000368210" target="_blank" rel="noopener">MongoDB 入门须知</a></li>
 <li>[2] <a href="http://www.2cto.com/database/201406/306599.html" target="_blank" rel="noopener">MongoDB入门学习(一)：MongoDB的安装和管理</a></li>

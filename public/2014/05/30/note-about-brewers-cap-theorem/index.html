@@ -642,8 +642,8 @@
 </ul>
 <p>在这样的模型下，我们使用最终一致性的模型来处理数据，可以保证在P的情况下保证A。而所有的不一致性都可以通过重复进行Query去除掉。Martz认为就是因为要不断的更新数据库中的数据，再加上CAP，才导致那些即便使用最终一致性的系统也会变得无比复杂，需要用到向量时钟、读修复这种技术，而如果系统中不存在会改变的数据，所有的更新都作为创建新数据的方式存在，读数据转化为一次请求，这样就可以避免最终一致性的复杂性，转而拥抱CAP。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="http://www.julianbrowne.com/article/viewer/brewers-cap-theorem" target="_blank" rel="noopener">1</a> <a href="http://duanple.blog.163.com/blog/static/7097176720114733655390/" target="_blank" rel="noopener">Brewer’s CAP Theorem</a></li>
-<li><a href="http://duanple.blog.163.com/blog/static/7097176720114733655390/" target="_blank" rel="noopener">2</a> <a href="http://www.cnblogs.com/mmjx/archive/2011/12/19/2290540.html" target="_blank" rel="noopener">CAP理论</a></li>
+<li>[1] <a href="http://duanple.blog.163.com/blog/static/7097176720114733655390/" target="_blank" rel="noopener">Brewer’s CAP Theorem</a></li>
+<li>[2] <a href="http://www.cnblogs.com/mmjx/archive/2011/12/19/2290540.html" target="_blank" rel="noopener">CAP理论</a></li>
 <li>[3] <a href="http://blog.csdn.net/godfrey90/article/details/6754884" target="_blank" rel="noopener">NoSQL学习笔记(二)之CAP理论</a></li>
 </ul>
 

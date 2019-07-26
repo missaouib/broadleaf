@@ -552,21 +552,16 @@
 <h1 id="1-Spark介绍"><a href="#1-Spark介绍" class="headerlink" title="1. Spark介绍"></a>1. Spark介绍</h1><p>Spark是UC Berkeley AMP lab所开源的类Hadoop MapReduce 框架，都是基于map reduce算法所实现的分布式计算框架，拥有Hadoop MapReduce所具有的优点；不同于MapReduce的是Job中间输出和结果可以保存在内存中，而不需要读写HDFS，因此Spark能更好地适用于machine learning等需要迭代的map reduce算法。</p>
 <h2 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h2><p> 1、 MapReduce具有很多局限性：</p>
 <ul>
-<li><p>仅支持Map和Reduce两种操作</p>
-</li>
-<li><p>迭代效率低</p>
-</li>
-<li><p>不适合交互式处理</p>
-</li>
+<li>仅支持Map和Reduce两种操作</li>
+<li>迭代效率低</li>
+<li>不适合交互式处理</li>
 <li><p>不擅长流式处理</p>
 <p>2、 现有的计算框架各自为战</p>
 </li>
 <li><p>批处理计算：MapReduce、Hive</p>
 </li>
-<li><p>流式计算：Storm</p>
-</li>
-<li><p>交互式计算：Impala ​</p>
-</li>
+<li>流式计算：Storm</li>
+<li>交互式计算：Impala ​</li>
 </ul>
 <h2 id="设计目标"><a href="#设计目标" class="headerlink" title="设计目标"></a>设计目标</h2><p>在一个统一的框架下能够进行批处理、流式计算和交互式计算。</p>
 <h1 id="2-一些概念"><a href="#2-一些概念" class="headerlink" title="2. 一些概念"></a>2. 一些概念</h1><p>每一个 Spark 的应用，都是由一个驱动程序构成，它运行用户的 main 函数，在一个集群上执行各种各样的并行操作。</p>
@@ -587,7 +582,6 @@
 <p>Spark 支持两种类型的共享变量：<code>广播变量</code>，可以在内存的所有的结点上缓存变量；<code>累加器</code>：只能用于做加法的变量，例如计数或求和。</p>
 <h1 id="3-如何编程"><a href="#3-如何编程" class="headerlink" title="3. 如何编程"></a>3. 如何编程</h1><h2 id="初始化-Spark"><a href="#初始化-Spark" class="headerlink" title="初始化 Spark"></a>初始化 Spark</h2><p>在一个Spark程序中要做的第一件事就是创建一个SparkContext对象来告诉Spark如何连接一个集群。为了创建SparkContext，你首先需要创建一个SparkConf对象，这个对象会包含你的应用的一些相关信息。这个通常是通过下面的构造器来实现的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> SparkContext(master, appName, [sparkHome], [jars])</span><br></pre></td></tr></table></figure>
-
 <p>参数说明：</p>
 <ul>
 <li><code>master</code>：用于指定所连接的 Spark 或者 Mesos 集群的 URL。</li>
@@ -597,36 +591,37 @@
 </ul>
 <p>在 python 中初始化，示例代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//conf = SparkContext(<span class="string">"local"</span>, <span class="string">"Hello Spark"</span>)</span><br><span class="line">conf = SparkConf().setAppName(<span class="string">"Hello Spark"</span>).setMaster(<span class="string">"local"</span>)</span><br><span class="line">sc = SparkContext(conf=conf)</span><br></pre></td></tr></table></figure>
-
 <p>说明：如果部署到集群，在分布式模式下运行，最后两个参数是必须的，第一个参数可以是以下任一种形式：</p>
 <table>
 <thead>
 <tr>
-<th align="left">Master URL</th>
-<th align="left">含义</th>
+<th style="text-align:left">Master URL</th>
+<th style="text-align:left">含义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><code>loca</code></td>
-<td align="left">默认值，使用一个 Worker 线程本地化运行(完全不并行)</td>
+<tbody>
+<tr>
+<td style="text-align:left"><code>loca</code></td>
+<td style="text-align:left">默认值，使用一个 Worker 线程本地化运行(完全不并行)</td>
 </tr>
 <tr>
-<td align="left"><code>local[N]</code></td>
-<td align="left">使用 N 个 Worker 线程本地化运行，N 为 <code>*</code> 时，表示使用系统中所有核</td>
+<td style="text-align:left"><code>local[N]</code></td>
+<td style="text-align:left">使用 N 个 Worker 线程本地化运行，N 为 <code>*</code> 时，表示使用系统中所有核</td>
 </tr>
 <tr>
-<td align="left"><code>local[N,M]</code></td>
-<td align="left">第一个代表的是用到的核个数；第二个参数代表的是容许该作业失败M次</td>
+<td style="text-align:left"><code>local[N,M]</code></td>
+<td style="text-align:left">第一个代表的是用到的核个数；第二个参数代表的是容许该作业失败M次</td>
 </tr>
 <tr>
-<td align="left"><code>spark://HOST:PORT</code></td>
-<td align="left">连接到指定的 Spark 单机版集群 master 进程所在的主机和端口，端口默认是7077</td>
+<td style="text-align:left"><code>spark://HOST:PORT</code></td>
+<td style="text-align:left">连接到指定的 Spark 单机版集群 master 进程所在的主机和端口，端口默认是7077</td>
 </tr>
 <tr>
-<td align="left"><code>mesos://HOST:PORT</code></td>
-<td align="left">连接到指定的 Mesos 集群。host 参数是Moses master的hostname。端口默认是5050</td>
+<td style="text-align:left"><code>mesos://HOST:PORT</code></td>
+<td style="text-align:left">连接到指定的 Mesos 集群。host 参数是Moses master的hostname。端口默认是5050</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>如果你在一个集群上运行 spark-shell，则 master 参数默认为 <code>local</code>。在实际使用中，当你在集群中运行你的程序，你一般不会把 master 参数写死在代码中，而是通过用 spark-submit 运行程序来获得这个参数。但是，在本地测试以及单元测试时，你仍需要自行传入 local 来运行Spark程序。</p>
 <h2 id="运行代码"><a href="#运行代码" class="headerlink" title="运行代码"></a>运行代码</h2><p>运行代码有几种方式，一是通过 spark-shell 来运行 scala 代码，一是编写 java 代码并打成包以 spark on yarn 方式运行，还有一种是通过 PySpark 来运行 python 代码。</p>
 <p>在  spark-shell 和 PySpark 命令行中，一个特殊的集成在解释器里的 SparkContext 变量已经建立好了，变量名叫做 sc，创建你自己的 SparkContext 不会起作用。</p>
@@ -634,31 +629,26 @@
 <p>parallelize 方法还可以接受一个参数 <code>slices</code>，表示数据集切分的份数。Spark 将会在集群上为每一份数据起一个任务。典型地，你可以在集群的每个 CPU 上分布 2-4个 slices。一般来说，Spark 会尝试根据集群的状况，来自动设定 slices 的数目，当然，你也可以手动设置。</p>
 <p>Scala 示例程序：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val data = Array(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">data: Array[Int] = Array(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">var</span> distData = sc.parallelize(data)</span><br><span class="line">distData: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[<span class="number">0</span>] at parallelize at &lt;console&gt;:<span class="number">14</span></span><br><span class="line"></span><br><span class="line">scala&gt; distData.reduce((a, b) =&gt; a + b)</span><br><span class="line">res4: Int = <span class="number">15</span></span><br></pre></td></tr></table></figure>
-
 <p>Java 示例程序：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; data = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line">JavaRDD&lt;Integer&gt; distData = sc.parallelize(data);</span><br><span class="line">Integer sum=distData.reduce((a, b) -&gt; a + b);</span><br></pre></td></tr></table></figure>
-
 <p>Python 示例程序：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">distData = sc.parallelize(data)</span><br><span class="line">distData.reduce(<span class="keyword">lambda</span> a, b: a + b)</span><br></pre></td></tr></table></figure>
-
 <h2 id="4-2-外部数据源"><a href="#4-2-外部数据源" class="headerlink" title="4.2 外部数据源"></a>4.2 外部数据源</h2><p>Spark可以从存储在 HDFS，或者 Hadoop 支持的其它文件系统（包括本地文件，Amazon S3， Hypertable， HBase 等等）上的文件创建分布式数据集。Spark 支持 <code>TextFile</code>、<code>SequenceFiles</code> 以及其他任何 <code>Hadoop InputFormat</code> 格式的输入。</p>
 <p>TextFile 的 RDD 可以通过下面方式创建，该方法接受一个文件的 URI 地址，该地址可以是本地路径，或者 <code>hdfs://</code>、<code>s3n://</code> 等 URL 地址。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// scala 语法</span></span><br><span class="line">val distFile = sc.textFile(<span class="string">"data.txt"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// java 语法</span></span><br><span class="line">JavaRDD&lt;String&gt; distFile = sc.textFile(<span class="string">"data.txt"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// python 语法</span></span><br><span class="line">distFile = sc.textFile(<span class="string">"data.txt"</span>)</span><br></pre></td></tr></table></figure>
-
 <p>一些说明：</p>
 <ul>
 <li>如果使用了本地文件路径时，要保证在worker节点上这个文件也能够通过这个路径访问。这点可以通过将这个文件拷贝到所有worker上或者使用网络挂载的共享文件系统来解决。</li>
 <li>包括textFile在内的所有基于文件的Spark读入方法，都支持将文件夹、压缩文件、包含通配符的路径作为参数。比如，以下代码都是合法的：</li>
 </ul>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">textFile(<span class="string">"/my/directory"</span>)</span><br><span class="line">textFile(<span class="string">"/my/directory/*.txt"</span>)</span><br><span class="line">textFile(<span class="string">"/my/directory/*.gz"</span>)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>textFile方法也可以传入第二个可选参数来控制文件的分片数量。默认情况下，Spark会为文件的每一个块（在HDFS中块的大小默认是64MB）创建一个分片。但是你也可以通过传入一个更大的值来要求Spark建立更多的分片。注意，分片的数量绝不能小于文件块的数量。</li>
 </ul>
 <p>除了文本文件之外，Spark 还支持其他格式的输入：</p>
 <ul>
 <li><code>SparkContext.wholeTextFiles</code> 方法可以读取一个包含多个小文件的目录，并以 filename，content 键值对的方式返回结果。</li>
-<li>对于 SequenceFiles，可以使用 SparkContext 的 `sequenceFile[K, V]`` 方法创建。像 IntWritable 和 Text 一样，它们必须是 Hadoop 的 Writable 接口的子类。另外，对于几种通用 Writable 类型，Spark 允许你指定原生类型来替代。例如：sequencFile[Int, String] 将会自动读取 IntWritable 和 Texts。</li>
+<li>对于 SequenceFiles，可以使用 SparkContext 的 <code>sequenceFile[K, V]`</code> 方法创建。像 IntWritable 和 Text 一样，它们必须是 Hadoop 的 Writable 接口的子类。另外，对于几种通用 Writable 类型，Spark 允许你指定原生类型来替代。例如：sequencFile[Int, String] 将会自动读取 IntWritable 和 Texts。</li>
 <li>对于其他类型的 Hadoop 输入格式，你可以使用 <code>SparkContext.hadoopRDD</code> 方法，它可以接收任意类型的 JobConf 和输入格式类，键类型和值类型。按照像 Hadoop 作业一样的方法设置输入源就可以了。</li>
 <li><code>RDD.saveAsObjectFile</code> 和 <code>SparkContext.objectFile</code> 提供了以 Java 序列化的简单方式来保存 RDD。虽然这种方式没有 Avro 高效，但也是一种简单的方式来保存任意的 RDD。</li>
 </ul>
@@ -672,197 +662,185 @@
 <p>在默认情况下，每一个由转化操作得到的RDD都会在每次执行启动操作时重新计算生成。但是，你也可以通过调用persist(或cache)方法来将RDD持久化到内存中，这样Spark就可以在下次使用这个数据集时快速获得。Spark同样提供了对将RDD持久化到硬盘上或在多个节点间复制的支持。</p>
 <p>Scala 示例：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> lines = sc.textFile(<span class="string">"data.txt"</span>)</span><br><span class="line"><span class="keyword">val</span> lineLengths = lines.map(s =&gt; s.length)</span><br><span class="line"><span class="keyword">val</span> totalLength = lineLengths.reduce((a, b) =&gt; a + b)</span><br></pre></td></tr></table></figure>
-
 <p>Java 示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JavaRDD&lt;String&gt; lines = sc.textFile(<span class="string">"data.txt"</span>);</span><br><span class="line">JavaRDD&lt;Integer&gt; lineLengths = lines.map(s -&gt; s.length());</span><br><span class="line"><span class="keyword">int</span> totalLength = lineLengths.reduce((a, b) -&gt; a + b);</span><br></pre></td></tr></table></figure>
-
 <p>Python 示例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lines = sc.textFile(<span class="string">"data.txt"</span>)</span><br><span class="line">lineLengths = lines.map(<span class="keyword">lambda</span> s: len(s))</span><br><span class="line">totalLength = lineLengths.reduce(<span class="keyword">lambda</span> a, b: a + b)</span><br></pre></td></tr></table></figure>
-
 <p>第一行定义了一个由外部文件产生的基本RDD。这个数据集不是从内存中载入的也不是由其他操作产生的；lines仅仅是一个指向文件的指针。第二行将lineLengths定义为map操作的结果。再强调一次，由于惰性求值的缘故，lineLengths并不会被立即计算得到。最后，我们运行了reduce操作，这是一个启动操作。从这个操作开始，Spark将计算过程划分成许多任务并在多机上运行，每台机器运行自己部分的map操作和reduce操作，最终将自己部分的运算结果返回给驱动程序。</p>
 <p>如果我们希望以后重复使用lineLengths，只需在reduce前加入下面这行代码：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lineLengths.persist()</span><br></pre></td></tr></table></figure>
-
 <p>这条代码将使得 lineLengths 在第一次计算生成之后保存在内存中。</p>
 <p>除了使用 lambda 表达式，也可以通过函数来运行转换或者动作，使用函数需要注意局部变量的作用域问题。</p>
 <p>例如下面的 Python 代码中的 field 变量：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.field = <span class="string">"Hello"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">doStuff</span><span class="params">(self, rdd)</span>:</span></span><br><span class="line">        field = self.field</span><br><span class="line">        <span class="keyword">return</span> rdd.map(<span class="keyword">lambda</span> s: field + x)</span><br></pre></td></tr></table></figure>
-
 <p>如果使用 Java 语言，则需要用到匿名内部类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GetLength</span> <span class="keyword">implements</span> <span class="title">Function</span>&lt;<span class="title">String</span>, <span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">(String s)</span> </span>&#123; <span class="keyword">return</span> s.length(); &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sum</span> <span class="keyword">implements</span> <span class="title">Function2</span>&lt;<span class="title">Integer</span>, <span class="title">Integer</span>, <span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">(Integer a, Integer b)</span> </span>&#123; <span class="keyword">return</span> a + b; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">JavaRDD&lt;String&gt; lines = sc.textFile(<span class="string">"data.txt"</span>);</span><br><span class="line">JavaRDD&lt;Integer&gt; lineLengths = lines.map(<span class="keyword">new</span> GetLength());</span><br><span class="line"><span class="keyword">int</span> totalLength = lineLengths.reduce(<span class="keyword">new</span> Sum());</span><br></pre></td></tr></table></figure>
-
 <p>Spark 也支持键值对的操作，这在分组和聚合操作时候用得到。定义一个键值对对象时，需要自定义该对象的 equals() 和 hashCode() 方法。</p>
 <p>在 Scala 中有一个 <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Tuple2" target="_blank" rel="noopener">Tuple2</a> 对象表示键值对，这是一个内置的对象，通过 <code>(a,b)</code> 就可以创建一个 Tuple2 对象。在你的程序中，通过导入 <code>org.apache.spark.SparkContext._</code> 就可以对 Tuple2 进行操作。对键值对的操作方法，可以查看 <a href="http:/.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.PairRDDFunctions" target="_blank" rel="noopener">PairRDDFunctions</a></p>
 <p>下面是一个用 scala 统计单词出现次数的例子：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> lines = sc.textFile(<span class="string">"data.txt"</span>)</span><br><span class="line"><span class="keyword">val</span> pairs = lines.map(s =&gt; (s, <span class="number">1</span>))</span><br><span class="line"><span class="keyword">val</span> counts = pairs.reduceByKey((a, b) =&gt; a + b)</span><br></pre></td></tr></table></figure>
-
 <p>接下来，你还可以执行 <code>counts.sortByKey()</code>、<code>counts.collect()</code> 等操作。</p>
 <p>如果用 Java 统计，则代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JavaRDD&lt;String&gt; lines = sc.textFile(<span class="string">"data.txt"</span>);</span><br><span class="line">JavaPairRDD&lt;String, Integer&gt; pairs = lines.mapToPair(s -&gt; <span class="keyword">new</span> Tuple2(s, <span class="number">1</span>));</span><br><span class="line">JavaPairRDD&lt;String, Integer&gt; counts = pairs.reduceByKey((a, b) -&gt; a + b);</span><br></pre></td></tr></table></figure>
-
 <p>用 Python 统计，代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lines = sc.textFile(<span class="string">"data.txt"</span>)</span><br><span class="line">pairs = lines.map(<span class="keyword">lambda</span> s: (s, <span class="number">1</span>))</span><br><span class="line">counts = pairs.reduceByKey(<span class="keyword">lambda</span> a, b: a + b)</span><br></pre></td></tr></table></figure>
-
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>现在来结合上面的例子实现一个完整的例子。下面，我们来 <a href="http://segmentfault.com/blog/whuwb/1190000000723037" target="_blank" rel="noopener">分析 Nginx 日志中状态码出现次数</a>，并且将结果按照状态码从小到大排序。</p>
 <p>先将测试数据上传到 hdfs:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop fs -put access.log</span><br></pre></td></tr></table></figure>
-
 <p>然后，编写一个 python 文件，保存为 SimpleApp.py：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext</span><br><span class="line"></span><br><span class="line">logFile = <span class="string">"access.log"</span></span><br><span class="line"></span><br><span class="line">sc = SparkContext(<span class="string">"local"</span>, <span class="string">"Simple App"</span>)</span><br><span class="line"></span><br><span class="line">rdd = sc.textFile(logFile).cache()</span><br><span class="line"></span><br><span class="line">counts = rdd.map(<span class="keyword">lambda</span> line: line.split()[<span class="number">8</span>]).map(<span class="keyword">lambda</span> word: (word, <span class="number">1</span>)).reduceByKey(<span class="keyword">lambda</span> a, b: a + b).sortByKey(<span class="keyword">lambda</span> x: x) </span><br><span class="line"></span><br><span class="line"><span class="comment"># This is just a demo on how to bring all the sorted data back to a single node.  </span></span><br><span class="line"><span class="comment"># In reality, we wouldn't want to collect all the data to the driver node.</span></span><br><span class="line">output = counts.collect()  </span><br><span class="line"><span class="keyword">for</span> (word, count) <span class="keyword">in</span> output:  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"%s: %i"</span> % (word, count)  </span><br><span class="line"></span><br><span class="line">counts.saveAsTextFile(<span class="string">"/data/result"</span>)</span><br><span class="line"></span><br><span class="line">sc.stop()</span><br></pre></td></tr></table></figure>
-
 <p>接下来，运行下面代码：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spark-submit  --master <span class="built_in">local</span>[4]   SimpleApp.py</span><br></pre></td></tr></table></figure>
-
 <p>运行成功之后，你会在终端看到以下输出：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">200</span>: <span class="number">6827</span></span><br><span class="line"><span class="number">206</span>: <span class="number">120</span></span><br><span class="line"><span class="number">301</span>: <span class="number">7</span></span><br><span class="line"><span class="number">304</span>: <span class="number">10</span></span><br><span class="line"><span class="number">403</span>: <span class="number">38</span></span><br><span class="line"><span class="number">404</span>: <span class="number">125</span></span><br><span class="line"><span class="number">416</span>: <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p>并且，在hdfs 上 /user_results/part-00000 内容如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">u'200'</span>, <span class="number">6827</span>)</span><br><span class="line">(<span class="string">u'206'</span>, <span class="number">120</span>)</span><br><span class="line">(<span class="string">u'301'</span>, <span class="number">7</span>)</span><br><span class="line">(<span class="string">u'304'</span>, <span class="number">10</span>)</span><br><span class="line">(<span class="string">u'403'</span>, <span class="number">38</span>)</span><br><span class="line">(<span class="string">u'404'</span>, <span class="number">125</span>)</span><br><span class="line">(<span class="string">u'416'</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
 <p>其实，这个例子和官方提供的例子很相像，具体请看 <a href="https://github.com/apache/blob/master/examples/src/main/python/wordcount.py" target="_blank" rel="noopener">wordcount.py</a>。</p>
 <p>如果用 scala 来实现，代码如下：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rdd = sc.textFile(<span class="string">"access.log"</span>).cache()</span><br><span class="line">rdd.flatMap(_.split(' ')).map( (_,<span class="number">1</span>)).reduceByKey(_+_).sortByKey(<span class="literal">true</span>).saveAsTextFile(<span class="string">"/data/result"</span>)</span><br><span class="line"></span><br><span class="line">sc.stop()</span><br></pre></td></tr></table></figure>
-
 <p>如果想要对结果按照次数进行排序，则代码如下：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rdd = sc.textFile(<span class="string">"access.log"</span>).cache()</span><br><span class="line">rdd.flatMap(_.split(' ')).map( (_,<span class="number">1</span>)).reduceByKey(_+_).map( x =&gt; (x._2,x._1)).sortByKey(<span class="literal">false</span>).map( x =&gt; (x._2,x._1) ).saveAsTextFile(<span class="string">"/data/resultSorted"</span>)</span><br><span class="line"></span><br><span class="line">sc.stop()</span><br></pre></td></tr></table></figure>
-
 <h3 id="常见的转换"><a href="#常见的转换" class="headerlink" title="常见的转换"></a>常见的转换</h3><table>
 <thead>
 <tr>
-<th align="left">转换</th>
-<th align="left">含义</th>
+<th style="text-align:left">转换</th>
+<th style="text-align:left">含义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><code>map(func)</code></td>
-<td align="left">每一个输入元素经过func函数转换后输出一个元素</td>
+<tbody>
+<tr>
+<td style="text-align:left"><code>map(func)</code></td>
+<td style="text-align:left">每一个输入元素经过func函数转换后输出一个元素</td>
 </tr>
 <tr>
-<td align="left"><code>filter(func)</code></td>
-<td align="left">返回经过 func 函数计算后返回值为 true 的输入元素组成的一个新数据集</td>
+<td style="text-align:left"><code>filter(func)</code></td>
+<td style="text-align:left">返回经过 func 函数计算后返回值为 true 的输入元素组成的一个新数据集</td>
 </tr>
 <tr>
-<td align="left"><code>flatMap(func)</code></td>
-<td align="left">类似于 map，但是每一个输入元素可以被映射为0或多个输出元素，因此 func 应该返回一个序列</td>
+<td style="text-align:left"><code>flatMap(func)</code></td>
+<td style="text-align:left">类似于 map，但是每一个输入元素可以被映射为0或多个输出元素，因此 func 应该返回一个序列</td>
 </tr>
 <tr>
-<td align="left"><code>mapPartitions(func)</code></td>
-<td align="left">类似于 map，但独立地在 RDD 的每一个分块上运行，因此在类型为 T 的 RDD 上运行时，func 的函数类型必须是 <code>Iterator[T] ⇒ Iterator[U]</code></td>
+<td style="text-align:left"><code>mapPartitions(func)</code></td>
+<td style="text-align:left">类似于 map，但独立地在 RDD 的每一个分块上运行，因此在类型为 T 的 RDD 上运行时，func 的函数类型必须是 <code>Iterator[T] ⇒ Iterator[U]</code></td>
 </tr>
 <tr>
-<td align="left"><code>mapPartitionsWithSplit(func)</code></td>
-<td align="left">类似于 mapPartitions, 但 func 带有一个整数参数表示分块的索引值。因此在类型为 T的RDD上运行时，func 的函数类型必须是 <code>(Int, Iterator[T]) ⇒ Iterator[U]</code></td>
+<td style="text-align:left"><code>mapPartitionsWithSplit(func)</code></td>
+<td style="text-align:left">类似于 mapPartitions, 但 func 带有一个整数参数表示分块的索引值。因此在类型为 T的RDD上运行时，func 的函数类型必须是 <code>(Int, Iterator[T]) ⇒ Iterator[U]</code></td>
 </tr>
 <tr>
-<td align="left"><code>sample(withReplacement,fraction, seed)</code></td>
-<td align="left">根据 fraction 指定的比例，对数据进行采样，可以选择是否用随机数进行替换，seed 用于指定随机数生成器种子</td>
+<td style="text-align:left"><code>sample(withReplacement,fraction, seed)</code></td>
+<td style="text-align:left">根据 fraction 指定的比例，对数据进行采样，可以选择是否用随机数进行替换，seed 用于指定随机数生成器种子</td>
 </tr>
 <tr>
-<td align="left"><code>union(otherDataset)</code></td>
-<td align="left">返回一个新的数据集，新数据集是由源数据集和参数数据集联合而成</td>
+<td style="text-align:left"><code>union(otherDataset)</code></td>
+<td style="text-align:left">返回一个新的数据集，新数据集是由源数据集和参数数据集联合而成</td>
 </tr>
 <tr>
-<td align="left"><code>distinct([numTasks]))</code></td>
-<td align="left">返回一个包含源数据集中所有不重复元素的新数据集</td>
+<td style="text-align:left"><code>distinct([numTasks]))</code></td>
+<td style="text-align:left">返回一个包含源数据集中所有不重复元素的新数据集</td>
 </tr>
 <tr>
-<td align="left"><code>groupByKey([numTasks])</code></td>
-<td align="left">在一个键值对的数据集上调用，返回一个<code>(K，Seq[V])</code>对的数据集 。注意：默认情况下，只有8个并行任务来做操作，但是你可以传入一个可选的 numTasks 参数来改变它</td>
+<td style="text-align:left"><code>groupByKey([numTasks])</code></td>
+<td style="text-align:left">在一个键值对的数据集上调用，返回一个<code>(K，Seq[V])</code>对的数据集 。注意：默认情况下，只有8个并行任务来做操作，但是你可以传入一个可选的 numTasks 参数来改变它</td>
 </tr>
 <tr>
-<td align="left"><code>reduceByKey(func, [numTasks])</code></td>
-<td align="left">在一个键值对的数据集上调用时，返回一个键值对的数据集，使用指定的 reduce 函数，将相同 key 的值聚合到一起。类似 groupByKey，reduce 任务个数是可以通过第二个可选参数来配置的</td>
+<td style="text-align:left"><code>reduceByKey(func, [numTasks])</code></td>
+<td style="text-align:left">在一个键值对的数据集上调用时，返回一个键值对的数据集，使用指定的 reduce 函数，将相同 key 的值聚合到一起。类似 groupByKey，reduce 任务个数是可以通过第二个可选参数来配置的</td>
 </tr>
 <tr>
-<td align="left"><code>sortByKey([ascending], [numTasks])</code></td>
-<td align="left">在一个键值对的数据集上调用，K 必须实现 <code>Ordered</code> 接口，返回一个按照 Key 进行排序的键值对数据集。升序或降序由 ascending 布尔参数决定</td>
+<td style="text-align:left"><code>sortByKey([ascending], [numTasks])</code></td>
+<td style="text-align:left">在一个键值对的数据集上调用，K 必须实现 <code>Ordered</code> 接口，返回一个按照 Key 进行排序的键值对数据集。升序或降序由 ascending 布尔参数决定</td>
 </tr>
 <tr>
-<td align="left"><code>join(otherDataset, [numTasks])</code></td>
-<td align="left">在类型为（K,V)和（K,W) 类型的数据集上调用时，返回一个相同key对应的所有元素对在一起的 <code>(K, (V, W))</code> 数据集</td>
+<td style="text-align:left"><code>join(otherDataset, [numTasks])</code></td>
+<td style="text-align:left">在类型为（K,V)和（K,W) 类型的数据集上调用时，返回一个相同key对应的所有元素对在一起的 <code>(K, (V, W))</code> 数据集</td>
 </tr>
 <tr>
-<td align="left"><code>cogroup(otherDataset, [numTasks])</code></td>
-<td align="left">在类型为（K,V)和（K,W) 的数据集上调用，返回一个 <code>(K, Seq[V], Seq[W])</code> 元组的数据集。这个操作也可以称之为 groupwith</td>
+<td style="text-align:left"><code>cogroup(otherDataset, [numTasks])</code></td>
+<td style="text-align:left">在类型为（K,V)和（K,W) 的数据集上调用，返回一个 <code>(K, Seq[V], Seq[W])</code> 元组的数据集。这个操作也可以称之为 groupwith</td>
 </tr>
 <tr>
-<td align="left"><code>cartesian(otherDataset)</code></td>
-<td align="left">笛卡尔积，在类型为 T 和 U 类型的数据集上调用时，返回一个 (T, U) 对数据集(两两的元素对)</td>
+<td style="text-align:left"><code>cartesian(otherDataset)</code></td>
+<td style="text-align:left">笛卡尔积，在类型为 T 和 U 类型的数据集上调用时，返回一个 (T, U) 对数据集(两两的元素对)</td>
 </tr>
 <tr>
-<td align="left"><code>pipe(command, [envVars])</code></td>
-<td align="left">对 RDD 进行管道操作</td>
+<td style="text-align:left"><code>pipe(command, [envVars])</code></td>
+<td style="text-align:left">对 RDD 进行管道操作</td>
 </tr>
 <tr>
-<td align="left"><code>coalesce(numPartitions)</code></td>
-<td align="left">减少 RDD 的分区数到指定值。在过滤大量数据之后，可以执行此操作</td>
+<td style="text-align:left"><code>coalesce(numPartitions)</code></td>
+<td style="text-align:left">减少 RDD 的分区数到指定值。在过滤大量数据之后，可以执行此操作</td>
 </tr>
 <tr>
-<td align="left"><code>repartition(numPartitions)</code></td>
-<td align="left">重新给 RDD 分区</td>
+<td style="text-align:left"><code>repartition(numPartitions)</code></td>
+<td style="text-align:left">重新给 RDD 分区</td>
 </tr>
 <tr>
-<td align="left"><code>repartitionAndSortWithinPartitions(partitioner)</code></td>
-<td align="left">重新给 RDD 分区，并且每个分区内以记录的 key 排序</td>
+<td style="text-align:left"><code>repartitionAndSortWithinPartitions(partitioner)</code></td>
+<td style="text-align:left">重新给 RDD 分区，并且每个分区内以记录的 key 排序</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <h3 id="常见的动作"><a href="#常见的动作" class="headerlink" title="常见的动作"></a>常见的动作</h3><p>常见的动作列表：</p>
 <table>
 <thead>
 <tr>
-<th align="left">动作</th>
-<th align="left">含义</th>
+<th style="text-align:left">动作</th>
+<th style="text-align:left">含义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><code>reduce(func)</code></td>
-<td align="left">通过函数 func 聚集数据集中的所有元素。这个功能必须可交换且可关联的，从而可以正确的被并行执行。</td>
+<tbody>
+<tr>
+<td style="text-align:left"><code>reduce(func)</code></td>
+<td style="text-align:left">通过函数 func 聚集数据集中的所有元素。这个功能必须可交换且可关联的，从而可以正确的被并行执行。</td>
 </tr>
 <tr>
-<td align="left"><code>collect()</code></td>
-<td align="left">在驱动程序中，以数组的形式，返回数据集的所有元素。这通常会在使用 filter 或者其它操作并返回一个足够小的数据子集后再使用会比较有用。</td>
+<td style="text-align:left"><code>collect()</code></td>
+<td style="text-align:left">在驱动程序中，以数组的形式，返回数据集的所有元素。这通常会在使用 filter 或者其它操作并返回一个足够小的数据子集后再使用会比较有用。</td>
 </tr>
 <tr>
-<td align="left"><code>count()</code></td>
-<td align="left">返回数据集的元素的个数。</td>
+<td style="text-align:left"><code>count()</code></td>
+<td style="text-align:left">返回数据集的元素的个数。</td>
 </tr>
 <tr>
-<td align="left"><code>first()</code></td>
-<td align="left">返回数据集的第一个元素，类似于 <code>take(1)</code></td>
+<td style="text-align:left"><code>first()</code></td>
+<td style="text-align:left">返回数据集的第一个元素，类似于 <code>take(1)</code></td>
 </tr>
 <tr>
-<td align="left"><code>take(n)</code></td>
-<td align="left">返回一个由数据集的前 n 个元素组成的数组。注意，这个操作目前并非并行执行，而是由驱动程序计算所有的元素</td>
+<td style="text-align:left"><code>take(n)</code></td>
+<td style="text-align:left">返回一个由数据集的前 n 个元素组成的数组。注意，这个操作目前并非并行执行，而是由驱动程序计算所有的元素</td>
 </tr>
 <tr>
-<td align="left"><code>takeSample(withReplacement,num, seed)</code></td>
-<td align="left">返回一个数组，在数据集中随机采样 num 个元素组成，可以选择是否用随机数替换不足的部分，seed 用于指定的随机数生成器种子</td>
+<td style="text-align:left"><code>takeSample(withReplacement,num, seed)</code></td>
+<td style="text-align:left">返回一个数组，在数据集中随机采样 num 个元素组成，可以选择是否用随机数替换不足的部分，seed 用于指定的随机数生成器种子</td>
 </tr>
 <tr>
-<td align="left"><code>takeOrdered(n, [ordering])</code></td>
-<td align="left">返回自然顺序或者自定义顺序的前 n 个元素</td>
+<td style="text-align:left"><code>takeOrdered(n, [ordering])</code></td>
+<td style="text-align:left">返回自然顺序或者自定义顺序的前 n 个元素</td>
 </tr>
 <tr>
-<td align="left"><code>saveAsTextFile(path)</code></td>
-<td align="left">将数据集的元素，以 textfile 的形式，保存到本地文件系统，HDFS或者任何其它 hadoop 支持的文件系统。对于每个元素，Spark 将会调用 <code>toString</code> 方法，将它转换为文件中的文本行</td>
+<td style="text-align:left"><code>saveAsTextFile(path)</code></td>
+<td style="text-align:left">将数据集的元素，以 textfile 的形式，保存到本地文件系统，HDFS或者任何其它 hadoop 支持的文件系统。对于每个元素，Spark 将会调用 <code>toString</code> 方法，将它转换为文件中的文本行</td>
 </tr>
 <tr>
-<td align="left"><code>saveAsSequenceFile(path)</code> (Java and Scala)</td>
-<td align="left">将数据集的元素，以 Hadoop sequencefile 的格式保存到指定的目录下</td>
+<td style="text-align:left"><code>saveAsSequenceFile(path)</code> (Java and Scala)</td>
+<td style="text-align:left">将数据集的元素，以 Hadoop sequencefile 的格式保存到指定的目录下</td>
 </tr>
 <tr>
-<td align="left"><code>saveAsObjectFile(path)</code> (Java and Scala)</td>
-<td align="left">将数据集的元素，以 Java 序列化的方式保存到指定的目录下</td>
+<td style="text-align:left"><code>saveAsObjectFile(path)</code> (Java and Scala)</td>
+<td style="text-align:left">将数据集的元素，以 Java 序列化的方式保存到指定的目录下</td>
 </tr>
 <tr>
-<td align="left"><code>countByKey()</code></td>
-<td align="left">对(K,V)类型的 RDD 有效，返回一个 (K，Int) 对的 Map，表示每一个key对应的元素个数</td>
+<td style="text-align:left"><code>countByKey()</code></td>
+<td style="text-align:left">对(K,V)类型的 RDD 有效，返回一个 (K，Int) 对的 Map，表示每一个key对应的元素个数</td>
 </tr>
 <tr>
-<td align="left"><code>foreach(func)</code></td>
-<td align="left">在数据集的每一个元素上，运行函数 func 进行更新。这通常用于边缘效果，例如更新一个累加器，或者和外部存储系统进行交互，例如 HBase</td>
+<td style="text-align:left"><code>foreach(func)</code></td>
+<td style="text-align:left">在数据集的每一个元素上，运行函数 func 进行更新。这通常用于边缘效果，例如更新一个累加器，或者和外部存储系统进行交互，例如 HBase</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <h2 id="4-4-RDD持久化"><a href="#4-4-RDD持久化" class="headerlink" title="4.4 RDD持久化"></a>4.4 RDD持久化</h2><p>Spark 的一个重要功能就是在将数据集持久化（或缓存）到内存中以便在多个操作中重复使用。当我们持久化一个 RDD 是，每一个节点将这个RDD的每一个分片计算并保存到内存中以便在下次对这个数据集（或者这个数据集衍生的数据集）的计算中可以复用。这使得接下来的计算过程速度能够加快（经常能加快超过十倍的速度）。缓存是加快迭代算法和快速交互过程速度的关键工具。</p>
 <p>你可以通过调用<code>persist</code>或<code>cache</code>方法来标记一个想要持久化的 RDD。在第一次被计算产生之后，它就会始终停留在节点的内存中。Spark 的缓存是具有容错性的——如果 RDD 的任意一个分片丢失了，Spark 就会依照这个 RDD 产生的转化过程自动重算一遍。</p>
 <p>另外，每一个持久化的 RDD 都有一个可变的存储级别，这个级别使得用户可以改变 RDD 持久化的储存位置。比如，你可以将数据集持久化到硬盘上，也可以将它以序列化的 Java 对象形式（节省空间）持久化到内存中，还可以将这个数据集在节点之间复制，或者使用 Tachyon 将它储存到堆外。这些存储级别都是通过向 <code>persist()</code> 传递一个 StorageLevel 对象（Scala, Java, Python）来设置的。</p>
@@ -872,47 +850,47 @@
 <p>Spark 还会在 shuffle 操作（比如 reduceByKey）中自动储存中间数据，即使用户没有调用 persist。这是为了防止在 shuffle 过程中某个节点出错而导致的全盘重算。不过如果用户打算复用某些结果 RDD，我们仍然建议用户对结果 RDD 手动调用 persist，而不是依赖自动持久化机制。</p>
 <p>使用以下两种方法可以标记要缓存的 RDD：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lineLengths.persist()  </span><br><span class="line">lineLengths.cache()</span><br></pre></td></tr></table></figure>
-
 <p>取消缓存则用：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lineLengths.unpersist()</span><br></pre></td></tr></table></figure>
-
 <p>每一个 RDD 都可以用不同的保存级别进行保存，通过将一个 <code>org.apache.spark.storage.StorageLevel</code> 对象传递给 <code>persist(self, storageLevel)</code> 可以控制 RDD 持久化到磁盘、内存或者是跨节点复制等等。<code>cache()</code> 方法是使用默认存储级别的快捷方法，也就是 <code>StorageLevel.MEMORY_ONLY</code>。 完整的可选存储级别如下：</p>
 <table>
 <thead>
 <tr>
-<th align="left">存储级别</th>
-<th align="left">意义</th>
+<th style="text-align:left">存储级别</th>
+<th style="text-align:left">意义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><code>MEMORY_ONLY</code></td>
-<td align="left">默认的级别， 将 RDD 作为反序列化的的对象存储在 JVM 中。如果不能被内存装下，一些分区将不会被缓存，并且在需要的时候被重新计算</td>
+<tbody>
+<tr>
+<td style="text-align:left"><code>MEMORY_ONLY</code></td>
+<td style="text-align:left">默认的级别， 将 RDD 作为反序列化的的对象存储在 JVM 中。如果不能被内存装下，一些分区将不会被缓存，并且在需要的时候被重新计算</td>
 </tr>
 <tr>
-<td align="left"><code>MEMORY_AND_DISK</code></td>
-<td align="left">将 RDD 作为反序列化的的对象存储在 JVM 中。如果不能被与内存装下，超出的分区将被保存在硬盘上，并且在需要时被读取</td>
+<td style="text-align:left"><code>MEMORY_AND_DISK</code></td>
+<td style="text-align:left">将 RDD 作为反序列化的的对象存储在 JVM 中。如果不能被与内存装下，超出的分区将被保存在硬盘上，并且在需要时被读取</td>
 </tr>
 <tr>
-<td align="left"><code>MEMORY_ONLY_SER</code></td>
-<td align="left">将 RDD 作为序列化的的对象进行存储（每一分区占用一个字节数组）。通常来说，这比将对象反序列化的空间利用率更高，尤其当使用fast serializer,但在读取时会比较占用CPU</td>
+<td style="text-align:left"><code>MEMORY_ONLY_SER</code></td>
+<td style="text-align:left">将 RDD 作为序列化的的对象进行存储（每一分区占用一个字节数组）。通常来说，这比将对象反序列化的空间利用率更高，尤其当使用fast serializer,但在读取时会比较占用CPU</td>
 </tr>
 <tr>
-<td align="left"><code>MEMORY_AND_DISK_SER</code></td>
-<td align="left">与 <code>MEMORY_ONLY_SER</code> 相似，但是把超出内存的分区将存储在硬盘上而不是在每次需要的时候重新计算</td>
+<td style="text-align:left"><code>MEMORY_AND_DISK_SER</code></td>
+<td style="text-align:left">与 <code>MEMORY_ONLY_SER</code> 相似，但是把超出内存的分区将存储在硬盘上而不是在每次需要的时候重新计算</td>
 </tr>
 <tr>
-<td align="left"><code>DISK_ONLY</code></td>
-<td align="left">只将 RDD 分区存储在硬盘上</td>
+<td style="text-align:left"><code>DISK_ONLY</code></td>
+<td style="text-align:left">只将 RDD 分区存储在硬盘上</td>
 </tr>
 <tr>
-<td align="left"><code>MEMORY_ONLY_2</code>、<code>MEMORY_AND_DISK_2</code>等</td>
-<td align="left">与上述的存储级别一样，但是将每一个分区都复制到两个集群结点上</td>
+<td style="text-align:left"><code>MEMORY_ONLY_2</code>、<code>MEMORY_AND_DISK_2</code>等</td>
+<td style="text-align:left">与上述的存储级别一样，但是将每一个分区都复制到两个集群结点上</td>
 </tr>
 <tr>
-<td align="left"><code>OFF_HEAP</code></td>
-<td align="left">开发中</td>
+<td style="text-align:left"><code>OFF_HEAP</code></td>
+<td style="text-align:left">开发中</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>Spark 的不同存储级别，旨在满足内存使用和 CPU 效率权衡上的不同需求。我们建议通过以下的步骤来进行选择：</p>
 <ul>
 <li>如果你的 RDD 可以很好的与默认的存储级别契合，就不需要做任何修改了。这已经是 CPU 使用效率最高的选项，它使得 RDD的操作尽可能的快。</li>
@@ -924,20 +902,18 @@
 <h1 id="5-共享变量"><a href="#5-共享变量" class="headerlink" title="5. 共享变量"></a>5. 共享变量</h1><p>通常情况下，当一个函数传递给一个在远程集群节点上运行的Spark操作（比如map和reduce）时，Spark会对涉及到的变量的所有副本执行这个函数。这些变量会被复制到每个机器上，而且这个过程不会被反馈给驱动程序。通常情况下，在任务之间读写共享变量是很低效的。但是，Spark仍然提供了有限的两种共享变量类型用于常见的使用场景：<code>广播变量</code>和<code>累加器</code>。</p>
 <h2 id="广播变量"><a href="#广播变量" class="headerlink" title="广播变量"></a>广播变量</h2><p>广播变量允许程序员在每台机器上保持一个只读变量的缓存而不是将一个变量的拷贝传递给各个任务。它们可以被使用，比如，给每一个节点传递一份大输入数据集的拷贝是很低效的。Spark 试图使用高效的广播算法来分布广播变量，以此来降低通信花销。<br>可以通过 <code>SparkContext.broadcast(v)</code> 来从变量 v 创建一个广播变量。这个广播变量是 v 的一个包装，同时它的值可以功过调用 value 方法来获得。以下的代码展示了这一点：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">broadcastVar = sc.broadcast([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">&lt;pyspark.broadcast.Broadcast object at <span class="number">0x102789f10</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>broadcastVar.value</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
 <p>在广播变量被创建之后，在所有函数中都应当使用它来代替原来的变量v，这样就可以保证v在节点之间只被传递一次。另外，v变量在被广播之后不应该再被修改了，这样可以确保每一个节点上储存的广播变量的一致性（如果这个变量后来又被传输给一个新的节点）。</p>
 <h2 id="累加器"><a href="#累加器" class="headerlink" title="累加器"></a>累加器</h2><p>累加器是在一个相关过程中只能被”累加”的变量，对这个变量的操作可以有效地被并行化。它们可以被用于实现计数器（就像在MapReduce过程中）或求和运算。Spark原生支持对数字类型的累加器，程序员也可以为其他新的类型添加支持。累加器被以一个名字创建之后，会在Spark的UI中显示出来。这有助于了解计算的累进过程（注意：目前Python中不支持这个特性）。</p>
 <p>可以通过<code>SparkContext.accumulator(v)</code>来从变量v创建一个累加器。在集群中运行的任务随后可以使用add方法或<code>+=</code>操作符（在Scala和Python中）来向这个累加器中累加值。但是，他们不能读取累加器中的值。只有驱动程序可以读取累加器中的值，通过累加器的value方法。</p>
 <p>以下的代码展示了向一个累加器中累加数组元素的过程：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">accum = sc.accumulator(<span class="number">0</span>)</span><br><span class="line">Accumulator&lt;id=<span class="number">0</span>, value=<span class="number">0</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sc.parallelize([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]).foreach(<span class="keyword">lambda</span> x: accum.add(x))</span><br><span class="line">...</span><br><span class="line"><span class="number">10</span>/<span class="number">09</span>/<span class="number">29</span> <span class="number">18</span>:<span class="number">41</span>:<span class="number">08</span> INFO SparkContext: Tasks finished <span class="keyword">in</span> <span class="number">0.317106</span> s</span><br><span class="line"></span><br><span class="line">scala&gt; accum.value</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
-
 <p>这段代码利用了累加器对 int 类型的内建支持，程序员可以通过继承 <code>AccumulatorParam</code> 类来创建自己想要的类型支持。AccumulatorParam 的接口提供了两个方法：<code>zero</code> 用于为你的数据类型提供零值；<code>addInPlace</code> 用于计算两个值得和。比如，假设我们有一个 <code>Vector</code>类表示数学中的向量，我们可以这样写：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VectorAccumulatorParam</span><span class="params">(AccumulatorParam)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">zero</span><span class="params">(self, initialValue)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Vector.zeros(initialValue.size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addInPlace</span><span class="params">(self, v1, v2)</span>:</span></span><br><span class="line">        v1 += v2</span><br><span class="line">        <span class="keyword">return</span> v1</span><br><span class="line"></span><br><span class="line"><span class="comment"># Then, create an Accumulator of this type:</span></span><br><span class="line">vecAccum = sc.accumulator(Vector(...), VectorAccumulatorParam())</span><br></pre></td></tr></table></figure>
-
 <p>累加器的更新操作只会被运行一次，Spark 提供了保证，每个任务中对累加器的更新操作都只会被运行一次。比如，重启一个任务不会再次更新累加器。在转化过程中，用户应该留意每个任务的更新操作在任务或作业重新运算时是否被执行了超过一次。</p>
 <p>累加器不会该别 Spark 的惰性求值模型。如果累加器在对RDD的操作中被更新了，它们的值只会在启动操作中作为 RDD 计算过程中的一部分被更新。所以，在一个懒惰的转化操作中调用累加器的更新，并没法保证会被及时运行。下面的代码段展示了这一点：</p>
 <pre><code class="python">accum = sc.accumulator(<span class="number">0</span>)
-data.map(lambda x =&gt; acc.add(x); f(x))</code></pre>
+data.map(lambda x =&gt; acc.add(x); f(x))
+</code></pre>
 <h1 id="6-参考文章"><a href="#6-参考文章" class="headerlink" title="6. 参考文章"></a>6. 参考文章</h1><ul>
 <li><a href="http:/.apache.org/docs/latest/programming-guide.html" target="_blank" rel="noopener">http:/.apache.org/docs/latest/programming-guide.html</a></li>
 <li><a href="http://rdc.taobao.org/?p=2024" target="_blank" rel="noopener">http://rdc.taobao.org/?p=2024</a></li>

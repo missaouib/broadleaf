@@ -551,96 +551,67 @@
         <p>写了一篇博客记录编译CDH HBase源代码并打补丁的过程，如有不正确的，欢迎指出！</p>
 <h1 id="下载源代码"><a href="#下载源代码" class="headerlink" title="下载源代码"></a>下载源代码</h1><p>从<a href="https://github.com/cloudera/hbase" target="_blank" rel="noopener">Cloudera github</a>上下载最新分支源代码，例如：当前最新分支为cdh4-0.94.6_4.4.0</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:cloudera/hbase.git -b cdh4-0.94.6_4.4.0 cdh4-0.94.6_4.4.0</span><br></pre></td></tr></table></figure>
-
 <p>说明：</p>
 <ol>
 <li>-b 指定下载哪个分支</li>
 <li>最后一个参数指定下载下来的文件名称</li>
 </ol>
 <h1 id="添加snappy压缩支持"><a href="#添加snappy压缩支持" class="headerlink" title="添加snappy压缩支持"></a>添加snappy压缩支持</h1><h2 id="编译snappy"><a href="#编译snappy" class="headerlink" title="编译snappy"></a>编译snappy</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ svn checkout http://snappy.googlecode.com/svn/trunk/ snappy</span><br><span class="line">$ <span class="built_in">cd</span> snappy</span><br><span class="line">$ sh autogen.sh</span><br><span class="line">$ ./configure</span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure>
-
 <h2 id="编译hadoop-snappy"><a href="#编译hadoop-snappy" class="headerlink" title="编译hadoop-snappy"></a>编译hadoop-snappy</h2><p>降低gcc版本到4.4:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install gcc-4.4</span><br><span class="line">$ rm /usr/bin/gcc</span><br><span class="line">$ ln -s /usr/bin/gcc-4.4 /usr/bin/gcc</span><br></pre></td></tr></table></figure>
-
 <p>建立libjvm软连接</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ln -s /usr/java/latest/jre/<span class="class"><span class="keyword">lib</span>/<span class="title">amd64</span>/<span class="title">server</span>/<span class="title">libjvm</span>.<span class="title">so</span>  /<span class="title">usr</span>/<span class="title">local</span>/<span class="title">lib</span>/</span></span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
 <p>下载并编译hadoop-snappy</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ svn checkout http://hadoop-snappy.googlecode.com/svn/trunk/ hadoop-snappy</span><br><span class="line">$ <span class="built_in">cd</span> hadoop-snappy</span><br><span class="line">$ make package -Dsnappy.prefix=/usr/<span class="built_in">local</span>/</span><br></pre></td></tr></table></figure>
-
 <p>安装jar包到本地仓库</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mvn install:install-file -DgroupId=org.apache.hadoop -DartifactId=hadoop-snappy -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar -Dfile=./target/hadoop-snappy-0.0.1-SNAPSHOT.jar</span><br><span class="line">$ mvn install:install-file -DgroupId=org.apache.hadoop -DartifactId=hadoop-snappy -Dversion=0.0.1-SNAPSHOT -Dclassifier=Linux-amd64-64 -Dpackaging=tar -Dfile=./target/hadoop-snappy-0.0.1-SNAPSHOT-Linux-amd64-64.tar</span><br></pre></td></tr></table></figure>
-
 <h1 id="添加lzo压缩支持"><a href="#添加lzo压缩支持" class="headerlink" title="添加lzo压缩支持"></a>添加lzo压缩支持</h1><p>暂不在此列出，请参考网上文章。</p>
 <h1 id="编译Protobuf"><a href="#编译Protobuf" class="headerlink" title="编译Protobuf"></a>编译Protobuf</h1><p>注意：目前只能装2.4.1版本的，装最新版本的可能会缺少文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://protobuf.googlecode.com/files/protobuf-2.4.1.zip</span><br><span class="line">$ unzip protobuf-2.4.1.zip</span><br><span class="line">$ <span class="built_in">cd</span> protobuf-2.4.1</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure>
-
 <p>测试是否安装成功，如果成功你会看到：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ protoc</span><br><span class="line">Missing input file.</span><br></pre></td></tr></table></figure>
-
 <p>如果安装失败，你可能会看到：</p>
 <figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ protoc</span><br><span class="line">protoc: <span class="literal">error</span> <span class="keyword">while</span> loading <span class="keyword">shared</span> libraries: libprotobuf.so.<span class="number">7</span>: cannot <span class="keyword">open</span> <span class="keyword">shared</span> object <span class="keyword">file</span>: No such <span class="keyword">file</span> <span class="keyword">or</span> directory</span><br></pre></td></tr></table></figure>
-
 <h1 id="编译hbase"><a href="#编译hbase" class="headerlink" title="编译hbase"></a>编译hbase</h1><p>进入到cdh4-0.94.6_4.4.0 目录，然后运行mvn基本命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> cdh4-0.94.6_4.4.0</span><br><span class="line">$ mvn clean install</span><br></pre></td></tr></table></figure>
-
 <p>忽略测试，请添加如下参数：</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-DskipTests</span></span><br></pre></td></tr></table></figure>
-
 <p>添加MAVEN运行时jvm大小，请在mvn前面添加如下参数：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">MAVEN_OPTS</span>=<span class="string">"-Xmx2g"</span></span><br></pre></td></tr></table></figure>
-
 <p>生成javadoc和文档，请添加如下参数：</p>
 <figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javadoc:<span class="keyword">aggregate</span> site <span class="keyword">assembly</span>:<span class="built_in">single</span></span><br></pre></td></tr></table></figure>
-
 <p>生成release加入security和native包，请添加如下参数：</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Prelease,security,<span class="keyword">native</span></span><br></pre></td></tr></table></figure>
-
 <p>基于hadoop2.0进行编译，请添加如下参数：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">-Dhadoop.profile</span>=<span class="number">2.0</span></span><br></pre></td></tr></table></figure>
-
 <p>添加hadoop-snappy支持，请添加如下参数：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Prelease,hadoop-snappy -Dhadoop-snappy.version=<span class="number">0.0</span><span class="number">.1</span>-SNAPSHOT</span><br></pre></td></tr></table></figure>
-
 <p>如果你添加了一些java代码，在每个文件头没有添加license，则需要添加如下参数：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">-Drat.numUnapprovedLicenses</span>=<span class="number">200</span></span><br></pre></td></tr></table></figure>
-
 <p>综上，完整命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ MAVEN_OPTS=<span class="string">"-Xmx2g"</span> mvn clean install javadoc:aggregate site assembly:single -DskipTests -Prelease,security,native,hadoop-snappy -Drat.numUnapprovedLicenses=200 -Dhadoop.profile=2.0 -Dhadoop-snappy.version=0.0.1-SNAPSHOT</span><br></pre></td></tr></table></figure>
-
 <h1 id="生成patch"><a href="#生成patch" class="headerlink" title="生成patch"></a>生成patch</h1><p>修改代码之后，在提交代码之前，运行如下命令生成patch：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff &gt;../XXXXX.patch</span><br></pre></td></tr></table></figure>
-
 <p>如果你已经将该动文件加入到提交缓存区，即执行了如下代码：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
-
 <p>你可以使用如下代码打补丁：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff --staged &gt;../XXXXX.patch</span><br></pre></td></tr></table></figure>
-
 <p>如果在提交之后，想生成patch，执行如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git format-patch -1</span><br></pre></td></tr></table></figure>
-
-<p><code>git format-patch</code> 的详细说明请参考：<a href="http://devillived.net/forum/home.php?mod=space&uid=2&do=blog&id=211" target="_blank" rel="noopener">git patch操作</a></p>
+<p><code>git format-patch</code> 的详细说明请参考：<a href="http://devillived.net/forum/home.php?mod=space&amp;uid=2&amp;do=blog&amp;id=211" target="_blank" rel="noopener">git patch操作</a></p>
 <p>更多diff的命令如下：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">diff </span>&lt;file&gt;   <span class="comment"># 比较当前文件和暂存区文件差异</span></span><br><span class="line">git <span class="keyword">diff</span></span><br><span class="line"><span class="keyword">git </span><span class="keyword">diff </span>&lt;$id1&gt; &lt;$id2&gt;    <span class="comment"># 比较两次提交之间的差异</span></span><br><span class="line">git <span class="keyword">diff </span>&lt;<span class="keyword">branch1&gt;..&lt;branch2&gt; </span>   <span class="comment"># 在两个分支之间比较</span></span><br><span class="line">git <span class="keyword">diff </span>--staged   <span class="comment"># 比较暂存区和版本库差异</span></span><br><span class="line">git <span class="keyword">diff </span>--<span class="keyword">cached </span>  <span class="comment"># 比较暂存区和版本库差异</span></span><br><span class="line">git <span class="keyword">diff </span>--stat     <span class="comment"># 仅仅比较统计信息</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="打patch"><a href="#打patch" class="headerlink" title="打patch"></a>打patch</h1><p>打patch：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git apply ../XXXXX.patch</span><br></pre></td></tr></table></figure>
-
 <p>测试patch是否打成功：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git apply --check  ../add-aggregate-in-hbase-shell.patch</span><br></pre></td></tr></table></figure>
-
 <p>如果出现以下错误：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git apply ../XXXXX.patch</span><br><span class="line">fatal: git apply: bad git-diff - expected /dev/null on line 4</span><br></pre></td></tr></table></figure>
-
 <p>请安装dos2unix：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install dos2unix -y</span><br></pre></td></tr></table></figure>
-
 <p>然后，执行如下代码：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dos2unix ../add-aggregate-in-hbase-shell.patch</span><br></pre></td></tr></table></figure>
-
 <p>最后再尝试打补丁。</p>
 <p>注意：</p>
 <ul>
@@ -650,32 +621,24 @@
 <h1 id="升级版本"><a href="#升级版本" class="headerlink" title="升级版本"></a>升级版本</h1><p>当你fork了<a href="https://github.com/cloudera/hbase" target="_blank" rel="noopener">Cloudera github</a>代码之后，cloudera会继续更新代码、发布新的分支，如何将其最新的分支下载到自己的hbase仓库呢？例如，你的仓库中hbase最新分支为<code>cdh4-0.94.6_4.3.0</code>，而cdh最新分支为<code>cdh4-0.94.6_4.4.0</code>，现在如何将cdh上的分支下载到自己的参考呢？</p>
 <p>查看远程服务器地址和仓库名称：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br><span class="line">origin	git@github.com:javachen/hbase.git (fetch)</span><br><span class="line">origin	git@github.com:javachen/hbase.git (push)</span><br></pre></td></tr></table></figure>
-
 <p>添加远程仓库地址：</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote <span class="keyword">add</span><span class="bash"> cdh git@github.com:cloudera/hbase.git</span></span><br></pre></td></tr></table></figure>
-
 <p>再一次查看远程服务器地址和仓库名称：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br><span class="line">cdh	https://github.com/cloudera/hbase (fetch)</span><br><span class="line">cdh	https://github.com/cloudera/hbase (push)</span><br><span class="line">origin	git@github.com:javachen/hbase.git (fetch)</span><br><span class="line">origin	git@github.com:javachen/hbase.git (push)</span><br></pre></td></tr></table></figure>
-
 <p>抓取远程仓库更新：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch cdh</span><br></pre></td></tr></table></figure>
-
 <p>然后，再执行下面命令查看远程分支：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -r</span><br></pre></td></tr></table></figure>
-
 <p>下载cdh上的cdh4-0.94.6_4.4.0分支，在本地命名为cdh4-0.94.6_4.4.0：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b cdh4-0.94.6_4.4.0 cdh/cdh4-0.94.6_4.4.0</span><br></pre></td></tr></table></figure>
-
 <p>将本地的cdh4-0.94.6_4.4.0分支其提交到自己的远程仓库：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin cdh4-0.94.6_4.4.0:cdh4-0.94.6_4.4.0</span><br></pre></td></tr></table></figure>
-
 <h1 id="排错"><a href="#排错" class="headerlink" title="排错"></a>排错</h1><p>如果在启动 hbase 的服务过程中出现如下日志：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2013<span class="selector-tag">-10-24</span> 22<span class="selector-pseudo">:44</span><span class="selector-pseudo">:59</span>,921 <span class="selector-tag">INFO</span> <span class="selector-tag">org</span><span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hbase</span><span class="selector-class">.util</span><span class="selector-class">.VersionInfo</span>: <span class="selector-tag">HBase</span> <span class="selector-tag">Unknown</span></span><br><span class="line">2013<span class="selector-tag">-10-24</span> 22<span class="selector-pseudo">:44</span><span class="selector-pseudo">:59</span>,921 <span class="selector-tag">INFO</span> <span class="selector-tag">org</span><span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hbase</span><span class="selector-class">.util</span><span class="selector-class">.VersionInfo</span>: <span class="selector-tag">Subversion</span> <span class="selector-tag">Unknown</span> <span class="selector-tag">-r</span> <span class="selector-tag">Unknown</span></span><br><span class="line">2013<span class="selector-tag">-10-24</span> 22<span class="selector-pseudo">:44</span><span class="selector-pseudo">:59</span>,921 <span class="selector-tag">INFO</span> <span class="selector-tag">org</span><span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hbase</span><span class="selector-class">.util</span><span class="selector-class">.VersionInfo</span>: <span class="selector-tag">Compiled</span> <span class="selector-tag">by</span> <span class="selector-tag">Unknown</span> <span class="selector-tag">on</span> <span class="selector-tag">Unknown</span></span><br></pre></td></tr></table></figure>
-
 <p>请查看 src/saveVersion.sh 文件的编码及换行符是否和你的操作系统一致。编码应该设置为 UTF-8，如果你使用的是 linux 系统，则换行符应该为 unix/linux 换行符，不应该为 window 换行符。</p>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
 <li>[1] <a href="http://robbinfan.com/blog/34/git-common-command" target="_blank" rel="noopener">Git常用命令备忘</a></li>
-<li>[2] <a href="http://devillived.net/forum/home.php?mod=space&uid=2&do=blog&id=211" target="_blank" rel="noopener">git patch操作</a></li>
+<li>[2] <a href="http://devillived.net/forum/home.php?mod=space&amp;uid=2&amp;do=blog&amp;id=211" target="_blank" rel="noopener">git patch操作</a></li>
 <li>[3] <a href="http://blog.tsnrose.com/blog/2012/04/18/git-fetch/" target="_blank" rel="noopener">Git Fetch拉取他人分支</a></li>
 <li>[4] <a href="http://smilejay.com/2012/08/generate-a-patch-from-a-commit/" target="_blank" rel="noopener">git根据commit生成patch</a></li>
 </ul>

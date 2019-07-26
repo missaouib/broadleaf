@@ -550,10 +550,8 @@
       
         <h1 id="1-SpringApplication"><a href="#1-SpringApplication" class="headerlink" title="1. SpringApplication"></a>1. SpringApplication</h1><p>SpringApplication 类是启动 Spring Boot 应用的入口类，你可以创建一个包含 <code>main()</code> 方法的类，来运行 <code>SpringApplication.run</code> 这个静态方法：</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">    SpringApplication.<span class="built_in">run</span>(MySpringConfiguration.class, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>运行该类会有如下输出：</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          <span class="symbol">_</span>            <span class="symbol">__</span> <span class="symbol">_</span> <span class="symbol">_</span></span><br><span class="line"> /\\ / ___'<span class="symbol">_</span> <span class="symbol">__</span> <span class="symbol">_</span> <span class="symbol">_</span>(<span class="symbol">_</span>)<span class="symbol">_</span> <span class="symbol">__</span>  <span class="symbol">__</span> <span class="symbol">_</span> \ \ \ \</span><br><span class="line">( ( )\___ | '<span class="symbol">_</span> | '<span class="symbol">_</span>| | '<span class="symbol">_</span> \/ <span class="symbol">_</span>` | \ \ \ \</span><br><span class="line"> \\/  ___)| |<span class="symbol">_</span>)| | | | | || (<span class="symbol">_</span>| |  ) ) ) )</span><br><span class="line">  '  |____| .<span class="symbol">__</span>|<span class="symbol">_</span>| |<span class="symbol">_</span>|<span class="symbol">_</span>| |<span class="symbol">_</span>\<span class="symbol">__</span>, | / / / /</span><br><span class="line"> =========|<span class="symbol">_</span>|==============|___/=/<span class="symbol">_</span>/<span class="symbol">_</span>/<span class="symbol">_</span>/</span><br><span class="line"> :: Spring Boot ::   v1.5.20.RELEASE</span><br></pre></td></tr></table></figure>
-
 <h2 id="1-1-自定义Banner"><a href="#1-1-自定义Banner" class="headerlink" title="1.1 自定义Banner"></a>1.1 自定义Banner</h2><p>通过在classpath下添加一个banner.txt或设置banner.location来指定相应的文件可以改变启动过程中打印的banner。如果这个文件有特殊的编码，你可以使用banner.encoding设置它（默认为UTF-8）。</p>
 <p>在banner.txt中可以使用如下的变量：</p>
 <ul>
@@ -566,10 +564,8 @@
 <p>注：如果想以编程的方式产生一个banner，可以使用SpringBootApplication.setBanner(…)方法。使用org.springframework.boot.Banner接口，实现你自己的printBanner()方法。</p>
 <h2 id="1-2-自定义SpringApplication"><a href="#1-2-自定义SpringApplication" class="headerlink" title="1.2 自定义SpringApplication"></a>1.2 自定义SpringApplication</h2><p>如果默认的SpringApplication不符合你的口味，你可以创建一个本地的实例并自定义它。例如，关闭banner你可以这样写：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication app = <span class="keyword">new</span> SpringApplication(MySpringConfiguration.class);</span><br><span class="line">    app.setShowBanner(<span class="keyword">false</span>);</span><br><span class="line">    app.run(args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="1-3-流畅的构建API"><a href="#1-3-流畅的构建API" class="headerlink" title="1.3 流畅的构建API"></a>1.3 流畅的构建API</h2><p>如果你需要创建一个分层的ApplicationContext（多个具有父子关系的上下文），或你只是喜欢使用流畅的构建API，你可以使用SpringApplicationBuilder。SpringApplicationBuilder允许你以链式方式调用多个方法，包括可以创建层次结构的parent和child方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> SpringApplicationBuilder()</span><br><span class="line">    .showBanner(<span class="keyword">false</span>)</span><br><span class="line">    .sources(Parent.class)</span><br><span class="line">    .child(Application.class)</span><br><span class="line">    .run(args);</span><br></pre></td></tr></table></figure>
-
 <h2 id="1-4-Application事件和监听器"><a href="#1-4-Application事件和监听器" class="headerlink" title="1.4 Application事件和监听器"></a>1.4 Application事件和监听器</h2><p>SpringApplication 启动过程会触发一些事件，你可以针对这些事件通过 <code>SpringApplication.addListeners(…​)</code> 添加一些监听器:</p>
 <ul>
 <li>ApplicationStartedEvent</li>
@@ -584,12 +580,10 @@
 <p>注：当JUnit测试里使用SpringApplication时，调用<code>setWebEnvironment(false)</code>是可取的。</p>
 <h2 id="1-6-获取应用参数"><a href="#1-6-获取应用参数" class="headerlink" title="1.6 获取应用参数"></a>1.6 获取应用参数</h2><p>如果你想获取应用程序传递给<code>SpringApplication.run(…​)</code>的参数，你可以注入一个<code>org.springframework.boot.ApplicationArguments</code>bean，ApplicationArguments这个接口提供了方法获取可选的和非可选的String[]类型的参数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.*</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.*</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.*</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBean</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyBean</span><span class="params">(ApplicationArguments args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> debug = args.containsOption(<span class="string">"debug"</span>);</span><br><span class="line">        List&lt;String&gt; files = args.getNonOptionArgs();</span><br><span class="line">        <span class="comment">// if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>Spring Boot也会在<code>Environment</code>中注入一个<code>CommandLinePropertySource</code>，这允许你使用<code>@Value</code>注解注入一个应用参数。</p>
 </blockquote>
 <h2 id="1-7-使用ApplicationRunner或者CommandLineRunner"><a href="#1-7-使用ApplicationRunner或者CommandLineRunner" class="headerlink" title="1.7 使用ApplicationRunner或者CommandLineRunner"></a>1.7 使用ApplicationRunner或者CommandLineRunner</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.*</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.*</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBean</span> <span class="keyword">implements</span> <span class="title">CommandLineRunner</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String... args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Do something...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>如果一些CommandLineRunner或者ApplicationRunner beans被定义必须以特定的次序调用，你可以额外实现<code>org.springframework.core.Ordered</code>接口或使用<code>@Order</code>注解。</p>
 <h2 id="1-8-程序退出"><a href="#1-8-程序退出" class="headerlink" title="1.8 程序退出"></a>1.8 程序退出</h2><p><code>SpringApplication</code>会在JVM上注册一个关闭的hook已确认ApplicationContext是否优雅的关闭。所有的标准的Spring生命周期回调（例如，<code>DisposableBean</code>接口，或者<code>@PreDestroy</code>注解）都可以使用。</p>
 <p>另外，beans可以实现org.springframework.boot.ExitCodeGenerator接口在应用程序结束的时候返回一个错误码。</p>
@@ -612,23 +606,17 @@
 </ul>
 <p>示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.*</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.*</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;name&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>你可以在 <code>application.properties</code> 中定义一个 name 变量，或者在运行该 jar 时候，指定一个命令行参数（以 <code>--</code> 标识），例如：<code>java -jar app.jar --name=&quot;Spring&quot;</code></p>
 <p>也可以使用<code>SPRING_APPLICATION_JSON</code>属性：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ SPRING_APPLICATION_JSON=<span class="string">'&#123;"foo":&#123;"bar":"spam"&#125;&#125;'</span> </span><br><span class="line">$ java -jar myapp.jar</span><br></pre></td></tr></table></figure>
-
 <p>在这个例子中，你可以在Spring的<code>Environment</code>中通过foo.bar来引用变量。你可以在系统变量中定义<code>pring.application.json</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -Dspring.application.json=<span class="string">'&#123;"foo":"bar"&#125;'</span> -jar myapp.jar</span><br></pre></td></tr></table></figure>
-
 <p>或者使用命令行参数：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar myapp.jar --spring.application.json=<span class="string">'&#123;"foo":"bar"&#125;'</span></span><br></pre></td></tr></table></figure>
-
 <p>或者使用JNDI变量：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java:comp/env.application.json</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-1-随机变量"><a href="#2-1-随机变量" class="headerlink" title="2.1 随机变量"></a>2.1 随机变量</h2><p>RandomValuePropertySource 类型变量的示例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">my.secret=$&#123;random.value&#125;</span><br><span class="line">my.number=$&#123;random.int&#125;</span><br><span class="line">my.bignumber=$&#123;random.long&#125;</span><br><span class="line">my.number.less.than.ten=$&#123;random.int(10)&#125;</span><br><span class="line">my.number.in.range=$&#123;random.int[1024,65536]&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-3-应用属性文件"><a href="#2-3-应用属性文件" class="headerlink" title="2.3 应用属性文件"></a>2.3 应用属性文件</h2><p>SpringApplication 会在以下路径查找 <code>application.properties</code> 并加载该文件：</p>
 <ul>
 <li><code>/config</code> 目录下</li>
@@ -638,29 +626,22 @@
 </ul>
 <p>另外，你也可以通过 <code>spring.config.location</code> 来指定 <code>application.properties</code> 文件的存放路径，或者通过 <code>spring.config.name</code> 指定该文件的名称，例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar myproject.jar --spring.config.location=classpath:/default.properties,classpath:/override.properties</span><br></pre></td></tr></table></figure>
-
 <p>或者：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar myproject.jar --spring.config.name=myproject</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-4-指定Profile配置文件"><a href="#2-4-指定Profile配置文件" class="headerlink" title="2.4 指定Profile配置文件"></a>2.4 指定Profile配置文件</h2><p>即<code>application-{profile}.properties</code>配置文件。</p>
 <h2 id="2-5-占位符"><a href="#2-5-占位符" class="headerlink" title="2.5 占位符"></a>2.5 占位符</h2><p>在<code>application.properties</code>文件中可以引用<code>Environment</code>中已经存在的变量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.name=MyApp</span><br><span class="line">app.description=$&#123;app.name&#125; is a Spring Boot application</span><br></pre></td></tr></table></figure>
-
 <h1 id="3-Profiles"><a href="#3-Profiles" class="headerlink" title="3. Profiles"></a>3. Profiles</h1><p>你可以使用 <code>@Profile</code> 注解来标注应用使用的环境</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Profile</span>(<span class="string">"production"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductionConfiguration</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>可以使用 <code>spring.profiles.active</code> 变量来定义应用激活的 profile：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.profiles.active=dev,hsqldb</span><br></pre></td></tr></table></figure>
-
 <p>还可以通过  SpringApplication 来设置，调用 <code>SpringApplication.setAdditionalProfiles(…​)</code> 代码即可。</p>
 <h1 id="4-日志"><a href="#4-日志" class="headerlink" title="4. 日志"></a>4. 日志</h1><p>Spring Boot 使用 Commons Logging 作为内部记录日志，你也可以使用 Java Util Logging, Log4J, Log4J2 和 Logback 来记录日志。</p>
 <p>默认情况下，如果你使用了 Starter POMs ，则会使用 Logback 来记录日志。</p>
 <p>默认情况，是输出 INFO 类型的日志，你可以通过设置命令行参数<code>--debug</code>来设置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar myapp.jar --debug</span><br></pre></td></tr></table></figure>
-
 <p>如果你的终端支持 ANSI ，则日志支持彩色输出，这个可以通过 <code>spring.output.ansi.enabled</code> 设置，可配置的值有：<code>ALWAYS</code>、<code>DETECT</code>、<code>NEVER</code>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%clr(%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125;)&#123;yellow&#125;</span><br></pre></td></tr></table></figure>
-
 <p>可选的颜色有：</p>
 <ul>
 <li>blue</li>
@@ -674,84 +655,85 @@
 <p>可以通过 <code>logging.file</code> 和 <code>logging.path</code> 设置日志输出文件名称和路径。</p>
 <p>日志级别使用 <code>logging.level.*=LEVEL</code> 来定义，例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logging.level.org.springframework.web: DEBUG</span><br><span class="line">logging.level.org.hibernate: ERROR</span><br></pre></td></tr></table></figure>
-
 <p>Spring Boot 通过 <code>logging.config</code> 来定义日志的配置文件存放路径，对于不同的日志系统，配置文件的名称不同：</p>
 <table>
 <thead>
 <tr>
-<th align="left">Logging</th>
-<th align="left">System   Customization</th>
+<th style="text-align:left">Logging</th>
+<th style="text-align:left">System   Customization</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">Logback</td>
-<td align="left">logback-spring.xml、logback-spring.groovy、logback.xml 、 logback.groovy</td>
+<tbody>
+<tr>
+<td style="text-align:left">Logback</td>
+<td style="text-align:left">logback-spring.xml、logback-spring.groovy、logback.xml 、 logback.groovy</td>
 </tr>
 <tr>
-<td align="left">Log4j</td>
-<td align="left">log4j-spring.properties、log4j-spring.xml、log4j.properties 、log4j.xml</td>
+<td style="text-align:left">Log4j</td>
+<td style="text-align:left">log4j-spring.properties、log4j-spring.xml、log4j.properties 、log4j.xml</td>
 </tr>
 <tr>
-<td align="left">Log4j2</td>
-<td align="left">log4j2-spring.xml、log4j2.xml</td>
+<td style="text-align:left">Log4j2</td>
+<td style="text-align:left">log4j2-spring.xml、log4j2.xml</td>
 </tr>
 <tr>
-<td align="left">JDK (Java Util Logging)</td>
-<td align="left">logging.properties</td>
+<td style="text-align:left">JDK (Java Util Logging)</td>
+<td style="text-align:left">logging.properties</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>对于<code>logback-spring.xml</code>这类的配置，建议使用<code>-spring</code>变量来加载配置文件。</p>
 <p>Environment中可以自定义一些属性：</p>
 <table>
 <thead>
 <tr>
-<th align="left">Spring Environment</th>
-<th align="left">System Property</th>
-<th align="left">Comments</th>
+<th style="text-align:left">Spring Environment</th>
+<th style="text-align:left">System Property</th>
+<th style="text-align:left">Comments</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><code>logging.exception-conversion-word</code></td>
-<td align="left"><code>LOG_EXCEPTION_CONVERSION_WORD</code></td>
-<td align="left"></td>
+<tbody>
+<tr>
+<td style="text-align:left"><code>logging.exception-conversion-word</code></td>
+<td style="text-align:left"><code>LOG_EXCEPTION_CONVERSION_WORD</code></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><code>logging.file</code></td>
-<td align="left"><code>LOG_FILE</code></td>
-<td align="left"></td>
+<td style="text-align:left"><code>logging.file</code></td>
+<td style="text-align:left"><code>LOG_FILE</code></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><code>logging.path</code></td>
-<td align="left"><code>LOG_PATH</code></td>
-<td align="left"></td>
+<td style="text-align:left"><code>logging.path</code></td>
+<td style="text-align:left"><code>LOG_PATH</code></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><code>logging.pattern.console</code></td>
-<td align="left"><code>CONSOLE_LOG_PATTERN</code></td>
-<td align="left"></td>
+<td style="text-align:left"><code>logging.pattern.console</code></td>
+<td style="text-align:left"><code>CONSOLE_LOG_PATTERN</code></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><code>logging.pattern.file</code></td>
-<td align="left"><code>FILE_LOG_PATTERN</code></td>
-<td align="left"></td>
+<td style="text-align:left"><code>logging.pattern.file</code></td>
+<td style="text-align:left"><code>FILE_LOG_PATTERN</code></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><code>logging.pattern.level</code></td>
-<td align="left"><code>LOG_LEVEL_PATTERN</code></td>
-<td align="left"></td>
+<td style="text-align:left"><code>logging.pattern.level</code></td>
+<td style="text-align:left"><code>LOG_LEVEL_PATTERN</code></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><code>PID</code></td>
-<td align="left"><code>PID</code></td>
-<td align="left"></td>
+<td style="text-align:left"><code>PID</code></td>
+<td style="text-align:left"><code>PID</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <h1 id="5-开发Web应用"><a href="#5-开发Web应用" class="headerlink" title="5. 开发Web应用"></a>5. 开发Web应用</h1><h2 id="5-1-Spring-Web-MVC框架"><a href="#5-1-Spring-Web-MVC框架" class="headerlink" title="5.1 Spring Web MVC框架"></a>5.1 Spring Web MVC框架</h2><p>一个标准的<code>@RestController</code>例子返回JSON数据：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/users"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRestController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/&#123;user&#125;"</span>, method=RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">(@PathVariable Long user)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/&#123;user&#125;/customers"</span>, method=RequestMethod.GET)</span><br><span class="line">    <span class="function">List&lt;Customer&gt; <span class="title">getUserCustomers</span><span class="params">(@PathVariable Long user)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/&#123;user&#125;"</span>, method=RequestMethod.DELETE)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">deleteUser</span><span class="params">(@PathVariable Long user)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="5-1-1-Spring-MVC自动配置"><a href="#5-1-1-Spring-MVC自动配置" class="headerlink" title="5.1.1 Spring MVC自动配置"></a>5.1.1 Spring MVC自动配置</h3><p>Spring Boot为Spring MVC提供适用于多数应用的自动配置功能。在Spring默认基础上，自动配置添加了以下特性：</p>
 <ul>
-<li>引入<code>ContentNegotiatingViewResolver``和BeanNameViewResolver</code> beans。</li>
+<li>引入<code>ContentNegotiatingViewResolver`</code>和BeanNameViewResolver` beans。</li>
 <li>对静态资源的支持，包括对WebJars的支持。</li>
 <li>自动注册<code>Converter</code>，<code>GenericConverter</code>，<code>Formatter</code> beans。</li>
 <li>对<code>HttpMessageConverters</code>的支持。</li>
@@ -764,25 +746,21 @@
 <h3 id="5-1-2-HttpMessageConverters"><a href="#5-1-2-HttpMessageConverters" class="headerlink" title="5.1.2 HttpMessageConverters"></a>5.1.2 HttpMessageConverters</h3><p>Spring MVC使用<code>HttpMessageConverter</code>接口转换HTTP请求和响应。合理的缺省值被包含的恰到好处（out of the box），例如对象可以自动转换为JSON（使用Jackson库）或XML（如果Jackson XML扩展可用则使用它，否则使用JAXB）。字符串默认使用<code>UTF-8</code>编码。</p>
 <p>如果需要添加或自定义转换器，你可以使用Spring Boot的<code>HttpMessageConverters</code>类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.web.HttpMessageConverters;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.converter.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyConfiguration</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> HttpMessageConverters <span class="title">customConverters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        HttpMessageConverter&lt;?&gt; additional = ...</span><br><span class="line">        HttpMessageConverter&lt;?&gt; another = ...</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HttpMessageConverters(additional, another);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>任何在上下文中出现的<code>HttpMessageConverter</code> bean将会添加到converters列表，你可以通过这种方式覆盖默认的转换器（converters）。</p>
 <h3 id="5-1-3-MessageCodesResolver"><a href="#5-1-3-MessageCodesResolver" class="headerlink" title="5.1.3 MessageCodesResolver"></a>5.1.3 MessageCodesResolver</h3><p>Spring MVC有一个策略，用于从绑定的errors产生用来渲染错误信息的错误码：MessageCodesResolver。如果设置<code>spring.mvc.message-codes-resolver.format</code>属性为<code>PREFIX_ERROR_CODE</code>或<code>POSTFIX_ERROR_CODE</code>（具体查看<code>DefaultMessageCodesResolver.Format</code>枚举值），Spring Boot会为你创建一个MessageCodesResolver。</p>
 <h3 id="5-1-4-静态内容"><a href="#5-1-4-静态内容" class="headerlink" title="5.1.4 静态内容"></a>5.1.4 静态内容</h3><p>默认情况下，Spring Boot从classpath下一个叫<code>/static</code>（<code>/public</code>，<code>/resources</code>或<code>/META-INF/resources</code>）的文件夹或从<code>ServletContext</code>根目录提供静态内容。这使用了Spring MVC的<code>ResourceHttpRequestHandler</code>，所以你可以通过添加自己的<code>WebMvcConfigurerAdapter</code>并覆写<code>addResourceHandlers</code>方法来改变这个行为（加载静态文件）。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClientResourcesConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addResourceHandler(<span class="string">"/**"</span>)</span><br><span class="line">                .addResourceLocations(<span class="string">"/WEB-INF/resources/"</span>)</span><br><span class="line">                .setCachePeriod(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>在一个单独的web应用中，容器默认的servlet是开启的，如果Spring决定不处理某些请求，默认的servlet作为一个回退（降级）将从ServletContext根目录加载内容。大多数时候，这不会发生（除非你修改默认的MVC配置），因为Spring总能够通过<code>DispatcherServlet</code>处理请求。</p>
 <p>此外，上述标准的静态资源位置有个例外情况是Webjars内容。任何在<code>/webjars/**</code>路径下的资源都将从jar文件中提供，只要它们以Webjars的格式打包。</p>
 <p>注：如果你的应用将被打包成jar，那就不要使用<code>src/main/webapp</code>文件夹。尽管该文件夹是一个共同的标准，但它仅在打包成war的情况下起作用，并且如果产生一个jar，多数构建工具都会静悄悄的忽略它。</p>
 <p>如果你想刷新静态资源的缓存，你可以定义一个使用HASH结尾的URL，例如：<code>&lt;link href=&quot;/css-2a2d595e6ed9a0b24f027f2b63b134d6.css&quot;/&gt;</code>。</p>
 <p>为此，需要使用以下配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.resources.chain.strategy.content.enabled=true</span><br><span class="line">spring.resources.chain.strategy.content.paths=/**</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>这里使用了<code>ResourceUrlEncodingFilter</code>过滤器，对于Thymeleaf和Velocity，该过滤器已经自动配置。其他的模板引擎，可以通过<code>ResourceUrlProvider</code>来定义。</p>
 </blockquote>
 <p>当资源文件自动加载的时候，javascript模块加载器会重命名静态文件。还有一种“固定”的策略来修改文件名称。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spring.resources.chain.strategy.content.enabled=true</span><br><span class="line">spring.resources.chain.strategy.content.paths=/**</span><br><span class="line">spring.resources.chain.strategy.fixed.enabled=true</span><br><span class="line">spring.resources.chain.strategy.fixed.paths=/js/lib/</span><br><span class="line">spring.resources.chain.strategy.fixed.version=v12</span><br></pre></td></tr></table></figure>
-
 <p>使用了上面的配置之后，当javascript加载<code>&quot;/js/lib/&quot;</code>目录下的文件时，将会使用一个固定的版本<code>&quot;/v12/js/lib/mymodule.js&quot;</code>，而其他的静态资源仍然使用<code>&lt;link href=&quot;/css-2a2d595e6ed9a0b24f027f2b63b134d6.css&quot;/&gt;</code>。</p>
 <p>更多说明，参考<a href="http://github.com-projects-boot/tree/v1.3.2.RELEASE-boot-autoconfigure/src/main/java/orgframework/boot/autoconfigure/web/ResourceProperties.java" target="_blank" rel="noopener">ResourceProperties</a>，或者阅读该偏<a href="https:/.io/blog/2014/07/24-framework-4-1-handling-static-web-resources" target="_blank" rel="noopener">文章</a>。</p>
 <h3 id="5-1-5-ConfigurableWebBindingInitializer"><a href="#5-1-5-ConfigurableWebBindingInitializer" class="headerlink" title="5.1.5 ConfigurableWebBindingInitializer"></a>5.1.5 ConfigurableWebBindingInitializer</h3><p>Spring MVC使用<code>WebBindingInitializer</code>来为一个特定的请求初始化<code>WebDataBinder</code>。如果你自带一个了一个<code>ConfigurableWebBindingInitializer</code> <code>@Bean</code>，Spring Boot会自动配置Spring MVC来使用它。</p>
@@ -803,24 +781,19 @@
 <h3 id="5-1-7-错误处理"><a href="#5-1-7-错误处理" class="headerlink" title="5.1.7 错误处理"></a>5.1.7 错误处理</h3><p>Spring Boot默认提供一个<code>/error</code>映射用来以合适的方式处理所有的错误，并且它在servlet容器中注册了一个全局的 错误页面。对于机器客户端（相对于浏览器而言，浏览器偏重于人的行为），它会产生一个具有详细错误，HTTP状态，异常信息的JSON响应。对于浏览器客户端，它会产生一个白色标签样式（whitelabel）的错误视图，该视图将以HTML格式显示同样的数据（可以添加一个解析为erro的View来自定义它）。为了完全替换默认的行为，你可以实现<code>ErrorController</code>，并注册一个该类型的bean定义，或简单地添加一个<code>ErrorAttributes</code>类型的bean以使用现存的机制，只是替换显示的内容。</p>
 <p>如果在某些条件下需要比较多的错误页面，内嵌的servlet容器提供了一个统一的Java DSL（领域特定语言）来自定义错误处理。 示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> EmbeddedServletContainerCustomizer <span class="title">containerCustomizer</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MyCustomizer();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCustomizer</span> <span class="keyword">implements</span> <span class="title">EmbeddedServletContainerCustomizer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">customize</span><span class="params">(ConfigurableEmbeddedServletContainer container)</span> </span>&#123;</span><br><span class="line">        container.addErrorPages(<span class="keyword">new</span> ErrorPage(HttpStatus.BAD_REQUEST, <span class="string">"/400"</span>));</span><br><span class="line">        container.addErrorPages(<span class="keyword">new</span> ErrorPage(HttpStatus.NOT_FOUND, <span class="string">"/404"</span>));</span><br><span class="line">        container.addErrorPages(<span class="keyword">new</span> ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, <span class="string">"/500"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>你也可以使用常规的Spring MVC特性来处理错误，比如<code>@ExceptionHandler</code>方法和<code>@ControllerAdvice</code>。<code>ErrorController</code>将会捡起任何没有处理的异常。</p>
 <p>N.B. 如果你为一个路径注册一个<code>ErrorPage</code>，最终被一个过滤器（Filter）处理（对于一些非Spring web框架，像Jersey和Wicket这很常见），然后过滤器需要显式注册为一个<code>ERROR</code>分发器（dispatcher）。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">myFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FilterRegistrationBean registration = <span class="keyword">new</span> FilterRegistrationBean();</span><br><span class="line">    registration.setFilter(<span class="keyword">new</span> MyFilter());</span><br><span class="line">    ...</span><br><span class="line">    registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));</span><br><span class="line">    <span class="keyword">return</span> registration;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>注：默认的FilterRegistrationBean没有包含ERROR分发器类型。</p>
 <h3 id="5-1-8-Spring-HATEOAS"><a href="#5-1-8-Spring-HATEOAS" class="headerlink" title="5.1.8 Spring HATEOAS"></a>5.1.8 Spring HATEOAS</h3><p>如果你正在开发一个使用超媒体的RESTful API，Spring Boot将为Spring HATEOAS提供自动配置，这在多数应用中都工作良好。自动配置替换了对使用<code>@EnableHypermediaSupport</code>的需求，并注册一定数量的beans来简化构建基于超媒体的应用，这些beans包括一个<code>LinkDiscoverer</code>和配置好的用于将响应正确编排为想要的表示的<code>ObjectMapper</code>。ObjectMapper可以根据<code>spring.jackson.*</code>属性或一个存在的<code>Jackson2ObjectMapperBuilder</code> bean进行自定义。</p>
 <p>通过使用<code>@EnableHypermediaSupport</code>，你可以控制Spring HATEOAS的配置。注意这会禁用上述的对<code>ObjectMapper</code>的自定义。</p>
 <h3 id="5-1-9-CORS支持"><a href="#5-1-9-CORS支持" class="headerlink" title="5.1.9 CORS支持"></a>5.1.9 CORS支持</h3><p>你可以在方法上使用<code>@CrossOrigin</code>注解，或者配置一个全局的设置：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyConfiguration</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebMvcConfigurer <span class="title">corsConfigurer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> WebMvcConfigurerAdapter() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCorsMappings</span><span class="params">(CorsRegistry registry)</span> </span>&#123;</span><br><span class="line">                registry.addMapping(<span class="string">"/api/**"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="5-2-JAX-RS和Jersey"><a href="#5-2-JAX-RS和Jersey" class="headerlink" title="5.2 JAX-RS和Jersey"></a>5.2 JAX-RS和Jersey</h2><p>如果喜欢JAX-RS为REST端点提供的编程模型，你可以使用可用的实现替代Spring MVC。如果在你的应用上下文中将Jersey 1.x和Apache Celtix的Servlet或Filter注册为一个@Bean，那它们工作的相当好。Jersey 2.x有一些原生的Spring支持，所以我们会在Spring Boot为它提供自动配置支持，连同一个启动器（starter）。</p>
 <p>想要开始使用Jersey 2.x只需要加入spring-boot-starter-jersey依赖，然后你需要一个ResourceConfig类型的@Bean，用于注册所有的端点（endpoints）。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JerseyConfig</span> <span class="keyword">extends</span> <span class="title">ResourceConfig</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JerseyConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        register(Endpoint.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>所有注册的端点都应该被@Components和HTTP资源annotations（比如@GET）注解。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Path</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Endpoint</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GET</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">message</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>由于Endpoint是一个Spring组件（@Component），所以它的生命周期受Spring管理，并且你可以使用@Autowired添加依赖及使用@Value注入外部配置。Jersey servlet将被注册，并默认映射到/*。你可以将@ApplicationPath添加到ResourceConfig来改变该映射。</p>
 <p>默认情况下，Jersey将在一个ServletRegistrationBean类型的@Bean中被设置成名称为jerseyServletRegistration的Servlet。通过创建自己的相同名称的bean，你可以禁止或覆盖这个bean。你也可以通过设置<code>spring.jersey.type=filter</code>来使用一个Filter代替Servlet（在这种情况下，被覆盖或替换的@Bean是jerseyFilterRegistration）。该servlet有@Order属性，你可以通过<code>spring.jersey.filter.order</code>进行设置。不管是Servlet还是Filter注册都可以使用<code>spring.jersey.init.*</code>定义一个属性集合作为初始化参数传递过去。</p>
 <p>这里有一个<a href="http://github.com-projects-boot/tree/master-boot-samples-boot-sample-jersey" target="_blank" rel="noopener">Jersey</a>示例，你可以查看如何设置相关事项。</p>
@@ -837,10 +810,8 @@
 <p>具体参考<a href="http://github.com-projects-boot/tree/master-boot-autoconfigure/src/main/java/orgframework/boot/autoconfigure/web/ServerProperties.java" target="_blank" rel="noopener">ServerProperties</a>。</p>
 <h4 id="编程方式的自定义"><a href="#编程方式的自定义" class="headerlink" title="编程方式的自定义"></a>编程方式的自定义</h4><p>如果需要以编程的方式配置内嵌的servlet容器，你可以注册一个实现EmbeddedServletContainerCustomizer接口的Spring bean。EmbeddedServletContainerCustomizer提供对ConfigurableEmbeddedServletContainer的访问，ConfigurableEmbeddedServletContainer包含很多自定义的setter方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.context.embedded.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomizationBean</span> <span class="keyword">implements</span> <span class="title">EmbeddedServletContainerCustomizer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">customize</span><span class="params">(ConfigurableEmbeddedServletContainer container)</span> </span>&#123;</span><br><span class="line">        container.setPort(<span class="number">9000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="直接自定义ConfigurableEmbeddedServletContainer"><a href="#直接自定义ConfigurableEmbeddedServletContainer" class="headerlink" title="直接自定义ConfigurableEmbeddedServletContainer"></a>直接自定义ConfigurableEmbeddedServletContainer</h4><p>如果上面的自定义手法过于受限，你可以自己注册TomcatEmbeddedServletContainerFactory，JettyEmbeddedServletContainerFactory或UndertowEmbeddedServletContainerFactory。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> EmbeddedServletContainerFactory <span class="title">servletContainer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    TomcatEmbeddedServletContainerFactory factory = <span class="keyword">new</span> TomcatEmbeddedServletContainerFactory();</span><br><span class="line">    factory.setPort(<span class="number">9000</span>);</span><br><span class="line">    factory.setSessionTimeout(<span class="number">10</span>, TimeUnit.MINUTES);</span><br><span class="line">    factory.addErrorPages(<span class="keyword">new</span> ErrorPage(HttpStatus.NOT_FOUND, <span class="string">"/notfound.html"</span>);</span><br><span class="line">    <span class="keyword">return</span> factory;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>很多可选的配置都提供了setter方法，也提供了一些受保护的钩子方法以满足你的某些特殊需求。具体参考相关文档。</p>
 <h3 id="JSP的限制"><a href="#JSP的限制" class="headerlink" title="JSP的限制"></a>JSP的限制</h3><p>在内嵌的servlet容器中运行一个Spring Boot应用时（并打包成一个可执行的存档archive），容器对JSP的支持有一些限制。</p>
 <ul>
@@ -1008,8 +979,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/11/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations-xml-configuration/" rel="next" title="Spring AOP Example Tutorial">
-                <i class="fa fa-chevron-left"></i> Spring AOP Example Tutorial
+              <a href="/2015/03/13/how-to-run-spring-boot-application/" rel="next" title="Spring Boot之一：如何运行项目">
+                <i class="fa fa-chevron-left"></i> Spring Boot之一：如何运行项目
               </a>
             
           </div>
@@ -1018,8 +989,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/03/13/how-to-run-spring-boot-application/" rel="prev" title="Spring Boot之一：如何运行项目">
-                Spring Boot之一：如何运行项目 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/03/17/install-and-test-kafka/" rel="prev" title="安装和测试Kafka">
+                安装和测试Kafka <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

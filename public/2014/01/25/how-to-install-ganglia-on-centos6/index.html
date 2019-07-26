@@ -552,52 +552,36 @@
 <h1 id="配置yum源"><a href="#配置yum源" class="headerlink" title="配置yum源"></a>配置yum源</h1><p>首先配置好CentOs系统的yum源，然后需要包含有ganglia的yum源。</p>
 <p>在<code>/etc/yum.repos.d</code>下创建<code>ganglia.repo</code>，内容如下：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[ganglia]</span></span><br><span class="line"><span class="attr">name</span>= ganglia</span><br><span class="line"><span class="attr">baseurl</span> = http://vuksan.com/centos/RPMS/</span><br><span class="line"><span class="attr">enabled</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">gpgcheck</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
 <p>为了方便离线使用，你可以下载该yum源内容：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /opt</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> reposync -r ganglia</span></span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
 <p>然后在<code>/opt/ganglia</code>下执行如下的命令：</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>createrepo .</span><br></pre></td></tr></table></figure>
-
 <p>这样你就可以将<code>ganglia.repo</code>修改为本地yum的方式。</p>
 <h1 id="管理机上安装gmetad"><a href="#管理机上安装gmetad" class="headerlink" title="管理机上安装gmetad"></a>管理机上安装gmetad</h1><p>执行如下命令：</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y <span class="keyword">install</span> ganglia-gmetad</span><br></pre></td></tr></table></figure>
-
 <p>安装时遇到如下的错误：</p>
 <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Error: </span>Package: rrdtool<span class="string">-1</span>.4.5<span class="string">-1</span>.x86_64 (ganglia)</span><br><span class="line">          Requires: dejavu-lgc-fonts</span><br></pre></td></tr></table></figure>
-
 <p>rrdtool依赖<code>dejavu-lgc-fonts</code>，但是系统源并不包含这个，你可以从网上下载，然后安装：</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>rpm -Uvh <span class="symbol">http:</span>/<span class="regexp">/mirror.steadfast.net/centos</span><span class="regexp">/5/os</span><span class="regexp">/x86_64/</span><span class="regexp">/CentOS/dejavu</span>-lgc-fonts-<span class="number">2.10</span>-<span class="number">1</span>.noarch.rpm</span><br></pre></td></tr></table></figure>
-
 <h1 id="管理机上安装ganglia-web"><a href="#管理机上安装ganglia-web" class="headerlink" title="管理机上安装ganglia-web"></a>管理机上安装ganglia-web</h1><p>先安装apache和php等依赖：</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum <span class="keyword">install</span> php* httpd</span><br></pre></td></tr></table></figure>
-
 <p>然后下载ganglia-web:</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>wget <span class="symbol">http:</span>/<span class="regexp">/sourceforge.net/projects</span><span class="regexp">/ganglia/files</span><span class="regexp">/ganglia-web/</span><span class="number">3.5</span>.<span class="number">12</span>/ganglia-web-<span class="number">3.5</span>.<span class="number">12</span>.tar.gz/download</span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>tar zxvf ganglia-web-<span class="number">3.5</span>.<span class="number">12</span>.tar.gz</span><br><span class="line"><span class="variable">$ </span>cd ganglia-web-<span class="number">3.5</span>.<span class="number">12</span></span><br><span class="line"><span class="variable">$ </span>make install</span><br></pre></td></tr></table></figure>
-
 <p>将ganglia-web拷贝或者添加软链接到apache的目录下去，以下是拷贝：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir <span class="regexp">/var/</span>www<span class="regexp">/html/g</span>anglia</span><br><span class="line">$ cp -a  <span class="regexp">/usr/</span>share<span class="regexp">/ganglia/</span>   <span class="regexp">/var/</span>www<span class="regexp">/html/g</span>anglia</span><br></pre></td></tr></table></figure>
-
 <p>在httpd的conf.d目录下添加ganglia.conf，命令：</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">vim</span> /etc/httpd/<span class="keyword">conf</span>.d/ganglia.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
-
 <p>内容如下：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;Location /ganglia&gt;</span></span><br><span class="line">    <span class="attribute"><span class="nomarkup">Order</span></span> deny,allow</span><br><span class="line">    <span class="attribute"><span class="nomarkup">Deny</span></span> from <span class="literal">all</span></span><br><span class="line">    <span class="attribute"><span class="nomarkup">ALLOW</span></span> from <span class="literal">all</span></span><br><span class="line"><span class="comment">#    Allow from 127.0.0.1</span></span><br><span class="line"><span class="comment">#    Allow from ::1</span></span><br><span class="line"><span class="comment">#    Allow from .example.com</span></span><br><span class="line"><span class="section">&lt;/Location&gt;</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="客户端机器上安装gmond"><a href="#客户端机器上安装gmond" class="headerlink" title="客户端机器上安装gmond"></a>客户端机器上安装gmond</h1><p>执行如下命令：</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum <span class="keyword">install</span> gmond</span><br></pre></td></tr></table></figure>
-
 <h1 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h1><p>在管理机上启动gmetad</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="regexp">/etc/i</span>nit.d<span class="regexp">/gmetad start</span></span><br></pre></td></tr></table></figure>
-
 <p>在客户端机器上启动gmond</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="regexp">/etc/i</span>nit.d<span class="regexp">/gmond start</span></span><br></pre></td></tr></table></figure>
-
 <p>在管理机上启动httpd</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="regexp">/etc/i</span>nit.d<span class="regexp">/httpd start</span></span><br></pre></td></tr></table></figure>
-
 <p>然后通过web界面（<code>http://manager-ip/ganglia</code>）访问ganglia-web</p>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
 <li>[1] <a href="http://www.elain.org/?p=359" target="_blank" rel="noopener">ganglia监控的搭建部署(从源码安装)</a></li>

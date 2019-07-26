@@ -565,25 +565,18 @@
 <h2 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h2><p>virtualenv 允许多个版本的 Python 同时存在，对应不同的项目。 它实际上并没有安装独立的 Python 副本，但是它确实提供了一种巧妙的方式来让各项目环境保持独立。</p>
 <p>如果你在 Mac OS X 或 Linux下，下面两条命令可能会适用:</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo easy_install virtualenv</span><br></pre></td></tr></table></figure>
-
 <p>或更好的:</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip <span class="keyword">install</span> virtualenv</span><br></pre></td></tr></table></figure>
-
 <p>上述的命令会在你的系统中安装 virtualenv。它甚至可能会存在于包管理器中，如果你使用 Ubuntu ，可以尝试:</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="builtin-name">get</span> install python-virtualenv</span><br></pre></td></tr></table></figure>
-
 <p>现在你只需要键入以下的命令来激活 virtualenv 中的 Flask:</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip <span class="keyword">install</span> Flask</span><br></pre></td></tr></table></figure>
-
 <h2 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h2><p>这样也是可以的，只需要以 root 权限运行 pip:</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip <span class="keyword">install</span> Flask</span><br></pre></td></tr></table></figure>
-
 <h1 id="3-Flask入门"><a href="#3-Flask入门" class="headerlink" title="3. Flask入门"></a>3. Flask入门</h1><p>一个最小的 Flask 应用看起来是这样:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello World!'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
-
 <p>把它保存为 hello.py（或是类似的），然后用 Python 解释器来运行。</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">python</span> hello.<span class="keyword">py</span></span><br><span class="line"> * Running <span class="keyword">on</span> http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">5000</span>/</span><br></pre></td></tr></table></figure>
-
 <p>现在访问<code>http://127.0.0.1:5000/</code></p>
 <p>我们来解释一下上面的代码吧：</p>
 <ul>
@@ -594,14 +587,11 @@
 </ul>
 <p>如果你禁用了 debug 或信任你所在网络的用户，你可以简单修改调用 run() 的方法使你的服务器公开可用，如下:</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="builtin-name">run</span>(<span class="attribute">host</span>=<span class="string">'0.0.0.0'</span>)</span><br></pre></td></tr></table></figure>
-
 <p>这会让操作系统监听所有公开的IP。</p>
 <p>有两种途径来启用调试模式。一种是在应用对象上设置:</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="builtin-name">debug</span> = <span class="literal">True</span></span><br><span class="line">app.<span class="builtin-name">run</span>()</span><br></pre></td></tr></table></figure>
-
 <p>另一种是作为 run 方法的一个参数传入:</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="builtin-name">run</span>(<span class="attribute">debug</span>=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
 <h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>本文简单介绍了Flask框架的安装和使用，如果你想要深入研究 Flask 的话，可以查看 <a href="http://www.pythondoc.com/flask/api.html#api" target="_blank" rel="noopener">API</a>。 </p>
 
       

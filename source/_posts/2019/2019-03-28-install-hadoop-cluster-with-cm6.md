@@ -12,7 +12,7 @@ published: true
 
 # 环境准备
 
-参考[使用yum源安装CDH Hadoop集群](/images/04/06/install-cloudera-cdh-by-yum.html)文章中的第一部分。
+参考[使用yum源安装CDH Hadoop集群](/2013/04/06/install-cloudera-cdh-by-yum)文章中的第一部分。
 
 # 安装CM
 
@@ -71,6 +71,6 @@ published: true
 
 # 参考文章
 
-- [使用Vagrant创建虚拟机安装Hadoop](/2014/02/23/create-virtualbox-by-vagrant.html)
-- [手动安装Cloudera Hadoop CDH](/images/03/24/manual-install-Cloudera-Hadoop-CDH.html)
+- [使用Vagrant创建虚拟机安装Hadoop](/2014/02/23/create-virtualbox-by-vagrant)
+- [手动安装Cloudera Hadoop CDH](/2013/03/24/manual-install-Cloudera-Hadoop-CDH)
 - [Cloudera Manager6安装文档](https://www.cloudera.com/documentation/enterprise/6/6.0/topics/installation.html)

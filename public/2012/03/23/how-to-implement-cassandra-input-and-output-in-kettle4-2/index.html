@@ -573,7 +573,8 @@
 |-- repositories
 |-- spoon
 |-- steps
-`-- versioncheck</code></pre><p>pentaho-big-data-plugin目录是kettle对大数据的集成与支持,我们只需要将该目录拷贝到pdi-ce-4.2.1-stable/plugins目录下即可.最后的结构如下</p>
+`-- versioncheck
+</code></pre><p>pentaho-big-data-plugin目录是kettle对大数据的集成与支持,我们只需要将该目录拷贝到pdi-ce-4.2.1-stable/plugins目录下即可.最后的结构如下</p>
 <pre><code>.
 |-- databases
 |-- hour-partitioner.jar
@@ -618,12 +619,9 @@
     `-- lib
     `-- pentaho-versionchecker.jar
 
-13 directories, 29 files</code></pre><p>启动pdi-ce-4.2.1-stable之后,打开一个转换,在核心对象窗口就可以看到Big Data步骤目录了.</p>
-<div class="pic">
-<a href="http://ww4.sinaimg.cn/mw600/48e24b4cjw1dr9zaa66nbj.jpg" target="_blank">
-<img alt src="http://ww4.sinaimg.cn/mw600/48e24b4cjw1dr9zaa66nbj.jpg" title="pdi big data plugin in kette 4.2" class="aligncenter" width="600" height="375">
-</a>
-</div>
+13 directories, 29 files
+</code></pre><p>启动pdi-ce-4.2.1-stable之后,打开一个转换,在核心对象窗口就可以看到Big Data步骤目录了.</p>
+<div class="pic"><br><a href="http://ww4.sinaimg.cn/mw600/48e24b4cjw1dr9zaa66nbj.jpg" target="_blank"><br><img alt src="http://ww4.sinaimg.cn/mw600/48e24b4cjw1dr9zaa66nbj.jpg" title="pdi big data plugin in kette 4.2" class="aligncenter" width="600" height="375"><br></a><br></div>
 
 <p><strong>获取pentaho-big-data-plugin源码</strong><br>如果想在eclipse中查看或修改pentaho-big-data-plugin源码,该怎么做呢?<br>你可以从<a href="http://ci.pentaho.com/job/pentaho-big-data-plugin/lastSuccessfulBuild/artifact/pentaho-big-data-plugin/dist/pentaho-big-data-plugin-TRUNK-SNAPSHOT-sources.zip" target="_blank">这里</a>下载到源码,然后将src下的文件拷贝到你的pdi-ce-4.2.1-stable源码工程中.</p>
 <p>然后,需要在kettle-steps.xml中注册步骤节点<br>例如,下面是MongoDbInput步骤的注册方法,请针对不同插件的不同类路径加以修改.</p>
@@ -637,10 +635,8 @@
 &lt;/category&gt;
 &lt;/classname&gt;
 &lt;/description&gt;
-&lt;/step&gt;</code></pre><div class="note">
-<h>注意:
-由于pdi-ce-4.2.1-stable中存在hive组件,故添加pentaho-big-data-plugin插件之后有可能会出现找不到类的情况,这是由于jar重复版本不一致导致的,按照异常信息,找到重复的jar并按情况删除一个jar包即可.
-</h></div>
+&lt;/step&gt;
+</code></pre><div class="note"><br><h>注意:<br>由于pdi-ce-4.2.1-stable中存在hive组件,故添加pentaho-big-data-plugin插件之后有可能会出现找不到类的情况,这是由于jar重复版本不一致导致的,按照异常信息,找到重复的jar并按情况删除一个jar包即可.<br></h></div>
 
 <p><strong>扩展阅读:</strong></p>
 <ul>

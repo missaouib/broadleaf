@@ -1104,59 +1104,43 @@
 <h1 id="1-环境"><a href="#1-环境" class="headerlink" title="1. 环境"></a>1. 环境</h1><p>基于 <a href="/2013/04/06/install-cloudera-cdh-by-yum">使用yum安装CDH Hadoop集群</a> 这篇文章中的集群环境，进行impala的安装。</p>
 <h1 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h1><p>在管理节点 cdh1 上安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install impala-server impala-state-store impala-catalog impala-shell -y</span><br></pre></td></tr></table></figure>
-
 <p>在 hive metastore 所在节点安装impala-state-store和impala-catalog</p>
 <p>在datanode节点上安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install impala-server impala-shell -y</span><br></pre></td></tr></table></figure>
-
 <h1 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h1><h2 id="3-1-修改配置文件"><a href="#3-1-修改配置文件" class="headerlink" title="3.1 修改配置文件"></a>3.1 修改配置文件</h2><p>查看安装路径：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ find / -name impala</span><br><span class="line">	/var/run/impala</span><br><span class="line">	/var/lib/alternatives/impala</span><br><span class="line">	/var/<span class="built_in">log</span>/impala</span><br><span class="line">	/usr/lib/impala</span><br><span class="line">	/etc/alternatives/impala</span><br><span class="line">	/etc/default/impala</span><br><span class="line">	/etc/impala</span><br><span class="line">	/etc/default/impala</span><br></pre></td></tr></table></figure>
-
 <p>impalad的配置文件路径由环境变量<code>IMPALA_CONF_DIR</code>指定，默认为<code>/usr/lib/impala/conf</code>，impala 的默认配置在/etc/default/impala，修改该文件中的 <code>IMPALA_CATALOG_SERVICE_HOST</code> 和 <code>IMPALA_STATE_STORE_HOST</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">IMPALA_CATALOG_SERVICE_HOST=cdh1</span><br><span class="line">IMPALA_STATE_STORE_HOST=cdh1</span><br><span class="line">IMPALA_STATE_STORE_PORT=24000</span><br><span class="line">IMPALA_BACKEND_PORT=22000</span><br><span class="line">IMPALA_LOG_DIR=/var/<span class="built_in">log</span>/impala</span><br><span class="line"></span><br><span class="line">IMPALA_CATALOG_ARGS=<span class="string">" -log_dir=<span class="variable">$&#123;IMPALA_LOG_DIR&#125;</span> "</span></span><br><span class="line">IMPALA_STATE_STORE_ARGS=<span class="string">" -log_dir=<span class="variable">$&#123;IMPALA_LOG_DIR&#125;</span> -state_store_port=<span class="variable">$&#123;IMPALA_STATE_STORE_PORT&#125;</span>"</span></span><br><span class="line">IMPALA_SERVER_ARGS=<span class="string">" \</span></span><br><span class="line"><span class="string">    -log_dir=<span class="variable">$&#123;IMPALA_LOG_DIR&#125;</span> \</span></span><br><span class="line"><span class="string">    -catalog_service_host=<span class="variable">$&#123;IMPALA_CATALOG_SERVICE_HOST&#125;</span> \</span></span><br><span class="line"><span class="string">    -state_store_port=<span class="variable">$&#123;IMPALA_STATE_STORE_PORT&#125;</span> \</span></span><br><span class="line"><span class="string">    -use_statestore \</span></span><br><span class="line"><span class="string">    -state_store_host=<span class="variable">$&#123;IMPALA_STATE_STORE_HOST&#125;</span> \</span></span><br><span class="line"><span class="string">    -be_port=<span class="variable">$&#123;IMPALA_BACKEND_PORT&#125;</span>"</span></span><br><span class="line"></span><br><span class="line">ENABLE_CORE_DUMPS=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># LIBHDFS_OPTS=-Djava.library.path=/usr/lib/impala/lib</span></span><br><span class="line"><span class="comment"># MYSQL_CONNECTOR_JAR=/usr/share/java/mysql-connector-java.jar</span></span><br><span class="line"><span class="comment"># IMPALA_BIN=/usr/lib/impala/sbin</span></span><br><span class="line"><span class="comment"># IMPALA_HOME=/usr/lib/impala</span></span><br><span class="line"><span class="comment"># HIVE_HOME=/usr/lib/hive</span></span><br><span class="line"><span class="comment"># HBASE_HOME=/usr/lib/hbase</span></span><br><span class="line"><span class="comment"># IMPALA_CONF_DIR=/etc/impala/conf</span></span><br><span class="line"><span class="comment"># HADOOP_CONF_DIR=/etc/impala/conf</span></span><br><span class="line"><span class="comment"># HIVE_CONF_DIR=/etc/impala/conf</span></span><br><span class="line"><span class="comment"># HBASE_CONF_DIR=/etc/impala/conf</span></span><br></pre></td></tr></table></figure>
-
 <p>设置 impala 可以使用的最大内存：在上面的 <code>IMPALA_SERVER_ARGS</code> 参数值后面添加 <code>-mem_limit=70%</code> 即可。</p>
 <p>如果需要设置 impala 中每一个队列的最大请求数，需要在上面的 <code>IMPALA_SERVER_ARGS</code> 参数值后面添加 <code>-default_pool_max_requests=-1</code> ，该参数设置每一个队列的最大请求数，如果为-1，则表示不做限制。</p>
 <p>在节点cdh1上拷贝<code>hive-site.xml</code>、<code>core-site.xml</code>、<code>hdfs-site.xml</code>至<code>/usr/lib/impala/conf</code>目录并作下面修改在<code>hdfs-site.xml</code>文件中添加如下内容：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.client.read.shortcircuit<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.domain.socket.path<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/var/run/hadoop-hdfs/dn._PORT<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.hdfs-blocks-metadata.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>同步以上文件到其他节点。</p>
 <h2 id="3-2-创建socket-path"><a href="#3-2-创建socket-path" class="headerlink" title="3.2 创建socket path"></a>3.2 创建socket path</h2><p>在每个节点上创建/var/run/hadoop-hdfs:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /var/run/hadoop-hdfs</span><br></pre></td></tr></table></figure>
-
 <p>拷贝postgres jdbc jar：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ln -s /usr/share/java/postgresql-jdbc.jar /usr/lib/impala/lib/</span><br></pre></td></tr></table></figure>
-
 <h2 id="3-3-用户要求"><a href="#3-3-用户要求" class="headerlink" title="3.3 用户要求"></a>3.3 用户要求</h2><p>impala 安装过程中会创建名为 impala 的用户和组，不要删除该用户和组。</p>
 <p>如果想要 impala 和 YARN 和 Llama 合作，需要把 impala 用户加入 hdfs 组。</p>
 <p>impala 在执行 DROP TABLE 操作时，需要把文件移到到 hdfs 的回收站，所以你需要创建一个 hdfs 的目录 /user/impala，并将其设置为impala 用户可写。同样的，impala 需要读取 hive 数据仓库下的数据，故需要把 impala 用户加入 hive 组。</p>
 <p>impala 不能以 root 用户运行，因为 root 用户不允许直接读。</p>
 <p>创建 impala 用户家目录并设置权限：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo -u hdfs hadoop fs -mkdir /user/impala</span><br><span class="line">sudo -u hdfs hadoop fs -chown impala /user/impala</span><br></pre></td></tr></table></figure>
-
 <p>查看 impala 用户所属的组：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ groups impala</span><br><span class="line">impala : impala hadoop hdfs hive</span><br></pre></td></tr></table></figure>
-
 <p>由上可知，impala 用户是属于 imapal、hadoop、hdfs、hive 用户组的</p>
 <h1 id="4-启动服务"><a href="#4-启动服务" class="headerlink" title="4. 启动服务"></a>4. 启动服务</h1><p>在 cdh1节点启动：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ service impala-state-store start</span><br><span class="line">$ service impala-catalog start</span><br></pre></td></tr></table></figure>
-
 <p>如果impalad正常启动，可以在<code>/tmp/ impalad.INFO</code>查看。如果出现异常，可以查看<code>/tmp/impalad.ERROR</code>定位错误信息。</p>
 <h1 id="5-使用shell"><a href="#5-使用shell" class="headerlink" title="5. 使用shell"></a>5. 使用shell</h1><p>使用<code>impala-shell</code>启动Impala Shell，连接 cdh1，并刷新元数据</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;impala-shell</span><br><span class="line">[Not connected] &gt;connect cdh1</span><br><span class="line">[cdh1:21000] &gt;invalidate metadata</span><br><span class="line">[cdh2:21000] &gt;connect cdh2</span><br><span class="line">[cdh2:21000] &gt;select * from t</span><br></pre></td></tr></table></figure>
-
 <p>当在 Hive 中创建表之后，第一次启动 impala-shell 时，请先执行 <code>INVALIDATE METADATA</code> 语句以便 Impala 识别出新创建的表(在 Impala 1.2 及以上版本，你只需要在一个节点上运行 <code>INVALIDATE METADATA</code> ，而不是在所有的 Impala 节点上运行)。</p>
 <p>你也可以添加一些其他参数，查看有哪些参数：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># impala-shell -h</span></span><br><span class="line">Usage: impala_shell.py [options]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h, --<span class="built_in">help</span>            show this <span class="built_in">help</span> message and <span class="built_in">exit</span></span><br><span class="line">  -i IMPALAD, --impalad=IMPALAD</span><br><span class="line">                        &lt;host:port&gt; of impalad to connect to</span><br><span class="line">  -q QUERY, --query=QUERY</span><br><span class="line">                        Execute a query without the shell</span><br><span class="line">  -f QUERY_FILE, --query_file=QUERY_FILE</span><br><span class="line">                        Execute the queries <span class="keyword">in</span> the query file, delimited by ;</span><br><span class="line">  -k, --kerberos        Connect to a kerberized impalad</span><br><span class="line">  -o OUTPUT_FILE, --output_file=OUTPUT_FILE</span><br><span class="line">                        If <span class="built_in">set</span>, query results will written to the given file.</span><br><span class="line">                        Results from multiple semicolon-terminated queries</span><br><span class="line">                        will be appended to the same file</span><br><span class="line">  -B, --delimited       Output rows <span class="keyword">in</span> delimited mode</span><br><span class="line">  --print_header        Print column names <span class="keyword">in</span> delimited mode, <span class="literal">true</span> by default</span><br><span class="line">                        when pretty-printed.</span><br><span class="line">  --output_delimiter=OUTPUT_DELIMITER</span><br><span class="line">                        Field delimiter to use <span class="keyword">for</span> output <span class="keyword">in</span> delimited mode</span><br><span class="line">  -s KERBEROS_SERVICE_NAME, --kerberos_service_name=KERBEROS_SERVICE_NAME</span><br><span class="line">                        Service name of a kerberized impalad, default is</span><br><span class="line">                        <span class="string">'impala'</span></span><br><span class="line">  -V, --verbose         Enable verbose output</span><br><span class="line">  -p, --show_profiles   Always display query profiles after execution</span><br><span class="line">  --quiet               Disable verbose output</span><br><span class="line">  -v, --version         Print version information</span><br><span class="line">  -c, --ignore_query_failure</span><br><span class="line">                        Continue on query failure</span><br><span class="line">  -r, --refresh_after_connect</span><br><span class="line">                        Refresh Impala catalog after connecting</span><br><span class="line">  -d DEFAULT_DB, --database=DEFAULT_DB</span><br><span class="line">                        Issue a use database <span class="built_in">command</span> on startup.</span><br></pre></td></tr></table></figure>
-
-
-
 <p>例如，你可以在连接时候字段刷新：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ impala-shell -r</span><br><span class="line">Starting Impala Shell <span class="keyword">in</span> unsecure mode</span><br><span class="line">Connected to 192.168.56.11:21000</span><br><span class="line">Server version: impalad version 1.1.1 RELEASE (build 83d5868f005966883a918a819a449f636a5b3d5f)</span><br><span class="line">Invalidating Metadata</span><br><span class="line">Welcome to the Impala shell. Press TAB twice to see a list of available commands.</span><br><span class="line"></span><br><span class="line">Copyright (c) 2012 Cloudera, Inc. All rights reserved.</span><br><span class="line"></span><br><span class="line">(Shell build version: Impala Shell v1.1.1 (83d5868) built on Fri Aug 23 17:28:05 PDT 2013)</span><br><span class="line">Query: invalidate metadata</span><br><span class="line">Query finished, fetching results ...</span><br><span class="line"></span><br><span class="line">Returned 0 row(s) <span class="keyword">in</span> 5.13s</span><br><span class="line">[192.168.56.11:21000] &gt;</span><br></pre></td></tr></table></figure>
-
 <p>使用 impala 导出数据：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ impala-shell -i <span class="string">'192.168.56.11:21000'</span> -r -q <span class="string">"select * from test"</span> -B --output_delimiter=<span class="string">"\t"</span> -o result.txt</span><br></pre></td></tr></table></figure>
-
 <h1 id="6-参考文章"><a href="#6-参考文章" class="headerlink" title="6. 参考文章"></a>6. 参考文章</h1><ul>
 <li><a href="http://yuntai.1kapp.com/?p=904" target="_blank" rel="noopener">Impala安装文档完整版</a></li>
 <li><a href="http://tech.uc.cn/?p=817" target="_blank" rel="noopener">Impala入门笔记</a></li>
@@ -1405,190 +1389,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2013/03/24/manual-install-Cloudera-hive-CDH/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JavaChen">
-      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JavaChen Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2013/03/24/manual-install-Cloudera-hive-CDH/" class="post-title-link" itemprop="url">手动安装Cloudera Hive CDH</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2013-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2013-03-24T00:00:00+08:00">2013-03-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-03 12:24:57" itemprop="dateModified" datetime="2019-07-03T12:24:57+08:00">2019-07-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <!--/删除
-          
-          -->
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          本文主要记录手动安装CDH Hive过程，环境设置及Hadoop、HBase安装过程见上篇文章。
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn pull-right" href="/2013/03/24/manual-install-Cloudera-hive-CDH/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-
-    
-
-    
-
-    
-      
-    
-    
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2013/03/24/manual-install-Cloudera-hbase-CDH/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1711,6 +1511,190 @@
           
             <div class="post-button text-center">
               <a class="btn pull-right" href="/2013/03/24/manual-install-Cloudera-hbase-CDH/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+      
+    
+    
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://javachen.github.io/2013/03/24/manual-install-Cloudera-hive-CDH/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JavaChen">
+      <meta itemprop="description" content="Rumblings by a coder on Java、Hadoop and so on">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JavaChen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2013/03/24/manual-install-Cloudera-hive-CDH/" class="post-title-link" itemprop="url">手动安装Cloudera Hive CDH</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2013-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2013-03-24T00:00:00+08:00">2013-03-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-03 12:24:57" itemprop="dateModified" datetime="2019-07-03T12:24:57+08:00">2019-07-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <!--/删除
+          
+          -->
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          本文主要记录手动安装CDH Hive过程，环境设置及Hadoop、HBase安装过程见上篇文章。
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn pull-right" href="/2013/03/24/manual-install-Cloudera-hive-CDH/">
                 阅读全文 &raquo;
               </a>
             </div>

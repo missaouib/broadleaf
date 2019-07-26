@@ -557,17 +557,14 @@
 <h1 id="2-架构"><a href="#2-架构" class="headerlink" title="2. 架构"></a>2. 架构</h1><h1 id="3-Llama-安装"><a href="#3-Llama-安装" class="headerlink" title="3. Llama 安装"></a>3. Llama 安装</h1><h2 id="3-1-安装-llama"><a href="#3-1-安装-llama" class="headerlink" title="3.1 安装 llama"></a>3.1 安装 llama</h2><p>Llama 需要安装在装有 Yarn 的节点上。</p>
 <p>在 rhel 系统上安装：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum <span class="keyword">install</span> llama-<span class="keyword">master</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="3-2-配置"><a href="#3-2-配置" class="headerlink" title="3.2 配置"></a>3.2 配置</h2><blockquote>
 <p>Llama 只能和 Yarn 配合工作，不能用于 MRv1。</p>
 </blockquote>
 <p>Llama 的配置文件在 /etc/llama/conf/ 目录，llama-site.xml 默认配置在 <a href="http://cloudera.github.io/llama/llama-site.html" target="_blank" rel="noopener">http://cloudera.github.io/llama/llama-site.html</a>。</p>
 <h2 id="3-3-启动和停止"><a href="#3-3-启动和停止" class="headerlink" title="3.3 启动和停止"></a>3.3 启动和停止</h2><p>启动：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo<span class="built_in"> service </span>llama start</span><br></pre></td></tr></table></figure>
-
 <p>停止：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo<span class="built_in"> service </span>llama stop</span><br></pre></td></tr></table></figure>
-
 <h2 id="3-4-配置-HA"><a href="#3-4-配置-HA" class="headerlink" title="3.4 配置 HA"></a>3.4 配置 HA</h2><p>Llama 使用 Zookeeper 来实现 HA，任一时刻，只有一个 Llama-master 实例是 active的以确保资源不会被分区。</p>
 <p>为了从 Yarn 获取资源，Llama 启动 YARN application 并且运行未管理的ApplicationMaster。当一个 Llama 实例宕掉的时候，分配给该实例启动的 application 的所有资源将会被回首，直到这些 application 超时（默认超时时间为10分钟）。当 Llama 运行失败的时候，这些资源将会被杀掉他启动的application的 Llama 回收。</p>
 <p>HA 相关配置参数在 /etc/llama/conf/llama-site.xml：</p>
@@ -575,46 +572,47 @@
 <thead>
 <tr>
 <th>属性</th>
-<th align="left">描述</th>
-<th align="center">默认值</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:center">默认值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>llama.am.cluster.id</code></td>
-<td align="left">Cluster ID of the Llama pair, used to differentiate between different Llamas</td>
-<td align="center">llama</td>
+<td style="text-align:left">Cluster ID of the Llama pair, used to differentiate between different Llamas</td>
+<td style="text-align:center">llama</td>
 </tr>
 <tr>
 <td><code>llama.am.ha.enabled</code></td>
-<td align="left">Whether to enable Llama HA</td>
-<td align="center">false</td>
+<td style="text-align:left">Whether to enable Llama HA</td>
+<td style="text-align:center">false</td>
 </tr>
 <tr>
 <td><code>llama.am.ha.zk-quorum</code></td>
-<td align="left">ZooKeeper quorum to use for leader election and fencing</td>
-<td align="center"></td>
+<td style="text-align:left">ZooKeeper quorum to use for leader election and fencing</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
 <td><code>llama.am.ha.zk-base</code></td>
-<td align="left">Base znode for leader election and fencing data</td>
-<td align="center">/llama</td>
+<td style="text-align:left">Base znode for leader election and fencing data</td>
+<td style="text-align:center">/llama</td>
 </tr>
 <tr>
 <td><code>llama.am.ha.zk-timeout-ms</code></td>
-<td align="left">The session timeout, in milliseconds, for connections to ZooKeeper quorum</td>
-<td align="center">10000</td>
+<td style="text-align:left">The session timeout, in milliseconds, for connections to ZooKeeper quorum</td>
+<td style="text-align:center">10000</td>
 </tr>
 <tr>
 <td><code>llama.am.ha.zk-ac</code>l</td>
-<td align="left">ACLs to control access to ZooKeeper</td>
-<td align="center">world:anyone:rwcda</td>
+<td style="text-align:left">ACLs to control access to ZooKeeper</td>
+<td style="text-align:center">world:anyone:rwcda</td>
 </tr>
 <tr>
 <td><code>llama.am.ha.zk-auth</code></td>
-<td align="left">Authorization information to go with the ACLs</td>
-<td align="center"></td>
+<td style="text-align:left">Authorization information to go with the ACLs</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>上面必填的两个参数为：</p>
 <ul>
 <li><code>llama.am.ha.enabled</code> ： true</li>
@@ -622,7 +620,6 @@
 </ul>
 <h2 id="3-5-修改-Impala-启动参数"><a href="#3-5-修改-Impala-启动参数" class="headerlink" title="3.5 修改 Impala 启动参数"></a>3.5 修改 Impala 启动参数</h2><p>使用 jdbc 方式提交查询到 Impala 时，会出现 <code>number of running queries 20 is over limit 20</code> 的异常，这时候在 impala的 源代码中搜索关键字 <code>number of running queries</code>，可以找到<a href="https://github.com/cloudera/Impala/blob/cdh5-1.4_5.1.2/be/src/scheduling/admission-controller.cc" target="_blank" rel="noopener">https://github.com/cloudera/Impala/blob/cdh5-1.4_5.1.2/be/src/scheduling/admission-controller.cc</a>，从源代码中可以看到出现该问题和 Llama 有关系，在找不到 llama 的相关配置时，impala 一个队列中能够接受的最大请求数为 20。代码见:<a href="https://github.com/cloudera/Impala/blob/c5c475712f88244e15160befaf4e99d6e165a148/fe/src/main/java/com/cloudera/impala/util/RequestPoolService.java" target="_blank" rel="noopener">RequestPoolService.java</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@VisibleForTesting</span></span><br><span class="line">  <span class="function">TPoolConfigResult <span class="title">getPoolConfig</span><span class="params">(String pool)</span> </span>&#123;</span><br><span class="line">    TPoolConfigResult result = <span class="keyword">new</span> TPoolConfigResult();</span><br><span class="line">    <span class="keyword">int</span> maxMemoryMb = allocationConf_.get().getMaxResources(pool).getMemory();</span><br><span class="line">    result.setMem_limit(</span><br><span class="line">        maxMemoryMb == Integer.MAX_VALUE ? -<span class="number">1</span> : (<span class="keyword">long</span>) maxMemoryMb * ByteUnits.MEGABYTE);</span><br><span class="line">    <span class="keyword">if</span> (llamaConf_ == <span class="keyword">null</span>) &#123;												<span class="comment">//llama配置为空</span></span><br><span class="line">      result.setMax_requests(LLAMA_MAX_PLACED_RESERVATIONS_DEFAULT);</span><br><span class="line">      result.setMax_queued(LLAMA_MAX_QUEUED_RESERVATIONS_DEFAULT);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// Capture the current llamaConf_ in case it changes while we're using it.</span></span><br><span class="line">      Configuration currentLlamaConf = llamaConf_;</span><br><span class="line">      result.setMax_requests(getLlamaPoolConfigValue(currentLlamaConf, pool,</span><br><span class="line">          LLAMA_MAX_PLACED_RESERVATIONS_KEY,</span><br><span class="line">          LLAMA_MAX_PLACED_RESERVATIONS_DEFAULT));  <span class="comment">//20</span></span><br><span class="line">      result.setMax_queued(getLlamaPoolConfigValue(currentLlamaConf, pool,</span><br><span class="line">          LLAMA_MAX_QUEUED_RESERVATIONS_KEY,</span><br><span class="line">          LLAMA_MAX_QUEUED_RESERVATIONS_DEFAULT));</span><br><span class="line">    &#125;</span><br><span class="line">    LOG.trace(<span class="string">"getPoolConfig(pool=&#123;&#125;): mem_limit=&#123;&#125;, max_requests=&#123;&#125;, max_queued=&#123;&#125;"</span>,</span><br><span class="line">        <span class="keyword">new</span> Object[] &#123; pool, result.mem_limit, result.max_requests, result.max_queued &#125;);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
 <p>目前，参考 <a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/Impala/Installing-and-Using-Impala/ciiu_admission.html" target="_blank" rel="noopener">Admission Control and Query Queuing</a>，在不安装和使用 llama 情况下，找到的一种解决办法是：</p>
 <p>修改 impala 启动参数（/etc/default/impala），添加 <code>-default_pool_max_requests=-1</code>，该参数设置每一个队列的最大请求数，如果为-1，则表示不做限制。</p>
 <h1 id="4-使用"><a href="#4-使用" class="headerlink" title="4. 使用"></a>4. 使用</h1><h2 id="4-1-Llama-Application-Master"><a href="#4-1-Llama-Application-Master" class="headerlink" title="4.1 Llama Application Master"></a>4.1 Llama Application Master</h2><h2 id="4-2-Llama-Admin-Command-Line-tool"><a href="#4-2-Llama-Admin-Command-Line-tool" class="headerlink" title="4.2 Llama Admin Command Line tool"></a>4.2 Llama Admin Command Line tool</h2><h2 id="4-3-Llama-Node-Manager-Auxiliary-Service"><a href="#4-3-Llama-Node-Manager-Auxiliary-Service" class="headerlink" title="4.3 Llama Node Manager Auxiliary Service"></a>4.3 Llama Node Manager Auxiliary Service</h2><h1 id="5-参考文章"><a href="#5-参考文章" class="headerlink" title="5. 参考文章"></a>5. 参考文章</h1><ul>
@@ -787,8 +784,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/09/09/create-a-grails-app-step-by-step/" rel="next" title="从零开始创建Grails应用">
-                <i class="fa fa-chevron-left"></i> 从零开始创建Grails应用
+              <a href="/2014/09/05/about-groovy/" rel="next" title="Groovy语法介绍">
+                <i class="fa fa-chevron-left"></i> Groovy语法介绍
               </a>
             
           </div>
@@ -797,8 +794,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/09/12/file-operation-in-groovy/" rel="prev" title="使用Groovy操作文件">
-                使用Groovy操作文件 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/09/09/create-a-grails-app-step-by-step/" rel="prev" title="从零开始创建Grails应用">
+                从零开始创建Grails应用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

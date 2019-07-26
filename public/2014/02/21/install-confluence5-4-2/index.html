@@ -551,37 +551,27 @@
         <p>Confluence是Atlassian公司出品的团队协同与知识管理工具。 Confluence是一个专业的企业知识管理与协同软件，也可以用于构建企业wiki。通过它可以实现团队成员之间的协作和知识共享。</p>
 <h1 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h1><p>下载指定版本Confluence</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -<span class="selector-tag">p</span> /data/confluence</span><br><span class="line">$ cd /data/confluence</span><br><span class="line">$ wget www<span class="selector-class">.atlassian</span><span class="selector-class">.com</span>/software/confluence/downloads/binary/atlassian-confluence-<span class="number">5.4</span>.<span class="number">2</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h1><p>解压：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar -zxvf atlassian-confluence-<span class="number">5.4</span>.<span class="number">2</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br></pre></td></tr></table></figure>
-
 <p>进入目录：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd atlassian-confluence<span class="number">-5.4</span><span class="number">.2</span></span><br></pre></td></tr></table></figure>
-
 <p>配置confluence安装目录：</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> vim confluence/WEB-<span class="literal">INF</span>/classes/confluence-init.properties</span><br></pre></td></tr></table></figure>
-
 <p>在属性文件中添加安装目录路径：</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">###########################</span><br><span class="line"># Note for Unix Users     #</span><br><span class="line">###########################</span><br><span class="line"># - For example:</span><br><span class="line">confluence.home=/data/confluence/confluence-data</span><br></pre></td></tr></table></figure>
-
 <p>创建目录：</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir confluence-<span class="class"><span class="keyword">data</span></span></span><br></pre></td></tr></table></figure>
-
 <p>创建完成后，运行启动：</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">sh</span> bin/start-confluence.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-
 <p>访问ip+portnum，默认端口为8090，如果出现破解界面，以上步骤即为成功</p>
 <h1 id="3、启停服务"><a href="#3、启停服务" class="headerlink" title="3、启停服务"></a>3、启停服务</h1><p>使用压缩包形式的Confluence无法直接使用服务启停，需要配合目录的sh文件</p>
 <p>启动服务：</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">sh</span> bin/start-confluence.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-
 <p>停止服务：</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">sh</span> bin/<span class="keyword">stop</span>-confluence.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="4、修改默认端口"><a href="#4、修改默认端口" class="headerlink" title="4、修改默认端口"></a>4、修改默认端口</h1><p>配置文件位置：<code>atlassian-confluence-5.4.2/conf/server.xml</code></p>
 <p>打开文件，</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">className</span>=<span class="string">"org.apache.coyote.tomcat4.CoyoteConnector"</span> <span class="attr">port</span>=<span class="string">"8090"</span> <span class="attr">minProcessors</span>=<span class="string">"5"</span></span></span><br></pre></td></tr></table></figure>
-
 <p>修改 port 为需要的端口。</p>
 <h1 id="5、更换默认的数据库"><a href="#5、更换默认的数据库" class="headerlink" title="5、更换默认的数据库"></a>5、更换默认的数据库</h1><p>在完成之前的步骤后，数据库使用的是一个 confluence 默认的 hsql 数据库，此数据库缺陷较多，例如：不支持事务管理。因此需要将数据库迁移为指定的数据库类型。</p>
 <p>进入 confluence-data 目录，修改 <code>confluence-cfg.xml</code> 文件中数据库相关的连接信息。</p>

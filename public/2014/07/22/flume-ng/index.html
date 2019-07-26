@@ -593,55 +593,58 @@
 <table>
 <thead>
 <tr>
-<th align="left">Source类型</th>
-<th align="left">说明</th>
+<th style="text-align:left">Source类型</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">Avro Source</td>
-<td align="left">支持Avro协议（实际上是Avro RPC），内置支持</td>
+<tbody>
+<tr>
+<td style="text-align:left">Avro Source</td>
+<td style="text-align:left">支持Avro协议（实际上是Avro RPC），内置支持</td>
 </tr>
 <tr>
-<td align="left">Thrift Source</td>
-<td align="left">支持Thrift协议，内置支持</td>
+<td style="text-align:left">Thrift Source</td>
+<td style="text-align:left">支持Thrift协议，内置支持</td>
 </tr>
 <tr>
-<td align="left"></td>
-<td align="left">Exec Source</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Exec Source</td>
+<td>基于Unix的command在标准输出上生产数据</td>
 </tr>
 <tr>
-<td align="left">JMS Source</td>
-<td align="left">从JMS系统（消息、主题）中读取数据，ActiveMQ已经测试过</td>
+<td style="text-align:left">JMS Source</td>
+<td style="text-align:left">从JMS系统（消息、主题）中读取数据，ActiveMQ已经测试过</td>
 </tr>
 <tr>
-<td align="left">Spooling Directory Source</td>
-<td align="left">监控指定目录内数据变更</td>
+<td style="text-align:left">Spooling Directory Source</td>
+<td style="text-align:left">监控指定目录内数据变更</td>
 </tr>
 <tr>
-<td align="left">Twitter 1% firehose Source</td>
-<td align="left">通过API持续下载Twitter数据，试验性质</td>
+<td style="text-align:left">Twitter 1% firehose Source</td>
+<td style="text-align:left">通过API持续下载Twitter数据，试验性质</td>
 </tr>
 <tr>
-<td align="left">Netcat Source</td>
-<td align="left">监控某个端口，将流经端口的每一个文本行数据作为Event输入</td>
+<td style="text-align:left">Netcat Source</td>
+<td style="text-align:left">监控某个端口，将流经端口的每一个文本行数据作为Event输入</td>
 </tr>
 <tr>
-<td align="left">Sequence Generator Source</td>
-<td align="left">序列生成器数据源，生产序列数据</td>
+<td style="text-align:left">Sequence Generator Source</td>
+<td style="text-align:left">序列生成器数据源，生产序列数据</td>
 </tr>
 <tr>
-<td align="left">Syslog Sources</td>
-<td align="left">读取syslog数据，产生Event，支持UDP和TCP两种协议</td>
+<td style="text-align:left">Syslog Sources</td>
+<td style="text-align:left">读取syslog数据，产生Event，支持UDP和TCP两种协议</td>
 </tr>
 <tr>
-<td align="left">HTTP Source</td>
-<td align="left">基于HTTP POST或GET方式的数据源，支持JSON、BLOB表示形式</td>
+<td style="text-align:left">HTTP Source</td>
+<td style="text-align:left">基于HTTP POST或GET方式的数据源，支持JSON、BLOB表示形式</td>
 </tr>
 <tr>
-<td align="left">Legacy Sources</td>
-<td align="left">兼容老的Flume OG中Source（0.9.x版本）</td>
+<td style="text-align:left">Legacy Sources</td>
+<td style="text-align:left">兼容老的Flume OG中Source（0.9.x版本）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <h3 id="2-2-2-Channel"><a href="#2-2-2-Channel" class="headerlink" title="2.2.2 Channel"></a>2.2.2 Channel</h3><p>当前有几个 channel 可供选择，分别是 Memory Channel, JDBC Channel , File Channel，Psuedo Transaction Channel。比较常见的是前三种 channel。</p>
 <ul>
 <li>MemoryChannel 可以实现高速的吞吐，但是无法保证数据的完整性。</li>
@@ -653,93 +656,97 @@
 <table>
 <thead>
 <tr>
-<th align="left">Channel类型</th>
-<th align="left">说明</th>
+<th style="text-align:left">Channel类型</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">Memory Channel</td>
-<td align="left">Event数据存储在内存中</td>
+<tbody>
+<tr>
+<td style="text-align:left">Memory Channel</td>
+<td style="text-align:left">Event数据存储在内存中</td>
 </tr>
 <tr>
-<td align="left">JDBC Channel</td>
-<td align="left">Event数据存储在持久化存储中，当前Flume Channel内置支持Derby</td>
+<td style="text-align:left">JDBC Channel</td>
+<td style="text-align:left">Event数据存储在持久化存储中，当前Flume Channel内置支持Derby</td>
 </tr>
 <tr>
-<td align="left">File Channel</td>
-<td align="left">Event数据存储在磁盘文件中</td>
+<td style="text-align:left">File Channel</td>
+<td style="text-align:left">Event数据存储在磁盘文件中</td>
 </tr>
 <tr>
-<td align="left">Spillable Memory Channel</td>
-<td align="left">Event数据存储在内存中和磁盘上，当内存队列满了，会持久化到磁盘文件（当前试验性的，不建议生产环境使用）</td>
+<td style="text-align:left">Spillable Memory Channel</td>
+<td style="text-align:left">Event数据存储在内存中和磁盘上，当内存队列满了，会持久化到磁盘文件（当前试验性的，不建议生产环境使用）</td>
 </tr>
 <tr>
-<td align="left">Pseudo Transaction Channel</td>
-<td align="left">测试用途</td>
+<td style="text-align:left">Pseudo Transaction Channel</td>
+<td style="text-align:left">测试用途</td>
 </tr>
 <tr>
-<td align="left">Custom Channel</td>
-<td align="left">自定义Channel实现</td>
+<td style="text-align:left">Custom Channel</td>
+<td style="text-align:left">自定义Channel实现</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <h3 id="2-2-3-sink"><a href="#2-2-3-sink" class="headerlink" title="2.2.3 sink"></a>2.2.3 sink</h3><p>Sink在设置存储数据时，可以向文件系统、数据库、hadoop存数据，在日志数据较少时，可以将数据存储在文件系中，并且设定一定的时间间隔保存数据。在日志数据较多时，可以将相应的日志数据存储到Hadoop中，便于日后进行相应的数据分析。</p>
 <p>Flume Sink支持的类型</p>
 <table>
 <thead>
 <tr>
-<th align="left">Sink类型</th>
-<th align="left">说明</th>
+<th style="text-align:left">Sink类型</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">HDFS Sink</td>
-<td align="left">数据写入HDFS</td>
+<tbody>
+<tr>
+<td style="text-align:left">HDFS Sink</td>
+<td style="text-align:left">数据写入HDFS</td>
 </tr>
 <tr>
-<td align="left">Logger Sink</td>
-<td align="left">数据写入日志文件</td>
+<td style="text-align:left">Logger Sink</td>
+<td style="text-align:left">数据写入日志文件</td>
 </tr>
 <tr>
-<td align="left">Avro Sink</td>
-<td align="left">数据被转换成Avro Event，然后发送到配置的RPC端口上</td>
+<td style="text-align:left">Avro Sink</td>
+<td style="text-align:left">数据被转换成Avro Event，然后发送到配置的RPC端口上</td>
 </tr>
 <tr>
-<td align="left">Thrift Sink</td>
-<td align="left">数据被转换成Thrift Event，然后发送到配置的RPC端口上</td>
+<td style="text-align:left">Thrift Sink</td>
+<td style="text-align:left">数据被转换成Thrift Event，然后发送到配置的RPC端口上</td>
 </tr>
 <tr>
-<td align="left">IRC Sink</td>
-<td align="left">数据在IRC上进行回放</td>
+<td style="text-align:left">IRC Sink</td>
+<td style="text-align:left">数据在IRC上进行回放</td>
 </tr>
 <tr>
-<td align="left">File Roll Sink</td>
-<td align="left">存储数据到本地文件系统</td>
+<td style="text-align:left">File Roll Sink</td>
+<td style="text-align:left">存储数据到本地文件系统</td>
 </tr>
 <tr>
-<td align="left">Null Sink</td>
-<td align="left">丢弃到所有数据</td>
+<td style="text-align:left">Null Sink</td>
+<td style="text-align:left">丢弃到所有数据</td>
 </tr>
 <tr>
-<td align="left">HBase Sink</td>
-<td align="left">数据写入HBase数据库</td>
+<td style="text-align:left">HBase Sink</td>
+<td style="text-align:left">数据写入HBase数据库</td>
 </tr>
 <tr>
-<td align="left">Morphline Solr Sink</td>
-<td align="left">数据发送到Solr搜索服务器（集群）</td>
+<td style="text-align:left">Morphline Solr Sink</td>
+<td style="text-align:left">数据发送到Solr搜索服务器（集群）</td>
 </tr>
 <tr>
-<td align="left">ElasticSearch Sink</td>
-<td align="left">数据发送到Elastic Search搜索服务器（集群）</td>
+<td style="text-align:left">ElasticSearch Sink</td>
+<td style="text-align:left">数据发送到Elastic Search搜索服务器（集群）</td>
 </tr>
 <tr>
-<td align="left">Kite Dataset Sink</td>
-<td align="left">写数据到Kite Dataset，试验性质的</td>
+<td style="text-align:left">Kite Dataset Sink</td>
+<td style="text-align:left">写数据到Kite Dataset，试验性质的</td>
 </tr>
 <tr>
-<td align="left">Custom Sink</td>
-<td align="left">自定义Sink实现</td>
+<td style="text-align:left">Custom Sink</td>
+<td style="text-align:left">自定义Sink实现</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>更多sink的内容可以参考<a href="http://flume.apache.org/FlumeDeveloperGuide.html#sink" target="_blank" rel="noopener">官方手册</a>。</p>
 <h2 id="2-3-可靠性"><a href="#2-3-可靠性" class="headerlink" title="2.3 可靠性"></a>2.3 可靠性</h2><p>Flume 的核心是把数据从数据源收集过来，再送到目的地。为了保证输送一定成功，在送到目的地之前，会先缓存数据，待数据真正到达目的地后，删除自己缓存的数据。</p>
 <p>Flume 使用事务性的方式保证传送Event整个过程的可靠性。Sink 必须在 Event 被存入 Channel 后，或者，已经被传达到下一站agent里，又或者，已经被存入外部数据目的地之后，才能把 Event 从 Channel 中 remove 掉。这样数据流里的 event 无论是在一个 agent 里还是多个 agent 之间流转，都能保证可靠，因为以上的事务保证了 event 会被成功存储起来。而 Channel 的多种实现在可恢复性上有不同的保证。也保证了 event 不同程度的可靠性。比如 Flume 支持在本地保存一份文件 channel 作为备份，而memory channel 将 event 存在内存 queue 里，速度快，但丢失的话无法恢复。</p>
@@ -761,11 +768,9 @@
 <p>这种模式，有两种方式，一种是用来复制（Replication），另一种是用来分流（Multiplexing）。Replication方式，可以将最前端的数据源复制多份，分别传递到多个channel中，每个channel接收到的数据都是相同的。</p>
 <p>配置格式示例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># List the sources, sinks and channels for the agent</span><br><span class="line">&lt;Agent&gt;.sources = &lt;Source1&gt;</span><br><span class="line">&lt;Agent&gt;.sinks = &lt;Sink1&gt; &lt;Sink2&gt;</span><br><span class="line">&lt;Agent&gt;.channels = &lt;Channel1&gt; &lt;Channel2&gt;</span><br><span class="line"></span><br><span class="line"># set list of channels for source (separated by space)</span><br><span class="line">&lt;Agent&gt;.sources.&lt;Source1&gt;.channels = &lt;Channel1&gt; &lt;Channel2&gt;</span><br><span class="line"></span><br><span class="line"># set channel for sinks</span><br><span class="line">&lt;Agent&gt;.sinks.&lt;Sink1&gt;.channel = &lt;Channel1&gt;</span><br><span class="line">&lt;Agent&gt;.sinks.&lt;Sink2&gt;.channel = &lt;Channel2&gt;</span><br><span class="line"></span><br><span class="line">&lt;Agent&gt;.sources.&lt;Source1&gt;.selector.type = replicating</span><br></pre></td></tr></table></figure>
-
 <p>上面指定了selector的type的值为replication，其他的配置没有指定，使用的Replication方式，Source1会将数据分别存储到Channel1和Channel2，这两个channel里面存储的数据是相同的，然后数据被传递到Sink1和Sink2。</p>
 <p>Multiplexing方式，selector可以根据header的值来确定数据传递到哪一个channel，配置格式，如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Mapping for multiplexing selector</span><br><span class="line">&lt;Agent&gt;.sources.&lt;Source1&gt;.selector.type = multiplexing</span><br><span class="line">&lt;Agent&gt;.sources.&lt;Source1&gt;.selector.header = &lt;someHeader&gt;</span><br><span class="line">&lt;Agent&gt;.sources.&lt;Source1&gt;.selector.mapping.&lt;Value1&gt; = &lt;Channel1&gt;</span><br><span class="line">&lt;Agent&gt;.sources.&lt;Source1&gt;.selector.mapping.&lt;Value2&gt; = &lt;Channel1&gt; &lt;Channel2&gt;</span><br><span class="line">&lt;Agent&gt;.sources.&lt;Source1&gt;.selector.mapping.&lt;Value3&gt; = &lt;Channel2&gt;</span><br><span class="line">#...</span><br><span class="line"></span><br><span class="line">&lt;Agent&gt;.sources.&lt;Source1&gt;.selector.default = &lt;Channel2&gt;</span><br></pre></td></tr></table></figure>
-
 <p>上面selector的type的值为multiplexing，同时配置selector的header信息，还配置了多个selector的mapping的值，即header的值：如果header的值为Value1、Value2，数据从Source1路由到Channel1；如果header的值为Value2、Value3，数据从Source1路由到Channel2。</p>
 <ul>
 <li>实现load balance功能</li>
@@ -773,21 +778,17 @@
 <p><img src="/images/flume-load-balance-agents.png" alt></p>
 <p>Load balancing Sink Processor能够实现load balance功能，上图Agent1是一个路由节点，负责将Channel暂存的Event均衡到对应的多个Sink组件上，而每个Sink组件分别连接到一个独立的Agent上，示例配置，如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a1.sinkgroups = g1</span><br><span class="line">a1.sinkgroups.g1.sinks = k1 k2 k3</span><br><span class="line">a1.sinkgroups.g1.processor.type = load_balance</span><br><span class="line">a1.sinkgroups.g1.processor.backoff = true</span><br><span class="line">a1.sinkgroups.g1.processor.selector = round_robin</span><br><span class="line">a1.sinkgroups.g1.processor.selector.maxTimeOut=10000</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>实现failover能</li>
 </ul>
 <p>Failover Sink Processor能够实现failover功能，具体流程类似load balance，但是内部处理机制与load balance完全不同：Failover Sink Processor维护一个优先级Sink组件列表，只要有一个Sink组件可用，Event就被传递到下一个组件。如果一个Sink能够成功处理Event，则会加入到一个Pool中，否则会被移出Pool并计算失败次数，设置一个惩罚因子，示例配置如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a1.sinkgroups = g1</span><br><span class="line">a1.sinkgroups.g1.sinks = k1 k2 k3</span><br><span class="line">a1.sinkgroups.g1.processor.type = failover</span><br><span class="line">a1.sinkgroups.g1.processor.priority.k1 = 5</span><br><span class="line">a1.sinkgroups.g1.processor.priority.k2 = 7</span><br><span class="line">a1.sinkgroups.g1.processor.priority.k3 = 6</span><br><span class="line">a1.sinkgroups.g1.processor.maxpenalty = 20000</span><br></pre></td></tr></table></figure>
-
 <h1 id="4-安装和使用"><a href="#4-安装和使用" class="headerlink" title="4. 安装和使用"></a>4. 安装和使用</h1><p>Flume 的 rpm 安装方式很简单，这里不做说明。</p>
 <h2 id="示例1：-avro-数据源"><a href="#示例1：-avro-数据源" class="headerlink" title="示例1： avro 数据源"></a>示例1： avro 数据源</h2><p>安装成功之后，在 /etc/flume/conf 目录创建f1.conf 文件，内容如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">agent-1.channels.ch-1.type = memory</span><br><span class="line"></span><br><span class="line">agent-1.sources.avro-source1.channels = ch-1</span><br><span class="line">agent-1.sources.avro-source1.type = avro</span><br><span class="line">agent-1.sources.avro-source1.bind = 0.0.0.0</span><br><span class="line">agent-1.sources.avro-source1.port = 41414</span><br><span class="line">agent-1.sources.avro-source1.threads = 5</span><br><span class="line"></span><br><span class="line">agent-1.sinks.log-sink1.channel = ch-1</span><br><span class="line">agent-1.sinks.log-sink1.type = logger</span><br><span class="line"></span><br><span class="line">agent-1.channels = ch-1</span><br><span class="line">agent-1.sources = avro-source1</span><br><span class="line">agent-1.sinks = log-sink1</span><br></pre></td></tr></table></figure>
-
 <p>关于 avro-source 配置说明，请参考 <a href="http://flume.apache.org/FlumeUserGuide.html#avro-source" target="_blank" rel="noopener">avro-source</a></p>
 <p>接下来启动 agent：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ flume-ng agent -c /etc/flume-ng/conf -f /etc/flume-ng/conf/f1.conf -Dflume.root.logger=DEBUG,console -n agent-1</span><br></pre></td></tr></table></figure>
-
 <p>参数说明：</p>
 <ul>
 <li><code>-n</code> 指定agent名称</li>
@@ -797,18 +798,14 @@
 </ul>
 <p>下面可以启动一个 avro-client 客户端生产数据：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ flume-ng avro-client -c /etc/flume-ng/conf -H localhost -p 41414 -F /etc/passwd -Dflume.root.logger=DEBUG,console</span><br></pre></td></tr></table></figure>
-
 <h2 id="示例2：spooldir-数据源"><a href="#示例2：spooldir-数据源" class="headerlink" title="示例2：spooldir 数据源"></a>示例2：spooldir 数据源</h2><p>在 /etc/flume/conf 目录创建 f2.conf 文件，内容如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">agent-1.channels = ch-1</span><br><span class="line">agent-1.sources = src-1</span><br><span class="line"></span><br><span class="line">agent-1.channels.ch-1.type = memory</span><br><span class="line"></span><br><span class="line">agent-1.sources.src-1.type = spooldir</span><br><span class="line">agent-1.sources.src-1.channels = ch-1</span><br><span class="line">agent-1.sources.src-1.spoolDir = /root/log</span><br><span class="line">agent-1.sources.src-1.fileHeader = true</span><br><span class="line"></span><br><span class="line">agent-1.sinks.log-sink1.channel = ch-1</span><br><span class="line">agent-1.sinks.log-sink1.type = logger</span><br><span class="line"></span><br><span class="line">agent-1.sinks = log-sink1</span><br></pre></td></tr></table></figure>
-
 <p>关于 Spooling Directory Source 配置说明，请参考 <a href="http://flume.apache.org/FlumeUserGuide.html#spooling-directory-source" target="_blank" rel="noopener">Spooling Directory Source</a></p>
 <p>接下来启动 agent：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ flume-ng agent -c /etc/flume-ng/conf -f /etc/flume-ng/conf/f2.conf -Dflume.root.logger=DEBUG,console -n agent-1</span><br></pre></td></tr></table></figure>
-
 <p>然后，手动拷贝一个文件到 /root/log 目录，观察日志输出以及/root/log 目录下的变化。</p>
 <h2 id="示例3：spooldir-数据源，写入-hdfs"><a href="#示例3：spooldir-数据源，写入-hdfs" class="headerlink" title="示例3：spooldir 数据源，写入 hdfs"></a>示例3：spooldir 数据源，写入 hdfs</h2><p>在 /etc/flume/conf 目录创建 f3.conf 文件，内容如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">agent-1.channels.ch-1.type = file</span><br><span class="line">agent-1.channels.ch-1.checkpointDir= /root/checkpoint</span><br><span class="line">agent-1.channels.ch-1.dataDirs= /root/data</span><br><span class="line"></span><br><span class="line">agent-1.sources.src-1.type = spooldir</span><br><span class="line">agent-1.sources.src-1.channels = ch-1</span><br><span class="line">agent-1.sources.src-1.spoolDir = /root/log</span><br><span class="line">agent-1.sources.src-1.deletePolicy= never</span><br><span class="line">agent-1.sources.src-1.fileHeader = true</span><br><span class="line"></span><br><span class="line">agent-1.sources.src-1.interceptors =i1</span><br><span class="line">agent-1.sources.src-1.interceptors.i1.type = timestamp</span><br><span class="line"></span><br><span class="line">agent-1.sinks.sink_hdfs.channel = ch-1</span><br><span class="line">agent-1.sinks.sink_hdfs.type = hdfs</span><br><span class="line">agent-1.sinks.sink_hdfs.hdfs.path = hdfs://cdh1:8020/user/root/events/%Y-%m-%d</span><br><span class="line">agent-1.sinks.sink_hdfs.hdfs.filePrefix = logs</span><br><span class="line">agent-1.sinks.sink_hdfs.hdfs.inUsePrefix = .</span><br><span class="line">agent-1.sinks.sink_hdfs.hdfs.rollInterval = 30</span><br><span class="line">agent-1.sinks.sink_hdfs.hdfs.rollSize = 0</span><br><span class="line">agent-1.sinks.sink_hdfs.hdfs.rollCount = 0</span><br><span class="line">agent-1.sinks.sink_hdfs.hdfs.batchSize = 1000</span><br><span class="line">agent-1.sinks.sink_hdfs.hdfs.writeFormat = text</span><br><span class="line">agent-1.sinks.sink_hdfs.hdfs.fileType = DataStream</span><br><span class="line">#agent-1.sinks.sink_hdfs.hdfs.fileType = CompressedStream</span><br><span class="line">#agent-1.sinks.sink_hdfs.hdfs.codeC = lzop</span><br><span class="line"></span><br><span class="line">agent-1.channels = ch-1</span><br><span class="line">agent-1.sources = src-1</span><br><span class="line">agent-1.sinks = sink_hdfs</span><br></pre></td></tr></table></figure>
-
 <p>关于 HDFS Sink配置说明，请参考 <a href="http://flume.apache.org/FlumeUserGuide.html#hdfs-sink" target="_blank" rel="noopener">HDFS Sink</a></p>
 <p><strong>说明：</strong></p>
 <ol>
@@ -820,11 +817,9 @@
 <h2 id="示例4：spooldir-数据源，写入-HBase"><a href="#示例4：spooldir-数据源，写入-HBase" class="headerlink" title="示例4：spooldir 数据源，写入 HBase"></a>示例4：spooldir 数据源，写入 HBase</h2><p>关于 HBase Sink 配置说明，请参考 <a href="http://flume.apache.org/FlumeUserGuide.html#hbasesink" target="_blank" rel="noopener">HBase Sink</a></p>
 <h1 id="5-开发相关"><a href="#5-开发相关" class="headerlink" title="5. 开发相关"></a>5. 开发相关</h1><h2 id="5-1-编译源代码"><a href="#5-1-编译源代码" class="headerlink" title="5.1 编译源代码"></a>5.1 编译源代码</h2><p>从 github 下载源代码并编译：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:cloudera/flume-ng.git -b cdh4-1.4.0_4.7.0</span><br><span class="line">$ <span class="built_in">cd</span> flume-ng</span><br><span class="line">$ mvn install -DskipTests -Phadoop-2</span><br></pre></td></tr></table></figure>
-
 <p>如果提示找不到 hadoop-test 的 jar 包，则修改 pom.xml 中的版本，如改为 <code>2.0.0-mr1-cdh4.7.0</code>，具体版本视你使用的分支版本而定，我这里是 cdh4.7.0。</p>
 <p>如果提示找不到 uanodeset-parser 的 jarb，则在 pom.xml 中添加下面仓库：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>tempo-db<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.tempo-db.com/artifactory/list/twitter/</span><br><span class="line">  <span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="6-最佳实践"><a href="#6-最佳实践" class="headerlink" title="6. 最佳实践"></a>6. 最佳实践</h1><p>参考<a href="http://tech.meituan.com/mt-log-system-arch.html" target="_blank" rel="noopener">基于Flume的美团日志收集系统(一)架构和设计</a>，列出一些最佳实践：</p>
 <ul>
 <li>模块命名规则：所有的 Source 以 src 开头，所有的 Channel 以 ch 开头，所有的 Sink 以 sink 开头；</li>

@@ -554,7 +554,6 @@
 <p>关于HMaster启动过程，请参考<a href="/2014/03/09/hbase-note-about-hmaster-startup.html">HBase源码：HMaster启动过程</a>。先启动了HMaster之后，再启动HRegionServer。</p>
 <p>运行HRegionServerStarter类启动HRegionServer：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> my.test.start;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.regionserver.HRegionServer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HRegionServerStarter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//new HMasterStarter.ZookeeperThread().start();</span></span><br><span class="line"></span><br><span class="line">        HRegionServer.main(<span class="keyword">new</span> String[] &#123; <span class="string">"start"</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>同样参考<a href="/2014/03/09/hbase-note-about-hmaster-startup.html">HBase源码：HMaster启动过程</a>，运行HRegionServer.main方法，会通过反射创建一个HRegionServer实例，然后调用其run方法。</p>
 <p>HRegionServer类继承关系如下：</p>
 <p><img src="/images/hbase-hregionserver-class.jpg" alt></p>
@@ -583,7 +582,8 @@
 - 创建MasterAddressTracker 并等到&quot;/hbase/master&quot;节点有数据为止
 - 创建ClusterStatusTracker 并等到&quot;/hbase/shutdown&quot;节点有数据为止
 - 创建CatalogTracker 不做任何等待
-- 创建RegionServerSnapshotManager</code></pre><ul>
+- 创建RegionServerSnapshotManager
+</code></pre><ul>
 <li>设置集群id </li>
 <li>初始化线程：initializeThreads<ul>
 <li>创建 cacheFlusher<ul>
@@ -631,7 +631,8 @@
      - 启动jetty的infoServer，默认端口为60030
      - 启动复制相关打的一些handler：replicationSourceHandler、replicationSourceHandler、replicationSinkHandler
      - rpcServer启动
-     - 创建并启动SplitLogWorker</code></pre></li>
+     - 创建并启动SplitLogWorker
+</code></pre></li>
 <li>registerMBean</li>
 <li>snapshotManager启动快照服务</li>
 <li>在master上注册之后，进入运行模式，周期性(msgInterval默认3妙)调用doMetrics，tryRegionServerReport<ul>

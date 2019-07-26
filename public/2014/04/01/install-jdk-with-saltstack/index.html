@@ -550,7 +550,6 @@
       
         <h1 id="创建states文件"><a href="#创建states文件" class="headerlink" title="创建states文件"></a>创建states文件</h1><p>在<code>/srv/salt</code>目录下创建jdk目录，并在jdk目录创建init.sls文件，init.sls文件内容如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">jdk-file:</span><br><span class="line"> file.managed:</span><br><span class="line">   - source: salt://jdk/files/jdk1<span class="number">.6</span><span class="number">.0</span>_39.tar.gz</span><br><span class="line">   - name: /usr/java/jdk1<span class="number">.6</span><span class="number">.0</span>_39.tar.gz</span><br><span class="line">   - include_empty: <span class="literal">True</span></span><br><span class="line"> </span><br><span class="line">jdk-install:</span><br><span class="line"> cmd.run:</span><br><span class="line">   - name: <span class="string">'/bin/tar -zxf jdk1.6.0_39.tar.gz &amp;&amp; /bin/ln -s jdk1.6.0_39  latest '</span></span><br><span class="line">   - cwd: /usr/java</span><br><span class="line">   - unless: <span class="string">'test -e jdk1.6.0_39'</span></span><br><span class="line">   - require:</span><br><span class="line">     - file: jdk-file</span><br><span class="line"> </span><br><span class="line">jdk-rmzip:</span><br><span class="line">  file.absent:</span><br><span class="line">    - name: /usr/java/jdk1<span class="number">.6</span><span class="number">.0</span>_39.tar.gz</span><br><span class="line"> </span><br><span class="line">/root/.bashrc:</span><br><span class="line">  file.append:</span><br><span class="line">    - text:</span><br><span class="line">      - export JAVA_HOME=/usr/java/latest</span><br><span class="line">      - export PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
-
 <p>上面sls文件需要引用<code>jdk1.6.0_39.tar.gz</code>文件，故需要下载jdk1.6.0_39.bin安装之后将其打包成<code>jdk1.6.0_39.tar.gz</code>拷贝到<code>/srv/salt/jdk/files</code>目录。</p>
 <p>init.sls文件执行过程包括以下几个步骤：</p>
 <ul>
@@ -561,28 +560,21 @@
 </ul>
 <p>修改top.sls文件（该步骤为可选），添加jdk.init:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">base:</span><br><span class="line">  <span class="string">'*'</span>:</span><br><span class="line">    - jdk.init</span><br></pre></td></tr></table></figure>
-
 <h1 id="测试运行"><a href="#测试运行" class="headerlink" title="测试运行"></a>测试运行</h1><p>在master上运行下面命令，并观察运行结果：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">[root@sk1 vagrant]<span class="comment"># salt '*' state.sls jdk</span></span><br><span class="line">sk2:</span><br><span class="line">----------</span><br><span class="line">          ID: jdk-file</span><br><span class="line">    Function: file.managed</span><br><span class="line">        Name: /usr/java/jdk1.6.0_39.tar.gz</span><br><span class="line">      Result: True</span><br><span class="line">     Comment: File /usr/java/jdk1.6.0_39.tar.gz updated</span><br><span class="line">     Changes:  </span><br><span class="line">              ----------</span><br><span class="line">              diff:</span><br><span class="line">                  New file</span><br><span class="line">              mode:</span><br><span class="line">                  0644</span><br><span class="line">----------</span><br><span class="line">          ID: jdk-install</span><br><span class="line">    Function: cmd.run</span><br><span class="line">        Name: /bin/tar -zxf jdk1.6.0_39.tar.gz &amp;&amp; /bin/ln -s jdk1.6.0_39  latest</span><br><span class="line">      Result: True</span><br><span class="line">     Comment: unless execution succeeded</span><br><span class="line">     Changes:  </span><br><span class="line">----------</span><br><span class="line">          ID: jdk-rmzip</span><br><span class="line">    Function: file.absent</span><br><span class="line">        Name: /usr/java/jdk1.6.0_39.tar.gz</span><br><span class="line">      Result: True</span><br><span class="line">     Comment: Removed file /usr/java/jdk1.6.0_39.tar.gz</span><br><span class="line">     Changes:  </span><br><span class="line">              ----------</span><br><span class="line">              removed:</span><br><span class="line">                  /usr/java/jdk1.6.0_39.tar.gz</span><br><span class="line">----------</span><br><span class="line">          ID: /root/.bashrc</span><br><span class="line">    Function: file.append</span><br><span class="line">      Result: True</span><br><span class="line">     Comment: Appended 0 lines</span><br><span class="line">     Changes:  </span><br><span class="line">Summary</span><br><span class="line">------------</span><br><span class="line">Succeeded: 4</span><br><span class="line">Failed:    0</span><br><span class="line">------------</span><br><span class="line">Total:     4</span><br></pre></td></tr></table></figure>
-
 <p>从上可以看出成功了4个，失败为0。</p>
 <p>安装了jdk之后，需要重启minion(还需要<strong>修改minion启动脚本，让minion加载上系统环境变量</strong>，详细说明，见<a href="/images/11/11/install-saltstack-and-halite.html">安装SaltStack和halite</a>)才能通过下面脚本运行java相关的命令，如java、jps等等：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt <span class="string">'*'</span> cmd.run <span class="string">'jps'</span></span><br></pre></td></tr></table></figure>
-
 <p>否则，你需要通过下面脚本来执行：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt <span class="string">'*'</span> cmd.run <span class="string">'source /root/.bashrc ;jps'</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="设置pillar"><a href="#设置pillar" class="headerlink" title="设置pillar"></a>设置pillar</h1><p>将上面的<code>jdk/init.sls</code>文件修改为通过pillar引用变量</p>
 <p>a.首先在<code>/srv/pillar</code>目录创建jdk目录，并在jdk目录下创建init.sls文件，内容如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdk:</span><br><span class="line">  name: jdk1<span class="number">.6</span><span class="number">.0</span>_39</span><br><span class="line">  srvpath: salt://jdk/files </span><br><span class="line">  homepath: /usr/java</span><br></pre></td></tr></table></figure>
-
 <p>b.在<code>/srv/pillar/top.sls</code>中添加jdk.init</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">base:</span><br><span class="line">  <span class="string">'*'</span>:</span><br><span class="line">    - jdk.init</span><br></pre></td></tr></table></figure>
-
 <p>c.修改<code>/srv/salt/jdk/init.sls</code>文件为从pillar引入变量，内容如下：</p>
 
 undefined
-
 
 
 <p>d.参考上面，再次测试一遍</p>
@@ -740,8 +732,8 @@ undefined
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/03/18/simulate-weibo-login-in-python/" rel="next" title="Python模拟新浪微博登录">
-                <i class="fa fa-chevron-left"></i> Python模拟新浪微博登录
+              <a href="/2014/04/01/deploy-a-captcha-server-using-lua-and-openresty/" rel="next" title="使用Lua和OpenResty搭建验证码服务器">
+                <i class="fa fa-chevron-left"></i> 使用Lua和OpenResty搭建验证码服务器
               </a>
             
           </div>
@@ -750,8 +742,8 @@ undefined
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/04/01/deploy-a-captcha-server-using-lua-and-openresty/" rel="prev" title="使用Lua和OpenResty搭建验证码服务器">
-                使用Lua和OpenResty搭建验证码服务器 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/04/06/mysql-config-for-master-slave-replication/" rel="prev" title="RHEL系统安装MySQL主备环境">
+                RHEL系统安装MySQL主备环境 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

@@ -556,13 +556,11 @@
 <p>本文的源码分析基于hive-0.10.0-cdh4.3.0。</p>
 <h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><p>从shell脚本<code>/usr/lib/hive/bin/ext/cli.sh</code>可以看到hive cli的入口类为<code>org.apache.hadoop.hive.cli.CliDriver</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">cli</span></span> () &#123;</span><br><span class="line">  CLASS=org.apache.hadoop.hive.cli.CliDriver</span><br><span class="line">  execHiveCmd <span class="variable">$CLASS</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">cli_help</span></span> () &#123;</span><br><span class="line">  CLASS=org.apache.hadoop.hive.cli.CliDriver</span><br><span class="line">  execHiveCmd <span class="variable">$CLASS</span> <span class="string">"--help"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h1 id="入口类"><a href="#入口类" class="headerlink" title="入口类"></a>入口类</h1><p>java中的类如果有main方法就能运行，故直接查找<code>org.apache.hadoop.hive.cli.CliDriver</code>中的main方法即可。</p>
 <p>CliDriver类中的方法有：</p>
 <p><img src="/images/Hive-CliDriver-method.jpg" alt></p>
 <p>main方法代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = run(args);</span><br><span class="line">    System.exit(ret);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>阅读run函数可以看到，主要做了以下几件事情：</p>
 <ul>
 <li>读取main方法的参数</li>
@@ -576,14 +574,12 @@
 <li>如果命令行中有-e参数，则运行指定的sql语句；如果有-f参数，则读取该文件内容并运行。注意：不能同时指定这两个参数。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hive -e <span class="string">'show tables'</span></span><br><span class="line">hive -f /root/hive.sql</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>如果没有指定上面两个参数，则从当前用户主目录读取<code>.hivehistory</code>文件，如果不存在则创建。该文件保存了当前用户所有运行的hive命令。</li>
 <li>在while循环里不断读取控制台的输入内容，每次读取一行，如果行末有分号，则调用CliDriver的processLine方法运行读取到的内容。</li>
 <li>每次调用processLine方法时，都会创建SignalHandler用于捕捉用户的输入，当用户输入Ctrl+C时，会kill当前正在运行的任务以及kill掉当前进程。kill当前正在运行的job的代码如下.</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HadoopJobExecHelper.killRunningJobs();</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>处理hive命令。</li>
 </ul>
@@ -591,10 +587,8 @@
 <p>如果命令开头是source，则会读取source 后面文件内容，然后执行该文件内容。通过这种方式，你可以在hive命令行模式运行一个文件中的hive命令。</p>
 <p>如果命令开头是感叹号，执行操作系统命令（如<code>!ls</code>，列出当前目录的文件信息）。通过以下代码来运行：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Process executor = Runtime.getRuntime().exec(shell_cmd);</span><br><span class="line">StreamPrinter outPrinter = <span class="keyword">new</span> StreamPrinter(executor.getInputStream(), <span class="keyword">null</span>, ss.out);</span><br><span class="line">StreamPrinter errPrinter = <span class="keyword">new</span> StreamPrinter(executor.getErrorStream(), <span class="keyword">null</span>, ss.err);</span><br><span class="line"></span><br><span class="line">outPrinter.start();</span><br><span class="line">errPrinter.start();</span><br><span class="line"></span><br><span class="line">ret = executor.waitFor();</span><br><span class="line"><span class="keyword">if</span> (ret != <span class="number">0</span>) &#123;</span><br><span class="line">  console.printError(<span class="string">"Command failed with exit code = "</span> + ret);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>shell_cmd的内容大概如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell_cmd = <span class="string">"/bin/bash -c \'"</span> + shell_cmd + <span class="string">"\'"</span></span><br></pre></td></tr></table></figure>
-
 <p>如果命令开头是list，列出jar/file/archive</p>
 <p>如果是远程模式运行命令行，则通过HiveClient来运行命令；否则，调用processLocalCmd方法运行本地命令。</p>
 <p>以本地模式运行时，会通过CommandProcessorFactory工厂解析输入的语句来获得一个CommandProcessor，CommandProcessor接口的实现类见下图：</p>

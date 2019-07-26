@@ -141,7 +141,7 @@
 
 
   <meta name="description" content="远程调试对应用程序开发十分有用。例如，为不能托管开发平台的低端机器开发程序，或在专用的机器上（比如服务不能中断的 Web 服务器）调试程序。其他情况包括：运行在内存小或 CUP 性能低的设备上的 Java 应用程序（比如移动设备），或者开发人员想要将应用程序和开发环境分开，等等。">
-<meta name="keywords" content="hadoop,hive,hbase,mapreduce">
+<meta name="keywords" content="hadoop,hbase,hive,mapreduce">
 <meta property="og:type" content="article">
 <meta property="og:title" content="远程调试Hadoop各组件">
 <meta property="og:url" content="http://javachen.github.io/2013/08/01/remote-debug-hadoop/index.html">
@@ -552,10 +552,10 @@
 <p>为了进行远程调试，必须使用 Java Virtual Machine (JVM) V5.0 或更新版本。</p>
 <h1 id="JPDA-简介"><a href="#JPDA-简介" class="headerlink" title="JPDA 简介"></a>JPDA 简介</h1><p>Sun Microsystem 的 Java Platform Debugger Architecture (JPDA) 技术是一个多层架构，使您能够在各种环境中轻松调试 Java 应用程序。JPDA 由两个接口（分别是 JVM Tool Interface 和 JDI）、一个协议（Java Debug Wire Protocol）和两个用于合并它们的软件组件（后端和前端）组成。它的设计目的是让调试人员在任何环境中都可以进行调试。</p>
 <a id="more"></a>
-
 <p>更详细的介绍，您可以参考<a href="http://www.ibm.com/developerworks/cn/opensource/os-eclipse-javadebug/" target="_blank" rel="noopener">使用 Eclipse 远程调试 Java 应用程序</a></p>
 <h1 id="JDWP-设置"><a href="#JDWP-设置" class="headerlink" title="JDWP 设置"></a>JDWP 设置</h1><p>JVM本身就支持远程调试，Eclipse也支持JDWP，只需要在各模块的JVM启动时加载以下参数：</p>
-<pre><code>-Xdebug -Xrunjdwp:transport=dt_socket, address=8000,server=y,suspend=y</code></pre><p> 各参数的含义：</p>
+<pre><code>-Xdebug -Xrunjdwp:transport=dt_socket, address=8000,server=y,suspend=y
+</code></pre><p> 各参数的含义：</p>
 <pre><code>-Xdebug
 启用调试特性
 -Xrunjdwp
@@ -567,25 +567,27 @@ JVM在8000端口上监听请求，这个设定为一个不冲突的端口即可�
 server=y
 y表示启动的JVM是被调试者。如果为n，则表示启动的JVM是调试器。
 suspend=y
-y表示启动的JVM会暂停等待，直到调试器连接上才继续执行。suspend=n，则JVM不会暂停等待。</code></pre><h1 id="配置hbase远程调试"><a href="#配置hbase远程调试" class="headerlink" title="配置hbase远程调试"></a>配置hbase远程调试</h1><p>打开<code>/etc/hbase/conf/hbase-env.sh</code>，找到以下内容：</p>
+y表示启动的JVM会暂停等待，直到调试器连接上才继续执行。suspend=n，则JVM不会暂停等待。
+</code></pre><h1 id="配置hbase远程调试"><a href="#配置hbase远程调试" class="headerlink" title="配置hbase远程调试"></a>配置hbase远程调试</h1><p>打开<code>/etc/hbase/conf/hbase-env.sh</code>，找到以下内容：</p>
 <pre><code># Enable remote JDWP debugging of major HBase processes. Meant for Core Developers
 # export HBASE_MASTER_OPTS=&quot;$HBASE_MASTER_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8070&quot;
 # export HBASE_REGIONSERVER_OPTS=&quot;$HBASE_REGIONSERVER_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8071&quot;
 # export HBASE_THRIFT_OPTS=&quot;$HBASE_THRIFT_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8072&quot;
-# export HBASE_ZOOKEEPER_OPTS=&quot;$HBASE_ZOOKEEPER_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8073&quot;</code></pre><p>如果想远程调式hbase-master进程，请去掉对<code>HBASE_MASTER_OPTS</code>的注释，其他依次类推。注意，我这里使用的是cdh-4.3.0中的hbase。</p>
+# export HBASE_ZOOKEEPER_OPTS=&quot;$HBASE_ZOOKEEPER_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8073&quot;
+</code></pre><p>如果想远程调式hbase-master进程，请去掉对<code>HBASE_MASTER_OPTS</code>的注释，其他依次类推。注意，我这里使用的是cdh-4.3.0中的hbase。</p>
 <hr>
 <h2 id="注意（20130817更新）："><a href="#注意（20130817更新）：" class="headerlink" title="注意（20130817更新）："></a>注意（20130817更新）：</h2><p>如果启动hbase时提示<code>check your java command line for duplicate jdwp options</code>，请把上面参数加到/usr/lib/hbase/bin/hbase中if else对应分支中去。</p>
 <p>例如，如果你想调试regionserver，请把下面代码加到<code>elif [ &quot;$COMMAND&quot; = &quot;regionserver&quot; ] ; then</code>中去：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">HBASE_REGIONSERVER_OPTS</span>=<span class="string">"<span class="variable">$HBASE_REGIONSERVER_OPTS</span> -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8071"</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="配置hive远程调试"><a href="#配置hive远程调试" class="headerlink" title="配置hive远程调试"></a>配置hive远程调试</h1><p>停止hive-server2进程，然后以下面命令启动hive-server2</p>
 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">hive</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">service</span> <span class="comment">hiveserver</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">debug</span></span><br></pre></td></tr></table></figure>
-
 <p>进程会监听在8000端口等待调试连接。如果想更改监听端口，可以修改配置文件:<code>${HIVE_HOME}bin/ext/debug.sh</code></p>
 <p>如果Hadoop是0.23以上版本，debug模式启动Cli会报错：</p>
-<pre><code>ERROR: Cannot load this JVM TI agent twice, check your java command line for duplicate jdwp options.</code></pre><p>打开<code>${Hadoop_HOME}/bin/hadoop</code>，注释掉以下代码</p>
+<pre><code>ERROR: Cannot load this JVM TI agent twice, check your java command line for duplicate jdwp options.
+</code></pre><p>打开<code>${Hadoop_HOME}/bin/hadoop</code>，注释掉以下代码</p>
 <pre><code># Always respect HADOOP_OPTS and HADOOP_CLIENT_OPTS
-HADOOP_OPTS=&quot;$HADOOP_OPTS $HADOOP_CLIENT_OPTS&quot;</code></pre><h1 id="配置yarn远程调试"><a href="#配置yarn远程调试" class="headerlink" title="配置yarn远程调试"></a>配置yarn远程调试</h1><p>请在以下代码添加调试参数：</p>
+HADOOP_OPTS=&quot;$HADOOP_OPTS $HADOOP_CLIENT_OPTS&quot;
+</code></pre><h1 id="配置yarn远程调试"><a href="#配置yarn远程调试" class="headerlink" title="配置yarn远程调试"></a>配置yarn远程调试</h1><p>请在以下代码添加调试参数：</p>
 <pre><code>if [ &quot;$COMMAND&quot; = &quot;classpath&quot; ] ; then
 if $cygwin; then
 CLASSPATH=`cygpath -p -w &quot;$CLASSPATH&quot;`
@@ -620,15 +622,18 @@ CLASS=&apos;org.apache.hadoop.yarn.server.webproxy.WebAppProxyServer&apos;
 YARN_OPTS=&quot;$YARN_OPTS $YARN_PROXYSERVER_OPTS&quot;
 if [ &quot;$YARN_PROXYSERVER_HEAPSIZE&quot; != &quot;&quot; ]; then
 JAVA_HEAP_MAX=&quot;-Xmx&quot;&quot;$YARN_PROXYSERVER_HEAPSIZE&quot;&quot;m&quot;
-fi</code></pre><p>例如：<br>如果你想调试resourcemanager代码，请在<code>elif [ &quot;$COMMAND&quot; = &quot;resourcemanager&quot; ]</code> 分支内添加如下代码：</p>
-<pre><code>YARN_RESOURCEMANAGER_OPTS=&quot;$YARN_RESOURCEMANAGER_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6001&quot;</code></pre><p>其他进程，参照上面即可。</p>
+fi
+</code></pre><p>例如：<br>如果你想调试resourcemanager代码，请在<code>elif [ &quot;$COMMAND&quot; = &quot;resourcemanager&quot; ]</code> 分支内添加如下代码：</p>
+<pre><code>YARN_RESOURCEMANAGER_OPTS=&quot;$YARN_RESOURCEMANAGER_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6001&quot;
+</code></pre><p>其他进程，参照上面即可。</p>
 <p>注意：端口不要冲突。</p>
 <h1 id="配置mapreduce远程调试"><a href="#配置mapreduce远程调试" class="headerlink" title="配置mapreduce远程调试"></a>配置mapreduce远程调试</h1><p>如果想要调试Map 或Reduce Task，则修改<code>bin/hadoop</code>已经没用了，因为<code>bin/hadoop</code>中没有Map Task的启动参数。</p>
 <p>此时需要修改mapred-site.xml</p>
 <pre><code>&lt;property&gt;
     &lt;name&gt;mapred.child.java.opts&lt;/name&gt;
     &lt;value&gt;-Xmx800m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000&lt;/value&gt;
-&lt;/property</code></pre><p>在一个TaskTracker上，只能启动一个Map Task或一个Reduce Task，否则启动时会有端口冲突。因此要修改所有TaskTracker上的<code>conf/hadoop-site.xml</code>中的配置项：</p>
+&lt;/property
+</code></pre><p>在一个TaskTracker上，只能启动一个Map Task或一个Reduce Task，否则启动时会有端口冲突。因此要修改所有TaskTracker上的<code>conf/hadoop-site.xml</code>中的配置项：</p>
 <pre><code>&lt;property&gt;
     &lt;name&gt;mapred.tasktracker.map.tasks.maximum&lt;/name&gt;
     &lt;value&gt;1&lt;/value&gt;
@@ -636,7 +641,8 @@ fi</code></pre><p>例如：<br>如果你想调试resourcemanager代码，请在<
 &lt;property&gt;
     &lt;name&gt;mapred.tasktracker.reduce.tasks.maximum&lt;/name&gt;
     &lt;value&gt;0&lt;/value&gt;
-&lt;/property&gt;</code></pre><h1 id="在Eclipse中使用方法："><a href="#在Eclipse中使用方法：" class="headerlink" title="在Eclipse中使用方法："></a>在Eclipse中使用方法：</h1><ol>
+&lt;/property&gt;
+</code></pre><h1 id="在Eclipse中使用方法："><a href="#在Eclipse中使用方法：" class="headerlink" title="在Eclipse中使用方法："></a>在Eclipse中使用方法：</h1><ol>
 <li><p>打开eclipse，找到<code>Debug Configurations...</code>，添加一个Remout Java Application:</p>
 </li>
 <li><p>在source中可以关联到hive的源代码,然后，单击Debug按钮进入远程debug模式。</p>
@@ -739,9 +745,9 @@ fi</code></pre><p>例如：<br>如果你想调试resourcemanager代码，请在<
           
             <a href="/tags/hadoop/" rel="tag"><i class="fa fa-tag"></i> hadoop</a>
           
-            <a href="/tags/hive/" rel="tag"><i class="fa fa-tag"></i> hive</a>
-          
             <a href="/tags/hbase/" rel="tag"><i class="fa fa-tag"></i> hbase</a>
+          
+            <a href="/tags/hive/" rel="tag"><i class="fa fa-tag"></i> hive</a>
           
             <a href="/tags/mapreduce/" rel="tag"><i class="fa fa-tag"></i> mapreduce</a>
           

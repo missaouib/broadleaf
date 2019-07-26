@@ -551,39 +551,28 @@
         <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装阿波罗</p>
 <p>1、 在虚拟机安装git和mysql</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> git mysql -y</span><br></pre></td></tr></table></figure>
-
 <p>2、克隆安装脚本</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/nobodyiam/apollo-build-scripts.git</span><br></pre></td></tr></table></figure>
-
 <p>3、配置数据策略 </p>
 <p>在虚拟机访问mysql，然后初始化数据：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -h192.168.56.100 -p3306 -uroot -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 4</span><br><span class="line">Server version: 5.7.26 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type <span class="string">'help;'</span> or <span class="string">'\h'</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">'\c'</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; <span class="built_in">source</span> /opt/apollo-build-scripts/sql/apolloportaldb.sql</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; <span class="built_in">source</span> /opt/apollo-build-scripts/sql/apolloconfigdb.sql</span><br></pre></td></tr></table></figure>
-
 <p>修改demo.sh中mysql配置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># apollo config db info</span></span><br><span class="line">apollo_config_db_url=jdbc:mysql://192.168.56.100:3306/ApolloConfigDB?characterEncoding=utf8</span><br><span class="line">apollo_config_db_username=root</span><br><span class="line">apollo_config_db_password=123456</span><br><span class="line"></span><br><span class="line"><span class="comment"># apollo portal db info</span></span><br><span class="line">apollo_portal_db_url=jdbc:mysql://192.168.56.100:3306/ApolloPortalDB?characterEncoding=utf8</span><br><span class="line">apollo_portal_db_username=root</span><br><span class="line">apollo_portal_db_password=123456</span><br></pre></td></tr></table></figure>
-
 <p>先安装JDK：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">yum</span> <span class="selector-tag">install</span> <span class="selector-tag">java-1</span><span class="selector-class">.8</span><span class="selector-class">.0-openjdk</span> <span class="selector-tag">java-1</span><span class="selector-class">.8</span><span class="selector-class">.0-openjdk-devel</span> <span class="selector-tag">-y</span></span><br></pre></td></tr></table></figure>
-
 <p>配置JAVA_HOME</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/profile</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/jre/lib/rt.jar:\</span><br><span class="line">    <span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar  </span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ <span class="built_in">source</span> /etc/profile</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span><br><span class="line">/usr/lib/jvm/java-1.8.0-openjdk</span><br></pre></td></tr></table></figure>
-
 <p>修改demo.sh中的config_server_url、admin_server_url和portal_url中的localhost为虚拟机主机对外ip 192.168.56.100。</p>
 <p>因为虚拟机中配置了多个网卡，所以需要添加配置忽略网卡：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.inetutils.ignoredInterfaces[0]=docker0</span><br><span class="line">spring.cloud.inetutils.ignoredInterfaces[1]=veth.*</span><br><span class="line">spring.cloud.inetutils.ignoredInterfaces[1]=eth0</span><br></pre></td></tr></table></figure>
-
 <p>修改demo.sh中的BASE_JAVA_OPTS参数：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BASE_JAVA_OPTS=<span class="string">"-Denv=dev -Dspring.cloud.inetutils.ignoredInterfaces[0]=docker0 -Dspring.cloud.inetutils.ignoredInterfaces[1]=veth.* -Dspring.cloud.inetutils.ignoredInterfaces[1]=eth0"</span></span><br></pre></td></tr></table></figure>
-
 <p>因为apollo-service服务启动很慢，可以修改demo.sh中等待时间。</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function checkServerAlive &#123;</span><br><span class="line">  declare -i <span class="attribute">counter</span>=0</span><br><span class="line">  declare -i <span class="attribute">max_counter</span>=30 # 24<span class="number">*5</span>=120s</span><br><span class="line">  declare -i <span class="attribute">total_time</span>=0</span><br></pre></td></tr></table></figure>
-
 <p>再启动阿波罗：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./demo<span class="selector-class">.sh</span> start</span><br></pre></td></tr></table></figure>
-
 <p>当看到如下输出后，就说明启动成功了！</p>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">==== starting service ====</span></span><br><span class="line">Service logging file is ./service/apollo-service.log</span><br><span class="line">Started [10768]</span><br><span class="line">Waiting for config service startup.......</span><br><span class="line">Config service started. You may visit http://localhost:8080 for service status now!</span><br><span class="line">Waiting for admin service startup....</span><br><span class="line">Admin service started</span><br><span class="line"><span class="section">==== starting portal ====</span></span><br><span class="line">Portal logging file is ./portal/apollo-portal.log</span><br><span class="line">Started [10846]</span><br><span class="line">Waiting for portal startup......</span><br><span class="line">Portal started. You can visit http://localhost:8070 now!</span><br></pre></td></tr></table></figure>
-
 <p>浏览器服务 <a href="http://192.168.56.100:8070/" target="_blank" rel="noopener">http://192.168.56.100:8070/</a> ，默认账号密码 Apollo/admin</p>
 <h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
 <li><a href="https://github.com/nobodyiam/apollo-build-scripts" target="_blank" rel="noopener">apollo-build-scripts</a></li>
@@ -753,8 +742,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/16/install-mongodb-with-docker/" rel="prev" title="使用Docker安装MongoDB">
-                使用Docker安装MongoDB <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/16/install-mysql-with-docker/" rel="prev" title="使用Docker安装MySql">
+                使用Docker安装MySql <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
