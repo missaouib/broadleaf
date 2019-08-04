@@ -565,13 +565,13 @@
 <p>PlantUML通过简单和直观的语言来定义图形，语法参见<a href="http://plantuml.com/PlantUML_Language_Reference_Guide.pdf" target="_blank" rel="noopener">PlantUML Language Reference Guide</a>，它支持很多<a href="http://plantuml.com/running.html" target="_blank" rel="noopener">工具</a>，可以生成PNG、SVG、LaTeX和二进制图片。例如，下面的例子是通过<a href="http://plantuml.com/plantuml/" target="_blank" rel="noopener">在线示例工具</a>生成的。</p>
 <p><img src="http://plantuml.com/plantuml/png/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" alt></p>
 <p>ASCII Art格式：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌───┐          ┌─────┐</span><br><span class="line">│<span class="keyword">Bob│ </span>         │Alice│</span><br><span class="line">└─┬─┘          └──┬──┘</span><br><span class="line">  │    hello      │   </span><br><span class="line">  │──────────────&gt;│   </span><br><span class="line">┌─┴─┐          ┌──┴──┐</span><br><span class="line">│<span class="keyword">Bob│ </span>         │Alice│</span><br><span class="line">└───┘          └─────┘</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌───┐          ┌─────┐</span><br><span class="line">│Bob│          │Alice│</span><br><span class="line">└─┬─┘          └──┬──┘</span><br><span class="line">  │    hello      │   </span><br><span class="line">  │──────────────&gt;│   </span><br><span class="line">┌─┴─┐          ┌──┴──┐</span><br><span class="line">│Bob│          │Alice│</span><br><span class="line">└───┘          └─────┘</span><br></pre></td></tr></table></figure>
 <p><a href="http://www.planttext.com/planttext" target="_blank" rel="noopener">http://www.planttext.com/planttext</a>也是一个类似的导出工具，甚至你可以自建一个服务器生成图片。使用在线生成工具的好处是不用保存图片，可以直接应用生成的图片地址。</p>
 <h1 id="主页"><a href="#主页" class="headerlink" title="主页"></a>主页</h1><p>官网地址：<a href="http://plantuml.com/" target="_blank" rel="noopener">http://plantuml.com/</a>。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>PlantUML下载地址：<a href="http://plantuml.com/download.html" target="_blank" rel="noopener">http://plantuml.com/download.html</a>。你可以下载jar包和java的开发工具集成使用，更多的安装或者集成方式见<a href="http://plantuml.com/running.html" target="_blank" rel="noopener">http://plantuml.com/running.html</a>。</p>
 <p>对于我来说，有用的是在Chrome上集成<a href="https://chrome.google.com/webstore/detail/plantuml-viewer/legbfeljfbjgfifnkmpoajgpgejojooj" target="_blank" rel="noopener">PlantUML插件</a>和在Sublime Text中集成。</p>
 <h2 id="Sublime-Text集成PlantUML"><a href="#Sublime-Text集成PlantUML" class="headerlink" title="Sublime Text集成PlantUML"></a>Sublime Text集成PlantUML</h2><p>PlantUML依赖<code>Graphviz</code>，故先安装：</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>graphviz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install graphviz</span><br></pre></td></tr></table></figure>
 <p>Sublime Text 的集成使用的是<code>sublime_diagram_plugin</code>因为默认的包管理中没有，所以需要自己添加源。</p>
 <ul>
 <li>使用 <code>Command-Shift-P</code> 打开 <code>Command Palette</code></li>
@@ -583,11 +583,11 @@
 </ul>
 <p>重启后可以在<code>Preferences -&gt; Packages Setting</code>看到<code>Diagram</code>，默认绑定的渲染快捷键是<code>super + m</code>也就是<code>Command + m</code>如果不冲突直接使用即可。</p>
 <p>为了简化使用，可以在 Sublime 里配置个快捷键。打开 <code>Preferences -&gt; Key Binding - User</code>，添加一个快捷键：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">"keys"</span>: [<span class="string">"alt+d"</span>], <span class="attr">"command"</span>: <span class="string">"display_diagrams"</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;keys&quot;: [&quot;alt+d&quot;], &quot;command&quot;: &quot;display_diagrams&quot;&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的代码配置成按住 <code>Alt + d</code> 来生成 PlantUML 图片，你可以修改成你自己喜欢的按键。</p>
 <h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h1><p>使用的话比较简单，绘图的内容需要包含在<code>@startuml</code>和<code>@enduml</code>中，不然会报错。</p>
 <p>在文本中输入以下内容：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@startuml</span></span><br><span class="line">Bob -&gt; <span class="attribute">Alice </span>: Hello, how are you</span><br><span class="line">Alice -&gt; <span class="attribute">Bob </span>: Fine, thank you, and you?</span><br><span class="line"><span class="variable">@enduml</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Bob -&gt; Alice : Hello, how are you</span><br><span class="line">Alice -&gt; Bob : Fine, thank you, and you?</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
 <p>按<code>Command + m</code>会在当前工作目录下生成这个图片文件，同时自动弹出窗口显示如下图片。</p>
 <p><img src="http://plantuml.com:80/plantuml/png/SyfFKj2rKt3CoKnELR1Iy4ZDoSdNKSZ8BrT8B4fLgCmlvO980TKu0PLQARXbvgNgA9Ha9EPbWwHr51BpKa0CUm00" alt></p>
 <p>将其保存为basic.txt之后，可以在命令行运行：</p>
@@ -753,8 +753,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/29/plantuml-class-diagram/" rel="next" title="PlantUML类图">
-                <i class="fa fa-chevron-left"></i> PlantUML类图
+              <a href="/2016/02/26/source-code-analytic-of-mybatis-configuration/" rel="next" title="MyBatis源码分析：Configuration">
+                <i class="fa fa-chevron-left"></i> MyBatis源码分析：Configuration
               </a>
             
           </div>
@@ -763,8 +763,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/01/uml-class-realation/" rel="prev" title="UML类之间关系">
-                UML类之间关系 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/02/29/plantuml-class-diagram/" rel="prev" title="PlantUML类图">
+                PlantUML类图 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

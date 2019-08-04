@@ -141,7 +141,7 @@
 
 
   <meta name="description" content="本文主要分析 AngularJS 官方网站提供的一个用于学习的示例项目 PhoneCat 的构建、测试过程以及代码的运行原理。希望能够对 PhoneCat 项目有一个更加深入全面的认识。">
-<meta name="keywords" content="angular.js,node.js,bower">
+<meta name="keywords" content="node.js,bower,angular.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AngularJS PhoneCat代码分析">
 <meta property="og:url" content="http://javachen.github.io/2015/01/09/angular-phonecat-examples/index.html">
@@ -595,7 +595,7 @@
 <p>当然，package.json 文件中还定义了一些测试相关的命令。</p>
 <h2 id="bower"><a href="#bower" class="headerlink" title="bower"></a>bower</h2><p>关于 <a href="http://bower.io/" target="_blank" rel="noopener">bower</a> 的介绍，参考博客内文章：<a href="/2014/05/10/bower-intro.html">bower介绍</a>。</p>
 <p>在本项目中，bower 下载的包保存在 angular-phonecat/app/bower_components 目录下，依赖如下： </p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">├── <span class="keyword">bower_components</span></span><br><span class="line"><span class="keyword">│ </span>  ├── angular</span><br><span class="line">│   ├── angular-animate</span><br><span class="line">│   ├── angular-mocks</span><br><span class="line">│   ├── angular-resource</span><br><span class="line">│   ├── angular-route</span><br><span class="line">│   ├── <span class="keyword">bootstrap</span></span><br><span class="line"><span class="keyword">│ </span>  └── jquery</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">├── bower_components</span><br><span class="line">│   ├── angular</span><br><span class="line">│   ├── angular-animate</span><br><span class="line">│   ├── angular-mocks</span><br><span class="line">│   ├── angular-resource</span><br><span class="line">│   ├── angular-route</span><br><span class="line">│   ├── bootstrap</span><br><span class="line">│   └── jquery</span><br></pre></td></tr></table></figure>
 <h2 id="karma"><a href="#karma" class="headerlink" title="karma"></a>karma</h2><p><a href="http://karma-runner.github.io/0.12/index.html" target="_blank" rel="noopener">Karma</a> 是一个 Javascript 测试运行工具，可以帮助你关闭反馈循环。Karma 可以在特定的文件被修改时运行测试，它也可以在不同的浏览器上并行测试。不同的设备可以指向 Karma 服务器来覆盖实际场景。</p>
 <p>关于 Karma 的使用，本文不做介绍。</p>
 <h2 id="http-server"><a href="#http-server" class="headerlink" title="http-server"></a>http-server</h2><p><a href="https://github.com/nodeapps/http-server" target="_blank" rel="noopener">http-server</a> 是一个简单的零配置命令行 HTTP 服务器，基于 <a href="http://www.oschina.net/p/nodejs" target="_blank" rel="noopener">Node.js</a>。</p>
@@ -735,11 +735,11 @@
         
         <div class="post-tags">
           
-            <a href="/tags/angular-js/" rel="tag"><i class="fa fa-tag"></i> angular.js</a>
-          
             <a href="/tags/node-js/" rel="tag"><i class="fa fa-tag"></i> node.js</a>
           
             <a href="/tags/bower/" rel="tag"><i class="fa fa-tag"></i> bower</a>
+          
+            <a href="/tags/angular-js/" rel="tag"><i class="fa fa-tag"></i> angular.js</a>
           
         </div>
       

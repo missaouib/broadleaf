@@ -549,9 +549,9 @@
 
       
         <h1 id="1-SpringApplication"><a href="#1-SpringApplication" class="headerlink" title="1. SpringApplication"></a>1. SpringApplication</h1><p>SpringApplication 类是启动 Spring Boot 应用的入口类，你可以创建一个包含 <code>main()</code> 方法的类，来运行 <code>SpringApplication.run</code> 这个静态方法：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">    SpringApplication.<span class="built_in">run</span>(MySpringConfiguration.class, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    SpringApplication.run(MySpringConfiguration.class, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行该类会有如下输出：</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          <span class="symbol">_</span>            <span class="symbol">__</span> <span class="symbol">_</span> <span class="symbol">_</span></span><br><span class="line"> /\\ / ___'<span class="symbol">_</span> <span class="symbol">__</span> <span class="symbol">_</span> <span class="symbol">_</span>(<span class="symbol">_</span>)<span class="symbol">_</span> <span class="symbol">__</span>  <span class="symbol">__</span> <span class="symbol">_</span> \ \ \ \</span><br><span class="line">( ( )\___ | '<span class="symbol">_</span> | '<span class="symbol">_</span>| | '<span class="symbol">_</span> \/ <span class="symbol">_</span>` | \ \ \ \</span><br><span class="line"> \\/  ___)| |<span class="symbol">_</span>)| | | | | || (<span class="symbol">_</span>| |  ) ) ) )</span><br><span class="line">  '  |____| .<span class="symbol">__</span>|<span class="symbol">_</span>| |<span class="symbol">_</span>|<span class="symbol">_</span>| |<span class="symbol">_</span>\<span class="symbol">__</span>, | / / / /</span><br><span class="line"> =========|<span class="symbol">_</span>|==============|___/=/<span class="symbol">_</span>/<span class="symbol">_</span>/<span class="symbol">_</span>/</span><br><span class="line"> :: Spring Boot ::   v1.5.20.RELEASE</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___&apos;_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | &apos;_ | &apos;_| | &apos;_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  &apos;  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::   v1.5.20.RELEASE</span><br></pre></td></tr></table></figure>
 <h2 id="1-1-自定义Banner"><a href="#1-1-自定义Banner" class="headerlink" title="1.1 自定义Banner"></a>1.1 自定义Banner</h2><p>通过在classpath下添加一个banner.txt或设置banner.location来指定相应的文件可以改变启动过程中打印的banner。如果这个文件有特殊的编码，你可以使用banner.encoding设置它（默认为UTF-8）。</p>
 <p>在banner.txt中可以使用如下的变量：</p>
 <ul>
@@ -979,8 +979,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/13/how-to-run-spring-boot-application/" rel="next" title="Spring Boot之一：如何运行项目">
-                <i class="fa fa-chevron-left"></i> Spring Boot之一：如何运行项目
+              <a href="/2015/03/11/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations-xml-configuration/" rel="next" title="Spring AOP Example Tutorial">
+                <i class="fa fa-chevron-left"></i> Spring AOP Example Tutorial
               </a>
             
           </div>
@@ -989,8 +989,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/03/17/install-and-test-kafka/" rel="prev" title="安装和测试Kafka">
-                安装和测试Kafka <i class="fa fa-chevron-right"></i>
+              <a href="/2015/03/13/how-to-run-spring-boot-application/" rel="prev" title="Spring Boot之一：如何运行项目">
+                Spring Boot之一：如何运行项目 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

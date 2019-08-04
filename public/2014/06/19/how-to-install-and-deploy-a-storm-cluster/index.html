@@ -577,7 +577,7 @@
 <h1 id="4-安装Storm"><a href="#4-安装Storm" class="headerlink" title="4. 安装Storm"></a>4. 安装Storm</h1><p>下载稳定版本的storm，然后解压将其拷贝到/usr/lib/storm目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/downloads/nathanmarz/storm/storm-0.8.1.zip</span><br><span class="line">$ unzip storm-0.8.1.zip </span><br><span class="line">$ mv storm-0.8.1 /usr/lib/storm</span><br></pre></td></tr></table></figure>
 <p>接下来，配置环境变量：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">STORM_HOME</span>=/usr/lib/storm</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$STORM_HOME/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export STORM_HOME=/usr/lib/storm</span><br><span class="line">export PATH=$PATH:$STORM_HOME/bin</span><br></pre></td></tr></table></figure>
 <p>建立storm存储目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir /tmp/storm</span><br></pre></td></tr></table></figure>
 <p>修改配置文件/usr/lib/storm/conf/storm.yaml，修改为如下：</p>

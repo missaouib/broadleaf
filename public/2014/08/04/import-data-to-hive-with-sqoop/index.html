@@ -550,7 +550,7 @@
       
         <p>Sqoop 是 apache 下用于 RDBMS 和 HDFS 互相导数据的工具。本文以 mysql 数据库为例，实现关系数据库导入到 hdfs 和 hive。</p>
 <h1 id="1-安装-Sqoop"><a href="#1-安装-Sqoop" class="headerlink" title="1. 安装 Sqoop"></a>1. 安装 Sqoop</h1><p>使用 rpm 安装即可。</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> sqoop sqoop-metastore -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install sqoop sqoop-metastore -y</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>安装完之后需要下载 mysql jar 包到 sqoop 的 lib 目录。</p>
 </blockquote>
@@ -567,7 +567,7 @@
 <p>你还可以使用 <code>--options-file</code> 来传入一个文件，使用这种方式可以重用一些配置参数：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sqoop --options-file /users/homer/work/import.txt --table TEST</span><br></pre></td></tr></table></figure>
 <p>/users/homer/work/import.txt 文件内容如下：</p>
-<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span></span><br><span class="line"><span class="comment">--connect</span></span><br><span class="line"><span class="title">jdbc</span>:mysql://<span class="number">192.168</span><span class="number">.56</span><span class="number">.121</span>:<span class="number">3306</span>/metastore</span><br><span class="line"><span class="comment">--username</span></span><br><span class="line"><span class="title">hiveuser</span></span><br><span class="line"><span class="comment">--password </span></span><br><span class="line"><span class="title">redhat</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import</span><br><span class="line">--connect</span><br><span class="line">jdbc:mysql://192.168.56.121:3306/metastore</span><br><span class="line">--username</span><br><span class="line">hiveuser</span><br><span class="line">--password </span><br><span class="line">redhat</span><br></pre></td></tr></table></figure>
 <h1 id="2-2-导入数据到-hdfs"><a href="#2-2-导入数据到-hdfs" class="headerlink" title="2.2 导入数据到 hdfs"></a>2.2 导入数据到 hdfs</h1><p>使用 sqoop-import 命令可以从关系数据库导入数据到 hdfs。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sqoop import --connect jdbc:mysql://192.168.56.121:3306/metastore --username hiveuser --password redhat --table TBLS --target-dir /user/hive/result</span><br></pre></td></tr></table></figure>
 <p>注意：</p>

@@ -562,10 +562,10 @@
 <h1 id="哈希函数的构造方法"><a href="#哈希函数的构造方法" class="headerlink" title="哈希函数的构造方法"></a>哈希函数的构造方法</h1><p>构造好的哈希函数的方法，应能使冲突尽可能地少，因而应具有较好的随机性。这样可使一组关键字的散列地址均匀地分布在整个地址空间。根据关键字的结构和分布的不同，可构造出许多不同的哈希函数。</p>
 <h2 id="1）．直接定址法"><a href="#1）．直接定址法" class="headerlink" title="1）．直接定址法"></a>1）．直接定址法</h2><p>直接定址法是以关键字k本身或关键字加上某个数值常量c作为哈希地址的方法。</p>
 <p>该哈希函数H(k)为：</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H(<span class="name">k</span>)=k+c (<span class="name">c</span>≥<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H(k)=k+c (c≥0)</span><br></pre></td></tr></table></figure>
 <p>这种哈希函数计算简单，并且不可能有冲突发生。当关键字的分布基本连续时，可使用直接定址法的哈希函数。否则，若关键字分布不连续将造成内存单元的大量浪费</p>
 <h2 id="2）．除留余数法"><a href="#2）．除留余数法" class="headerlink" title="2）．除留余数法"></a>2）．除留余数法</h2><p>取关键字k除以哈希表长度m所得余数作为哈希函数地址的方法。即：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">H</span><span class="params">(k)</span></span>=k％m</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H(k)=k％m</span><br></pre></td></tr></table></figure>
 <p>这是一种较简单、也是较常见的构造方法。</p>
 <p>这种方法的关键是选择好哈希表的长度m。使得数据集合中的每一个关键字通过该函数转化后映射到哈希表的任意地址上的概率相等。<br>理论研究表明，在m取值为素数（质数）时，冲突可能性相对较少。</p>
 <h2 id="3）．平方取中法"><a href="#3）．平方取中法" class="headerlink" title="3）．平方取中法"></a>3）．平方取中法</h2><p>取关键字平方后的中间几位作为哈希函数地址（若超出范围时，可再取模）。</p>
@@ -585,7 +585,7 @@
 </ul>
 <p>这几个“理想乘数”是如何得出来的呢？这跟一个法则有关，叫黄金分割法则，而描述黄金分割法则的最经典表达式无疑就是著名的斐波那契数列，如果你还有兴趣，就到网上查找一下“斐波那契数列”等关键字，我数学水平有限，不知道怎么描述清楚为什么，另外斐波那契数列的值居然和太阳系八大行星的轨道半径的比例出奇吻合，很神奇，对么？</p>
 <p>对我们常见的32位整数而言，公式：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index = (value * <span class="number">2654435769</span>) <span class="meta">&gt;&gt; </span><span class="number">28</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index = (value * 2654435769) &gt;&gt; 28</span><br></pre></td></tr></table></figure>
 <p>如果用这种斐波那契散列法的话，那我上面的图就变成这样了：</p>
 <h1 id="冲突的解决方法"><a href="#冲突的解决方法" class="headerlink" title="冲突的解决方法"></a>冲突的解决方法</h1><p>假设哈希表的地址范围为<code>0～m-l</code>，当对给定的关键字k，由哈希函数<code>H(k)</code>算出的哈希地址为<code>i（0≤i≤m-1）</code>的位置上已存有记录，这种情况就是冲突现象。 处理冲突就是为该关键字的记录找到另一个“空”的哈希地址。即通过一个新的哈希函数得到一个新的哈希地址。如果仍然发生冲突，则再求下一个，依次类推。直至新的哈希地址不再发生冲突为止。</p>
 <p>常用的处理冲突的方法有开放地址法、链地址法两大类</p>
@@ -594,24 +594,24 @@
 <h3 id="a）线性探测法"><a href="#a）线性探测法" class="headerlink" title="a）线性探测法"></a>a）线性探测法</h3><p>线性探测法是从发生冲突的地址（设为d）开始，依次探查d+l，d+2，…m-1（当达到表尾m-1时，又从0开始探查）等地址，直到找到一个空闲位置来存放冲突处的关键字。</p>
 <p>若整个地址都找遍仍无空地址，则产生溢出。</p>
 <p>线性探查法的数学递推描述公式为：</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d<span class="number">0</span>=H<span class="comment">(k)</span></span><br><span class="line">di=<span class="comment">(di-1+1)</span><span class="meta">%</span> m <span class="comment">(1≤i≤m-1)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d0=H(k)</span><br><span class="line">di=(di-1+1)% m (1≤i≤m-1)</span><br></pre></td></tr></table></figure>
 <p>【例】已知哈希表地址区间为0～10，给定关键字序列（20，30，70，15，8，12，18，63，19）。哈希函数为H(k)=k％ll，采用线性探测法处理冲突，则将以上关键字依次存储到哈希表中。试构造出该哈希表，并求出等概率情况下的平均查找长度。</p>
 <p>假设数组为A, 本题中各元素的存放过程如下：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">H(<span class="number">20</span>)=<span class="number">9</span>，可直接存放到A[<span class="number">9</span>]中去。</span><br><span class="line">H(<span class="number">30</span>)=<span class="number">8</span>，可直接存放到A[<span class="number">8</span>]中去。</span><br><span class="line">H(<span class="number">70</span>)=<span class="number">4</span>，可直接存放到A[<span class="number">4</span>]中去。</span><br><span class="line">H(<span class="number">15</span>)=<span class="number">4</span>，冲突；</span><br><span class="line">d0=<span class="number">4</span></span><br><span class="line">d1=(<span class="number">4</span>+<span class="number">1</span>)%<span class="number">11</span>=<span class="number">5</span>，将<span class="number">15</span>放入到A[<span class="number">5</span>]中。</span><br><span class="line">H(<span class="number">8</span>)=<span class="number">8</span>，冲突；</span><br><span class="line">d0=<span class="number">8</span></span><br><span class="line">d1=(<span class="number">8</span>+<span class="number">1</span>)%<span class="number">11</span>=<span class="number">9</span>，仍冲突；</span><br><span class="line">d2=(<span class="number">8</span>+<span class="number">2</span>)%<span class="number">11</span>=<span class="number">10</span>，将<span class="number">8</span>放入到A[<span class="number">10</span>]中。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">H(20)=9，可直接存放到A[9]中去。</span><br><span class="line">H(30)=8，可直接存放到A[8]中去。</span><br><span class="line">H(70)=4，可直接存放到A[4]中去。</span><br><span class="line">H(15)=4，冲突；</span><br><span class="line">d0=4</span><br><span class="line">d1=(4+1)%11=5，将15放入到A[5]中。</span><br><span class="line">H(8)=8，冲突；</span><br><span class="line">d0=8</span><br><span class="line">d1=(8+1)%11=9，仍冲突；</span><br><span class="line">d2=(8+2)%11=10，将8放入到A[10]中。</span><br></pre></td></tr></table></figure>
 <p>在等概率情况下成功的平均查找长度为：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>*<span class="number">5</span>+<span class="number">2</span>+<span class="number">3</span>+<span class="number">4</span>+<span class="number">6</span>）/<span class="number">9</span> =<span class="number">20</span>/<span class="number">9</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（1*5+2+3+4+6）/9 =20/9</span><br></pre></td></tr></table></figure>
 <p>利用线性探查法处理冲突容易造成关键字的堆积问题。这是因为当连续n个单元被占用后，再散列到这些单元上的关键字和直接散列到后面一个空闲单元上的关键字都要占用这个空闲单元，致使该空闲单元很容易被占用，从而发生非同义冲突。造成平均查找长度的增加。<br>为了克服堆积现象的发生，可以用下面的方法替代线性探查法。</p>
 <h3 id="b）平方探查法"><a href="#b）平方探查法" class="headerlink" title="b）平方探查法"></a>b）平方探查法</h3><p>设发生冲突的地址为d，则平方探查法的探查序列为：d+12，d+22，…直到找到一个空闲位置为止。</p>
 <p>平方探查法的数学描述公式为：</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d<span class="number">0</span>=H<span class="comment">(k)</span></span><br><span class="line">di=<span class="comment">(d0+i2)</span> <span class="meta">%</span> m <span class="comment">(1≤i≤m-1)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d0=H(k)</span><br><span class="line">di=(d0+i2) % m (1≤i≤m-1)</span><br></pre></td></tr></table></figure>
 <p>在等概率情况下成功的平均查找长度为：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>*<span class="number">4</span>+<span class="number">2</span>*<span class="number">2</span>+<span class="number">3</span>+<span class="number">4</span>+<span class="number">6</span>）/<span class="number">9</span> =<span class="number">21</span>/<span class="number">9</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（1*4+2*2+3+4+6）/9 =21/9</span><br></pre></td></tr></table></figure>
 <p>平方探查法是一种较好的处理冲突的方法，可以避免出现堆积问题。它的缺点是不能探查到哈希表上的所有单元，但至少能探查到一半单元。</p>
 <p>例如，若表长m=13，假设在第3个位置发生冲突，则后面探查的位置依次为4、7、12、6、2、0，即可以探查到一半单元。</p>
 <p>若解决冲突时，探查到一半单元仍找不到一个空闲单元。则表明此哈希表太满，需重新建立哈希表。</p>
 <h2 id="2）．链地址法"><a href="#2）．链地址法" class="headerlink" title="2）．链地址法"></a>2）．链地址法</h2><p>用链地址法解决冲突的方法是：<br>把所有关键字为同义词的记录存储在一个线性链表中，这个链表称为同义词链表。并将这些链表的表头指针放在数组中（下标从0到m-1）。这类似于图中的邻接表和树中孩子链表的结构。</p>
 <p>由于在各链表中的第一个元素的查找长度为l，第二个元素的查找长度为2，依此类推。因此，在等概率情况下成功的平均查找长度为：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>*<span class="number">5</span>+<span class="number">2</span>*<span class="number">2</span>+<span class="number">3</span>*l+<span class="number">4</span>*<span class="number">1</span>)／<span class="number">9</span>=<span class="number">16</span>／<span class="number">9</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1*5+2*2+3*l+4*1)／9=16／9</span><br></pre></td></tr></table></figure>
 <p>虽然链地址法要多费一些存储空间，但是彻底解决了“堆积”问题，大大提高了查找效率。</p>
 <h2 id="3）-再哈希法："><a href="#3）-再哈希法：" class="headerlink" title="3）. 再哈希法："></a>3）. 再哈希法：</h2><p><code>Hi=R Hi(key)</code>，R和Hi均是不同的哈希函数，即在同义词产生地址冲突时计算另一个哈希函数地址，直到冲突不再发生。这种方法不易产生聚集，但增加了计算的时间。</p>
 <h2 id="4）-建立一个公共溢出区"><a href="#4）-建立一个公共溢出区" class="headerlink" title="4）.建立一个公共溢出区"></a>4）.建立一个公共溢出区</h2><p>这也是处理冲突的一种方法。</p>
@@ -812,8 +812,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013/03/24/manual-install-Cloudera-hive-CDH/" rel="prev" title="手动安装Cloudera Hive CDH">
-                手动安装Cloudera Hive CDH <i class="fa fa-chevron-right"></i>
+              <a href="/2013/03/24/manual-install-Cloudera-Hadoop-CDH/" rel="prev" title="手动安装Hadoop集群">
+                手动安装Hadoop集群 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

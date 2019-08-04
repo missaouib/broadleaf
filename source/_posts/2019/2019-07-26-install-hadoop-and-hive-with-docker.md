@@ -1,6 +1,6 @@
 ---
 layout: post
-title: docker搭建hadoop和hive环境
+title: Docker搭建hadoop和hive环境
 category: hadoop
 tags: [hadoop]
 description:  文将介绍如何在docker上从零开始安装hadoop以及hive环境。本文不会介绍如何安装docker，也不会过多的介绍docker各个命令的具体含义，对docker完全不了解的同学建议先简单的学习一下docker再来看本教程。
@@ -22,7 +22,9 @@ RUN yum -y update && yum -y install openssh-server openssh-clients.x86_64 vim le
 ENV JAVA_HOME=/usr/lib/jvm/java
 
 #生成秘钥、公钥
-RUN [ ! -d ~/.ssh ] && ( mkdir ~/.ssh ) && ( chmod 600 ~/.ssh ) && [ ! -f ~/.ssh/id_rsa.pub ] && (yes|ssh-keygen -f ~/.ssh/id_rsa -t rsa -N "") && ( chmod 600 ~/.ssh/id_rsa.pub ) && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+RUN [ ! -d ~/.ssh ] && ( mkdir ~/.ssh ) && ( chmod 600 ~/.ssh ) && [ ! -f ~/.ssh/id_rsa.pub ] \
+&& (yes|ssh-keygen -f ~/.ssh/id_rsa -t rsa -N "") && ( chmod 600 ~/.ssh/id_rsa.pub ) \
+&& cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 #设置时区
 ENV TZ=Asia/Shanghai
@@ -158,6 +160,16 @@ hadoop fs -mkdir /test
 hadoop fs -ls /
 Found 1 items
 drwxr-xr-x   - root supergroup          0 2019-07-26 19:15 /test
+```
+
+hadoop默认的存储数据的目录为：/tmp/hadoop-${user}
+
+```bash
+$ ll /tmp/hadoop-root/dfs/
+total 0
+drwx------ 3 root root 40 Jul 26 19:39 data
+drwxr-xr-x 3 root root 40 Jul 26 19:39 name
+drwxr-xr-x 3 root root 40 Jul 26 19:39 namesecondary
 ```
 
 /usr/local/hadoop-3.1.2/sbin/目录下将start-yarn.sh，stop-yarn.sh两个文件顶部添加以下参数
@@ -343,7 +355,7 @@ select * from test;
 ```bash
 docker commit \
     --author "XXX <XXX@gmail.com>" \
-    --message "修改了默认网页" \
+    --message "XXXXX" \
     centos-hadoop \
     centos-hadoop:v2
 ```

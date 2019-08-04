@@ -141,14 +141,14 @@
 
 
   <meta name="description" content="在开始之前，请参考我博客中的关于如何安装cdh集群的文章，这里只做简单说明。因为只是为了测试，所以是在vagrant虚拟机中创建三个虚拟机搭建一个集群来安装cdh6。">
-<meta name="keywords" content="hadoop,cdh,vagrant">
+<meta name="keywords" content="cdh,hadoop,vagrant">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cloudera Manager安装Haddop集群">
 <meta property="og:url" content="http://javachen.github.io/2019/03/28/install-hadoop-cluster-with-cm6/index.html">
 <meta property="og:site_name" content="JavaChen Blog">
 <meta property="og:description" content="在开始之前，请参考我博客中的关于如何安装cdh集群的文章，这里只做简单说明。因为只是为了测试，所以是在vagrant虚拟机中创建三个虚拟机搭建一个集群来安装cdh6。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-29T12:22:07.814Z">
+<meta property="og:updated_time" content="2019-07-26T08:48:01.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cloudera Manager安装Haddop集群">
 <meta name="twitter:description" content="在开始之前，请参考我博客中的关于如何安装cdh集群的文章，这里只做简单说明。因为只是为了测试，所以是在vagrant虚拟机中创建三个虚拟机搭建一个集群来安装cdh6。">
@@ -490,7 +490,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-29 20:22:07" itemprop="dateModified" datetime="2019-06-29T20:22:07+08:00">2019-06-29</time>
+                <time title="修改时间：2019-07-26 16:48:01" itemprop="dateModified" datetime="2019-07-26T16:48:01+08:00">2019-07-26</time>
               
             
           </span>
@@ -549,7 +549,7 @@
 
       
         <p>在开始之前，请参考我博客中的关于如何安装cdh集群的文章，这里只做简单说明。因为只是为了测试，所以是在vagrant虚拟机中创建三个虚拟机搭建一个集群来安装cdh6。</p>
-<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>参考<a href="/images/04/06/install-cloudera-cdh-by-yum.html">使用yum源安装CDH Hadoop集群</a>文章中的第一部分。</p>
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>参考<a href="/2013/04/06/install-cloudera-cdh-by-yum">使用yum源安装CDH Hadoop集群</a>文章中的第一部分。</p>
 <h1 id="安装CM"><a href="#安装CM" class="headerlink" title="安装CM"></a>安装CM</h1><pre><code>sudo yum install cloudera-manager-server
 </code></pre><h1 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h1><p>这里使用的是postgresql</p>
 <pre><code>yum install postgresql-server
@@ -577,8 +577,8 @@ ALTER DATABASE scm SET standard_conforming_strings=off;  #for the Hive Metastore
 <p>如果你配置了<code>auto-TLS</code>，可以通过https登录<code>https://&lt;server_host&gt;:7183</code></p>
 <p>用户名admin，密码admin。</p>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
-<li><a href="/2014/02/23/create-virtualbox-by-vagrant.html">使用Vagrant创建虚拟机安装Hadoop</a></li>
-<li><a href="/images/03/24/manual-install-Cloudera-Hadoop-CDH.html">手动安装Cloudera Hadoop CDH</a></li>
+<li><a href="/2014/02/23/create-virtualbox-by-vagrant">使用Vagrant创建虚拟机安装Hadoop</a></li>
+<li><a href="/2013/03/24/manual-install-Cloudera-Hadoop-CDH">手动安装Cloudera Hadoop CDH</a></li>
 <li><a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/installation.html" target="_blank" rel="noopener">Cloudera Manager6安装文档</a></li>
 </ul>
 
@@ -667,9 +667,9 @@ ALTER DATABASE scm SET standard_conforming_strings=off;  #for the Hive Metastore
         
         <div class="post-tags">
           
-            <a href="/tags/hadoop/" rel="tag"><i class="fa fa-tag"></i> hadoop</a>
-          
             <a href="/tags/cdh/" rel="tag"><i class="fa fa-tag"></i> cdh</a>
+          
+            <a href="/tags/hadoop/" rel="tag"><i class="fa fa-tag"></i> hadoop</a>
           
             <a href="/tags/vagrant/" rel="tag"><i class="fa fa-tag"></i> vagrant</a>
           

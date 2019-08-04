@@ -141,7 +141,7 @@
 
 
   <meta name="description" content="记录 CDH Hadoop 集群上配置 Hive 集成 Kerberos 的过程，包括 Kerberos 的安装和 Hive 相关配置修改说明。">
-<meta name="keywords" content="hadoop,cdh,hive,kerberos">
+<meta name="keywords" content="cdh,hadoop,hive,kerberos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hive配置Kerberos认证">
 <meta property="og:url" content="http://javachen.github.io/2014/11/06/config-kerberos-in-cdh-hive/index.html">
@@ -556,7 +556,7 @@
 <li>运行用户：root</li>
 </ul>
 <p>集群各节点角色规划为：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.56.121        cdh1     NameNode、ResourceManager、HBase、Hive metastore、Impala Catalog、Impala statestore、Sentry </span><br><span class="line">192.168.56.122        cdh2     DataNode、SecondaryNameNode、NodeManager、HBase、Hive Server2、Impala Server</span><br><span class="line">192.168.56.123        cdh3     DataNode、HBase、NodeManager、Hive Server2、Impala Server</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.56.121        cdh1     NameNode、ResourceManager、HBase、Hive metastore、Impala Catalog、Impala statestore、Sentry </span><br><span class="line">192.168.56.122        cdh2     DataNode、SecondaryNameNode、NodeManager、HBase、Hive Server2、Impala Server</span><br><span class="line">192.168.56.123        cdh3     DataNode、HBase、NodeManager、Hive Server2、Impala Server</span><br></pre></td></tr></table></figure>
 <p>cdh1作为master节点，其他节点作为slave节点，hostname 请使用小写，要不然在集成 kerberos 时会出现一些错误。</p>
 <h1 id="2-生成-keytab"><a href="#2-生成-keytab" class="headerlink" title="2. 生成 keytab"></a>2. 生成 keytab</h1><p>在 cdh1 节点，即 KDC server 节点上执行下面命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/kerberos/krb5kdc/</span><br><span class="line"></span><br><span class="line">kadmin.local -q <span class="string">"addprinc -randkey hive/cdh1@JAVACHEN.COM "</span></span><br><span class="line">kadmin.local -q <span class="string">"addprinc -randkey hive/cdh2@JAVACHEN.COM "</span></span><br><span class="line">kadmin.local -q <span class="string">"addprinc -randkey hive/cdh3@JAVACHEN.COM "</span></span><br><span class="line"></span><br><span class="line">kadmin.local -q <span class="string">"xst  -k hive.keytab  hive/cdh1@JAVACHEN.COM "</span></span><br><span class="line">kadmin.local -q <span class="string">"xst  -k hive.keytab  hive/cdh2@JAVACHEN.COM "</span></span><br><span class="line">kadmin.local -q <span class="string">"xst  -k hive.keytab  hive/cdh3@JAVACHEN.COM "</span></span><br></pre></td></tr></table></figure>
@@ -578,9 +578,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kinit -k -t /etc/hive/conf/hive.keytab hive/cdh1@JAVACHEN.COM</span><br><span class="line">$ service hive-server2 start</span><br></pre></td></tr></table></figure>
 <p>然后查看日志，确认是否启动成功。</p>
 <h1 id="5-测试"><a href="#5-测试" class="headerlink" title="5. 测试"></a>5. 测试</h1><h2 id="Hive-CLI"><a href="#Hive-CLI" class="headerlink" title="Hive CLI"></a>Hive CLI</h2><p>在没有配置 kerberos 之前，想要通过 hive 用户运行 hive 命令需要执行sudo，现在配置了 kerberos 之后，不再需要 <code>sudo</code> 了，hive 会通过 ticket 中的用户去执行该命令：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ klist</span><br><span class="line">Ticket cache: FILE:/tmp/krb5cc_0</span><br><span class="line">Default principal: hdfs/dn5.h.lashou-inc.com@lashou_hadoop</span><br><span class="line"></span><br><span class="line">Valid starting     Expires           <span class="built_in"> Service </span>principal</span><br><span class="line">11/06/14 11:39:09  11/07/14 11:39:09  krbtgt/lashou_hadoop@lashou_hadoop</span><br><span class="line">  renew until 11/08/14 11:39:09</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Kerberos 4 ticket cache: /tmp/tkt0</span><br><span class="line">klist: You have <span class="literal">no</span> tickets cached</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ klist</span><br><span class="line">Ticket cache: FILE:/tmp/krb5cc_0</span><br><span class="line">Default principal: hdfs/dn5.h.lashou-inc.com@lashou_hadoop</span><br><span class="line"></span><br><span class="line">Valid starting     Expires            Service principal</span><br><span class="line">11/06/14 11:39:09  11/07/14 11:39:09  krbtgt/lashou_hadoop@lashou_hadoop</span><br><span class="line">  renew until 11/08/14 11:39:09</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Kerberos 4 ticket cache: /tmp/tkt0</span><br><span class="line">klist: You have no tickets cached</span><br></pre></td></tr></table></figure>
 <p>运行Hive cli：</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> hive</span><br><span class="line">hive&gt; <span class="keyword">set</span> system:user.name;</span><br><span class="line"><span class="keyword">system</span>:user.name=root</span><br><span class="line">hive&gt; create <span class="keyword">table</span> t(id <span class="comment">int)</span>;</span><br><span class="line">OK</span><br><span class="line">Time taken: <span class="number">2.183</span> seconds</span><br><span class="line">hive&gt; show tables;</span><br><span class="line">OK</span><br><span class="line">t</span><br><span class="line">Time taken: <span class="number">1.349</span> seconds</span><br><span class="line">hive&gt; select * from t;</span><br><span class="line">OK</span><br><span class="line">Time taken: <span class="number">1.116</span> seconds</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ hive</span><br><span class="line">hive&gt; set system:user.name;</span><br><span class="line">system:user.name=root</span><br><span class="line">hive&gt; create table t(id int);</span><br><span class="line">OK</span><br><span class="line">Time taken: 2.183 seconds</span><br><span class="line">hive&gt; show tables;</span><br><span class="line">OK</span><br><span class="line">t</span><br><span class="line">Time taken: 1.349 seconds</span><br><span class="line">hive&gt; select * from t;</span><br><span class="line">OK</span><br><span class="line">Time taken: 1.116 seconds</span><br></pre></td></tr></table></figure>
 <p>可以看到在获取了 hdfs 用户的 ticket 之后，进入 hive cli 可以执行查看表、查询数据等命令。当然，你也可以获取 hive 的 ticket 之后再来运行 hive 命令。</p>
 <p>另外，如果你想通过普通用户来访问 hive，则需要 kerberos 创建规则和导出 ticket，然后把这个 ticket 拷贝到普通用户所在的家目录，在获取 ticket 了之后，再运行 hive 命令即可。</p>
 <h2 id="JDBC-客户端"><a href="#JDBC-客户端" class="headerlink" title="JDBC 客户端"></a>JDBC 客户端</h2><p>客户端通过 jdbc 代码连结 hive-server2：</p>
@@ -684,9 +684,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/hadoop/" rel="tag"><i class="fa fa-tag"></i> hadoop</a>
-          
             <a href="/tags/cdh/" rel="tag"><i class="fa fa-tag"></i> cdh</a>
+          
+            <a href="/tags/hadoop/" rel="tag"><i class="fa fa-tag"></i> hadoop</a>
           
             <a href="/tags/hive/" rel="tag"><i class="fa fa-tag"></i> hive</a>
           
@@ -758,8 +758,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/11/06/config-kerberos-in-cdh-impala/" rel="next" title="Impala配置Kerberos认证">
-                <i class="fa fa-chevron-left"></i> Impala配置Kerberos认证
+              <a href="/2014/11/05/config-kerberos-in-cdh-yarn/" rel="next" title="YARN配置Kerberos认证">
+                <i class="fa fa-chevron-left"></i> YARN配置Kerberos认证
               </a>
             
           </div>
@@ -768,8 +768,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/11/12/config-ldap-with-kerberos-in-cdh-hadoop/" rel="prev" title="Hadoop配置LDAP集成Kerberos">
-                Hadoop配置LDAP集成Kerberos <i class="fa fa-chevron-right"></i>
+              <a href="/2014/11/06/config-kerberos-in-cdh-impala/" rel="prev" title="Impala配置Kerberos认证">
+                Impala配置Kerberos认证 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

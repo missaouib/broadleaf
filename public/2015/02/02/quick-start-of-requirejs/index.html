@@ -557,7 +557,7 @@
 <li>2）管理模块之间的依赖性，便于代码的编写和维护。</li>
 </ul>
 <h2 id="加载-Require-JS"><a href="#加载-Require-JS" class="headerlink" title="加载 Require.JS"></a>加载 Require.JS</h2><p>去<a href="http://requirejs.org/docs/download.html" target="_blank" rel="noopener">官方网站</a>下载最新版本，然后创建一个工程，目录如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">project-directory</span><br><span class="line">├── project.html</span><br><span class="line">└── scripts</span><br><span class="line">    ├── lib</span><br><span class="line">    │   ├── <span class="selector-tag">a</span>.js</span><br><span class="line">    │   ├── <span class="selector-tag">b</span>.js</span><br><span class="line">    │   ├── backbone.js</span><br><span class="line">    │   └── underscore.js</span><br><span class="line">    ├── main.js</span><br><span class="line">    └── require.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">project-directory</span><br><span class="line">├── project.html</span><br><span class="line">└── scripts</span><br><span class="line">    ├── lib</span><br><span class="line">    │   ├── a.js</span><br><span class="line">    │   ├── b.js</span><br><span class="line">    │   ├── backbone.js</span><br><span class="line">    │   └── underscore.js</span><br><span class="line">    ├── main.js</span><br><span class="line">    └── require.js</span><br></pre></td></tr></table></figure>
 <p>编写 project.html 内容，引入 Require.JS 文件：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>My Sample Project<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- data-main attribute tells require.js to load</span></span><br><span class="line"><span class="comment">             scripts/main.js after require.js loads. --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">data-main</span>=<span class="string">"scripts/main"</span> <span class="attr">src</span>=<span class="string">"scripts/require.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>My Sample Project<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>加载 scripts/require.js 这个文件，也可能造成网页失去响应。解决办法有两个，一个是把它放在网页底部加载，另一个是写成下面这样：</p>
@@ -811,8 +811,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/01/30/raw-sql-query-in-django/" rel="next" title="Django中SQL查询">
-                <i class="fa fa-chevron-left"></i> Django中SQL查询
+              <a href="/2015/02/02/build-angularjs-app-with-yeoman/" rel="next" title="用Yeoman构建AngularJS项目">
+                <i class="fa fa-chevron-left"></i> 用Yeoman构建AngularJS项目
               </a>
             
           </div>
@@ -821,8 +821,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/02/02/build-angularjs-app-with-yeoman/" rel="prev" title="用Yeoman构建AngularJS项目">
-                用Yeoman构建AngularJS项目 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/02/03/spark-programming-guide/" rel="prev" title="Spark编程指南笔记">
+                Spark编程指南笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

@@ -556,15 +556,15 @@
 </ul>
 <h1 id="2-架构"><a href="#2-架构" class="headerlink" title="2. 架构"></a>2. 架构</h1><h1 id="3-Llama-安装"><a href="#3-Llama-安装" class="headerlink" title="3. Llama 安装"></a>3. Llama 安装</h1><h2 id="3-1-安装-llama"><a href="#3-1-安装-llama" class="headerlink" title="3.1 安装 llama"></a>3.1 安装 llama</h2><p>Llama 需要安装在装有 Yarn 的节点上。</p>
 <p>在 rhel 系统上安装：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum <span class="keyword">install</span> llama-<span class="keyword">master</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install llama-master</span><br></pre></td></tr></table></figure>
 <h2 id="3-2-配置"><a href="#3-2-配置" class="headerlink" title="3.2 配置"></a>3.2 配置</h2><blockquote>
 <p>Llama 只能和 Yarn 配合工作，不能用于 MRv1。</p>
 </blockquote>
 <p>Llama 的配置文件在 /etc/llama/conf/ 目录，llama-site.xml 默认配置在 <a href="http://cloudera.github.io/llama/llama-site.html" target="_blank" rel="noopener">http://cloudera.github.io/llama/llama-site.html</a>。</p>
 <h2 id="3-3-启动和停止"><a href="#3-3-启动和停止" class="headerlink" title="3.3 启动和停止"></a>3.3 启动和停止</h2><p>启动：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo<span class="built_in"> service </span>llama start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service llama start</span><br></pre></td></tr></table></figure>
 <p>停止：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo<span class="built_in"> service </span>llama stop</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service llama stop</span><br></pre></td></tr></table></figure>
 <h2 id="3-4-配置-HA"><a href="#3-4-配置-HA" class="headerlink" title="3.4 配置 HA"></a>3.4 配置 HA</h2><p>Llama 使用 Zookeeper 来实现 HA，任一时刻，只有一个 Llama-master 实例是 active的以确保资源不会被分区。</p>
 <p>为了从 Yarn 获取资源，Llama 启动 YARN application 并且运行未管理的ApplicationMaster。当一个 Llama 实例宕掉的时候，分配给该实例启动的 application 的所有资源将会被回首，直到这些 application 超时（默认超时时间为10分钟）。当 Llama 运行失败的时候，这些资源将会被杀掉他启动的application的 Llama 回收。</p>
 <p>HA 相关配置参数在 /etc/llama/conf/llama-site.xml：</p>

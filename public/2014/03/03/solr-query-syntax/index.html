@@ -591,14 +591,14 @@
 </ol>
 </li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/solr/primary/select?q=*:*</span><br></pre></td></tr></table></figure>
 <ul>
 <li><ol start="2">
 <li>限定返回字段</li>
 </ol>
 </li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/solr/primary/select?q=*:*&amp;fl=productId</span><br></pre></td></tr></table></figure>
 <p>表示：查询所有记录，只返回productId字段</p>
 <ul>
 <li><ol start="3">
@@ -606,7 +606,7 @@
 </ol>
 </li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;rows=</span><span class="number">6</span>&amp;start=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/solr/primary/select?q=*:*&amp;fl=productId&amp;rows=6&amp;start=0</span><br></pre></td></tr></table></figure>
 <p>表示：查询前六条记录，只返回productId字段</p>
 <ul>
 <li><ol start="4">
@@ -614,7 +614,7 @@
 </ol>
 </li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;rows=</span><span class="number">6</span>&amp;start=<span class="number">0</span>&amp;fq=<span class="symbol">category:</span><span class="number">2002</span>&amp;fq=<span class="symbol">namespace:</span>d&amp;fl=productId+category&amp;fq=<span class="symbol">en_US_city_i:</span><span class="number">1101</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/solr/primary/select?q=*:*&amp;fl=productId&amp;rows=6&amp;start=0&amp;fq=category:2002&amp;fq=namespace:d&amp;fl=productId+category&amp;fq=en_US_city_i:1101</span><br></pre></td></tr></table></figure>
 <p>表示：查询category=2002、<code>en_US_city_i=110</code>以及namespace=d的前六条记录，只返回productId和category字段</p>
 <ul>
 <li><ol start="5">
@@ -622,7 +622,7 @@
 </ol>
 </li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;rows=</span><span class="number">6</span>&amp;start=<span class="number">0</span>&amp;fq=<span class="symbol">category:</span><span class="number">2002</span>&amp;fq=<span class="symbol">namespace:</span>d&amp;sort=category_2002_sort_i+asc</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/solr/primary/select?q=*:*&amp;fl=productId&amp;rows=6&amp;start=0&amp;fq=category:2002&amp;fq=namespace:d&amp;sort=category_2002_sort_i+asc</span><br></pre></td></tr></table></figure>
 <p>表示：查询category=2002以及namespace=d并按<code>category_2002_sort_i</code>升序排序的前六条记录，只返回productId字段</p>
 <ul>
 <li><ol start="6">
@@ -631,7 +631,7 @@
 </li>
 </ul>
 <p>现实分组统计结果</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;fq=category</span><span class="symbol">:</span><span class="number">2002</span>&amp;facet=<span class="keyword">true</span>&amp;facet.field=en_US_county_i&amp;facet.field=en_US_hotelType_s&amp;facet.field=price_p&amp;facet.field=heatRange_i</span><br><span class="line"></span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost:8080/solr</span><span class="regexp">/primary/select</span>?q=*<span class="symbol">:*&amp;fl=productId&amp;fq=category</span><span class="symbol">:</span><span class="number">2002</span>&amp;facet=<span class="keyword">true</span>&amp;facet.field=en_US_county_i&amp;facet.field=en_US_hotelType_s&amp;facet.field=price_p&amp;facet.field=heatRange_i&amp;facet.query=<span class="symbol">price_p:</span>[<span class="number">300.00000</span>+TO+*]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/solr/primary/select?q=*:*&amp;fl=productId&amp;fq=category:2002&amp;facet=true&amp;facet.field=en_US_county_i&amp;facet.field=en_US_hotelType_s&amp;facet.field=price_p&amp;facet.field=heatRange_i</span><br><span class="line"></span><br><span class="line">http://localhost:8080/solr/primary/select?q=*:*&amp;fl=productId&amp;fq=category:2002&amp;facet=true&amp;facet.field=en_US_county_i&amp;facet.field=en_US_hotelType_s&amp;facet.field=price_p&amp;facet.field=heatRange_i&amp;facet.query=price_p:[300.00000+TO+*]</span><br></pre></td></tr></table></figure>
 <h1 id="高亮"><a href="#高亮" class="headerlink" title="高亮"></a>高亮</h1><p><code>hl-highlight</code>，<code>h1=true</code>，表示采用高亮。可以用<code>h1.fl=field1,field2</code> 来设定高亮显示的字段。</p>
 <ul>
 <li><code>hl.fl</code>:用空格或逗号隔开的字段列表。要启用某个字段的highlight功能，就得保证该字段在schema中是stored。如果该参数未被给出，那么就会高 亮默认字段 standard handler会用df参数，dismax字段用qf参数。你可以使用星号去方便的高亮所有字段。如果你使用了通配符，那么要考虑启用 。</li>
@@ -812,8 +812,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/03/09/hbase-note-about-hregionserver-startup/" rel="prev" title="HBase源码：HRegionServer启动过程">
-                HBase源码：HRegionServer启动过程 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/03/09/hbase-note-about-hmaster-startup/" rel="prev" title="HBase源码：HMaster启动过程">
+                HBase源码：HMaster启动过程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
