@@ -4,4 +4,4 @@ hexo d
 
 git add .
 git commit -am update
-gpm
+git push origin master
