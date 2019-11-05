@@ -1,4 +1,5 @@
 /* ===============================custom.css ================================== */
+
 /* 设置菜单栏icon偏移位置 */
 .menu-item-link .iconfont::before {
     padding-right: 3px;
@@ -51,3 +52,9 @@
     background-color: red;
     color: #fff;
 }
+
+/*高亮代码不显示行号*/
+.post .post-content .highlight>.chroma .lntd:first-child {
+    display: none;
+}
+

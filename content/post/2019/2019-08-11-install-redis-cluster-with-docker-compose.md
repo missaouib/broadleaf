@@ -2,7 +2,7 @@
 layout: post
 title: Docker Compose安装Redis集群
 date: 2019-08-11T08:00:00+08:00
-categories: [ devops ]
+categories: [ docker ]
 tags: [docker,redis]
 description:  Docker Compose安装Redis集群
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: Vagrant搭建Docker开发环境
 date: 2019-08-04T08:00:00+08:00
-categories: [ devops ]
+categories: [ docker ]
 tags: [docker,vagrant]
 description:  Vagrant搭建Docker开发环境
 

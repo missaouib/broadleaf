@@ -2,8 +2,8 @@
 layout: post
 title: Docker搭建hadoop和hive环境
 date: 2019-07-26T08:00:00+08:00
-categories: [ hadoop ]
-tags: [hadoop]
+categories: [ docker ]
+tags: [hadoop,docker]
 description:  文将介绍如何在docker上从零开始安装hadoop以及hive环境。本文不会介绍如何安装docker，也不会过多的介绍docker各个命令的具体含义，对docker完全不了解的同学建议先简单的学习一下docker再来看本教程。
 ---
 

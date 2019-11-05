@@ -3,7 +3,7 @@ layout: post
 
 title: 使用Docker安装MySql
 date: 2019-07-16T08:00:00+08:00
-categories: [ devops ]
+categories: [ docker ]
 tags: [mysql,docker]
 description:  使用Docker安装MySql
 ---
