@@ -322,4 +322,4 @@ echo 'Why can'\''t I write '"'"'s between single quotes'   # Why can't I write '
 
 # 参考文章
 
-- [高级Bash脚本编程指南-中文版](http://blog.javachen.com/static/doc/abs-guide/html/index.html)
+- [高级Bash脚本编程指南-中文版](http://blog.javachen.space/static/doc/abs-guide/html/index.html)

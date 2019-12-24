@@ -372,7 +372,7 @@ OPTIONS (
 
 # 访问 Avro
 
-这不是 Spark 内置的数据源，要想访问 Avro 数据源 ，需要做些处理。这部分内容可以参考 [如何将Avro数据加载到Spark](http://blog.javachen.com/2015/03/24/how-to-load-some-avro-data-into-spark.html) 和 [Spark with Avro](http://www.infoobjects.com-with-avro.html)。
+这不是 Spark 内置的数据源，要想访问 Avro 数据源 ，需要做些处理。这部分内容可以参考 [如何将Avro数据加载到Spark](http://blog.javachen.space/2015/03/24/how-to-load-some-avro-data-into-spark.html) 和 [Spark with Avro](http://www.infoobjects.com-with-avro.html)。
 
 # 访问 Cassandra
 

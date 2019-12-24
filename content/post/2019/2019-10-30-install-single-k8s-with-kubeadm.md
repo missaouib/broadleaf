@@ -224,9 +224,9 @@ sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-# 隔离主节点
+# 使master node参与工作负载
 
-在集群模式，不会在master上运行pod，如果你想在主节点上运行pod，比如 说一个单机的kubernetes集群，运行：
+使用kubeadm初始化的集群，出于安全考虑master node不参与工作负载，也就是说我们无法在master node上运行服务。 这里搭建的环境目前只有一个master node，可以使用下面的命令使master node参与工作负载。
 
 ```bash
 kubectl taint nodes --all node-role.kubernetes.io/master-
@@ -308,6 +308,26 @@ k8s-kube-node1   Ready    master   13h   v1.16.2
 NAME    STATUS   ROLES    AGE     VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE                KERNEL-VERSION              CONTAINER-RUNTIME
 k8s-kube-node1   Ready    master   3m23s   v1.16.2   192.168.56.120   <none>        CentOS Linux 7 (Core)   3.10.0-957.5.1.el7.x86_64   docker://1.13.1
 ```
+
+## 测试DNS
+
+```bash
+kubectl run curl --image=radial/busyboxplus:curl -i --tty
+```
+
+进入后执行nslookup kubernetes.default确认解析正常。
+
+```bash
+[ root@curl-2421989462-vldmp:/ ]$ nslookup kubernetes.default
+```
+
+测试OK后，删除掉curl这个Pod。
+
+```bash
+kubectl delete deploy curl
+```
+
+
 
 # kube-proxy 开启 ipvs
 
@@ -479,6 +499,13 @@ ip link delete tunl0
 
 以上是使用RKE安装单节点k8s的记录，其实稍加修改配置文件，就可以安装集群。
 
-
-
 这里，我把上面的所有命令整理了一下，提交到了 [github](https://github.com/javachen/vagrant/tree/master/k8s-kube-single)，供大家参考。
+
+
+
+# 参考文章
+
+- [Install Docker on CentOS](https://docs.docker.com/engine/installation/linux/centos/)
+- [Installing Kubernetes on Linux with kubeadm](https://kubernetes.io/docs/getting-started-guides/kubeadm/)
+- [kubeadm reference](https://kubernetes.io/docs/admin/kubeadm/)
+- [Installing Addons](https://kubernetes.io/docs/admin/addons/)

@@ -1,25 +1,16 @@
 ---
 layout: post
-
 title:  安装Azkaban
 date: 2014-08-25T08:00:00+08:00
-
-description: Azkaban 是由 Linkedin 开源的一个批量工作流任务调度器。用于在一个工作流内以一个特定的顺序运行一组工作和流程。Azkaban 定义了一种 KV 文件格式来建立任务之间的依赖关系，并提供一个易于使用的 web 用户界面维护和跟踪你的工作流。
-
-keywords:  
-
+keywords: azkaban 
 categories: [  devops ]
-
 tags: [azkaban]
-
-published: true
-
 ---
 
 Azkaban 是由 Linkedin 开源的一个批量工作流任务调度器。用于在一个工作流内以一个特定的顺序运行一组工作和流程。Azkaban 定义了一种 KV 文件格式来建立任务之间的依赖关系，并提供一个易于使用的 web 用户界面维护和跟踪你的工作流。
 
-Azkaban 官网地址：<http://azkaban.github.io/>
-Azkaban 的下载地址：<http://azkaban.github.io/downloads.html>
+- Azkaban 官网地址：<http://azkaban.github.io/>
+- Azkaban 的下载地址：<http://azkaban.github.io/downloads.html>
 
 Azkaban 包括三个关键组件：
 
@@ -34,23 +25,35 @@ Azkaban 包括三个关键组件：
 - 一种是 standalone 的 “solo-server” 模式；
 - 另一种是两个 server 的模式，分别为 AzkabanWebServer 和 AzkabanExecutorServer。
 
-这里主要介绍第二种模式的安装方法。
+这里主要介绍第二种模式的安装方法，安装的版本为3.80.1。
 
-# 1. 安装过程
+# 编译源码
 
-## 1.1 安装 MySql
+```bash
+wget https://github.com/azkaban/azkaban/archive/3.80.1.zip
+
+./gradlew build
+./gradlew installDist
+```
+
+编译后的文件：
+
+```bash
+azkaban-exec-server/build/distributions/azkaban-exec-server-0.1.0-SNAPSHOT.zip
+azkaban-web-server/build/distributions/azkaban-web-server-0.1.0-SNAPSHOT.zip
+```
+
+# 安装 MySql
 
 目前 Azkaban 只支持 MySql ，故需安装 MySql 服务器，安装 MySql 的过程这里不作介绍。
 
 安装之后，创建 azkaban 数据库，并创建 azkaban 用户，密码为 azkaban，并设置权限。
 
 ~~~sql
-# Example database creation command, although the db name doesn't need to be 'azkaban'
 mysql> CREATE DATABASE azkaban;
-# Example database creation command. The user name doesn't need to be 'azkaban'
 mysql> CREATE USER 'azkaban'@'%' IDENTIFIED BY 'azkaban';
-# Replace db, username with the ones created by the previous steps.
-mysql> GRANT SELECT,INSERT,UPDATE,DELETE ON azkaban.* to 'azkaban'@'%' WITH GRANT OPTION;
+mysql> GRANT all ON azkaban.* to 'azkaban'@'%' WITH GRANT OPTION;
+mysql> flush privileges;
 ~~~
 
 修改 `/etc/my.cnf` 文件，设置 `max_allowed_packet` 值：
@@ -63,21 +66,32 @@ max_allowed_packet=1024M
 
 然后重启 MySql。
 
-解压缩 azkaban-sql-2.5.0.tar.gz文件，并进入到 azkaban-sql-script目录，然后进入 mysql 命令行模式：
+# 安装 azkaban-web-server
 
-~~~bash
-$ mysql -uazkaban -pazkaban
-mysql> use azkaban
-mysql> source create-all-sql-2.5.0.sql
-~~~
+解压缩 azkaban-web-server-0.1.0-SNAPSHOT.zip。
 
-## 1.2 安装 azkaban-web-server
+```bash
+unzip azkaban-web-server-0.1.0-SNAPSHOT.zip
+mv azkaban-web-server-0.1.0-SNAPSHOT /opt/azkaban-web-server
+```
 
-解压缩 azkaban-web-server-2.5.0.tar.gz，创建 SSL 配置，命令：`keytool -keystore keystore -alias jetty -genkey -keyalg RSA`
+创建 SSL 配置，命令：
 
-完成上述工作后，将在当前目录生成 keystore 证书文件，将 keystore 考贝到 azkaban web 目录中。
+```bash
+keytool -keystore keystore -alias jetty -genkey -keyalg RSA
+```
 
-修改 azkaban web 服务器配置，主要包括：
+将在当前目录生成 keystore 证书文件。
+
+
+
+将 keystore 考贝到 azkaban web 目录中
+
+```bash
+mv keystore /opt/azkaban-web-server
+```
+
+修改 azkaban web 服务器配置conf/azkaban.properties，主要包括：
 
 a. 修改时区和首页名称:
 
@@ -112,25 +126,44 @@ jetty.maxThreads=25
 jetty.ssl.port=8443
 jetty.port=8081
 jetty.keystore=keystore
-jetty.password=redhat
-jetty.keypassword=redhat
+jetty.password=123456
+jetty.keypassword=123456
 jetty.truststore=keystore
-jetty.trustpassword=redhat
+jetty.trustpassword=123456
 ~~~
 
 d. 修改邮件设置（可选）
 
 ~~~properties
 # mail settings
-mail.sender=admin@javachen.com
-mail.host=javachen.com
+mail.sender=admin@javachen.space
+mail.host=javachen.space
 mail.user=admin
 mail.password=admin
 ~~~
 
-## 1.3 安装 azkaban-executor-server
+e. 解压缩azkaban-db-0.1.0-SNAPSHOT.zip，然后进入 mysql 命令行模式：
 
-解压缩 azkaban-executor-server-2.5.0.tar.gz，然后修改配置文件，包括：
+~~~bash
+unzip azkaban-db-0.1.0-SNAPSHOT.zip
+
+$ mysql -uazkaban -pazkaban
+mysql> use azkaban
+mysql> source azkaban-db-0.1.0-SNAPSHOT/create-all-sql-0.1.0-SNAPSHOT.sql
+~~~
+
+# 安装 azkaban-exec-server
+
+解压缩 azkaban-exec-server-0.1.0-SNAPSHOT.zip
+
+```bash
+unzip azkaban-exec-server-0.1.0-SNAPSHOT.zip
+mv azkaban-exec-server-0.1.0-SNAPSHOT /opt/azkaban-exec-server
+```
+
+
+
+然后修改配置文件conf/azkaban.properties，包括：
 
 a. 修改时区为：`default.timezone.id=Asia/Shanghai`
 
@@ -146,7 +179,7 @@ mysql.password=azkaban
 mysql.numconnections=100
 ~~~
 
-## 1.4 用户设置
+# 用户设置
 
 进入 azkaban web 服务器 conf 目录，修改 azkaban-users.xml ，增加管理员用户：
 
@@ -155,26 +188,34 @@ mysql.numconnections=100
         <user username="azkaban" password="azkaban" roles="admin" groups="azkaban" />
         <user username="metrics" password="metrics" roles="metrics"/>
         <user username="admin" password="admin" roles="admin,metrics" />
+  
         <role name="admin" permissions="ADMIN" />
         <role name="metrics" permissions="METRICS"/>
 </azkaban-users>
 ~~~
 
-## 1.5 启动服务
+# 启动服务
+
+azkaban-exec-server，需要在 azkaban-exec-server 目录下执行下面命令：
+
+~~~bash
+sh bin/azkaban-exec-start.sh
+~~~
+
+查看启动状态：
+
+```bash
+$ curl -G "localhost:$(<./executor.port)/executor?action=activate" && echo
+{"status":"success"}
+```
 
 azkaban-web-server，需要在 azkaban-web-server 目录下执行下面命令：
 
 ~~~bash
-sh bin/azkaban-web-start.sh
+sh bin/start-web.sh
 ~~~
 
-azkaban-executor-server，需要在 azkaban-executor-server 目录下执行下面命令：
-
-~~~bash
-sh bin/azkaban-executor-start.sh
-~~~
-
-## 1.6 配置插件
+# 配置插件
 
 下载 [HDFS Browser](https://s3.amazonaws.com/azkaban2/azkaban-plugins/2.5.0/azkaban-hdfs-viewer-2.5.0.tar.gz) 插件，解压然后重命名为 hdfs，然后将其拷贝到 azkaban-web-server/plugins/viewer 目录下。
 
@@ -188,6 +229,10 @@ sh bin/azkaban-executor-start.sh
 >
 >在实际使用中，这些插件都没有配置成功，故最后的生产环境没有使用这些插件，而是基于最基本的 command 或 script 方式来编写作业。
 
-## 1.7 生产环境使用
+# Docker安装
 
-这部分内容详细说明见 [当前数据仓库建设过程](/images/10/23/hive-warehouse-in-2014.html) 一文中的任务调度这一章节内容。
+参考：
+
+- https://gitee.com/datatech/docker-azkaban
+- https://github.com/jfim/data-platform-demo/blob/master/dockerfiles/Dockerfile-azkaban
+- https://github.com/wilson-lauw/azkaban

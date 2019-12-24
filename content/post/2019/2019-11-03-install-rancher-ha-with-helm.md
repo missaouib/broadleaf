@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 使用Helm3安装Rancher HA集群
+title: 使用Helm安装Rancher HA集群
 date: 2019-11-03T23:00:00+08:00
 categories: [ kubernetes ]
 tags: [kubernetes,helm,rancher]
@@ -35,7 +35,7 @@ k8s集群各个组件版本：
 | RKE        | v0.3.2                        |                |
 | Docker     | v19.03.4                      |                |
 | Kubernetes | v1.16.2                       |                |
-| Helm       | 3                             |                |
+| Helm       | v3.0.0                        |                |
 | Ceph       | v14.2.4                       |                |
 
 集群规划：
@@ -65,14 +65,14 @@ helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 检查rancher chart仓库可用
 
 ```
-helm search rancher
+helm search repo rancher
 ```
 
 # SSL证书配置
 
 Rancher Server设计默认需要开启SSL/TLS配置来保证安全，将ssl证书以Kubernetes Secret卷的形式传递给Rancher Server或Ingress Controller。首先创建证书密文，以便Rancher和Ingress Controller可以使用。
 
-根据ingress.tls.source的值，默认有三种方式：
+根据ingress.tls.source的值，默认有三种方式 ：
 
 | 配置                                                         | CHART参数     | 描述                                                    | 是否需要CERT-MANAGER |
 | ------------------------------------------------------------ | ------------- | ------------------------------------------------------- | -------------------- |
@@ -80,65 +80,35 @@ Rancher Server设计默认需要开启SSL/TLS配置来保证安全，将ssl证�
 | [Let’s Encrypt](https://rancher.com/docs/rancher/v2.x/en/installation/ha/helm-rancher/#let-s-encrypt) | `letsEncrypt` | 使用 [Let’s Encrypt](https://letsencrypt.org/) 签名证书 | 是                   |
 | [Certificates from Files](https://rancher.com/docs/rancher/v2.x/en/installation/ha/helm-rancher/#certificates-from-files) | `secret`      | 私有自己签名的证书                                      | 否                   |
 
+建议使用`letsEncrypt`方式安装证书，详细内容请参考 [Rancher使用letsEncrypt生成证书并做DNS01校验](/2019/11/07/rancher-tls-with-letsencrypt-dns01/)
+
 ## 安装cert-manager
 
-当ingress.tls.source值为rancher或者letsEncrypt时，需要安装cert-manager
-
-### 使用kubectl安装
+ 使用kubectl安装
 
 ```bash
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v0.11.0/cert-manager.yaml
-```
-
-### 使用helm安装
-
-```bash
-# Install the CustomResourceDefinition resources separately
-kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.11/deploy/manifests/00-crds.yaml
-
-# Create the namespace for cert-manager
 kubectl create namespace cert-manager
 
-# Add the Jetstack Helm repository
-helm repo add jetstack https://charts.jetstack.io
-
-# Update your local Helm chart repository cache
-helm repo update
-
-# Install the cert-manager Helm chart
-helm install \
-  --name cert-manager \
-  --namespace cert-manager \
-  --version v0.11.0 \
-  jetstack/cert-manager
-```
-
-### 查看状态
-
-```bash
-kubectl get pods --namespace cert-manager
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.12.0/cert-manager.yaml
 ```
 
 ## 使用Rancher生成证书
 
 ```bash
-helm install rancher-stable/rancher \
-  --name rancher \
-  --version v2.3.2  \
+kubectl create namespace cattle-system
+helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
-  --set hostname=rancher.javachen.com
+  --set hostname=rancher.javachen.space
 ```
 
 默认，tls=ingress，当ingress.tls.source=rancher，就会创建一个CA类型的Issuer，一个Secret tls-rancher。
 
-## Let’s Encrypt生成证书
+## Lets Encrypt生成证书
 
 ```bash
-helm install rancher-stable/rancher \
-  --name rancher \
-  --version v2.3.2  \
+helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
-  --set hostname=rancher.javachen.com\
+  --set hostname=rancher.javachen.space\
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=junecloud@163.com
 ```
@@ -158,24 +128,24 @@ helm install rancher-stable/rancher \
 得到证书之后，将服务证书和 CA 中间证书链合并到 tls.crt，将私钥复制到或者重命名为 tls.key；在证书所在目录执行下面命令，以acme.sh生成的证书为例：
 
 ```bash
-cd ~/.acme.sh/javachen.com
+cd ~/.acme.sh/javachen.space
 
 #将服务证书和 CA 中间证书链合并到 tls.crt
 cp fullchain.cer tls.crt
 
 #将私钥复制到或者重命名为 tls.key
-cp javachen.com.key tls.key
+cp javachen.space.key tls.key
 
 #验证证书 
 openssl verify -CAfile ca.cer tls.crt  
 
-openssl x509 -in  wesine.com.cn.cer -noout -text
+openssl x509 -in  javachen.space.cer -noout -text
 openssl x509 -in  ca.cer -noout -text
 #不加CA证书验证
-openssl s_client -connect rancher.test.wesine.com.cn:443 -servername rancher.test.wesine.com.cn
+openssl s_client -connect rancher.javachen.space:443 -servername rancher.javachen.space
 
 #加CA证书验证
-openssl s_client -connect rancher.test.wesine.com.cn:443 -servername rancher.test.wesine.com.cn -CAfile fullchain.cer
+openssl s_client -connect rancher.javachen.space:443 -servername rancher.javachen.space -CAfile fullchain.cer
 ```
 
 2、使用`kubectl`创建`tls`类型的`secrets`；
@@ -189,6 +159,9 @@ kubectl -n cattle-system create \
     secret tls tls-rancher-ingress \
     --cert=./tls.crt \
     --key=./tls.key
+
+#如果这个证书有ca，同样需要为ca创建secret
+kubectl -n cattle-system create secret generic tls-ca --from-file=ca.cer
 ```
 
 3、安装rancher
@@ -196,17 +169,17 @@ kubectl -n cattle-system create \
 创建证书对应的域名需要与hostname选项匹配，否则ingress将无法代理访问Rancher
 
 ```bash
-helm install rancher-stable/rancher \
-  --name rancher \
-  --version v2.3.2  \
+helm install  rancher rancher-stable/rancher \
   --namespace cattle-system \
-  --set hostname=rancher.javachen.com\
+  --set hostname=rancher.javachen.space\
   --set ingress.tls.source=secret 
 ```
 
 ### 使用自签名证书安装
 
-1、如果没有自签名ssl证书，可以参考 https://www.yuque.com/javachen/micoservice/mtfme4，一键生成ssl证书；
+根据[7. Configure Certificates](https://rancher.com/docs/rancher/v2.x/en/installation/ha-server-install/#7-configure-certificates)配置证书，这里用的是[自签名证书的方案](https://rancher.com/docs/rancher/v2.x/en/installation/ha-server-install/#option-a-bring-your-own-certificate-self-signed)。
+
+1、如果没有自签名ssl证书，可以参考 https://www.yuque.com/javachen/micoservice/mtfme4 一键生成ssl证书，或者参考[如何创建自签名的 SSL 证书](https://www.jianshu.com/p/e5f46dcf4664)“ 创建私有CA，然后用该 CA 给证书进行签名”章节得到`ca.crt`、`server.crt`、`server.key`
 
 
 2、一键生成ssl自签名证书脚本将自动生成tls.crt、tls.key、cacerts.pem三个文件，文件名称不能修改。如果使用您自己生成的自签名ssl证书，则需要将服务证书和CA中间证书链合并到tls.crt文件中,将私钥复制到或者重命名为tls.key文件，将CA证书复制到或者重命名为cacerts.pem。
@@ -233,11 +206,9 @@ kubectl -n cattle-system create secret generic tls-ca --from-file=cacerts.pem
 创建证书对应的域名需要与hostname选项匹配，否则ingress将无法代理访问Rancher
 
 ```bash
-helm install rancher-stable/rancher \
-  --name rancher \
-  --version v2.3.2  \
+helm install --name rancher rancher-stable/rancher \
   --namespace cattle-system \
-  --set hostname=rancher.javachen.com\
+  --set hostname=rancher.javachen.space\
   --set ingress.tls.source=secret \
   --set privateCA=true 
 ```
@@ -336,17 +307,22 @@ stream {
 nginx -s reload
 ```
 
-4、将域名解析到nginx机器IP，然后浏览器访问 https://rancher.javachen.com 即可访问管理平台，稍等片刻就好了。
+4、将域名解析到nginx机器IP，然后浏览器访问 https://rancher.javachen.space 即可访问管理平台，稍等片刻就好了。
 
 ### 安装Rancher
 
 主要是设置使用外部的负载均衡：
 
 ```bash
-`helm install rancher-latest/rancher \  --name rancher \  --version v2.3.1  \  --namespace cattle-system \  --set hostname=rancher.javachen.com\  --set tls=external\  --set privateCA=true`
+helm install rancher-stable/rancher \  
+	--name rancher \  
+	--namespace cattle-system \  
+	--set hostname=rancher.javachen.space\  
+	--set tls=external\  
+	--set privateCA=true
 ```
 
-## 七层负载均衡部署`
+## 七层负载均衡部署
 
 ![image.png](https://tva1.sinaimg.cn/large/006y8mN6ly1g8ls3vv8jcj30yc0elmyy.jpg)
 
@@ -387,7 +363,7 @@ http {
     }
     server {
         listen 443 ssl http2; # 如果是升级或者全新安装v2.2.2,需要禁止http2，其他版本不需修改。
-        server_name rancher.javachen.com;
+        server_name rancher.javachen.space;
         ssl_certificate <更换证书>;
         ssl_certificate_key <更换证书私钥>;
         location / {
@@ -407,7 +383,7 @@ http {
     }
     server {
         listen 80;
-        server_name rancher.javachen.com;
+        server_name rancher.javachen.space;
         return 301 https://$server_name$request_uri;
     }
 }
@@ -443,11 +419,9 @@ gzip_types
 主要是设置使用Ingress，默认 tls=ingress。
 
 ```bash
-helm install rancher-stable/rancher \
-  --name rancher \
-  --version v2.3.2  \
+helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
-  --set hostname=rancher.javachen.com\
+  --set hostname=rancher.javachen.space\
   --set tls=ingress
 ```
 
@@ -474,7 +448,7 @@ kubectl -n cattle-system patch deployments cattle-cluster-agent --patch '{
   "spec": {
        "hostAliases": [
           {
-            "hostnames":[ "rancher.javachen.com"],
+            "hostnames":[ "rancher.javachen.space"],
           	"ip": "192.168.56.111"
           }
        ]
@@ -489,7 +463,7 @@ kubectl -n cattle-system patch daemonsets cattle-node-agent --patch '{
   "spec": {
        "hostAliases": [
           {
-            "hostnames":[ "rancher.javachen.com"],
+            "hostnames":[ "rancher.javachen.space"],
           	"ip": "192.168.56.111"
           }
       ]
@@ -515,11 +489,11 @@ kubectl delete ServiceAccount,ClusterRoleBinding,Role rancher -n cattle-system
 # 升级版本
 
 ```bash
-#使用rancher-latest镜像仓库
+#使用rancher-stable镜像仓库
 helm upgrade rancher rancher-stable/rancher \
- --version v2.3.2 \
+ --version v2.3.3 \
  --namespace cattle-system \
- --set hostname=rancher.javachen.com
+ --set hostname=rancher.javachen.space
 ```
 
 > 通过`--version`指定升级版本，`镜像tag`不需要指定，会自动根据chart版本获取。
@@ -532,3 +506,6 @@ kubectl -n cattle-system rollout status deploy/rancher
 kubectl -n cattle-system get deploy rancher
 ```
 
+# 参考文章
+
+- [Rancher 2.0的安装](https://github.com/chanjarster/k8s-learn/blob/master/installation-guide/rancher2.0/install.md)

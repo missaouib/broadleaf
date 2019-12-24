@@ -198,4 +198,4 @@ chmod u+rx scriptname #只给脚本的所有者可读和执行权限
 
 # 参考文章
 
-- [高级Bash脚本编程指南-中文版](http://blog.javachen.com/static/doc/abs-guide/html/index.html)
+- [高级Bash脚本编程指南-中文版](http://blog.javachen.space/static/doc/abs-guide/html/index.html)

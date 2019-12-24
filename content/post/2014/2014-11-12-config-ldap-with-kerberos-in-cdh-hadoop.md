@@ -313,7 +313,7 @@ $ yum install migrationtools -y
 $ vim /usr/share/migrationtools/migrate_common.ph
 
 #line 71 defalut DNS domain
-$DEFAULT_MAIL_DOMAIN = "javachen.com";
+$DEFAULT_MAIL_DOMAIN = "javachen.space";
 #line 74 defalut base
 $DEFAULT_BASE = "dc=javachen,dc=com";
 ~~~

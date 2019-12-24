@@ -4,7 +4,7 @@ layout: post
 title: MyBatis源码分析：Configuration
 date: 2016-02-26T08:00:00+08:00
 
-categories: [ mybatis ]
+categories: [ java ]
 
 tags: [mybatis]
 

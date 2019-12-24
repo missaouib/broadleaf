@@ -7,6 +7,14 @@ tags: [kubernetes,SSL]
 draft: false
 ---
 
+
+
+TLS客户端认证的例子，可以参考 https://github.com/chanjarster/tls-client-auth-samples/blob/master/README.md，还可以参考  [如何在Tomcat中做TLS客户端认证](https://segmentfault.com/a/1190000018673904)
+
+
+
+
+
 # HTTP over SSL
 
 要保证Web浏览器到服务器的安全连接，HTTPS几乎是唯一选择。HTTPS其实就是HTTP over SSL，也就是让HTTP连接建立在SSL安全连接之上。
@@ -268,8 +276,8 @@ cp ${SSL_DOMAIN}.crt tls.crt
 生成证书：
 
 ```bash
-./create_self-signed-cert.sh --ssl-domain=javachen.com \
---ssl-trusted-domain=javachen.com,*.javachen.com --ssl-size=2048 --ssl-date=3650
+./create_self-signed-cert.sh --ssl-domain=javachen.space \
+--ssl-trusted-domain=javachen.space,*.javachen.space --ssl-size=2048 --ssl-date=3650
 ```
 
 校验证书：
@@ -283,10 +291,10 @@ openssl x509 -in cacerts.pem -noout -text
 openssl x509 -in tls.crt -noout -text
 
 #不加CA证书验证
-openssl s_client -connect rancher.javachen.com:443 -servername rancher.javachen.com
+openssl s_client -connect rancher.javachen.space:443 -servername rancher.javachen.space
 
 #加CA证书验证
-openssl s_client -connect rancher.javachen.com:443 -servername rancher.javachen.com -CAfile server-ca.crt
+openssl s_client -connect rancher.javachen.space:443 -servername rancher.javachen.space -CAfile server-ca.crt
 ```
 
 
@@ -325,7 +333,7 @@ cat << EOF > ca-config.json
       "expiry": "87600h"
     },
     "profiles": {
-      "javachen.com": {
+      "javachen.space": {
         "usages": [
             "signing",
             "key encipherment",
@@ -377,10 +385,10 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 ```bash
 cat << EOF > server-csr.json
 {
-    "CN": "javachen.com",
+    "CN": "javachen.space",
     "hosts": [
         "127.0.0.1",
-        "*.javachen.com"
+        "*.javachen.space"
     ],
     "key": {
         "algo": "rsa",
@@ -402,7 +410,7 @@ EOF
 执行以下命令，生成服务器证书：
 
 ```
-cfssl gencert -ca=ca.pem -ca-key=ca-key.pem --config=ca-config.json -profile=javachen.com 
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem --config=ca-config.json -profile=javachen.space 
  server-csr.json | cfssljson -bare server
 ```
 
@@ -413,7 +421,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem --config=ca-config.json -profile=jav
 
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2019/png/462325/1572161434190-395f5223-8fcf-48b1-8382-2c736992338e.png)
+![image.png](https://tva1.sinaimg.cn/large/006y8mN6gy1g8njkhfnjbj30si0o0djq.jpg)
 
 
 
@@ -427,7 +435,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem --config=ca-config.json -profile=jav
 
 ### 架构
 
-![img](https://cdn.nlark.com/yuque/0/2019/png/462325/1572161992146-735d1889-3e18-42de-9213-085dad062c4c.png)
+![img](https://tva1.sinaimg.cn/large/006y8mN6gy1g8njkkuhlpj30kh0dvgmf.jpg)
 
 上面是官方给出的架构图，可以看到cert-manager在k8s中定义了两个自定义类型资源：`Issuer`和`Certificate`。
 
@@ -506,7 +514,7 @@ cat << EOF | kubectl create -f -
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
-  name: javachen-com
+  name: javachen-space
 spec:
   secretName: javachen-secret-tls
   issuerRef:
@@ -514,13 +522,13 @@ spec:
     # We can reference ClusterIssuers by changing the kind here.
     # The default value is Issuer (i.e. a locally namespaced Issuer)
     kind: ClusterIssuer
-  commonName: javachen.com
+  commonName: javachen.space
   organization:
   - CA
   dnsNames:
-  - javachen.com
-  - www.javachen.com
-  - *.javachen.com
+  - javachen.space
+  - www.javachen.space
+  - *.javachen.space
 EOF
 ```
 
@@ -538,3 +546,9 @@ kubectl describe secret javachen-secret-tls -n cert-manager
 2. 如果是CA类型的`Issuer`，要记得定期更新根CA证书。
 3. 如果服务可被公网访问，同时又不想花钱买域名证书，可以采用`Letsencrypt`类型的`Issuer`，目前支持两种方式验证域名的所有权，基于[DNS记录的验证方案](https://cert-manager.readthedocs.io/en/latest/tutorials/acme/dns-validation.html)和基于[文件的HTTP验证方案](https://cert-manager.readthedocs.io/en/latest/tutorials/acme/http-validation.html)。
 4. `cert-manager`还提供`ingress-shim`方式，自动为`Ingress`资源生成证书，只需要在`Ingress`资源上打上一些标签即可，很方便有木有，详细可参考[这里](https://cert-manager.readthedocs.io/en/latest/reference/ingress-shim.html)。
+
+
+
+# 参考文章
+
+- [TLS客户端认证的例子](https://github.com/chanjarster/tls-client-auth-samples/blob/master/README.md)

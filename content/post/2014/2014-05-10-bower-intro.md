@@ -372,7 +372,7 @@ bower.json 文件的使用可以让包的安装更容易，你可以在应用程
 [?] main file: 
 [?] what types of modules does this package expose? 
 [?] keywords: 
-[?] authors: javachen <june.chan@javachen.com>
+[?] authors: javachen <june.chan@javachen.space>
 [?] license: MIT
 [?] homepage: 
 [?] would you like to mark this package as private which prevents it from being accidentally published to the registry? No
@@ -381,7 +381,7 @@ accidentally published to the registry? (y/N)
   name: 'blog',
   version: '0.0.0',
   authors: [
-    'javachen <june.chan@javachen.com>'
+    'javachen <june.chan@javachen.space>'
   ],
   license: 'MIT',
   ignore: [
@@ -414,7 +414,7 @@ $ bower install bootstrap --save
   name: 'blog',
   version: '0.0.0',
   authors: [
-    'javachen <june.chan@javachen.com>'
+    'javachen <june.chan@javachen.space>'
   ],
   license: 'MIT',
   ignore: [

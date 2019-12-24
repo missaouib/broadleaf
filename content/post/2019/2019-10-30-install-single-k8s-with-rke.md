@@ -102,7 +102,7 @@ yum -y install iptables-services  && systemctl start iptables  \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 timedatectl set-timezone Asia/Shanghai
 timedatectl set-local-rtc 0
-systemctl restart rsyslog
+
 systemctl restart crond
 ```
 
@@ -112,29 +112,19 @@ systemctl restart crond
 systemctl stop postfix && systemctl disable postfix
 ```
 
-### 设置 rsyslogd 和 systemd journald
+### 优化设置 journal 日志相关
+
+优化设置 journal 日志相关，避免日志重复搜集，浪费系统资源
 
 ```bash
-mkdir /var/log/journal # 持久化保存日志的目录
-mkdir /etc/systemd/journald.conf.d
-cat > /etc/systemd/journald.conf.d/99-prophet.conf <<EOF
-[Journal]# 持久化保存到磁盘
-Storage=persistent
-# 压缩历史日志
-Compress=yes
-SyncIntervalSec=5m
-RateLimitInterval=30s
-RateLimitBurst=1000
-# 最大占用空间 10G
-SystemMaxUse=10G
-# 单日志文件最大 200M
-SystemMaxFileSize=200M
-# 日志保存时间 2 周
-MaxRetentionSec=2week
-# 不将日志转发到 syslog
-ForwardToSyslog=no
-EOF
+sed -ri 's/^\$ModLoad imjournal/#&/' /etc/rsyslog.conf
+sed -ri 's/^\$IMJournalStateFile/#&/' /etc/rsyslog.conf
+
+sed -ri 's/^#(DefaultLimitCORE)=/\1=100000/' /etc/systemd/system.conf
+sed -ri 's/^#(DefaultLimitNOFILE)=/\1=100000/' /etc/systemd/system.conf
+
 systemctl restart systemd-journald
+systemctl restart rsyslog
 ```
 
 ### 配置系统语言
@@ -150,7 +140,7 @@ sed -i 's/^enabled.*/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf
 sed -i 's/^plugins.*/plugins=0/g' /etc/yum.conf
 ```
 
-### 更新yum源，安装常用软件
+### 安装常用软件
 
 ```bash
 yum install -y curl
@@ -256,6 +246,38 @@ cp kubernetes.conf /etc/sysctl.d/kubernetes.conf
 sysctl -p /etc/sysctl.d/kubernetes.conf
 ```
 
+如果kube-proxy使用ipvs的话为了防止timeout需要设置下tcp参数：
+
+```bash
+# https://github.com/moby/moby/issues/31208 
+# ipvsadm -l --timout
+# 修复ipvs模式下长连接timeout问题 小于900即可
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 10
+```
+
+docker官方的内核检查脚本建议`(RHEL7/CentOS7: User namespaces disabled; add 'user_namespace.enable=1' to boot command line)`,使用下面命令开启
+
+```bash
+grubby --args="user_namespace.enable=1" --update-kernel="$(grubby --default-kernel)"
+```
+
+### 设置文件最大打开数
+
+```bash
+cat>/etc/security/limits.d/kubernetes.conf<<EOF
+*       soft    nproc   131072
+*       hard    nproc   131072
+*       soft    nofile  131072
+*       hard    nofile  131072
+root    soft    nproc   131072
+root    hard    nproc   131072
+root    soft    nofile  131072
+root    hard    nofile  131072
+EOF
+```
+
 ### 关闭交换空间
 
 ```bash
@@ -271,7 +293,7 @@ echo "echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag" >/etc/rc.l
 echo "echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled" >/etc/rc.local
 ```
 
-### sudo
+### 设置sudo
 
 关闭远程sudo执行命令需要输入密码和没有终端不让执行命令问题
 
@@ -310,7 +332,7 @@ grub2-mkconfig -o /boot/grub2/grub
 
 ```bash
 sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
-sudo yum --enablerepo=elrepo-kernel install -y kernel-lt kernel-lt-devel kernel-lt-headers
+sudo yum --enablerepo=elrepo-kernel install -y kernel-lt kernel-lt-devel 
 sudo awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg
 sudo grub2-set-default 0
 sudo sed -i 's/GRUB_DEFAULT=saved/GRUB_DEFAULT=0/g' /etc/default/grub
@@ -320,20 +342,28 @@ reboot
 #重启后，删除3.10内核
 #sudo rpm -qa | grep kernel
 #sudo yum remove kernel*-3.10*
+#sudo yum --enablerepo=elrepo-kernel install -y kernel-lt-headers
 ```
 
 # 安装docker
 
-## 更新yum源
+## 检查系统内核和模块
+
+检查系统内核和模块是否适合运行 docker (仅适用于 linux 系统)
 
 ```bash
-yum install -y yum-utils device-mapper-persistent-data lvm2
-yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+curl -s https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh > check-config.sh
+bash ./check-config.sh
 ```
+
+现在docker存储驱动都是使用的overlay2(不要使用devicemapper，这个坑非常多)，我们重点关注overlay2是否不是绿色
 
 ## 安装Docker-ce
 
 ```bash
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
 yum install docker-ce -y
 ```
 
@@ -345,21 +375,95 @@ systemctl enable docker && systemctl start docker
 
 ## 修改配置文件
 
-```bash
+### `registry-mirrors`
 
+Docker镜像：
+
+1. [Daocloud](https://www.daocloud.io/mirror#accelerator-doc)，具体用法见网站。
+2. [中科大](http://mirrors.ustc.edu.cn/help/dockerhub.html)，具体用法见网站。
+
+### `dns`
+
+Docker内置了一个DNS Server，它用来做两件事情：
+
+1. 解析docker network里的容器或Service的IP地址
+2. 把解析不了的交给外部DNS Server解析（`dns`参数设定的地址）
+
+默认情况下，`dns`参数值为Google DNS nameserver：`8.8.8.8`和`8.8.4.4`。我们得改成国内的DNS地址，比如：
+
+1. `1.2.4.8`
+2. 阿里DNS：`223.5.5.5`和`223.6.6.6`
+3. 114DNS：`114.114.114.114`和`114.114.115.115`
+
+比如：
+
+```json
+{
+  "dns": ["223.5.5.5", "223.6.6.6"]
+}
+```
+
+### `log-driver`
+
+[Log driver](https://docs.docker.com/config/containers/logging/configure/)是Docker用来接收来自容器内部`stdout/stderr`的日志的模块，Docker默认的log driver是[JSON File logging driver](https://docs.docker.com/config/containers/logging/json-file/)。这里只讲`json-file`的配置，其他的请查阅相关文档。
+
+`json-file`会将容器日志存储在docker host machine的`/var/lib/docker/containers//-json.log`（需要root权限才能够读），既然日志是存在磁盘上的，那么就要磁盘消耗的问题。下面介绍两个关键参数：
+
+1. `max-size`，单个日志文件最大尺寸，当日志文件超过此尺寸时会滚动，即不再往这个文件里写，而是写到一个新的文件里。默认值是-1，代表无限。
+2. `max-files`，最多保留多少个日志文件。默认值是1。
+
+根据服务器的硬盘尺寸设定合理大小，比如：
+
+```json
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m",
+    "max-files":"5"
+  }
+}
+```
+
+### `cgroup driver`
+
+根据文档[CRI installation](https://kubernetes.io/docs/setup/cri/)中的内容，对于使用systemd作为init system的Linux的发行版，使用systemd作为docker的cgroup driver可以确保服务器节点在资源紧张的情况更加稳定，因此这里修改各个节点上docker的cgroup driver为systemd。
+
+```bash
+"exec-opts": ["native.cgroupdriver=systemd"]
+```
+
+### `storage-driver`
+
+Docker推荐使用[overlay2](https://docs.docker.com/storage/storagedriver/overlayfs-driver/#configure-docker-with-the-overlay-or-overlay2-storage-driver)作为Storage driver。你可以通过`docker info | grep Storage`来确认一下当前使用的是什么：
+
+```bash
+$ docker info | grep 'Storage'
+Storage Driver: overlay2
+```
+
+如果结果不是overlay2，那你就需要配置一下了：
+
+```json
+{
+  "storage-driver": "overlay2"
+}
+```
+
+创建或修改`/etc/docker/daemon.json`：
+
+```bash
 cat > /etc/docker/daemon.json <<EOF
 {
     "oom-score-adjust": -1000,
     "log-driver": "json-file",
     "log-opts": {
       "max-size": "100m",
-      "max-file": "3"
+      "max-file": "5"
     },
-    "max-concurrent-downloads": 10,
-    "max-concurrent-uploads": 10,
     "bip": "172.17.10.1/24",
-    "registry-mirrors": ["https://hub.daocloud.io"],
-    "insecure-registries":["https://harbor.javachen.com"],
+    "registry-mirrors": ["https://hub.daocloud.io","http://hub-mirror.c.163.com/",
+      "https://docker.mirrors.ustc.edu.cn/",
+      "https://registry.docker-cn.com"],
     "graph":"/data/docker",
     "exec-opts": ["native.cgroupdriver=systemd"],
     "storage-driver": "overlay2",
@@ -373,15 +477,27 @@ sed -i '/containerd.sock.*/ s/$/ -H tcp:\/\/0.0.0.0:2375 -H unix:\/\/var\/run\/d
 	/usr/lib/systemd/system/docker.service
 ```
 
-注意：
+防止FORWARD的DROP策略影响转发,给docker daemon添加下列参数修正，当然暴力点也可以`iptables -P FORWARD ACCEPT`
 
-- https://harbor.javachen.com 是将来要配置的harbor镜像的域名。
+```bash
+mkdir -p /etc/systemd/system/docker.service.d/
+cat>/etc/systemd/system/docker.service.d/10-docker.conf<<EOF
+[Service]
+ExecStartPost=/sbin/iptables -I FORWARD -s 0.0.0.0/0 -j ACCEPT
+ExecStopPost=/bin/bash -c '/sbin/iptables -D FORWARD -s 0.0.0.0/0 -j ACCEPT &> /dev/null || :'
+EOF
+```
+
+
 
 ## 重新加载配置
 
 ```bash
+systemctl enable --now docker
 systemctl daemon-reload && systemctl restart docker
 ```
+
+如果enable docker的时候报错开启debug，如何开见 https://github.com/zhangguanzhang/Kubernetes-ansible/wiki/systemctl-running-debug
 
 # 安装k8s
 
@@ -391,7 +507,7 @@ rke当前发布列表 https://github.com/rancher/rke/releases ，这里下载最
 
 ```bash
 curl -s -L -o /usr/local/bin/rke \
-	https://github.com/rancher/rke/releases/download/v0.3.2/rke_linux-amd64
+	https://github.com/rancher/rke/releases/latest/download/rke_linux-amd64
 
 sudo chmod 777 /usr/local/bin/rke
 ```
@@ -449,6 +565,46 @@ yes/no  {send "yes\r";exp_continue}
 expect eof
 ```
 
+## k8s docker镜像
+
+### gcr.io/google-containers
+
+使用[中科大的镜像](https://github.com/ustclug/mirrorrequest/issues/187)
+
+```
+docker pull image gcr.io/google-containers/xxx:yyy
+或
+docker pull image gcr.io/google_containers/xxx:yyy
+=>
+docker pull image gcr.mirrors.ustc.edu.cn/google-containers/xxx:yyy
+```
+
+也可以使用[anjia0532的搬运仓库](https://github.com/anjia0532/gcr.io_mirror)
+
+### k8s.gcr.io
+
+k8s.gcr.io等价于gcr.io/google-containers，因此同上可以使用中科大镜像或者anjia0532的搬运仓库。
+
+使用[中科大的镜像](https://github.com/ustclug/mirrorrequest/issues/187)
+
+```
+docker pull image k8s.gcr.io/xxx:yyy
+=>
+docker pull image gcr.mirrors.ustc.edu.cn/google-containers/xxx:yyy
+```
+
+使用[anjia0532的搬运仓库](https://github.com/anjia0532/gcr.io_mirror)
+
+### quay.io
+
+使用[中科大的镜像](https://github.com/ustclug/mirrorrequest/issues/135)
+
+```
+docker pull image quay.io/xxx/yyy:zzz
+=>
+docker pull image quay.mirrors.ustc.edu.cn/xxx/yyy:zzz
+```
+
 ## 创建RKE配置文件
 
 RKE使用群集配置文件，称为cluster.yml确定群集中的节点以及如何部署Kubernetes。有许多配置选项，可以在设置cluster.yml。
@@ -462,6 +618,39 @@ RKE使用群集配置文件，称为cluster.yml确定群集中的节点以及如
 
 ```bash
 rke config --system-images --all |grep version
+```
+
+可以查看某一个k8s版本依赖的系统镜像，然后手动下载：
+
+```bash
+$ rke config --system-images --version v1.16.2-rancher1-1
+rancher/coreos-etcd:v3.3.15-rancher1
+rancher/rke-tools:v0.1.50
+rancher/k8s-dns-kube-dns:1.15.0
+rancher/k8s-dns-dnsmasq-nanny:1.15.0
+rancher/k8s-dns-sidecar:1.15.0
+rancher/cluster-proportional-autoscaler:1.7.1
+rancher/coredns-coredns:1.6.2
+rancher/hyperkube:v1.16.2-rancher1
+rancher/coreos-flannel:v0.11.0-rancher1
+rancher/flannel-cni:v0.3.0-rancher5
+rancher/calico-node:v3.8.1
+rancher/calico-cni:v3.8.1
+rancher/calico-kube-controllers:v3.8.1
+rancher/calico-pod2daemon-flexvol:v3.8.1
+rancher/coreos-flannel:v0.11.0
+weaveworks/weave-kube:2.5.2
+weaveworks/weave-npc:2.5.2
+rancher/pause:3.1
+rancher/nginx-ingress-controller:nginx-0.25.1-rancher1
+rancher/nginx-ingress-controller-defaultbackend:1.5-rancher1
+rancher/metrics-server:v0.3.4
+```
+
+获取最新的支持的kubernetes版本：
+
+```bash
+kubernetes_version=`rke config --system-images --all|grep rancher/hyperkube|awk -F ':' '{print $2}'|sort -n|tail -n 1`
 ```
 
 切换到普通用户chenzj，创建RKE配置文件cluster.yml
@@ -492,7 +681,7 @@ services:
       max-pods: 100
 
 cluster_name: k8s-test
-kubernetes_version: "v1.16.2-rancher1-1"
+kubernetes_version: "${kubernetes_version}"
 network:
     plugin: calico
 EOF
@@ -541,14 +730,6 @@ cp kube_config_cluster.yml ~/.kube/config
 ```
 
 需要注意的是，部署的本地kube配置名称是和集群配置文件相关的。例如，如果您使用名为mycluster.yml的配置文件，则本地kube配置将被命名为.kube_config_mycluster.yml。
-
-## 设置Bash自动完成
-
-```bash
-echo "Configure Kubectl to autocomplete"
-source <(kubectl completion bash) #
-echo 'source <(kubectl completion bash)' >> ~/.bashrc
-```
 
 ## 查看集群状态
 
@@ -640,6 +821,30 @@ kubectl describe pod -n ingress-nginx default-http-backend-67cf578fc4-d9mrp
 kubectl describe pod -n ingress-nginx nginx-ingress-controller-xlr9f 
 ```
 
+## 测试集群DNS是否可用
+
+```bash
+kubectl run curl --image=radial/busyboxplus:curl -it
+```
+
+进入后执行`nslookup kubernetes.default`确认解析正常:
+
+```bash
+nslookup kubernetes.default
+```
+
+## 设置Bash自动完成
+
+```bash
+sudo yum install -y bash-completion 
+
+echo "Configure Kubectl to autocomplete"
+
+source /usr/share/bash-completion/bash_completion
+source <(kubectl completion bash) #
+echo 'source <(kubectl completion bash)' >> ~/.bashrc
+```
+
 # 集群调优
 
 参考 https://www.rancher.cn/docs/rancher/v2.x/cn/install-prepare/best-practices/
@@ -657,12 +862,12 @@ docker volume rm `docker volume ls -q`
 #cmd.sh 'docker volume rm `docker volume ls -q`'
 
 # 卸载每个节点mount目录
-for mount in $(mount | grep tmpfs | grep '/var/lib/kubelet' | awk '{ print $3 }') ; do 
-	sudo umount $mount; 
+for mount in $(sudo mount | grep tmpfs | grep '/var/lib/kubelet' | awk '{ print $3 }') ; do 
+sudo umount $mount; 
 done
  
 # 删除残留路径
-sudo rm -rf /etc/cni \
+sudo rm -rf ~/.kube/ /etc/cni \
   /opt/cni \
   /run/secrets/kubernetes.io \
   /run/calico \
@@ -675,13 +880,13 @@ sudo rm -rf /etc/cni \
   /var/run/calico
 
 # 清理网络接口
-  network_interface=`ls /sys/class/net`
-  for net_inter in $network_interface;
-  do
-    if ! echo $net_inter | grep -qiE 'lo|docker0|eth*|ens*';then
-      ip link delete $net_inter
-    fi
-  done
+network_interface=`ls /sys/class/net`
+for net_inter in $network_interface;
+do
+	if ! echo $net_inter | grep -qiE 'lo|docker0|eth*|ens*';then
+		sudo ip link delete $net_inter
+	fi
+done
 
 # 清理残留进程
 port_list='80 443 6443 2376 2379 2380 8472 9099 10250 10254'
@@ -718,17 +923,8 @@ systemctl restart docker
 docker image prune --force
 
 #删除Rancher中指定版本的镜像
-version="v0.1.42|v2.2.8|v2.3.1|v2.3.0|v3.4.0|v3.7.4|v0.10.0|v0.11.0|v1.15.3-rancher1|v3.3.10-rancher1"
-docker rmi $(docker images |grep rancher|grep -E ${version} | awk '{ print $3}')
-
-version="1.6.1|1.9.1|1.10.0-rc2"
-docker rmi $(docker images |grep gitea|grep -E ${version} | awk '{ print $3}')
-
-version="1.9.0"
-docker rmi $(docker images |grep harbor|grep -E ${version} | awk '{ print $3}')
-
-version="1.3.1"
-docker rmi $(docker images |grep drone|grep -E ${version} | awk '{ print $3}')
+version="v0.1.42|v2.2.8|v2.3.1|v2.3.0|v3.4.0|v3.7.4|v0.10.0|v0.11.0|v1.15.3-rancher1|v3.3.10-rancher1|1.6.1|1.9.1|1.10.0-rc2"
+docker rmi $(docker images|grep -E ${version} | awk '{ print $3}')
 
 docker rmi $(docker images |grep -E 'hello-world|minio-minio|wordpress|postgresq|tomcat|maven|dev/ads|tiller' | awk '{ print $3}')
 
@@ -742,17 +938,58 @@ rbd list k8s
 #rbd rm k8s/kubernetes-dynamic-pvc-2bca2c25-549d-4512-846d-167052bfed75
 ```
 
-
-
 # 升级K8S
 
-修改cluster.yml文件，然后执行下面命令：
+升级RKE：
+
+```bash
+curl -s -L -o /usr/local/bin/rke \
+	https://github.com/rancher/rke/releases/latest/download/rke_linux-amd64
+
+sudo chmod 777 /usr/local/bin/rke
+```
+
+查看RKE支持的K8S版本：
+
+```bash
+rke config --system-images --all |grep version
+```
+
+修改cluster.yml文件中kubernetes的版本号：
+
+```yaml
+nodes:
+  - address: 192.168.56.111
+    user: chenzj
+    port: 22
+    role: [controlplane,etcd,worker]
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
+  kube-api:
+    service_cluster_ip_range: 10.43.0.0/16
+    service_node_port_range: 30000-32767
+  kubelet:
+    cluster_domain: cluster.local
+    cluster_dns_server: 10.43.0.10
+    fail_swap_on: false
+    extra_args:
+      max-pods: 100
+
+cluster_name: k8s-test
+kubernetes_version: "v1.16.3-rancher1-1"
+network:
+    plugin: calico
+```
+
+然后执行下面命令：
 
 ```bash
 rke up --config cluster.yml
 ```
-
-
 
 # 原生K8S参数
 
@@ -762,6 +999,8 @@ rke up --config cluster.yml
 
 以上是使用RKE安装单节点k8s的记录，其实稍加修改配置文件，就可以安装集群。
 
-
-
 这里，我把上面的所有命令整理了一下，提交到了 [github](https://github.com/javachen/vagrant/tree/master/k8s-rke-single)，供大家参考。
+
+# 参考文章
+
+- [应大多数人要求写下kubeadm的基础使用](https://zhangguanzhang.github.io/2019/11/24/kubeadm-base-use/)

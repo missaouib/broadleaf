@@ -8,11 +8,9 @@ description:  Dubbo 是阿里巴巴内部的 SOA 服务化治理方案的核心�
 
 keywords:  dubbo
 
-categories: [  dubbo ]
+categories: [  java ]
 
 tags: [dubbo]
-
-published: true
 
 ---
 

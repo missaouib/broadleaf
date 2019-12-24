@@ -4,7 +4,7 @@ layout: post
 title: MyBatis源码分析：如何解析配置文件
 date: 2016-04-21T08:00:00+08:00
 
-categories: [ mybatis ]
+categories: [ java ]
 
 tags: [mybatis]
 

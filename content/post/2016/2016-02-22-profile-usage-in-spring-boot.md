@@ -50,7 +50,7 @@ spring.profiles.active=dev,hsqldb
 spring.profiles.active:dev,hsqldb
 ~~~
 
-`spring.profiles.active`属性可以通过命令行参数或者资源文件来设置，其查找顺序，请参考[Spring Boot特性](http://blog.javachen.com/2015/03/13/some-spring-boot-features.html)。
+`spring.profiles.active`属性可以通过命令行参数或者资源文件来设置，其查找顺序，请参考[Spring Boot特性](http://blog.javachen.space/2015/03/13/some-spring-boot-features.html)。
 
 # 自定义Profile注解
 

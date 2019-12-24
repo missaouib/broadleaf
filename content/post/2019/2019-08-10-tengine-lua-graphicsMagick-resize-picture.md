@@ -201,7 +201,7 @@ http {
 
     server {
         listen       80;
-        server_name  img.javachen.com;
+        server_name  img.javachen.space;
         root /data/image/upload;
 
         location / {
@@ -256,7 +256,7 @@ mkdir -p  /data/image/upload
 配置hosts：
 
 ```
-192.168.56.100  img.javachen.com
+192.168.56.100  img.javachen.space
 ```
 
 在 /data/image/upload 下存放一个图片 1.png，然后访问：http://192.168.56.100/1.png ，再访问缩放图片：http://192.168.56.100/1.png_245x245.png

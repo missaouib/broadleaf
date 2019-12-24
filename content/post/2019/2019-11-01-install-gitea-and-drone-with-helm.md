@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 使用Helm3安装Gitea和Drone
+title: 使用Helm安装Gitea和Drone
 date: 2019-11-01T08:00:00+08:00
 categories: [ kubernetes ]
 tags: [kubernetes,helm,gitea]
@@ -9,8 +9,6 @@ tags: [kubernetes,helm,gitea]
 Drone是一种基于容器技术的持续交付系统。Drone使用简单的YAML配置文件来定义和执行Docker容器中的Pipelines。Drone与流行的源代码管理系统无缝集成，包括GitHub、Gitlab、Gog、Gitea、Bitbucket等。
 
 Gitea 是一个开源社区驱动的 [Gogs](http://gogs.io/) [克隆](https://blog.gitea.io/2016/12/welcome-to-gitea/), 是一个轻量级的代码托管解决方案，后端采用 [Go](https://golang.org/) 编写，采用 [MIT](https://github.com/go-gitea/gitea/blob/master/LICENSE) 许可证。
-
-> 注意：本文使用的Helm版本是3，不是2，所以有些命令和helm2不一样。
 
 # 安装Gitea
 
@@ -49,17 +47,44 @@ helm show readme alibaba/gitea
 
 ## 创建证书
 
+参考 [使用Cert Manager配置Let’s Encrypt证书](/2019/11/04/using-cert-manager-with-nginx-ingress/) ，先要创建一个ClusterIssuer：javachen-space-letsencrypt-prod。
+
+因为证书是有命名空间的，所以需要在gitea命名空间创建证书：
+
+```bash
+kubectl create namespace gitea
+
+cat << EOF | kubectl create -f -   
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: gitea-cert-prod
+  namespace: gitea
+spec:
+  secretName: gitea-javachen-space-cert
+  renewBefore: 240h
+  groupName: acme.javachen.space
+  dnsNames:
+  - "*.javachen.space"
+  issuerRef:
+    name: javachen-space-letsencrypt-prod
+    kind: ClusterIssuer
+EOF
+```
+
 
 
 ## 安装
 
+开启TLS，使用helm3安装：
+
 ```bash
-helm install --generate-name --namespace gitea\
-  --set expose.ingress.host=gitea.javachen.com \
+helm install gitea --namespace gitea\
+  --set expose.ingress.host=gitea.javachen.space \
   --set expose.type=ingress \
-  --set expose.tls.enabled=true \
   --set expose.ingress.enabled=true \
-  --set expose.tls.secretName=gitea-secret-tls \
+  --set expose.tls.enabled=true \
+  --set expose.tls.secretName=gitea-javachen-space-cert \
   --set resources.limits.memory=512Mi \
   alibaba/gitea
 ```
@@ -88,7 +113,7 @@ cd charts
 sed -i 's/apps\/v1beta2/apps\/v1/g' submitted/gitea/templates/deployment.yaml
 ```
 
-我fork了一份 https://github.com/cloudnativeapp/charts  代码，然后做了修改 https://github.com/javachen/charts ，除了修改API版本，还添加了存储类的支持，详细请查看values.yaml
+我fork了一份 https://github.com/cloudnativeapp/charts  代码，然后做了修改 https://github.com/javachen/charts ，除了修改Git chart里面的API版本，还添加了存储类的支持，详细请查看values.yaml
 
 ```yaml
 ## Enable persistence using Persistent Volume Claims
@@ -124,37 +149,99 @@ extraVolumes: |
 
 ## 从本地Chart源码安装
 
+开启TLS，从我的仓库 https://github.com/javachen/charts 里安装
+
 ```bash
-helm install --generate-name --namespace gitea\
-  --set expose.ingress.host=gitea.javachen.com \
+git clone https://github.com/javachen/charts
+cd charts
+
+kubectl create namespace gitea
+helm install gitea --namespace gitea\
   --set expose.type=ingress \
-  --set expose.tls.enabled=true \
   --set expose.ingress.enabled=true \
-  --set expose.tls.secretName=gitea-secret-tls \
+  --set expose.ingress.host=gitea.javachen.space \
+  --set expose.tls.enabled=true \
+  --set expose.tls.secretName=gitea-javachen-space-cert \
   --set resources.limits.memory=512Mi \
   --set persistence.enabled=true \
   --set persistence.storageClass=ceph-rbd \
   --set persistence.size=5Gi \
-  submitted/gitea #submitted目录下的gitea
+  ./gitea
 ```
+
+如果不开启TLS，则使用下面命令安装：
+
+```bash
+helm install gitea --namespace gitea\
+  --set expose.type=ingress \
+  --set expose.ingress.enabled=true \
+  --set expose.ingress.host=gitea.javachen.space \
+  --set expose.tls.enabled=false \
+  --set resources.limits.memory=512Mi \
+  --set persistence.enabled=true \
+  --set persistence.storageClass=ceph-rbd \
+  --set persistence.size=5Gi \
+  ./gitea
+```
+
+
+
+## Ingress暴露TCP端口
+
+参考 [Exposing TCP and UDP services](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/?spm=a2c4e.10696291.0.0.a27619a4RLzFYg#exposing-tcp-and-udp-services) ，让Ingress暴露一个ssh端口。
+
+创建配置文件更新tcp-services：
+
+```yaml
+cat >>EOF | kubectl apply -f
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  # namespace/service:protocol
+  3022: "gitea/gitea:ssh"
+EOF
+```
+
+## 查看状态
+
+```bash
+kubectl get all -n gitea
+```
+
+
 
 ## 测试
 
-访问 https://gitea.javachen.com ，并填入数据库：
+如果开启了TLS，则访问 https://gitea.javachen.space ，否则访问  http://gitea.javachen.space ，填入数据库：
 
 ![image-20191101141225857](https://tva1.sinaimg.cn/large/006y8mN6gy1g8iiesm31hj31da0s6gpd.jpg)
 
-填入域名：
+**填入域名，SSH端口号填上面配置文件中的3022**
 
-![image-20191101141306181](https://tva1.sinaimg.cn/large/006y8mN6gy1g8iifho2cdj31d80o841i.jpg)
+![image-20191107191404450](https://tva1.sinaimg.cn/large/006y8mN6ly1g8pouibtasj311u0psq5z.jpg)
 
 修改服务器和第三方设置：
 
 ![image-20191101141441592](https://tva1.sinaimg.cn/large/006y8mN6ly1g8iih58nsgj31d00nqad3.jpg)
 
+## 测试下载代码
+
+再次登录，注册账号 chenzj，登陆后在gitea中配置本地SSH密钥，然后创建一个test项目，本地通过ssh下载：
+
+```bash
+git clone ssh://git@gitea.javachen.space:3022/chenzj/test.git
+```
+
+可以看到不需要使用密码。
+
 ## 卸载
 
 ```bash
+helm del gitea  -n gitea
+
 kubectl delete pod,service,deploy,ingress,secret,pvc --all -n gitea
 ```
 
@@ -181,7 +268,36 @@ helm search repo drone
 helm show readme alibaba/drone
 ```
 
-## 创建配置文件 
+## 创建证书
+
+参考 [使用Cert Manager配置Let’s Encrypt证书](/2019/11/04/using-cert-manager-with-nginx-ingress/) ，先要创建一个ClusterIssuer：wildcard-letsencrypt-prod。
+
+因为证书是有命名空间的，所以需要在drone命名空间创建证书：
+
+```bash
+kubectl create namespace drone
+
+cat << EOF | kubectl create -f -   
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: drone-javachen-space-cert
+  namespace: drone
+spec:
+  secretName: drone-cert-prod-tls
+  renewBefore: 240h
+  groupName: acme.javachen.space
+  dnsNames:
+  - "*.javachen.space"
+  issuerRef:
+    name: javachen-space-letsencrypt-prod
+    kind: ClusterIssuer
+EOF
+```
+
+
+
+## 创建配置文件
 
 drone-gitea-values.yaml
 
@@ -191,19 +307,19 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
   hosts:
-    - drone.javachen.com
+    - drone.javachen.space
   tls:
-    - secretName: drone-secret-tls
+    - secretName: drone-javachen-space-cert
       hosts:
-        - drone.javachen.com
+        - drone.javachen.space
 
 sourceControl:
   provider: gitea
   gitea:
-    server: https://gitea.javachen.com
+    server: https://gitea.javachen.space
 
 server:
-  host: drone.javachen.com
+  host: drone.javachen.space
   adminUser: admin
   protocol: https
   kubernetes:
@@ -219,15 +335,7 @@ persistence:
 ## 安装
 
 ```bash
-#使用固定名称
-helm install gitea \
-     --namespace gitea -f drone-gitea-values.yaml \
-     alibaba/drone
-
-#使用随机名称
-helm install --generate-name  \
-     --namespace gitea -f drone-gitea-values.yaml \
-     alibaba/drone
+helm install --name gitea --namespace gitea -f drone-gitea-values.yaml alibaba/drone
 ```
 
 出错日志：
@@ -241,7 +349,7 @@ Error: unable to build kubernetes objects from release manifest: \
 
 ## 测试
 
-如果上一步没问题，则浏览器访问 https://drone.javachen.com。
+如果上一步没问题，则浏览器访问 https://drone.javachen.space。
 
 ![image-20191101111334474](https://tva1.sinaimg.cn/large/006y8mN6ly1g8id8p2p2zj30lw09maas.jpg)
 
@@ -272,11 +380,11 @@ Error: unable to build kubernetes objects from release manifest: \
 ```bash
 $ git clone https://github.com/javachen/charts
 
-$ cd charts/curated/drone
+$ cd drone
 
 $ pwd
 #后面安装drone时需要用到这个绝对路径
-/home/chenzj/code/charts/curated/drone
+/home/chenzj/code/charts/drone
 ```
 
 ## Gitea创建OAuth应用
@@ -293,11 +401,11 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
   hosts:
-    - drone.javachen.com
+    - drone.javachen.space
   tls:
-    - secretName: drone-secret-tls
+    - secretName: drone-javachen-space-cert
       hosts:
-        - drone.javachen.com
+        - drone.javachen.space
 
 sourceControl:
   provider: gitea
@@ -305,10 +413,10 @@ sourceControl:
     clientID: 76eb1d51-7e5f-4616-b812-3649a64cecda
     clientSecretKey: clientSecret
     clientSecretValue: 0xDAtjq6b5Pk5HJQEzDBKU6JvXqQaA1XwjKj6QEKX10=
-    server: https://gitea.javachen.com
+    server: https://gitea.javachen.space
 
 server:
-  host: drone.javachen.com
+  host: drone.javachen.space
   adminUser: admin
   protocol: https
   kubernetes:
@@ -319,17 +427,19 @@ persistence:
   size: 5Gi
 ```
 
-从本地/home/chenzj/code/charts/curated/drone目录安装：
+从本地/home/chenzj/code/charts/drone目录安装：
 
 ```bash
-helm install --generate-name  \
+helm install --name gitea  \
      --namespace gitea -f drone-gitea-values.yaml \
-     /home/chenzj/code/charts/curated/drone
+     /home/chenzj/code/charts/drone
 ```
 
 ## 卸载
 
 ```bash
+helm del drone -n drone
+
 kubectl delete pod,service,deploy,ingress,secret,pvc --all -n drone
 ```
 
@@ -337,23 +447,29 @@ kubectl delete pod,service,deploy,ingress,secret,pvc --all -n drone
 
 ## 测试
 
-浏览器访问 https://drone.javachen.com ，跳到授权页面。
+浏览器访问 https://drone.javachen.space ，跳到授权页面。
 
 # Drone集成Gitea实现CI
 
-在Gitea中创建项目，设置.drone.yaml，然后修改代码，提交触发Drone构建，会出现异常，找不到Git仓库用户名的异常，所以必须设置登陆Gitea的用户名和密码。
+在Gietea中创建drone用户，密码设置为dron，然后创建一个secret，用于Drone去获取Gitea里面仓库代码：
 
-修改方式：在drone-gitea-values.yaml文件中添加：
+```bash
+echo -n "drone" | base64
 
-```yaml
-  alwaysAuth: true
-  envSecrets:
-    drone-gitea-login-secrets:
-    	- DRONE_GIT_USERNAME
-    	- DRONE_GIT_PASSWORD   
+cat << EOF | kubectl create -f -  
+apiVersion: v1
+kind: Secret
+metadata:
+  name: drone-gitea-login-secrets
+  namespace: drone
+type: Opaque
+data:
+  DRONE_GIT_USERNAME: ZHJvbmU=
+  DRONE_GIT_PASSWORD: ZHJvbmU=
+EOF 
 ```
 
-完整代码如下：
+修改drone-gitea-values.yaml代码如下：
 
 ```yaml
 cat <<EOF > drone-gitea-values.yaml
@@ -363,11 +479,11 @@ ingress:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: 10m
   hosts:
-    - drone.javachen.com
+    - drone.javachen.space
   tls:
-    - secretName: drone-secret-tls
+    - secretName: drone-javachen-space-cert
       hosts:
-        - drone.javachen.com
+        - drone.javachen.space
 
 sourceControl:
   provider: gitea
@@ -375,10 +491,10 @@ sourceControl:
     clientID: fdd12331-363a-4422-a2c0-a9ab87650132
     clientSecretKey: clientSecret
     clientSecretValue: tjEOSt3V48w845yb9SKPSC25IGGTht5TdVntS6tHPNg=
-    server: https://gitea.javachen.com
+    server: https://gitea.javachen.space
 
 server:
-  host: drone.javachen.com
+  host: drone.javachen.space
   adminUser: admin
   protocol: https
   alwaysAuth: true
@@ -396,9 +512,31 @@ persistence:
 EOF
 ```
 
-> 注意：
->
-> 在rancher上先把drone命名空间移动到某一个项目，例如devops，然后在devops里面创建一个secret，名称为 drone-gitea-login-secrets，并指定作用域为 `此项目所有命名空间`，包含两个键值对：DRONE_GIT_USERNAME、DRONE_GIT_PASSWORD。然后在安装Drone，如果遇到异常，请describe pod查看日志，排查问题。
+然后重新安装Drone
+
+
+
+## 测试代码提交
+
+在Gitea中创建项目，设置.drone.yaml，然后修改代码，提交触发Drone构建。查看gitea仓库中webhook：
+
+![image-20191107160649862](https://tva1.sinaimg.cn/large/006y8mN6ly1g8pjfq187jj31qy0hwmzl.jpg)
+
+参考：[CentOS7 Docker x509: certificate signed by unknown authority 解决方案](https://shipengliang.com/software-exp/centos7-docker-x509-certificate-signed-by-unknown-authority-解决方案.html)
+
+```bash
+sudo mkdir -p /etc/docker/certs.d/harbor.javachen.space/
+
+kubectl get secret -n harbor harbor-javachen-space-cert \
+    -o jsonpath="{.data.tls\.crt}" | base64 --decode | \
+    sudo tee /etc/docker/certs.d/harbor.javachen.space/ca.crt  
+    
+sudo update-ca-trust
+```
+
+![image-20191107170305787](https://tva1.sinaimg.cn/large/006y8mN6ly1g8pl284mwgj31hc0fqtbz.jpg)
+
+说明，gitea的用户名和密码没有设置正确，重新检查一下配置。如果是在drone运行中，修改了密码，则需要重启drone或者重装，重新加载密码。
 
 再一次运行，出现异常：
 
@@ -436,7 +574,14 @@ kubectl get ingress  -n drone
 kubectl edit ing drone-drone -n drone
 ```
 
+## 自动移除Jobs
 
+默认情况下，执行完成后的Kubernetes Jobs不会自动从系统中清除，主要是为了便于对Pipeline执行过程中报错的故障排查。
+
+如果需要实现自动清理，这里我找到了两种方式，可以深入的去了解一下：
+
+1. 设置Kubernetes的 `TTLAfterFinished` 特性，这也是Drone官方给出的解决方法
+2. 通过第三方的工具来实现：[lwolf/kube-cleanup-operator: Kubernetes Operator to automatically delete completed Jobs and their Pods](https://github.com/lwolf/kube-cleanup-operator)
 
 # 总结
 
@@ -445,3 +590,10 @@ kubectl edit ing drone-drone -n drone
 - 因为k8s版本升级到1.16.2，导致仓库的yaml不能使用，所以需要手动修改chart再本地安装。
 - 最新版本的Drone集成Gitea，必须配置OAuth参数，所以本文修改了Drone和Gitea的chart源码：https://github.com/javachen/charts
 - 使用Ingress方式安装的Gitea，所以提交代码不能用ssh方式。使用HTTPS方式，必须设置用户名和密码，所以在k8s集群创建了 drone-gitea-login-secrets
+- 出问题，在Github上找答案
+
+
+
+# 参考文章
+
+- [在Kubernetes上执行Drone CI/CD](https://www.itfanr.cc/2019/07/11/run-drone-cicd-on-kubernetes/)

@@ -113,8 +113,8 @@ done
  }
 
 [domain_realm]
- .javachen.com = JAVACHEN.COM
- javachen.com = JAVACHEN.COM
+ .javachen.space = JAVACHEN.COM
+ javachen.space = JAVACHEN.COM
 ~~~
 
 修改 /var/kerberos/krb5kdc/kdc.conf 如下：

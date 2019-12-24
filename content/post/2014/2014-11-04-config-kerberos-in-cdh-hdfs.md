@@ -103,8 +103,8 @@ kdc 服务器涉及到三个配置文件：
  }
 
 [domain_realm]
- .javachen.com = JAVACHEN.COM
- javachen.com = JAVACHEN.COM
+ .javachen.space = JAVACHEN.COM
+ javachen.space = JAVACHEN.COM
 ~~~
 
 说明：

@@ -16,7 +16,7 @@ FAILED: ParseException line 1:18 Failed to recognize predicate 'a'. Failed rule:
 执行的hql语句如下：
 
 ~~~
-[root@javachen.com ~]# hive -e 'select a.* from t a, t b where a.id=b.id'
+[root@javachen.space ~]# hive -e 'select a.* from t a, t b where a.id=b.id'
 ~~~
 
 从异常信息中很难看出出错原因，hive.log中也没有打印出详细的异常对战信息。改用jdbc连接hive-server2，可以看到hive-server2中提示如下异常信息：
@@ -89,7 +89,7 @@ kwInner
 上面的大概意思是找到输入左边的内容并判断其值在忽略大小写情况下是否等于inner，大概意思是hql语句中缺少inner关键字吧？修改下hql语句如下，然后执行：
 
 ~~~
-[root@javachen.com ~]#  hive -e 'select a.* from t a inner join t b where a.id=b.id'
+[root@javachen.space ~]#  hive -e 'select a.* from t a inner join t b where a.id=b.id'
 ~~~
 
 修改后的hql语句能够正常运行，并且变成了内连接。`在JION接连查询中没有ON连接key而通过WHERE条件语句会产生笛卡尔集。`
