@@ -81,7 +81,7 @@ mv azkaban-web-server-0.1.0-SNAPSHOT /opt/azkaban-web-server
 keytool -keystore keystore -alias jetty -genkey -keyalg RSA
 ```
 
-将在当前目录生成 keystore 证书文件。
+密码均输入azkaban，最后在当前目录生成 keystore 证书文件。
 
 
 
@@ -123,16 +123,22 @@ c. 修改 Jetty 服务器属性，包括 keystore 的相关配置
 # Azkaban Jetty server properties.
 jetty.hostname=0.0.0.0
 jetty.maxThreads=25
-jetty.ssl.port=8443
 jetty.port=8081
 jetty.keystore=keystore
-jetty.password=123456
-jetty.keypassword=123456
+jetty.password=azkaban
+jetty.keypassword=azkaban
 jetty.truststore=keystore
-jetty.trustpassword=123456
+jetty.trustpassword=azkaban
 ~~~
 
-d. 修改邮件设置（可选）
+d. 开启SSL
+
+```bash
+jetty.use.ssl=true
+jetty.ssl.port=8443
+```
+
+e.修改邮件设置（可选）
 
 ~~~properties
 # mail settings
@@ -142,7 +148,7 @@ mail.user=admin
 mail.password=admin
 ~~~
 
-e. 解压缩azkaban-db-0.1.0-SNAPSHOT.zip，然后进入 mysql 命令行模式：
+f. 解压缩azkaban-db-0.1.0-SNAPSHOT.zip，然后进入 mysql 命令行模式：
 
 ~~~bash
 unzip azkaban-db-0.1.0-SNAPSHOT.zip
@@ -151,6 +157,76 @@ $ mysql -uazkaban -pazkaban
 mysql> use azkaban
 mysql> source azkaban-db-0.1.0-SNAPSHOT/create-all-sql-0.1.0-SNAPSHOT.sql
 ~~~
+
+完整conf/azkaban.properties文件：
+
+```bash
+# Azkaban Personalization Settings
+azkaban.name=ETL Task
+azkaban.label=
+azkaban.color=#FF3601
+azkaban.default.servlet.path=/index
+web.resource.dir=web/
+default.timezone.id=Asia/Shanghai
+# Azkaban UserManager class
+user.manager.class=azkaban.user.XmlUserManager
+user.manager.xml.file=conf/azkaban-users.xml
+# Loader for projects
+executor.global.properties=conf/global.properties
+azkaban.project.dir=projects
+# Velocity dev mode
+velocity.dev.mode=false
+# Azkaban Jetty server properties.
+jetty.hostname=0.0.0.0
+jetty.use.ssl=true
+jetty.ssl.port=8443
+jetty.maxThreads=25
+jetty.port=8081
+jetty.keystore=conf/keystore
+jetty.password=azkaban
+jetty.keypassword=azkaban
+jetty.truststore=conf/keystore
+jetty.trustpassword=azkaban
+# Azkaban Executor settings
+# mail settings
+#mail.sender=
+#mail.host=
+#mail.user=
+#mail.password=
+# User facing web server configurations used to construct the user facing server URLs. They are useful when there is a reverse proxy between Azkaban web servers and users.
+# enduser -> myazkabanhost:443 -> proxy -> localhost:8081
+# when this parameters set then these parameters are used to generate email links.
+# if these parameters are not set then jetty.hostname, and jetty.port(if ssl configured jetty.ssl.port) are used.
+# azkaban.webserver.external_hostname=myazkabanhost.com
+# azkaban.webserver.external_ssl_port=443
+# azkaban.webserver.external_port=8081
+job.failure.email=
+job.success.email=
+lockdown.create.projects=false
+cache.directory=cache
+# JMX stats
+jetty.connector.stats=true
+executor.connector.stats=true
+# Azkaban mysql settings by default. Users should configure their own username and password.
+database.type=mysql
+mysql.port=3306
+mysql.host=localhost
+mysql.database=azkaban
+mysql.user=azkaban
+mysql.password=azkaban
+mysql.numconnections=100
+#Multiple Executor
+azkaban.use.multiple.executors=true
+#azkaban.executorselector.filters=StaticRemainingFlowSize,MinimumFreeMemory,CpuStatus
+azkaban.executorselector.filters=StaticRemainingFlowSize,CpuStatus
+azkaban.executorselector.comparator.NumberOfAssignedFlowComparator=1
+azkaban.executorselector.comparator.Memory=1
+azkaban.executorselector.comparator.LastDispatched=1
+azkaban.executorselector.comparator.CpuUsage=1
+executor.port=12321
+```
+
+
 
 # 安装 azkaban-exec-server
 
@@ -179,18 +255,57 @@ mysql.password=azkaban
 mysql.numconnections=100
 ~~~
 
+c. 设置executor端口为12321
+
+```bash
+executor.maxThreads=50
+executor.port=12321
+executor.flow.threads=30
+```
+
+完整conf/azkaban.properties文件为：
+
+```bash
+default.timezone.id=Asia/Shanghai
+
+azkaban.jobtype.plugin.dir=plugins/jobtypes
+
+executor.global.properties=conf/global.properties
+azkaban.project.dir=projects
+
+database.type=mysql
+mysql.port=3306
+mysql.host=localhost
+mysql.database=azkaban
+mysql.user=azkaban
+mysql.password=azkaban
+mysql.numconnections=100
+
+executor.maxThreads=50
+executor.port=12321
+executor.flow.threads=30
+```
+
+
+
 # 用户设置
 
 进入 azkaban web 服务器 conf 目录，修改 azkaban-users.xml ，增加管理员用户：
 
 ~~~xml
 <azkaban-users>
-        <user username="azkaban" password="azkaban" roles="admin" groups="azkaban" />
-        <user username="metrics" password="metrics" roles="metrics"/>
-        <user username="admin" password="admin" roles="admin,metrics" />
-  
-        <role name="admin" permissions="ADMIN" />
-        <role name="metrics" permissions="METRICS"/>
+  <user groups="azkaban" password="admin027" roles="admin" username="azkaban"/>
+  <user password="metrics" roles="metrics" username="metrics"/>
+
+  <user groups="test" username="test"  password="123456" roles="read"/>
+
+  <role name="admin" permissions="ADMIN"/>
+  <role name="metrics" permissions="METRICS"/>
+  <role name="read" permissions="READ"/>
+  <role name="write" permissions="WRITE"/>
+  <role name="execute" permissions="EXECUTE"/>
+  <role name="schedule" permissions="SCHEDULE"/>
+  <role name="createprojects" permissions="CREATEPROJECTS"/>
 </azkaban-users>
 ~~~
 
@@ -199,10 +314,10 @@ mysql.numconnections=100
 azkaban-exec-server，需要在 azkaban-exec-server 目录下执行下面命令：
 
 ~~~bash
-sh bin/azkaban-exec-start.sh
+sh bin/start-exec.sh
 ~~~
 
-查看启动状态：
+激活当前executor：
 
 ```bash
 $ curl -G "localhost:$(<./executor.port)/executor?action=activate" && echo
@@ -232,6 +347,8 @@ sh bin/start-web.sh
 # Docker安装
 
 参考：
+
+- https://gitee.com/javachen/docker-azkaban
 
 - https://gitee.com/datatech/docker-azkaban
 - https://github.com/jfim/data-platform-demo/blob/master/dockerfiles/Dockerfile-azkaban

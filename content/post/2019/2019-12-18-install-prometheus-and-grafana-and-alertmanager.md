@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  安装Prometheus、Grafana、Alertmanager
+title: 安装Prometheus、Grafana、Alertmanager
 date: 2019-12-18T08:00:00+08:00
 categories: [ devops ]
 tags: [prometheus、grafana]
