@@ -90,7 +90,7 @@ brew update
 通过brew安装软件：
 
 ~~~bash
-brew install vim zsh git git-flow curl httpie wget putty tmux source-highlight ctags tree node autojump
+brew install vim zsh git git-flow curl httpie wget putty tmux source-highlight ctags tree node autojump hugo
 ~~~
 
  以上命令会安装如下依赖：
@@ -128,7 +128,7 @@ brew tap phinze/homebrew-cask
 我通过 Brew cask 安装的软件：
 
 ~~~bash
-brew cask install qq qqmusic google-chrome virtualbox vagrant iterm2 the-unarchiver cheatsheet
+brew cask install qq qqmusic google-chrome virtualbox vagrant iterm2 the-unarchiver cheatsheet switchhosts
 ~~~
 
 - cheatsheet：示当前程序的快捷键列表，默认快捷键是长按command键
