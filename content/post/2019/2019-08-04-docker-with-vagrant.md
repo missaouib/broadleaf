@@ -82,7 +82,9 @@ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 添加Docker源
 
 ```bash
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo sed -i 's+download.docker.com+mirrors.cloud.tencent.com/docker-ce+' /etc/yum.repos.d/docker-ce.repo
 ```
 
 安装最新的 Docker-ce
@@ -91,18 +93,62 @@ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dock
 sudo yum install docker-ce -y
 ```
 
-centos系统上，配置镜像：
+配置/etc/docker/daemon.json：
 
 ```bash
-echo '{
-  "registry-mirrors": ["http://hub-mirror.c.163.com"]
-}' > /etc/docker/daemon.json
+cat > /etc/docker/daemon.json <<EOF
+{
+    "oom-score-adjust": -1000,
+    "log-driver": "json-file",
+    "log-opts": {
+      "max-size": "100m",
+      "max-file": "3"
+    },
+    "bip": "172.17.10.1/24",
+    "registry-mirrors": [
+      "https://hub.daocloud.io",
+      "https://docker.mirrors.ustc.edu.cn/",
+      "https://registry.docker-cn.com"
+    ],
+    "graph":"/data/docker",
+    "exec-opts": ["native.cgroupdriver=systemd"],
+    "storage-driver": "overlay2",
+    "storage-opts": [
+      "overlay2.override_kernel_check=true"
+    ]
+}
+EOF
 ```
 
 开启路由转发功能：
 
 ```bash
 echo 1 > /proc/sys/net/ipv4/ip_forward
+```
+
+添加内核配置参数以启用这些功能。
+
+```
+$ sudo tee -a /etc/sysctl.conf <<-EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+```
+
+然后重新加载 `sysctl.conf` 即可
+
+```bash
+sudo sysctl -p
+```
+
+
+
+开放2375端口
+
+编辑docker文件：/usr/lib/systemd/system/docker.service，修改ExecStart行添加"-H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock"
+
+```
+sed -i '/containerd.sock.*/ s/$/ -H tcp:\/\/0.0.0.0:2375 -H unix:\/\/var\/run\/docker.sock /'  /usr/lib/systemd/system/docker.service
 ```
 
 启动Docker
@@ -121,7 +167,7 @@ sudo systemctl enable docker
 
 ```bash
 sudo groupadd docker
-sudo gpasswd -a vagrant docker
+sudo usermod -aG docker vagrant
 ```
 
 退出再登陆，查看docker版本：
@@ -218,8 +264,8 @@ docker run -d \
 例如，在 Linux 64 位系统上直接下载对应的二进制包。
 
 ```bash
-sudo curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` \
--o /usr/local/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-`uname -s`-`uname -m` \
+  > /usr/local/bin/docker-compose
 
 sudo chmod +x /usr/local/bin/docker-compose
 ```
@@ -249,7 +295,7 @@ vagrant halt
 vagrant package --output centos-docker.box
 ```
 
-#### 添加box
+## 添加box
 
 ```
 vagrant box add centos-docker ./centos-docker.box
@@ -265,13 +311,13 @@ centos/7      (virtualbox, 1902.01)
 
 # 测试Box
 
-#### 创建VM目录，并初始化
+## 创建VM目录，并初始化
 
 ```bash
 mkdir centos-docker && cd centos-docker && vagrant init centos-docker
 ```
 
-#### 编辑Vagrantfile文件，添加私有网络
+## 添加私有网络
 
 ```bash
  ...
@@ -280,7 +326,7 @@ config.vm.network "private_network", ip: "192.168.56.222"
 ...
 ```
 
-#### 登录VM测试
+## 登录VM测试
 
 ```bash
 vagrant up
@@ -363,7 +409,7 @@ vagrant plugin install vagrant-vbguest
 vagrant reload --provision
 ```
 
-### 重启虚拟机
+## 重启虚拟机
 
 ```
 vagrant up

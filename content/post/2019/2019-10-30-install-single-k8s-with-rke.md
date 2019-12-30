@@ -362,7 +362,9 @@ bash ./check-config.sh
 
 ```bash
 yum install -y yum-utils device-mapper-persistent-data lvm2
-yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo sed -i 's+download.docker.com+mirrors.cloud.tencent.com/docker-ce+' /etc/yum.repos.d/docker-ce.repo
 
 yum install docker-ce -y
 ```
@@ -515,7 +517,7 @@ sudo chmod 777 /usr/local/bin/rke
 ## 配置yum源
 
 ```bash
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+cat <<EOF > kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
@@ -525,6 +527,7 @@ gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
   http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
 EOF
 
+sudo mv kubernetes.repo /etc/yum.repos.d/
 sudo yum install kubectl -y
 ```
 

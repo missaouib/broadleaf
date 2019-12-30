@@ -32,34 +32,48 @@ Ceph中午文档：http://docs.ceph.org.cn/
 
 ```bash
 sudo yum install -y yum-utils 
-sudo yum-config-manager --add-repo https://dl.fedoraproject.org/pub/epel/7/x86_64/  
-sudo yum install --nogpgcheck -y epel-release 
-sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 
-sudo rm /etc/yum.repos.d/dl.fedoraproject.org*
+curl -k -s -o /etc/yum.repos.d/epel.repo http://mirrors.cloud.tencent.com/repo/epel-7.repo
 ```
 
 配置yum源，注意：这里ceph使用的是nautilus版本。
 
 ```bash
 cat << EOF > ceph.repo
-[Ceph-noarch]
-name=Ceph noarch packages
-baseurl=http://mirrors.163.com/ceph/rpm-nautilus/el7/noarch
+[ceph]
+name=Ceph packages for \$basearch
+baseurl=https://mirrors.cloud.tencent.com/ceph/rpm-nautilus/el7/\$basearch
 enabled=1
-gpgcheck=0
-type=rpm-md
-gpgkey=https://mirrors.163.com/ceph/keys/release.asc
+gpgcheck=1
 priority=1
+type=rpm-md
+gpgkey=http://mirrors.cloud.tencent.com/ceph/keys/release.asc
+
+[ceph-noarch]
+name=Ceph noarch packages
+baseurl=https://mirrors.cloud.tencent.com/ceph/rpm-nautilus/el7/noarch
+enabled=1
+gpgcheck=1
+priority=1
+type=rpm-md
+gpgkey=http://mirrors.cloud.tencent.com/ceph/keys/release.asc
+
+[ceph-source]
+name=Ceph source packages
+baseurl=https://mirrors.cloud.tencent.com/ceph/rpm-nautilus/el7/SRPMS
+enabled=0
+gpgcheck=1
+type=rpm-md
+gpgkey=http://mirrors.cloud.tencent.com/ceph/keys/release.asc
 EOF
 
 sudo mv ceph.repo /etc/yum.repos.d/
 ```
 
-设置环境变量，使ceph-deploy使用163源。
+设置环境变量，使ceph-deploy使用腾讯云源。
 
 ```bash
-export CEPH_DEPLOY_REPO_URL=https://mirrors.163.com/ceph/rpm-nautilus/el7
-export CEPH_DEPLOY_GPG_URL=http://mirrors.163.com/ceph/keys/release.asc
+export CEPH_DEPLOY_REPO_URL=https://mirrors.cloud.tencent.com/ceph/rpm-nautilus/el7
+export CEPH_DEPLOY_GPG_URL=https://mirrors.cloud.tencent.com/ceph/keys/release.asc
 ```
 
 更新软件库并安装 `ceph-deploy`

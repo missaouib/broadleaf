@@ -17,7 +17,7 @@ tags: [mac]
 
 本文主要记录重装Mac系统之后的一些软件安装和环境变量配置。
 
-#系统偏好设置
+# 系统偏好设置
 
 ## 触控板
 
@@ -61,60 +61,50 @@ tags: [mac]
 - 去掉字体和书签与历史记录等不需要的内容
 - 设置合适的快捷键
 
-# XCode
+# 安装软件
+
+## XCode
 
 ```
  xcode-select --install
 ```
 
-# Homebrew
-
-## 安装
+## Homebrew
 
 [Brew](http://brew.sh/) 是 Mac 下面的包管理工具，通过 Github 托管适合 Mac 的编译配置以及 Patch，可以方便的安装开发工具。
 
 ~~~bash
-$ ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ~~~
+
+替换brew.git
+
+```bash
+git -C "$(brew --repo)" remote set-url origin https://mirrors.cloud.tencent.com/homebrew/brew.git
+
+git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.cloud.tencent.com//homebrew/homebrew-core.git
+
+brew update
+```
 
 通过brew安装软件：
 
 ~~~bash
-$ brew install git git-flow  curl  wget  putty  tmux ack source-highlight  dos2unix nmap iotop htop  ctags tree 
+brew install vim zsh git git-flow curl httpie wget putty tmux source-highlight ctags tree node autojump
 ~~~
 
-紧接着，我们需要做一件事让通过 Homebrew 安装的程序的启动链接 (在 /usr/local/bin中）可以直接运行，无需将完整路径写出。通过以下命令将 /usr/local/bin 添加至 $PATH 环境变量中:
+ 以上命令会安装如下依赖：
+
+```bash
+Installing dependencies for vim: lua, perl, gdbm, openssl@1.1, readline, sqlite, xz, python, libyaml and ruby
+```
+
+安装目录在 `/usr/local/Cellar`
+
+通过以下命令将 /usr/local/bin 添加至 $PATH 环境变量中:
 
 ~~~bash
-$ echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
-~~~
-
-Cmd+T 打开一个新的 terminal 标签页，运行以下命令，确保 brew 运行正常。
-
-~~~bash
-$ brew doctor
-~~~
-
-##基本使用
-
-## Cask
-
-[Brew cask](https://github.com/phinze/homebrew-cask) 是类似 Brew 的管理工具， 直接提供 dmg 级别的二进制包，（Brew 是不带源码，只有对应项目所在的 URL）。我们可以通过 Homebrew Cask 优雅、简单、快速的安装和管理 OS X 图形界面程序，比如 Google Chrome 和 Dropbox。
-
-Brew cask 安装：
-
-~~~bash
-$ brew tap phinze/homebrew-cask
-$ brew install brew-cask
-~~~
-
-我通过 Brew cask 安装的软件：
-
-~~~bash
-brew cask install google-chrome 
-brew cask install virtualbox 
-
-Vagrant Unarchiver Iterm2
+echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
 ~~~
 
 更新：
@@ -125,7 +115,37 @@ brew update && brew upgrade brew-cask && brew cleanup
 
 
 
-# oh-msy-zsh
+## Cask
+
+[Brew cask](https://github.com/phinze/homebrew-cask) 是类似 Brew 的管理工具， 直接提供 dmg 级别的二进制包，（Brew 是不带源码，只有对应项目所在的 URL）。我们可以通过 Homebrew Cask 优雅、简单、快速的安装和管理 OS X 图形界面程序，比如 Google Chrome 和 Dropbox。
+
+Brew cask 安装：
+
+~~~bash
+brew tap phinze/homebrew-cask
+~~~
+
+我通过 Brew cask 安装的软件：
+
+~~~bash
+brew cask install qq qqmusic google-chrome virtualbox vagrant iterm2 the-unarchiver cheatsheet
+~~~
+
+- cheatsheet：示当前程序的快捷键列表，默认快捷键是长按command键
+
+
+
+### 配置 iTerm2
+
+打开 Preferences 偏好设置
+
+- General 关闭 Native full screen windows 我不使用系统的全屏（因为有过渡动画），是为了使用全局快捷键 **立即** 调出命令行
+- Profiles-Window-Transparency 设置透明度 10%~20% 即可，太高会和桌面背景冲突。如果需要临时禁用透明度可以使用快捷键 ⌘+u
+- Keys-Hotkey 设置全局显示隐藏快捷键 系统级别的快捷键设置为 ⌘+\
+
+> 最佳实践，启动 iTerm2 后按 ⌘+enter 全屏，然后 ⌘+\ 隐藏它，这时候就可以做别的事情去了。任何时间想再用 iTerm2 只需要按 ⌘+\ 即可
+
+## oh-msy-zsh
 
 使用 Homebrew 完成 zsh 和 zsh completions 的安装
 
@@ -133,23 +153,23 @@ brew update && brew upgrade brew-cask && brew cleanup
 brew install zsh zsh-completions
 ~~~
 
-把默认 Shell 换为 zsh。
+设置zsh为默认：
 
 ~~~bash
-$ chsh -s /bin/zsh
+sudo sh -c "echo $(which zsh) >> /etc/shells" 
+chsh -s $(which zsh)
 ~~~
+
+bash切换到zsh
+
+```bash
+chsh -s /bin/zsh
+```
 
 安装 oh-my-zsh：
 
 ~~~bash
-$ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-~~~
-
-编辑 ~/.zshrc：
-
-~~~
-echo 'source ~/.bashrc' >>~/.zshrc
-echo 'source ~/.bash_profile' >>~/.zshrc
+curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 ~~~
 
 用文本编辑器或 vi 打开 .zshrc 添加插件:
@@ -159,8 +179,24 @@ ZSH_THEME=pygmalion
 plugins=(git mvn colorize encode64 urltools wd last-working-dir sublime vagrant Z zsh-syntax-highlighting git-open)
 ~~~
 
+执行以下指令生效
 
-# Java开发环境
+```bash
+exec $SHELL # 或 source .zshrc
+```
+
+
+
+安装自动补全提示插件 [zsh-autosuggestions](https://link.zhihu.com/?target=https%3A//github.com/zsh-users/zsh-autosuggestions)
+
+```text
+git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+```
+
+## Java开发环境
+
+### 安装Java
 
 下载 jdk：
 
@@ -171,8 +207,38 @@ plugins=(git mvn colorize encode64 urltools wd last-working-dir sublime vagrant 
 
 ~~~bash
 echo 'export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-' >> ~/.bashrc
+' >> ~/.zshrc
 ~~~
+
+### 安装Maven
+
+```bash
+brew install maven
+```
+
+## 编辑器
+
+- [SublimeText](https://link.zhihu.com/?target=https%3A//www.sublimetext.com/) 
+- [JetBrains](https://link.zhihu.com/?target=https%3A//www.jetbrains.com/) 
+
+## 其他
+
+- 百度云网盘
+- 搜狗输入法
+- Typora
+- Sublime Text
+
+# 配置文件
+
+参考 https://github.com/javachen/snippets/tree/master/dotfiles
+
+```bash
+git clone https://github.com/javachen/snippets.git
+cd snippets/dotfiles
+cp * ~/
+```
+
+
 
 # 参考文章
 

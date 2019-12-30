@@ -8,15 +8,23 @@ tags: [mysql,docker]
 description:  使用Docker安装MySql
 ---
 
+Docker的Mysql镜像说明请参考 https://hub.docker.com/_/mysql 
+
 # 使用Docker安装
 
 下载镜像：
 
 ```
-docker pull mysql
+docker pull mysql:5.7
 ```
 
-运行容器：
+启动命令：
+
+```bash
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:5.7
+```
+
+添加挂载，运行容器：
 
 ```bash
 docker run -d -p 3306:3306  \
@@ -24,7 +32,7 @@ docker run -d -p 3306:3306  \
   -v /data/docker/mysql/logs:/var/log/mysql \
   -v /data/docker/mysql/data:/var/lib/mysql \
   -e MYSQL_ROOT_PASSWORD=123456 \
-  --name mysql mysql
+  --name mysql mysql:5.7
 ```
 
 命令参数：
@@ -34,20 +42,6 @@ docker run -d -p 3306:3306  \
 - `-v /data/docker/mysql/logs:/var/log/mysql`：将主机当前目录下的 logs 目录挂载到容器的 /var/log/mysql
 - `-v /data/docker/mysql/data:/var/lib/mysql`：将主机当前目录下的 data 目录挂载到容器的 /var/lib/mysql
 - `-e MYSQL_ROOT_PASSWORD=123456`：初始化root用户的密码
-
-查看容器启动情况：
-
-```
-docker ps
-```
-
-防火墙开启3306端口
-
-```
-firewall-cmd --add-port=3306/tcp
-
-firewall-cmd --zone=public --add-port=3306/tcp --permanent
-```
 
 /data/docker/mysql/conf下创建my.cnf
 
@@ -65,15 +59,31 @@ collation-server = utf8mb4_unicode_ci
 default-character-set=utf8mb4
 ```
 
-重新启动容器
+
+
+查看容器启动情况：
 
 ```
+docker ps
+```
+
+防火墙开启3306端口
+
+```bash
+firewall-cmd --add-port=3306/tcp
+
+firewall-cmd --zone=public --add-port=3306/tcp --permanent
+```
+
+重新启动容器
+
+```bash
 docker restart mysql
 ```
 
 进入容器：
 
-```
+```bash
 docker exec -it mysql bash
 ```
 
@@ -107,6 +117,9 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
     command:
       --default-authentication-plugin=mysql_native_password
       --character-set-server=utf8mb4
@@ -120,6 +133,14 @@ services:
       - /data/docker/mysql/logs:/var/log/mysql 
       - /data/docker/mysql/data:/var/lib/mysql
 ```
+
+也可以使用 MYSQL_ROOT_PASSWORD_FILE 环境变量：
+
+```bash
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql-root -d mysql:tag
+```
+
+> 说明：MYSQL_ROOT_PASSWORD_FILE 对应的文件里可以包含：MYSQL_ROOT_PASSWORD、MYSQL_ROOT_HOST、MYSQL_DATABASE、MYSQL_USER、MYSQL_PASSWORD。
 
 进入到上面编写的docker-compose.yml文件的目录，运行命令：
 

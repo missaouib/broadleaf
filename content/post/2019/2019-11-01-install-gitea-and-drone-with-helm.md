@@ -430,8 +430,8 @@ persistence:
 从本地/home/chenzj/code/charts/drone目录安装：
 
 ```bash
-helm install --name gitea  \
-     --namespace gitea -f drone-gitea-values.yaml \
+helm install --name drone  \
+     --namespace drone -f drone-gitea-values.yaml \
      /home/chenzj/code/charts/drone
 ```
 
